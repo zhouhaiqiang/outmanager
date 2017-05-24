@@ -1,0 +1,108 @@
+#content5 {
+	padding: 0px;
+}
+
+ruby {
+	
+}
+
+.tab {
+	
+}
+
+.hd {
+	
+}
+
+.hd ul {
+	
+}
+
+.hd .nomal {
+	
+}
+
+.hd .activeTab {
+	
+}
+
+li {
+	list-style-type: none;
+}
+
+.tab {
+	width: 800px;
+}
+
+.tab li,.tab li span {
+	background: url(../images/bg.gif);
+	border: 0px solid;
+}
+
+.tab li {
+	float: left;
+	height: 65px;
+	line-height: 65px;
+	background-position: 0 -201px;
+	padding: 0 0 0 5px;
+	font-size: 1px;
+	cursor: pointer;
+}
+
+.tab li span {
+	height: 65px;
+	line-height: 120%;
+	vertical-align: middle;
+	display: table-cell;
+	vertical-align: middle;
+	background-position: right -201px;
+	font-size: 12px;
+	padding: 0 8px;
+	font-weight: bold;
+}
+
+.tab li.ending span {
+	background-position: right 0;
+	padding-right: 25px;
+}
+
+.tab li.current {
+	background-position: left -268px;
+}
+
+.tab li.current span {
+	background-position: right -268px;
+}
+
+.tab li.currentnext {
+	background-position: left -335px;
+}
+
+.tab li.currentnext span {
+	background-position: right -404px;
+}
+
+.tab li.currentending {
+	background-position: left -268px;
+}
+
+.tab li.currentending span {
+	background-position: right -67px;
+}
+
+.tab li.subend {
+	background-position: 0 -334px;
+}
+
+.tab li.subend span {
+	background-position: right -472px;
+}
+
+.activity_pane {
+	float: left;
+	border: 1px solid #CCCCCC;
+	background-color: #EEEEEE;
+	padding-top: 200px;
+	height:200px;
+	text-align: center;
+}

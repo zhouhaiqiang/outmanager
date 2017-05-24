@@ -1,0 +1,27 @@
+.uploadify {
+	margin-bottom: 1em; position: relative;
+}
+.uploadify-button.disabled {
+	color: rgb(128, 128, 128); background-color: rgb(208, 208, 208);
+}
+.uploadify-queue {
+	margin-bottom: 1em;
+}
+.uploadify-queue-item {
+	font: 12px/normal Verdana, Geneva, sans-serif; padding: 10px; border-radius: 3px; margin-top: 5px; max-width: 450px; font-size-adjust: none; font-stretch: normal; background-color: rgb(245, 245, 245); -webkit-border-radius: 3px; -moz-border-radius: 3px;
+}
+.uploadify-error {
+	background-color: rgb(253, 229, 221) !important;
+}
+.uploadify-queue-item .cancel a {
+	background: url("../img/uploadify-cancel.png") no-repeat 0px 0px; width: 16px; height: 16px; text-indent: -9999px; float: right;
+}
+.uploadify-queue-item.completed {
+	background-color: rgb(229, 229, 229);
+}
+.uploadify-progress {
+	width: 100%; margin-top: 10px; background-color: rgb(229, 229, 229);
+}
+.uploadify-progress-bar {
+	width: 1px; height: 3px; background-color: rgb(0, 153, 255);
+}

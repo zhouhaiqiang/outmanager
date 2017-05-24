@@ -1,0 +1,406 @@
+BODY {
+margin-left: 0px;
+margin-top: 0px;
+margin-right: 0px;
+margin-bottom: 0px;
+scrollbar-face-color: #efefef;
+scrollbar-shadow-color: #BBBBBB;
+scrollbar-highlight-color: #BBBBBB;
+scrollbar-3dlight-color: #F5F5F5;
+scrollbar-darkshadow-color: #F5F5F5;
+scrollbar-track-color:#F5F5F5;
+scrollbar-arrow-color: #7A89E4; 
+}       /*定义BODY的上下左右边距以及页面滚动条的样式，自动套用，不需要加CLASS加载 */
+
+       /*定义TABLE里的字体大小以及行距，颜色为黑色。自动套用，不需要加CLASS加载 */
+
+.table1{background-color:#0561AE}        /*定义TABLE的背景色，在页面里显示为表格的深色边线 */
+
+
+.btnTopButClose{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/button_off.gif');
+	 BORDER: 0px solid #5A6DA5;
+	      }
+
+.btnTopButSave{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/button_8.gif');
+	 BORDER: 0px solid #5A6DA5;
+	      }
+
+.btnTopbtnPrint{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/button_print.gif');
+	 BORDER: 0px solid #5A6DA5;
+	      }
+
+
+
+.btnTopButMyIdea{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/btn_Readyj.gif');
+	 BORDER: 0px solid #5A6DA5;
+	      }
+
+/*修改成MAS之签的生成文档样式 */
+.btnTopLBPaper{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/btnDocument.gif');
+	 BORDER: 0px solid #5A6DA5;
+	      }
+
+/*生成正文(带红头的和工作内容的、MAS功能) */
+.btnTopLBRedHeadPaper{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/MasRedHeadDocument.gif');
+	 BORDER: 0px solid #5A6DA5;
+	      }
+
+/*生成稿纸(MAS功能) */
+.btnTopLBGaoZhiPaper{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/MasGaoZhiDocument.gif');
+	 BORDER: 0px solid #5A6DA5;
+	      }
+
+
+.btnTopButDelete{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/btnDepose.gif');
+	 BORDER: 0px solid #5A6DA5;
+	      }
+
+.btnTopButCallback{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/btnRecall.gif');
+	 BORDER: 0px solid #5A6DA5;
+	      }
+
+.btnTopButSendRead{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/btn_sentread.gif');
+	 BORDER: 0px solid #5A6DA5;
+}
+
+.btnTopButReSendRead{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/btn_ReRead.gif');
+	 BORDER: 0px solid #5A6DA5;
+}
+
+.btnTopButMonitor{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/button_jk.gif');
+	 BORDER: 0px solid #5A6DA5;
+	      }
+
+
+/*联通全国应用-招投标打印表一*/
+.btnPrintZtBiao1{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/PrintZtBiao1.gif');
+	 BORDER: 0px solid #5A6DA5;
+	      }
+
+
+/*联通全国应用-招投标打印意见*/
+.btnPrintZtBiao2{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/PrintZtBiao2.gif');
+	 BORDER: 0px solid #5A6DA5;
+	      }
+
+
+
+.tr1{bfont-family: 宋体; font-size: 9pt ; line-height:12pt;  color:black;background-color:#ffffff;height:25px;}          /*定义TR或TD的的背景色，白色 */
+.tr2{bfont-family: 宋体; font-size: 9pt ; line-height:12pt;  color:red; background-color:#ffffff;height:25px; }         /*定义TR或TD的的背景色，淡蓝色 */
+.tr4{bfont-family: 宋体; font-size: 10pt ; line-height:20pt;  color:#0066cc; font-weight:bolder;background-color:#F6F5FD; }
+.tr3{bfont-family: 宋体; font-size: 9pt ; line-height:12pt;  color:#0a508b;font-weight:bolder;text-align:left;background-color:#F6F5FD;}         /*定义TR或TD的的背景色，淡蓝色 */
+.tr5{bfont-family: 宋体; font-size: 9pt ; line-height:12pt;  color:#000000; font-weight:bolder;background-color:#F6F5FD;text-align:left }
+
+
+.ourfont0 {font-family: 宋体;font-size:9pt;line-height:12pt;color: #ffffff;}           /*定义白色的9号字体 */
+.ourfont1 {font-family: 宋体; font-size: 9pt ; line-height:12pt;  color:#0066cc}       /*定义蓝色的9号字体 */
+.ourfont2 {font-family: 宋体; font-size: 9pt ; line-height:12pt;  color:#000000}       /*定义黑色的9号字体 */
+
+.style1 {font-size: 14px;font-weight: bold;font-family: "宋体";color: #0066cc;}        /*定义黑色的14号表头标题字体 */
+.style2 {font-size: 13px;font-weight: bold;font-family: "宋体";color: #000000;}        /*定义黑色的14号表头标题字体 */
+.blue{color:#008000 }
+.red{color:#FF0000}
+.yellow{color:#FFE805}
+
+.btnscrip{
+	BACKGROUND-REPEAT: no-repeat; 
+	Border: 0px Solid ;
+	BackGround: transparent
+}
+
+
+A{font-family: 宋体; font-size: 9pt ; line-height:12pt;text-transform: none; color:#RED}
+a:link {font-family: 宋体; font-size: 9pt ; line-height:12pt;color:RED;text-decoration:YES} /*定义LINK样式 */ 
+a:hover {font-family: 宋体; font-size: 9pt ; line-height:12pt;color:RED;text-decoration:none} /*定义LINK样式 */
+a:visited {font-family: 宋体; font-size: 9pt ; line-height:12pt;color:RED;text-decoration:YES} /*定义LINK样式 */   
+
+.ImgCss 
+{
+	BACKGROUND-COLOR: #5A6DA5;      
+    WIDTH: 20px;HEIGHT:22px;     
+	COLOR: #red;	 
+	FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	FONT-SIZE: 12px; 
+	BACKGROUND: #ffffff url("../image/button/date.gif");
+	BORDER: 0px solid red; 
+	cursor:hand;
+}                            /*定义日期按钮图片样式 */
+
+
+.line{
+ border-top-width: 0px;
+ border-right-width: 0px;
+ border-bottom-width: 0px;
+ border-left-width: 0px;
+ border-top-style: none;
+ border-right-style: none;
+ border-bottom-style: none;
+ border-left-style: none;
+}                       /*定义直线输入框样式 */
+
+.bjhsline{
+ border-top-width: 0px;
+ border-right-width: 0px;
+ border-bottom-width: 0px;
+ border-left-width: 0px;
+ border-top-style: none;
+ border-right-style: none;
+ border-bottom-style: none;
+ border-left-style: none;
+}
+
+
+.bjhsText{
+ border-top-width: 0px;
+ border-right-width: 0px;
+ border-bottom-width: 0px;
+ border-left-width: 0px;
+ border-top-style: none;
+ border-right-style: none;
+ border-bottom-style: none;
+ border-left-style: none;
+ background-color:#FFFFFF;
+}
+
+.bjhsText2{
+ border-top-width: 0px;
+ border-right-width: 0px;
+ border-bottom-width: 0px;
+ border-left-width: 0px;
+ border-top-style: none;
+ border-right-style: none;
+ border-bottom-style: none;
+ border-left-style: none;
+ background-color:#F4F7FC;
+}
+
+
+
+.textStyle {
+	background-color: #DDEEFF;
+	font-family: "宋体";
+	font-size: 9pt;
+	color: #0066CC;
+	text-decoration: none;
+	border: 0px none;
+	width: 100%;
+	height:20px;	
+		
+}
+
+.but25 {
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 25px;HEIGHT: 24px;     
+	 COLOR: #000000;	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: #ffffff url('../images/background/but25.jpg');
+	 BORDER: 0px solid #5A6DA5; }
+.button50 {
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 50px;HEIGHT: 24px;     
+	 COLOR: #000000;	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: #ffffff url('../image/button/button1.jpg');
+	 BORDER: 0px solid #5A6DA5; }
+.button51 {
+   BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/button_off.gif');
+	 BORDER: 0px solid #5A6DA5; }
+
+
+.but50 {
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 50px;HEIGHT: 24px;     
+	 COLOR: #000000;	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: #ffffff url('../images/background/back50.bmp');
+	 BORDER: 0px solid #5A6DA5; }
+	 
+.but100 {
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 50px;HEIGHT: 24px;     
+	 COLOR: #000000;	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND-IMAGE: url('../image/button/but100.bmp');
+	 BORDER: 0px solid #5A6DA5; }
+.but75 {
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 75px;HEIGHT: 24px;     
+	 COLOR: #000000;	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: #ffffff url('../images/background/but75.bmp');
+	 BORDER: 0px solid #5A6DA5; }
+	 
+.but100 {
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 100px;HEIGHT: 24px;     
+	 COLOR: #000000;	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: #ffffff url('../images/background/but100.bmp');
+	 BORDER: 0px solid #5A6DA5; }
+
+.button {
+    border:1px solid #3C5B94;
+	padding:2px 2px 0px;
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#B9D8FD);
+	height:19px;
+	font-size:9pt;
+	color:#212121;
+	cursor:hand;
+}
+
+/*根据权限上传附件*/
+.btnCommonUploadFile{
+     BACKGROUND-COLOR: #5A6DA5;      
+     WIDTH: 56px;HEIGHT: 48px;     	 
+	 FONT-FAMILY: Verdana,TAHOMA,MS Shell Dlg,sans-serif,宋体; 
+	 FONT-SIZE: 12px; 
+	 BACKGROUND: url('../image/button/btn_uploadfile.gif');
+	 BORDER: 0px solid #5A6DA5;
+	      }
+	      
+	      
+.sub {	background-image: url(images/sub.gif);
+	background-repeat: repeat-x;
+	border: 1px solid #70B1CF;
+	height:22px;
+	color: #585858;
+}
+.bar {
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #BBC2D7;
+}
+.title {
+	font-size: 14px;
+	font-weight: bold;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color:  #BBC2D7;
+}
+.title1 {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+body{
+	margin:0px;
+	padding:0px;
+	font-size: 12px;
+	line-height: 150%;
+}
+.sub {	background-image: url(images/sub.gif);
+	background-repeat: repeat-x;
+	border: 1px solid #70B1CF;
+	height:22px;
+	color: #585858;
+}
+.bar {
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #BBC2D7;
+}
+.title {
+	font-size: 14px;
+	font-weight: bold;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color:  #BBC2D7;
+}
+.title1 {
+	font-size: 14px;
+	font-weight: bold;
+}
+.textline{
+BORDER-LEFT-STYLE: solid;border-left-width:1px;border-color:RED; 
+BORDER-RIGHT-STYLE: solid;border-RIGHT-width:1px;border-color:RED; 
+BORDER-TOP-STYLE: solid;border-TOP-width:1px;border-color:RED; 
+BORDER-BOTTOM-STYLE: solid;border-BOTTOM-width:1px;border-color:RED; 
+
+}
+.textline1{
+BORDER-LEFT-STYLE: none;border-left-width:1px;border-color:RED; 
+BORDER-RIGHT-STYLE: none;border-RIGHT-width:1px;border-color:RED; 
+BORDER-TOP-STYLE: none;border-TOP-width:1px;border-color:RED; 
+BORDER-BOTTOM-STYLE: none;border-BOTTOM-width:1px;border-color:RED; 
+
+}

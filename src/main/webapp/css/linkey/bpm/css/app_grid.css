@@ -1,0 +1,10 @@
+﻿a {font-size:9pt;font-family:"微软雅黑","宋体";color: #00457D; text-decoration: none}
+a:hover {color: #FF0000; text-decoration: none;font-family:"微软雅黑","宋体"}
+.toptoolbar{padding:2px;border:1px solid #eee;background:#F8F8F8;}
+.toptoolbarhr{height:2px;}
+
+legend,body,form,td{font-size:9pt}
+p{height:0px;}
+
+/*chrome 样式定义 */
+ input,button,select,textarea,div,span,td{outline:none}

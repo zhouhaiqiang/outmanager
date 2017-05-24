@@ -1,0 +1,7 @@
+.talkwebtable{border-collapse:collapse;border: 1px solid #cccccc;width:100%;font-size:9pt;}
+.talkwebtable td{border-collapse:collapse;border: 1px solid #dddddd;padding:4px;font-size:9pt;font-family:"Î¢ÈíÑÅºÚ","ËÎÌå";}
+.talkwebtable td.texttd{text-align:right;background:#f9f9f9;font-size:9pt;font-family:"Î¢ÈíÑÅºÚ","ËÎÌå";}
+.talkwebtable td{border-collapse:collapse;border: 1px solid #dddddd;padding:4px;font-size:9pt;font-family:"Î¢ÈíÑÅºÚ","ËÎÌå";}
+.talkwebtable tbody tr td.texttd{text-align:right;background:#f9f9f9;font-size:9pt;font-family:"Î¢ÈíÑÅºÚ","ËÎÌå";}
+.talkwebtable tbody tr th.texttd{text-align:right;background:#f9f9f9;font-size:9pt;font-family:"Î¢ÈíÑÅºÚ","ËÎÌå";}
+.talkwebtable tbody tr th{border-collapse:collapse;border: 1px solid #dddddd;padding:4px;font-size:9pt;font-family:"Î¢ÈíÑÅºÚ","ËÎÌå";}

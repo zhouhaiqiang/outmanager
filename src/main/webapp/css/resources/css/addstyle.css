@@ -1,0 +1,84 @@
+/* �¼���ʽ */
+/* ����������ʽ */
+.prompt{width:590px; height:480px;margin-left:auto;margin-right: auto;}
+.pt-left{width:60%; float:left;}
+.pt-right{width:37%; line-height:40px; float:left; text-align:right;}
+.pt-right a:link{color:#006BBD;text-decoration: underline;}
+.pt-right a:hover{color:#006BBD;text-decoration: underline;}
+.pt-right a:visited {color:#006BBD;text-decoration: underline;}
+.line{border-bottom:1px dashed #c1c9cf; float:left; width:100%; height:5px; margin-bottom:5px;}
+.gs{ float:left; width:100%;height: 22px}
+.company{width:50px; float:left;line-height:25px; text-align:right;}
+.company-bd{width:100%; float:left; margin-top:1px;} 
+.td_tit_2{ padding-left:10px; line-height:40px;}
+.order_txt{border:1px solid #c6d3db; background-color:#fff; line-height:40px; color:#999; width:200px; height:20px; float:left;}
+.order_enter{float:right; width:200px; margin-left:4px; line-height:20px; cursor:pointer; background:url(../sendImages/_r1_c1.gif) right no-repeat ; }
+.order_enter-1{float:right; width:200px; line-height:20px; cursor:pointer; background:url(../sendImages/btn-10.gif) right no-repeat ; margin-right:4px;}
+.order_s{border:1px solid #c6d3db; background-color:#fff; line-height:40px; color:#999; width:170px; height:100px; float:left;}
+.order_ss{float:left; width:150px; margin-left:4px; line-height:20px; cursor:pointer; }
+.step{ margin-left:20px;}
+.step-left{ width:36%; height:330px; float:left; margin-top:5px;}
+.step-right{ width:60%; height:330px;float:left; margin-left:22px; margin-top:5px;}
+.step-right-s{width:100%; height:165px;float:left;}
+.step-right-s-left{width:15%; height:165px;float:left; text-align:center;}
+.step-right-s-right{width:85%; height:165px;float:left;}
+.step-right-x{width:100%; height:165px;float:left;}
+.prompt-bottom{width:30%; float:left;}
+
+/*   ��ť   */
+.button1{height:19px;line-height:19px;padding:0 17px;cursor:pointer;background-image: url(../sendImages/tj1.gif);background-repeat: repeat-x;}
+.button2{height:19px;line-height:19px;padding:0 17px;cursor:pointer;background-image: url(../sendImages/tj2.gif);background-repeat: repeat-x;}
+.button3{height:19px;line-height:19px;padding:0 17px;cursor:pointer;background-image: url(../sendImages/tj3.gif);background-repeat: repeat-x;}
+.button4{height:19px;line-height:19px;padding:0 17px;cursor:pointer;background-image: url(../sendImages/tj4.gif);background-repeat: repeat-x;}
+.button5{float:left;font-size:12px;;height:31px;line-height:31px;text-align:center;color:#fff;margin-left:195px;cursor:pointer;background-image: url(../sendImages/ff.gif);background-repeat: repeat-x;width:60px;}
+.button6{float:left;font-size:12px;height:31px;line-height:31px;text-align:center;color:#6a6a6a;margin-left:20px;cursor:pointer;background-image: url(../sendImages/qx.gif);background-repeat: repeat-x;width: 60px;}
+.button7{float:left;font-size:12px;height:24px;line-height:20px;text-align:center;color:#fff;margin-left:50px;cursor:pointer;background-image: url(../sendImages/tj5.gif);background-repeat: repeat-x;width: 152px;}
+.button8{float:left;font-size:12px;height:24px;line-height:20px;text-align:center;color:#fff;margin-left:20px;cursor:pointer;background-image: url(../sendImages/tj6.gif);background-repeat: repeat-x;width: 122px;}
+.button9{float:left;font-size:12px;;height:31px;line-height:31px;text-align:center;color:#fff;cursor:pointer;background-image: url(../sendImages/ff.gif);background-repeat: repeat-x;width:60px;}
+.button10{font-size:12px;height:21px;line-height:21px;text-align:center;color:#fff;cursor:pointer;background-image: url(../sendImages/ff1.gif);background-repeat: repeat-x;width:30px;float:right;}
+
+.steps{ height:210px; padding:25px;}
+.step1{ float:left; width:25%; padding:0 10px; }
+.step1 dl dt { font-weight:bold;}
+.step1 dl dd { padding-top:16px; }
+.inputstep1{ width:100%;border:1px solid #C6D3DB;height: 22px}
+.step2{ float:left; width:210px; padding:0 10px; }
+.step2 dl dt { font-weight:bold;}
+.step2 dl dd { padding-top:16px; }
+.treebox{ height:312px; width:100%; background:#fff; border:solid 1px #e1e1e1; overflow:auto;}
+.treebox2{ height:135px; width:100%; background:#fff; border:solid 1px #e1e1e1; overflow:auto;}
+.step2button{ float:left; margin:50px auto auto auto; }
+.step2button ul li{ float:left; padding-top:5px;}
+.step3{ float:left; width:265px; padding:0 5px; }
+.step33{ float:left; width:200px; padding:0 5px; }
+.step3 dl dt {}
+.step3 dl dd { padding-top:5px; }
+.step4{ float:left; width:500px; padding:0 50px; }
+.step4 dl dt {}
+.step4 dl dd {
+	padding-top:2px;
+	border-radius:5px;border: 1px solid #c5d3d9 ; height:152px;
+}
+
+/* �ַ�����������ʽ */
+.attach{width:600px; height:300px;margin-left:auto;margin-right: auto;}
+.butt{height:50px; width:64%; float:left; margin:0 auto; padding-left:36%;}
+
+.list {
+    overflow: hidden;
+    padding: 0 10px;
+}
+.list li {
+	font-size: 12px;
+	height: 33px;
+	line-height: 33px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #c1c9cf;
+}
+.list li span.title {
+    height: 33px;
+}
+.list li span.extra {
+	float:right; 
+}

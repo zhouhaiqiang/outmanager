@@ -1,0 +1,6 @@
+.maskDiv {
+	left: 0px; top: 0px; text-align: center; display: none; position: absolute; z-index: 1000; opacity: 0.7; background-color: rgb(119, 119, 119); -moz-opacity: 0.7;
+}
+.maskDivInfo {
+	display: none; position: absolute; z-index: 1001;
+}

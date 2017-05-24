@@ -1,0 +1,83 @@
+/* CSS Document */
+
+/********index.html列表样式页*********/
+.Bread_crumbs{height: 30px; line-height: 30px; }
+
+.unicom_list{ *+overflow: hidden;}
+.unicom_list li{ border-bottom:1px solid #ccc; padding: 10px; *+height:1%; /**+overflow: hidden; *+line-height: normal;*/}
+.unicom_list li .row_con{ float: left;}
+.unicom_list li .col_01{ width: 6%;}
+.img_box{ 
+	background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    display: block;
+    float: left;
+    margin: 0 20px 0 0;
+    padding: 2px;}
+.img_box img{ width: 80px; height: 80px;}
+.unicom_list li .col_02{ width: 57.5%; margin-right: 1%;}
+.unicom_list li .col_03{ width: 14%; margin-right:1%;}
+.unicom_list li .col_04{ width: 10%;}
+.unicom_list li .col_02 h1{ font-size: 14px; font-weight: bold; margin-bottom: 5px;}
+.unicom_list li .col_02 p{ font-size: 12px; line-height:1.5em;}
+.unicom_list li .col_03 span{ display: block; margin-bottom: 10px;}
+/********index.html列表样式页 end*********/
+
+/********index.html列表样式页*********/
+.shanxi_list_box{padding:10px;}
+.shanxi_list_box .unicom_list li .col_02{width: 70%; margin-right: 2%;}
+.shanxi_list_box .unicom_list li .col_03{width: 18%;margin-right: 1%;}
+.shanxi_list_box .unicom_list li .col_04{width: 10%;}
+/********index.html列表样式页 end*********/
+
+/********creat.html列表样式页*********/
+.task_creat_con{ width: 100%;}
+.TCC_left{ width: 100%;}
+.TCC_left h1{ font-size:16px; height: 34px; line-height: 34px; margin-bottom: 20px;  padding-left:50px; background: url("../images/tan_images/task_img/create_title.png") no-repeat left center;}
+.task_form{}
+.task_form li{ margin-bottom:10px; }
+.task_form li span{ float:left; display: block; }
+.task_form li span.left_box{ width:100px; height: 30px; line-height: 30px; text-align: right;}
+.task_form li span.right_box{ width:70%; min-width: 337px; padding-left:10px;}
+.task_form li span.right_box input,
+.task_form li span.right_box textarea{ display: inline-block; margin-right:10px;  width: 82%;}
+.task_form li span.right_box select{ width: 150px;}
+.task_form li span.right_box input.input_radio{width: 16px; margin: 0;}
+.task_form li span.right_box label{display: inline-block; margin-right: 20px; height: 30px; line-height: 30px;}
+.task_form li span.right_box textarea{ height:50px;}
+.task_form li span.right_box font{ font-weight: bold;}
+.task_form li span.right_box input.date_input{background: url("../images/tan_images/re_date.gif") no-repeat scroll right 10px center #FFFFFF; padding-right: 30px; width: 200px;}
+/********creat.html列表样式页 end*********/
+
+/********creat.html列表样式页*********/
+.shanxi_news_show h1{ font-size:26px; font-weight: bold; color:#404067; height:3em; line-height: 3em; text-align: center;}
+.shanxi_news_show .news_Property{  text-align: center; margin-bottom: 10px; padding: 10px 0;}
+.shanxi_news_show .news_Property span{ display: inline-block; padding:0 10px;}
+.shanxi_news_show .news_Summary{ border:4px solid #eee; padding: 10px; color:#6bac03; margin-bottom:10px;}
+.shanxi_news_show p{ text-indent: 20px; line-height: 1.8em; margin-bottom: 10px;}
+/********creat.html列表样式页 end*********/
+
+/********detail_show.html列表样式页*********/
+.SXN_review{ background-color: #eee; padding: 10px; margin-bottom: 20px;}
+.SXN_review h1{ margin-bottom: 10px; height: 30px;}
+.SXN_review h1 span,.SXN_review h1 i{
+ 	display: inline-block; text-align: left; height: 30px; line-height: 30px;}
+.SXN_review h1 span{ float:left; font-size:14px; font-weight: bold;}
+.SXN_review h1 i{ float: right;}
+.SXN_review textarea{ width:98.8%; margin-bottom: 10px;}
+.SXN_review .btn_block{float: right; width: auto;}
+.SXN_review .btn_block span{ display: inline-block; float: left; padding: 0 0 0 10px; height: 32px; line-height: 32px;}
+.SXN_review_list{ padding: 10px;}
+.SXN_review_list h1{ padding: 10px 0; border-bottom: 1px solid #ccc; margin-bottom: 10px;}
+.re_list_box{ padding: 10px 0; border-bottom:1px dashed #ccc; }
+.re_list_box .re_list_img{ float: left; margin-right: 10px; padding: 2px; border: 1px solid #eee;}
+.re_list_box .re_list_img img{ width: 60px; height: 60px;}
+.re_list_box .re_con{ float: left; width: 900px;}
+.re_list_box .re_con h2{ height:25px;}
+.re_list_box .re_con h2 a{ display: inline-block; float: left;}
+.re_list_box .re_con h2 span{ float: right; color:#aaa;}
+.re_list_box .re_con p{ line-height: 1.5em;}
+/********detail_show.html列表样式页 end*********/
+
+
+
