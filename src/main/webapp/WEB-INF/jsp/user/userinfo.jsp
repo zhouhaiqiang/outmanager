@@ -36,6 +36,10 @@
 </head>
 
 <body>
+    <!-- id -->
+    <input type="hidden" id="id" name="id" value="${user.id}">
+    
+    
     <div class="panel-body" style="padding-bottom:0px;width:95%;font-size:12px">
         <div class="panel panel-default">
             <div class="panel-heading">基本信息</div>
@@ -246,7 +250,7 @@
             <div class="tab-pane" id="pan2">
             	<!---------------------分配信息---------------------- -->
             			
-			        <div id="toolbar" class="btn-group">
+			        <div id="toolbar2" class="btn-group">
 			            <button id="btn_add" type="button" class="btn btn-default">
 			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 			            </button>
@@ -260,34 +264,121 @@
 			            </button>
 
 			        </div>
-			        <table id="tb_data"></table>
-			               
-			        
-			    </div>
+			        <table id="tb_data2"></table>
+  	
             	<!---------------------分配信息---------------------- -->
             </div>
+            
+            
             <div class="tab-pane" id="pan3">
-            	<!---------------------基本信息---------------------- -->
-            	<!---------------------基本信息---------------------- -->
+            	<!---------------------教育信息---------------------- -->
+            	
+					<div id="toolbar3" class="btn-group">
+			            <button id="btn_add" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+			            </button>
+			            
+			            <button id="btn_edit" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+			            </button>
+			  
+			            <button id="btn_delete" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+			            </button>
+
+			        </div>
+			        <table id="tb_data3"></table>          	
+            	
+            	
+            	<!---------------------教育信息---------------------- -->
             </div>
+            
+            
             <div class="tab-pane" id="pan4">           
-             	<!---------------------基本信息---------------------- -->
-             	<!---------------------基本信息---------------------- -->
+             	<!---------------------职业信息---------------------- -->
+             	
+			        <div id="toolbar4" class="btn-group">
+			            <button id="btn_add" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+			            </button>
+			            
+			            <button id="btn_edit" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+			            </button>
+			  
+			            <button id="btn_delete" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+			            </button>
+
+			        </div>
+			        <table id="tb_data4"></table>             	
+             	
+             	<!---------------------职业信息---------------------- -->
             </div>            
             <div class="tab-pane" id="pan5">           
-             	<!---------------------基本信息---------------------- -->
-             	<!---------------------基本信息---------------------- -->
+             	<!---------------------技能信息---------------------- -->
+             	
+ 			        <div id="toolbar5" class="btn-group">
+			            <button id="btn_add" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+			            </button>
+			            
+			            <button id="btn_edit" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+			            </button>
+			  
+			            <button id="btn_delete" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+			            </button>
+
+			        </div>
+			        <table id="tb_data5"></table>            	
+             	
+             	<!---------------------技能信息---------------------- -->
             </div>
             
             <div class="tab-pane" id="pan6">  
-            	<!---------------------基本信息---------------------- -->
-            	<!---------------------基本信息---------------------- -->         
+            	<!---------------------劳动信息---------------------- -->
+            	
+ 			        <div id="toolbar6" class="btn-group">
+			            <button id="btn_add" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+			            </button>
+			            
+			            <button id="btn_edit" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+			            </button>
+			  
+			            <button id="btn_delete" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+			            </button>
+
+			        </div>
+			        <table id="tb_data6"></table>           	
+            	
+            	<!---------------------劳动信息---------------------- -->         
              	
             </div>
             
             <div class="tab-pane" id="pan7">           
-             	<!---------------------基本信息---------------------- -->
-             	<!---------------------基本信息---------------------- -->
+             	<!---------------------解除关系信息---------------------- -->
+             	
+             		<div id="toolbar7" class="btn-group">
+			            <button id="btn_add" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+			            </button>
+			            
+			            <button id="btn_edit" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+			            </button>
+			  
+			            <button id="btn_delete" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+			            </button>
+
+			        </div>
+			        <table id="tb_data7"></table>
+             	<!---------------------解除关系信息---------------------- -->
             </div>                        
                         
         </div>        

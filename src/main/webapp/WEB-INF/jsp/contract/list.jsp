@@ -4,6 +4,9 @@
 <%@ page language="Java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<!--  样式冲突，先不在公共jsp中使用，放到具体的页面上去 -->
+<link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">    
+
 <!-- 引入头文件 -->
 <%@include file="../common/head.jsp" %>
 
@@ -13,14 +16,14 @@
 <!-- 引入验证控件 -->
 <%@include file="../common/validator.jsp" %>
 
-
-<!--  样式冲突，先不在公共jsp中使用，放到具体的页面上去 -->
-<link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
-
-
 <!-- 引入日期控件 -->
 <%@include file="../common/datepicker.jsp" %>
 
+<!-- 引入下拉控件 -->
+<%@include file="../common/selectpicker.jsp" %>
+
+<!-- 引入zTree控件 -->
+<%@include file="../common/ztree.jsp" %>
 
 <!--  页面私有js --> 
 <script src="../localjs/common.js"></script>
