@@ -2,7 +2,28 @@
 //on load
 $(function () {
 	
-
+	
+    //时间控件
+    $('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });	
+    
+    
+	//选择公司查询条件
+	try {		
+		zTreeInitData();			
+	} catch(e){
+		alert("单位数据初始化失败！");
+	}  
+    
+    
     //1.初始化Table
     var oTable = new TableInit();
     oTable.Init();
@@ -11,9 +32,9 @@ $(function () {
     var oButtonInit = new ButtonInit();
     oButtonInit.Init();
     
-//    
-//    //3. 对话框隐藏
-//    $('#myModal').modal("hide");
+    
+    //3. 对话框隐藏
+    $('#myModal7').modal("hide");
 //    
 //    //4. 表单验证
 //    validatorForm();
@@ -32,7 +53,7 @@ var TableInit = function () {
     	
     	//分配table
         $('#tb_data2').bootstrapTable({
-            url: '/outmanager/userinfo/fenpei_list_json?uid='+$('#id').val(),         //请求后台的URL（*）
+            url: '/outmanager/userinfo/fenpei_list_json?uid='+$('#uid').val(),         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar2',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
@@ -119,7 +140,7 @@ var TableInit = function () {
     
     //教育table
     $('#tb_data3').bootstrapTable({
-        url: '/outmanager/userinfo/jiaoyu_list_json?uid='+$('#id').val(),         //请求后台的URL（*）
+        url: '/outmanager/userinfo/jiaoyu_list_json?uid='+$('#uid').val(),         //请求后台的URL（*）
         method: 'get',                      //请求方式（*）
         toolbar: '#toolbar3',                //工具按钮用哪个容器
         striped: false,                      //是否显示行间隔色
@@ -186,7 +207,7 @@ var TableInit = function () {
     
     //职业table
     $('#tb_data4').bootstrapTable({
-        url: '/outmanager/userinfo/zhiye_list_json?uid='+$('#id').val(),         //请求后台的URL（*）
+        url: '/outmanager/userinfo/zhiye_list_json?uid='+$('#uid').val(),         //请求后台的URL（*）
         method: 'get',                      //请求方式（*）
         toolbar: '#toolbar4',                //工具按钮用哪个容器
         striped: false,                      //是否显示行间隔色
@@ -251,7 +272,7 @@ var TableInit = function () {
 
     //专业table
     $('#tb_data5').bootstrapTable({
-        url: '/outmanager/userinfo/zhuanye_list_json?uid='+$('#id').val(),         //请求后台的URL（*）
+        url: '/outmanager/userinfo/zhuanye_list_json?uid='+$('#uid').val(),         //请求后台的URL（*）
         method: 'get',                      //请求方式（*）
         toolbar: '#toolbar5',                //工具按钮用哪个容器
         striped: false,                      //是否显示行间隔色
@@ -321,7 +342,7 @@ var TableInit = function () {
     
     //劳动关系table
     $('#tb_data6').bootstrapTable({
-        url: '/outmanager/userinfo/laodong_list_json?uid='+$('#id').val(),         //请求后台的URL（*）
+        url: '/outmanager/userinfo/laodong_list_json?uid='+$('#uid').val(),         //请求后台的URL（*）
         method: 'get',                      //请求方式（*）
         toolbar: '#toolbar6',                //工具按钮用哪个容器
         striped: false,                      //是否显示行间隔色
@@ -379,7 +400,7 @@ var TableInit = function () {
                 }
             }
         },{
-            field: 'lwcomnane',
+            field: 'lwconname',
             title: '劳务公司名称'
         }
         
@@ -389,7 +410,7 @@ var TableInit = function () {
  
     //解除关系table
     $('#tb_data7').bootstrapTable({
-        url: '/outmanager/userinfo/jiechu_list_json?uid='+$('#id').val(),         //请求后台的URL（*）
+        url: '/outmanager/userinfo/jiechu_list_json?uid='+$('#uid').val(),         //请求后台的URL（*）
         method: 'get',                      //请求方式（*）
         toolbar: '#toolbar7',                //工具按钮用哪个容器
         striped: false,                      //是否显示行间隔色
@@ -459,135 +480,199 @@ var ButtonInit = function () {
     
     oInit.Init = function () {
         
-     //初始化页面上面的按钮事件
-     $('#btn_query').click(function(){
-              	 
-    	  //处理查询		
-		  refreshtab();
-     });
-     
-     
-     $('#btn_reset').click(function(){
- 	   	 //清除查询条件
-	     $('#query_name').val("");
-	     $('#query_code').val("");
-
-    });
-     
-     
-
-    $('#btn_add').click(function(){
-
-
-//	
-//    	
-//  	  //初始下拉框
-//  	  initdroplist($("#companyid"),"/outmanager/config/companyjson","","")  	  
-//  	  
-//      //合同编号
-//      initdroplist($("#concode"),"/outmanager/config/contractcode_json","","")      	  
-//  	  
+//     //初始化页面上面的按钮事件
+//     $('#btn_query').click(function(){
+//              	 
+//    	  //处理查询		
+//		  refreshtab();
+//     });
+//     
+//     
+//     $('#btn_reset').click(function(){
+// 	   	 //清除查询条件
+//	     $('#query_name').val("");
+//	     $('#query_code').val("");
 //
-//  	  //政治面貌
-//	  initdroplist($("#zhengzhi"),"/outmanager/config/dict_json","","政治面貌")
-//		
-//	  //国籍
-//	  initdroplist($("#nationality"),"/outmanager/config/dict_json","","国籍")
-//	  
-//	  //民族
-//	  initdroplist($("#mingz"),"/outmanager/config/dict_json","","民族")	  
-//	  
-//	  //户口类型
-//	  initdroplist($("#hukoutype"),"/outmanager/config/dict_json","","户口类型")	  
-//	  
-//	  //从事外包业务类型
-//	  initdroplist($("#ywtype"),"/outmanager/config/dict_json","","从事外包业务类型")	  
-//	  
-//	  //从事联通服务途径
-//	  initdroplist($("#ywtj"),"/outmanager/config/dict_json","","从事联通服务途径")
-//	  
-//	  //纳税地
-//	  initdroplist($("#nsaddress"),"/outmanager/config/dict_json","","纳税地")	  
-//	  
-//	  //社保缴纳地
-//	  initdroplist($("#sbaddress"),"/outmanager/config/dict_json","","社保缴纳地")	  
-//	  
-//	  //岗位序列
-//	  initdroplist($("#gwnumber"),"/outmanager/config/dict_json","","岗位序列")	  
-//	  	  	  	  
-//	  //参考岗级
-//	  initdroplist($("#gwdj"),"/outmanager/config/dict_json","","参考岗级")	  	  
-	 
-  	  //显示添加窗口
-  	  openml();
-    	
-    	
-        
-     });
+//    });
+//     
+//     
+//
+//    $('#btn_add7').click(function(){
+//  	  //显示添加窗口
+//  	  openml(7);
+//     });
+//    
+//      // 编辑任务按钮点击事件
+//      $('#btn_edit').click(function(){
+//    	 
+//    	  var arr = $('#tb_data').bootstrapTable('getSelections');          
+//          if(arr.length==1){ 
+//        
+//        	  var selects = $.parseJSON(JSON.stringify(arr));
+//    
+//        	  //给modal表单 赋值
+//        	  $('#id').val(selects[0].id);
+//        	  $('#unit').val(selects[0].unit);
+//        	  $('#name').val(selects[0].name);
+//        	      	 
+//        	  openml();
+//
+//          } else {
+//              alert("请选择要编辑的记录！");
+//          }    	  
+//    	  
+//    	  
+//    	  
+//      });
+//    
+//      // 删除任务按钮点击事件
+//      $('#btn_delete').click(function(){
+//    	
+//     
+//          var arr = $('#tb_data').bootstrapTable('getSelections');          
+//          if(arr.length>0){          
+//        	   if(confirm("确定删除此任务吗？")){
+//        		   
+//        		  //处理删除多个
+//        		  // var selects = $.parseJSON(JSON.stringify(arr));
+//
+//        		   delrecode("/outmanager/user/user_del",arr);
+//        	   };
+//        	  
+//   
+//          } else {
+//              alert("请选择要删除的记录！");
+//          }
+//      }
+//      
+//      
+//      
+//      );
+//      
+//
+//      // 导出结果集
+//      $('#btn_export').click(function(){
+//    	  doExport();
+//		  
+//      });      
     
-      // 编辑任务按钮点击事件
-      $('#btn_edit').click(function(){
-    	 
-    	  var arr = $('#tb_data').bootstrapTable('getSelections');          
-          if(arr.length==1){ 
-        
-        	  var selects = $.parseJSON(JSON.stringify(arr));
-    
-        	  //给modal表单 赋值
-        	  $('#id').val(selects[0].id);
-        	  $('#unit').val(selects[0].unit);
-        	  $('#name').val(selects[0].name);
-        	      	 
-        	  openml();
-
-          } else {
-              alert("请选择要编辑的记录！");
-          }    	  
-    	  
-    	  
-    	  
-      });
-    
-      // 删除任务按钮点击事件
-      $('#btn_delete').click(function(){
-    	
-     
-          var arr = $('#tb_data').bootstrapTable('getSelections');          
-          if(arr.length>0){          
-        	   if(confirm("确定删除此任务吗？")){
-        		   
-        		  //处理删除多个
-        		  // var selects = $.parseJSON(JSON.stringify(arr));
-
-        		   delrecode("/outmanager/user/user_del",arr);
-        	   };
-        	  
-   
-          } else {
-              alert("请选择要删除的记录！");
-          }
-      }
-      
-      
-      
-      );
-      
-
-      // 导出结果集
-      $('#btn_export').click(function(){
-    	  doExport();
-		  
-      });      
-      
-      
-      
-      
-      
-      
   };
   return oInit; 
 };
 
+
+//6个表格的增删改
+function addact(id) {
+	
+  if(id==7){
+	  $('#id_'+id).val("");
+	  $('#jcreason_'+id).val("");
+	  $('#jcdate_'+id).val("");	
+	  $('#gzenddate_'+id).val("");
+	  $('#qt_'+id).val("");			  
+	  
+  }	
+  
+  if(id==6){
+	  
+	  //合同期限类型
+	  initdroplist($("#conqxtype_"+id),"/outmanager/config/dict_json","","合同期限类型");	
+	  
+	  //合同状态
+	  initdroplist($("#constatus_"+id),"/outmanager/config/dict_json","","合同状态");
+	  
+	  
+	  //清理数据
+	  $('#id_'+id).val("");
+	  $('#unit_'+id).val("");
+	  $('#conqxtype_'+id).val("");
+	  $('#qixian_'+id).val("");
+	  
+	  $('#startdate_'+id).val("");	
+	  $('#enddate_'+id).val("");	
+	  
+	  $('#constatus_'+id).val("");
+	  $('#concode_'+id).val("");
+	  
+	  
+	  $('#fristunit_'+id).val("");
+	  $('#nwconnumber_'+id).val("");
+	  $('#lwconname_'+id).val("");		  
+	  
+  }  
+  
+
+
+  openml(id);
+}
+
+function editact(id) {
+	
+  var arr = $('#tb_data'+id).bootstrapTable('getSelections');          
+  if(arr.length==1){ 
+
+	  var selects = $.parseJSON(JSON.stringify(arr));
+
+	  //给modal表单 赋值
+	  if(id==7){
+		  $('#id_'+id).val(selects[0].id);
+		  $('#jcreason_'+id).val(selects[0].jcreason);
+		  $('#jcdate_'+id).val(jsonDateFormat(selects[0].jcdate));	
+		  $('#gzenddate_'+id).val(jsonDateFormat(selects[0].gzenddate));
+		  $('#qt_'+id).val(selects[0].qt);			  
+		  
+	  }
+	  
+	  
+	  if(id==6){
+		  //合同期限类型
+		  initdroplist($("#conqxtype_"+id),"/outmanager/config/dict_json",selects[0].conqxtype,"合同期限类型");	
+		  
+		  //合同状态
+		  initdroplist($("#constatus_"+id),"/outmanager/config/dict_json",selects[0].constatus,"合同状态");
+		  
+		  $('#id_'+id).val(selects[0].id);
+		  $('#unit_'+id).val(selects[0].unit);
+		  $('#conqxtype_'+id).val(selects[0].conqxtype);
+		  $('#qixian_'+id).val(selects[0].qixian);
+		  
+		  $('#startdate_'+id).val(jsonDateFormat(selects[0].startdate));	
+		  $('#enddate_'+id).val(jsonDateFormat(selects[0].enddate));	
+		  
+		  //$('#constatus_'+id).val(selects[0].constatus);
+		  //$('#concode_'+id).val(selects[0].concode);
+		  
+		  
+		  $('#fristunit_'+id).val(selects[0].fristunit);
+		  $('#nwconnumber_'+id).val(selects[0].nwconnumber);
+		  $('#lwconname_'+id).val(selects[0].lwconname);			  
+		  
+	  }
+
+	      	 
+	  openml(id);
+
+  } else {
+      alert("请选择要编辑的记录！");
+  }  	
+
+}
+
+function delact(id,delurl,listurl) {
+	
+  var arr = $('#tb_data'+id).bootstrapTable('getSelections');          
+  if(arr.length>0){          
+	   if(confirm("确定删除此任务吗？")){
+		   
+		  //处理删除多个
+		  delrecode(id,delurl,listurl,arr);
+	   };
+	  
+
+  } else {
+      alert("请选择要删除的记录！");
+  }
+}
 
 
 
@@ -614,8 +699,8 @@ function doExport() {
 
 
 //删除所选的记录
-function delrecode (url,arr) {
-
+function delrecode (id,url,listurl,arr) {
+	
 	$.ajax({
 		  type: 'POST',
 		  url: url,		  
@@ -627,7 +712,9 @@ function delrecode (url,arr) {
 			  alert("处理成功");
 			  
 			  //刷新
-			  refreshtab();
+			  sleep(200); //等待数据更新OK
+			  refreshtab(id,listurl); 
+			
 		  },
 		  
 		  
@@ -636,22 +723,24 @@ function delrecode (url,arr) {
 } 
 
 
-//添加或者更新记录 单条的json str
-function updaterecode (url,jsonstr) {
-
+//添加或者更新记录 单条的对话框id 更新数据url， 取数据url，数据字符串
+function updaterecode (id,url,listurl,jsonstr) {
 	$.ajax({
 		  type: 'POST',
 		  url: url,		  
 		  dataType: "text",
 		  contentType:'application/json', 		  
-		  data: jsonstr,	  
+		  data: jsonstr,
+		  //async: false, //同步请求
 		  success: function(data){
 
 			  alert("处理成功");
 			  
 			  //刷新
-			  refreshtab();
-		  },
+			  sleep(200); //等待数据更新OK
+			  refreshtab(id,listurl);
+			
+		  }
 		  
 		  
 		});
@@ -661,11 +750,11 @@ function updaterecode (url,jsonstr) {
 
 
 //刷新
-function refreshtab(){
-	$('#tb_data').bootstrapTable(  
+function refreshtab(id,url){
+	$('#tb_data'+id).bootstrapTable(  
             "refresh",  
             {   
-            	url: '/outmanager/user/user_list_json',
+            	url: url,
             }  
   );
 	
@@ -676,9 +765,9 @@ function refreshtab(){
 
 
 //show modal
-function openml(){
+function openml(id){
 	  
-	   $('#myModal').modal("show"); 
+	   $('#myModal'+id).modal("show"); 
 }
 
 
@@ -770,16 +859,17 @@ $('#myModal').on('hide.bs.modal',
 
 
 //modal处理事件
-function Ok_btn(){
-    var jsonuserinfo = $('#editform').serializeObject();  
+function Ok_btn(id,url,listurl){
+		
+    var jsonuserinfo = $('#editform'+id).serializeObject();  
     var jsonstr =  JSON.stringify(jsonuserinfo);  
 	
     //调用后台
-	updaterecode("/outmanager/user/user_update",jsonstr);
+	updaterecode(id,url,listurl,jsonstr);
 	
 	//提交数据到后台	
-	$('#myModal').modal("hide");
-	
+	$('#myModal'+id).modal("hide");
+		
 }
 
 
@@ -794,6 +884,11 @@ function Ok_btn(){
  */
 function initdroplist(obj,url,defvalue,lx){  
 		
+
+	//参数
+	var par = {
+            "lx":lx
+        };
 	$.ajax({    
 	        "type" : 'get',    
 	        "url": url,  
@@ -815,6 +910,8 @@ function initdroplist(obj,url,defvalue,lx){
 		        			        	  
 		         })
 		         
+		         
+		         
 		         //添加选项
 		         obj.empty();
 		         obj.append(opts);
@@ -827,6 +924,8 @@ function initdroplist(obj,url,defvalue,lx){
 	
 	});
 	
+
+	
 }
 
 //岗位序列——类型联动
@@ -837,7 +936,6 @@ function chggwnumber(selvalue){
 	
 	
 }
-
 
 
 
@@ -863,7 +961,7 @@ var setting = {
 	};
 
 
-var setting1 = {
+var setting6 = {
 		view: {
 			dblClickExpand: false
 		},
@@ -874,7 +972,7 @@ var setting1 = {
 		},
 		callback: {
 			beforeClick: beforeClick,
-			onClick: onClick1  //填值地方不一样
+			onClick: onClick6  //填值地方不一样
 		}
 	};
 
@@ -883,6 +981,8 @@ var setting1 = {
 		{id:2, pId:1, name:"三明"},
 		{id:3, pId:1, name:"长沙"}
 	 ];
+	
+	
 	
 	
 	//取初始化数据
@@ -894,9 +994,8 @@ var setting1 = {
 			  dataType: "json",
 			  contentType:'application/json;charset=UTF-8', 		  		   
 			  success: function(data){
-		
-				  $.fn.zTree.init($("#treeDemo"), setting, data.rows);
-				  $.fn.zTree.init($("#treeDemo1"), setting1, data.rows);
+				
+				  $.fn.zTree.init($("#treeDemo6"), setting6, data.rows);
 								  				  
 			  }			  			  
 			});		
@@ -926,39 +1025,39 @@ var setting1 = {
 		cityObj.attr("value", v);
 	}
 	
-	function onClick1(e, treeId, treeNode) {
-		var zTree = $.fn.zTree.getZTreeObj("treeDemo1"),
+	function onClick6(e, treeId, treeNode) {
+		
+		var zTree = $.fn.zTree.getZTreeObj("treeDemo6"),
 		nodes = zTree.getSelectedNodes(),
 		v = "";
+		
+
 		nodes.sort(function compare(a,b){return a.id-b.id;});
 		for (var i=0, l=nodes.length; i<l; i++) {
 			v += nodes[i].name + ",";
 		}
+		
 		if (v.length > 0 ) v = v.substring(0, v.length-1);
-		var cityObj = $("#unit");
-		cityObj.attr("value", v);
+		
+		//赋值
+		$("#unit_6").val(v);
+		//选定之后隐藏
+		hideMenu();
 	}	
 	
 
-	function showMenu() {
-		var cityObj = $("#query_unit");
-		var cityOffset = cityObj.offset();
-		$("#menuContent").css({left:cityOffset.left + "px", top:cityOffset.top + cityObj.outerHeight() + "px"}).slideDown("fast");
-
-		$("body").bind("mousedown", onBodyDown);
-	}
 	
-	function showMenu1() {
-		var cityObj = $("#unit");
+	function showMenu6() {
+		var cityObj = $("#unit_6");
 		var cityOffset = cityObj.offset();
 		
 		
-		var newleft=cityOffset.left-160;
+		var newleft=cityOffset.left-240;
 		
 		var newtop=cityOffset.top-40;
 
 		
-		$("#menuContent1").css({left:newleft + "px", top:newtop + cityObj.outerHeight() + "px"}).slideDown("fast");
+		$("#menuContent6").css({left:newleft + "px", top:newtop + cityObj.outerHeight() + "px"}).slideDown("fast");
 
 		$("body").bind("mousedown", onBodyDown);
 	}	
@@ -966,8 +1065,7 @@ var setting1 = {
 	
 	//隐藏选择框
 	function hideMenu() {
-		$("#menuContent").fadeOut("fast");
-		$("#menuContent1").fadeOut("fast");
+		$("#menuContent6").fadeOut("fast");
 		$("body").unbind("mousedown", onBodyDown);
 	}
 	
@@ -975,10 +1073,8 @@ var setting1 = {
 	//处理隐藏选择框事件
 	function onBodyDown(event) {
 		if (!(event.target.id == "menuBtn" 
-			|| event.target.id == "menuContent" 
-			|| $(event.target).parents("#menuContent").length>0
-			|| event.target.id == "menuContent1" 
-			|| $(event.target).parents("#menuContent1").length>0)) {
+			|| event.target.id == "menuContent6" 
+			|| $(event.target).parents("#menuContent6").length>0)) {
 			hideMenu();
 		}
 	}

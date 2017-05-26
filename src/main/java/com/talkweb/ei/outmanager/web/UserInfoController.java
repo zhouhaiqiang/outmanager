@@ -141,8 +141,8 @@ public class UserInfoController {
 		
 		logger.info("del user======="+jsonstr);   
 	
-		Gson gson = new Gson();
-		List<TOutUserFpinfo> retList = gson.fromJson(jsonstr,  
+		
+		List<TOutUserFpinfo> retList = JsonUtil.gson.fromJson(jsonstr,  
                 new TypeToken<List<TOutUserFpinfo>>() {  
                 }.getType());  
 
@@ -234,8 +234,8 @@ public class UserInfoController {
 		
 		logger.info("del user======="+jsonstr);   
 	
-		Gson gson = new Gson();
-		List<TOutUserJyinfo> retList = gson.fromJson(jsonstr,  
+		
+		List<TOutUserJyinfo> retList = JsonUtil.gson.fromJson(jsonstr,  
                 new TypeToken<List<TOutUserJyinfo>>() {  
                 }.getType());  
 
@@ -329,8 +329,8 @@ public class UserInfoController {
 		
 		logger.info("del user======="+jsonstr);   
 	
-		Gson gson = new Gson();
-		List<TOutUserZyinfo> retList = gson.fromJson(jsonstr,  
+		
+		List<TOutUserZyinfo> retList = JsonUtil.gson.fromJson(jsonstr,  
                 new TypeToken<List<TOutUserZyinfo>>() {  
                 }.getType());  
 
@@ -423,8 +423,8 @@ public class UserInfoController {
 		
 		logger.info("del user======="+jsonstr);   
 	
-		Gson gson = new Gson();
-		List<TOutUserJninfo> retList = gson.fromJson(jsonstr,  
+		
+		List<TOutUserJninfo> retList = JsonUtil.gson.fromJson(jsonstr,  
                 new TypeToken<List<TOutUserJninfo>>() {  
                 }.getType());  
 
@@ -516,8 +516,8 @@ public class UserInfoController {
 		
 		logger.info("del user======="+jsonstr);   
 	
-		Gson gson = new Gson();
-		List<TOutUserHt> retList = gson.fromJson(jsonstr,  
+		
+		List<TOutUserHt> retList = JsonUtil.gson.fromJson(jsonstr,  
                 new TypeToken<List<TOutUserHt>>() {  
                 }.getType());  
 
@@ -609,10 +609,9 @@ public class UserInfoController {
     public String deljiechu(@RequestBody String jsonstr) {
 		
 		
-		logger.info("del user======="+jsonstr);   
-	
-		Gson gson = new Gson();
-		List<TOutUserJc> retList = gson.fromJson(jsonstr,  
+		logger.info("jiechu_del======="+jsonstr);   
+
+		List<TOutUserJc> retList = JsonUtil.gson.fromJson(jsonstr,  
                 new TypeToken<List<TOutUserJc>>() {  
                 }.getType());  
 

@@ -37,9 +37,7 @@
 
 <body>
     <!-- id -->
-    <input type="hidden" id="id" name="id" value="${user.id}">
-    
-    
+    <input type="hidden" id="uid" name="uid" value="${user.id}">      
     <div class="panel-body" style="padding-bottom:0px;width:95%;font-size:12px">
         <div class="panel panel-default">
             <div class="panel-heading">基本信息</div>
@@ -251,15 +249,15 @@
             	<!---------------------分配信息---------------------- -->
             			
 			        <div id="toolbar2" class="btn-group">
-			            <button id="btn_add" type="button" class="btn btn-default">
+			            <button id="btn_add" type="button" class="btn btn-default" onclick="addact(2);">
 			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 			            </button>
 			            
-			            <button id="btn_edit" type="button" class="btn btn-default">
+			            <button id="btn_edit" type="button" class="btn btn-default" onclick="editact(2);">
 			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 			            </button>
 			  
-			            <button id="btn_delete" type="button" class="btn btn-default">
+			            <button id="btn_delete" type="button" class="btn btn-default" onclick="delact(2);">
 			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 			            </button>
 
@@ -274,15 +272,15 @@
             	<!---------------------教育信息---------------------- -->
             	
 					<div id="toolbar3" class="btn-group">
-			            <button id="btn_add" type="button" class="btn btn-default">
+			            <button id="btn_add" type="button" class="btn btn-default" onclick="addact(3);">
 			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 			            </button>
 			            
-			            <button id="btn_edit" type="button" class="btn btn-default">
+			            <button id="btn_edit" type="button" class="btn btn-default" onclick="editact(3);">
 			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 			            </button>
 			  
-			            <button id="btn_delete" type="button" class="btn btn-default">
+			            <button id="btn_delete" type="button" class="btn btn-default" onclick="delact(3);">
 			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 			            </button>
 
@@ -298,15 +296,15 @@
              	<!---------------------职业信息---------------------- -->
              	
 			        <div id="toolbar4" class="btn-group">
-			            <button id="btn_add" type="button" class="btn btn-default">
+			            <button id="btn_add" type="button" class="btn btn-default" onclick="addact(4);">
 			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 			            </button>
 			            
-			            <button id="btn_edit" type="button" class="btn btn-default">
+			            <button id="btn_edit" type="button" class="btn btn-default" onclick="editact(4);">
 			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 			            </button>
 			  
-			            <button id="btn_delete" type="button" class="btn btn-default">
+			            <button id="btn_delete" type="button" class="btn btn-default" onclick="delact(4);">
 			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 			            </button>
 
@@ -319,15 +317,15 @@
              	<!---------------------技能信息---------------------- -->
              	
  			        <div id="toolbar5" class="btn-group">
-			            <button id="btn_add" type="button" class="btn btn-default">
+			            <button id="btn_add" type="button" class="btn btn-default" onclick="addact(5);">
 			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 			            </button>
 			            
-			            <button id="btn_edit" type="button" class="btn btn-default">
+			            <button id="btn_edit" type="button" class="btn btn-default" onclick="editact(5);">
 			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 			            </button>
 			  
-			            <button id="btn_delete" type="button" class="btn btn-default">
+			            <button id="btn_delete" type="button" class="btn btn-default" onclick="delact(5);">
 			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 			            </button>
 
@@ -341,15 +339,15 @@
             	<!---------------------劳动信息---------------------- -->
             	
  			        <div id="toolbar6" class="btn-group">
-			            <button id="btn_add" type="button" class="btn btn-default">
+			            <button id="btn_add" type="button" class="btn btn-default" onclick="addact(6);">
 			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 			            </button>
 			            
-			            <button id="btn_edit" type="button" class="btn btn-default">
+			            <button id="btn_edit" type="button" class="btn btn-default" onclick="editact(6);">
 			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 			            </button>
 			  
-			            <button id="btn_delete" type="button" class="btn btn-default">
+			            <button id="btn_delete" type="button" class="btn btn-default" onclick="delact(6,'/outmanager/userinfo/laodong_del','/outmanager/userinfo/laodong_list_json?uid=${user.id}');">
 			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 			            </button>
 
@@ -364,15 +362,15 @@
              	<!---------------------解除关系信息---------------------- -->
              	
              		<div id="toolbar7" class="btn-group">
-			            <button id="btn_add" type="button" class="btn btn-default">
+			            <button id="btn_add" type="button" class="btn btn-default" onclick="addact(7);">
 			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 			            </button>
 			            
-			            <button id="btn_edit" type="button" class="btn btn-default">
+			            <button id="btn_edit" type="button" class="btn btn-default" onclick="editact(7);">
 			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 			            </button>
 			  
-			            <button id="btn_delete" type="button" class="btn btn-default">
+			            <button id="btn_delete" type="button" class="btn btn-default" onclick="delact(7,'/outmanager/userinfo/jiechu_del','/outmanager/userinfo/jiechu_list_json?uid=${user.id}');">
 			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 			            </button>
 
@@ -384,6 +382,273 @@
         </div>        
       </div>
     <!--------------------- 列表区域---------------------- -->
+    
+    
+    
+   <!---------------------对话窗口6-----------------------start---->
+   <div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >  
+       <div class="modal-dialog" role="document" style="width:800px;">  
+           <div class="modal-content">  
+               <div class="modal-header">  
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">  
+                       <span aria-hidden="true">×</span>  
+                   </button>  
+                   <h4 class="modal-title" id="myModalLabel">劳动关系信息</h4>  
+               </div>  
+               <div class="modal-body"> 
+               <form id="editform6">  
+               
+               <!-- id -->
+               <input type="hidden" id="id_6" name="id">
+               <!-- 用户id -->
+               <input type="hidden" id="userid" name="userid" value="${user.id}">
+
+               <table class="table table-bordered">
+               
+                 <tbody>
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">合同类型<span style="color:red">*</span></label>
+                        
+                     </td>
+                    <td>                         
+ 						<select class="form-control selectpicker show-tick" id="contype_6"  name="contype"  title="请选择 ...">
+                            	     
+                         	<option selected >紧密型 </option> 
+                         
+	                         <!-- 
+	                         <option>协议型</option>
+	                          -->
+                                         
+					  	</select>                     
+                     </td>
+                    <td  class="active"> 
+                        <label  class="control-label">签订单位<span style="color:red">*</span></label>
+                    </td>
+                    <td> 
+                        <input type="text" class="form-control" id="unit_6" name="unit" readonly  onclick="showMenu6(); return false;">
+                        <div id="menuContent6" class="menuContent" style="display:none;z-index:9;position: fixed; left:1px;top:1px;">
+							<ul id="treeDemo6" class="ztree"></ul>
+					    </div>                     
+                        
+                        
+                    </td>
+                   </tr>
+                   
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">合同期限类型<span style="color:red">*</span></label>
+                    </td>
+                    <td> 
+         
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="conqxtype_6" name="conqxtype" title="请选择 ...">                      
+					  </select>  
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">合同期限<span style="color:red">*</span></label>
+                    </td>
+                    <td>                         
+ 						 <div class="form-group">
+                        	<input  class="form-control" id="qixian_6" name="qixian" > 
+                        </div>
+                    </td>
+                    
+                   </tr>
+                   
+                   
+                  <tr>
+                     <td class="active"> 
+                        <label  class="control-label">合同起始日期<span style="color:red">*</span></label>
+                    </td>
+                    <td> 
+         
+                        <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="startdate_6" name="startdate" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">合同终止日期<span style="color:red">*</span></label>
+                    </td>
+                    <td>                         
+                        <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="enddate_6" name="enddate" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+                    </td>
+                    
+                   </tr>   
+                   
+                   
+                  <tr>
+                     <td class="active"> 
+                        <label  class="control-label">合同状态<span style="color:red">*</span></label>
+                    </td>
+                    <td> 
+         
+
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="constatus_6" name="constatus" title="请选择 ...">                      
+					  </select>  				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">合同编号<span style="color:red">*</span></label>
+                    </td>
+                    <td>                         
+                    	<input  class="form-control" id="concode_6" name="concode" > 
+                    </td>
+                    
+                   </tr> 
+                   
+                   
+                  <tr>
+                     <td class="active"> 
+                        <label  class="control-label">甲方单位<span style="color:red">*</span></label>
+                    </td>
+                    <td> 
+         
+
+          		      <input  class="form-control" id="fristunit_6" name="fristunit" > 				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">劳务合同编号<span style="color:red">*</span></label>
+                    </td>
+                    <td>                         
+                    	<input  class="form-control" id="nwconnumber_6" name="nwconnumber" > 
+                    </td>
+                    
+                   </tr>                                        
+ 
+ 
+           <tr>
+                     <td class="active"> 
+                        <label  class="control-label">劳务合同名称<span style="color:red">*</span></label>
+                    </td>
+                    <td> 
+         
+
+          		      <input  class="form-control" id="lwconname_6" name="lwconname" > 				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                       
+                    </td>
+                    <td>                         
+                    	
+                    </td>
+                    
+                   </tr>                                  
+                    
+                 </tbody>
+               </table>
+                    
+                    
+                </form> 
+               </div>  
+               <div class="modal-footer">  
+                   <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>  
+                   <button type="button" class="btn btn-danger" onclick="Ok_btn(6,'/outmanager/userinfo/laodong_update','/outmanager/userinfo/laodong_list_json?uid=${user.id}');">保存</button>  
+               </div>  
+           </div>  
+       </div>  
+   </div>  
+   <!---------------------对话窗口6-----------------------end---->   
+    
+
+    
+   <!---------------------对话窗口7-----------------------start---->
+   <div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >  
+       <div class="modal-dialog" role="document" style="width:800px;">  
+           <div class="modal-content">  
+               <div class="modal-header">  
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">  
+                       <span aria-hidden="true">×</span>  
+                   </button>  
+                   <h4 class="modal-title" id="myModalLabel">解除关系信息</h4>  
+               </div>  
+               <div class="modal-body"> 
+               <form id="editform7">  
+               
+               <!-- id -->
+               <input type="hidden" id="id_7" name="id">
+               <!-- 用户id -->
+               <input type="hidden" id="userid" name="userid" value="${user.id}">
+
+               <table class="table table-bordered">
+               
+                 <tbody>
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">解除原因<span style="color:red">*</span></label>
+                        
+                     </td>
+                    <td>                         
+  
+                        <input type="text" class="form-control" id="jcreason_7" name="jcreason" >                      
+                     </td>
+                    <td  class="active"> 
+                        <label  class="control-label">解除日期<span style="color:red">*</span></label>
+                    </td>
+                    <td> 
+          		      	<div class="input-group date form_date col-md-8" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="jcdate_7" name="jcdate" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>                         
+                        
+                        
+                    </td>
+                   </tr>
+                   
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">费用终止日<span style="color:red">*</span></label>
+                    </td>
+                    <td>    
+          		      	<div class="input-group date form_date col-md-8" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="gzenddate_7" name="gzenddate" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>               
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">途径说明（新外包公司名）<span style="color:red">*</span></label>
+                    </td>
+                    <td>                         
+ 						 <div class="form-group">
+                        <textarea rows="2" cols="20" class="form-control" id="qt_7" name="qt" ></textarea> 
+                        </div>
+                    </td>
+                    
+                   </tr> 
+                 </tbody>
+               </table>
+                    
+                    
+                </form> 
+               </div>  
+               <div class="modal-footer">  
+                   <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>  
+                   <button type="button" class="btn btn-danger" onclick="Ok_btn(7,'/outmanager/userinfo/jiechu_update','/outmanager/userinfo/jiechu_list_json?uid=${user.id}');">保存</button>  
+               </div>  
+           </div>  
+       </div>  
+   </div>  
+   <!---------------------对话窗口7-----------------------end---->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 </body>
 </html>
