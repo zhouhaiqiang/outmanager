@@ -375,7 +375,7 @@ var TableInit = function () {
             field: 'contype',
             title: '合同类型'
         },{
-            field: 'nwconnumber',
+            field: 'connumber',
             title: '合同编号'
         },{
             field: 'startdate',
@@ -640,7 +640,7 @@ function editact(id) {
 		  $('#enddate_'+id).val(jsonDateFormat(selects[0].enddate));	
 		  
 		  //$('#constatus_'+id).val(selects[0].constatus);
-		  //$('#concode_'+id).val(selects[0].concode);
+		  $('#connumber'+id).val(selects[0].connumber);
 		  
 		  
 		  $('#fristunit_'+id).val(selects[0].fristunit);
@@ -1052,7 +1052,7 @@ var setting6 = {
 		var cityOffset = cityObj.offset();
 		
 		
-		var newleft=cityOffset.left-240;
+		var newleft=cityOffset.left-150;
 		
 		var newtop=cityOffset.top-40;
 

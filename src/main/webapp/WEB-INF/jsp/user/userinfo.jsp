@@ -499,7 +499,7 @@
                         <label  class="control-label">合同编号<span style="color:red">*</span></label>
                     </td>
                     <td>                         
-                    	<input  class="form-control" id="concode_6" name="concode" > 
+                    	<input  class="form-control" id="connumber_6" name="connumber" > 
                     </td>
                     
                    </tr> 
@@ -525,7 +525,7 @@
                    </tr>                                        
  
  
-           <tr>
+                  <tr>
                      <td class="active"> 
                         <label  class="control-label">劳务合同名称<span style="color:red">*</span></label>
                     </td>
