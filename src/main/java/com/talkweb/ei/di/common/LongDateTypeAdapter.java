@@ -1,7 +1,5 @@
 package com.talkweb.ei.di.common;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
@@ -35,11 +33,18 @@ public class LongDateTypeAdapter extends TypeAdapter<Date> {
         if (in.peek() == null) {
             return null;
         }
-        String str = in. nextString();
-        //Date d  = new Date(Long.parseLong(str));
         
-        Date d  = DateUtil.parseDate(str);
-        return d;
+        //日期格式"yyyy-MM-dd"
+        try {
+        	 String str = in. nextString();
+             Date d  = DateUtil.parseDate(str);
+             return d;
+		} catch (Exception e) {
+			return null;
+		}
+        
+       
+       
     }
        
 //    public static void main(String[] args) {

@@ -89,23 +89,13 @@ var TableInit = function () {
                 field: 'startdate',
                 title: '开始日期',
                 formatter : function (value, row, index) {
-                    if (value=="") {
-                        return '';
-                    
-                    } else {                    	
-                    	return jsonDateFormat(value);    	
-                    }
+                	return jsonDateFormat(value);
                 }
             },{
                 field: 'enddate',
                 title: '结束日期',
                 formatter : function (value, row, index) {
-                    if (value=="") {
-                        return '';
-                    
-                    } else {                    	
-                    	return jsonDateFormat(value);    	
-                    }
+                	return jsonDateFormat(value);
                 }
             },{
                 field: 'gw',
@@ -170,23 +160,13 @@ var TableInit = function () {
             field: 'startdate',
             title: '入学时间',
             formatter : function (value, row, index) {
-                if (value=="") {
-                    return '';
-                
-                } else {                    	
-                	return jsonDateFormat(value);    	
-                }
+            	return jsonDateFormat(value);
             }
         },{
             field: 'enddate',
             title: '毕业时间',
             formatter : function (value, row, index) {
-                if (value=="") {
-                    return '';
-                
-                } else {                    	
-                	return jsonDateFormat(value);    	
-                }
+            	return jsonDateFormat(value);
             }
         },{
             field: 'xueli',
@@ -207,7 +187,7 @@ var TableInit = function () {
     
     //职业table
     $('#tb_data4').bootstrapTable({
-        url: '/outmanager/userinfo/zhiye_list_json?uid='+$('#uid').val(),         //请求后台的URL（*）
+        url: '/outmanager/userinfo/jineng_list_json?uid='+$('#uid').val(),         //请求后台的URL（*）
         method: 'get',                      //请求方式（*）
         toolbar: '#toolbar4',                //工具按钮用哪个容器
         striped: false,                      //是否显示行间隔色
@@ -233,24 +213,14 @@ var TableInit = function () {
         },{
             field: 'startdate',
             title: '开始时间',
-            formatter : function (value, row, index) {
-                if (value=="") {
-                    return '';
-                
-                } else {                    	
-                	return jsonDateFormat(value);    	
-                }
+            formatter : function (value, row, index) {            	         	
+            	return jsonDateFormat(value);
             }
         },{
             field: 'enddate',
             title: '结束时间',
             formatter : function (value, row, index) {
-                if (value=="") {
-                    return '';
-                
-                } else {                    	
-                	return jsonDateFormat(value);    	
-                }
+            	return jsonDateFormat(value);
             }
         },{
             field: 'rdunit',
@@ -272,7 +242,7 @@ var TableInit = function () {
 
     //专业table
     $('#tb_data5').bootstrapTable({
-        url: '/outmanager/userinfo/zhuanye_list_json?uid='+$('#uid').val(),         //请求后台的URL（*）
+        url: '/outmanager/userinfo/zhiye_list_json?uid='+$('#uid').val(),         //请求后台的URL（*）
         method: 'get',                      //请求方式（*）
         toolbar: '#toolbar5',                //工具按钮用哪个容器
         striped: false,                      //是否显示行间隔色
@@ -299,23 +269,13 @@ var TableInit = function () {
             field: 'startdate',
             title: '开始时间',
             formatter : function (value, row, index) {
-                if (value=="") {
-                    return '';
-                
-                } else {                    	
-                	return jsonDateFormat(value);    	
-                }
+            	return jsonDateFormat(value);
             }
         },{
-            field: 'enddate',
+            field: 'endtime',
             title: '结束时间',
             formatter : function (value, row, index) {
-                if (value=="") {
-                    return '';
-                
-                } else {                    	
-                	return jsonDateFormat(value);    	
-                }
+            	return jsonDateFormat(value);
             }
         },{
             field: 'name',
@@ -324,12 +284,7 @@ var TableInit = function () {
             field: 'gotdate',
             title: '取得资格日期',
             formatter : function (value, row, index) {
-                if (value=="") {
-                    return '';
-                
-                } else {                    	
-                	return jsonDateFormat(value);    	
-                }
+            	return jsonDateFormat(value);
             }
         },{
             field: 'dengji',
@@ -381,23 +336,13 @@ var TableInit = function () {
             field: 'startdate',
             title: '开始日期',
             formatter : function (value, row, index) {
-                if (value=="") {
-                    return '';
-                
-                } else {                    	
-                	return jsonDateFormat(value);    	
-                }
+            	return jsonDateFormat(value);
             }
         },{
             field: 'enddate',
             title: '终止日期',
             formatter : function (value, row, index) {
-                if (value=="") {
-                    return '';
-                
-                } else {                    	
-                	return jsonDateFormat(value);    	
-                }
+            	return jsonDateFormat(value);
             }
         },{
             field: 'lwconname',
@@ -440,23 +385,13 @@ var TableInit = function () {
             field: 'jcdate',
             title: '解除日期',
         	formatter : function (value, row, index) {
-                if (value=="") {
-                    return '';
-                
-                } else {                   	
-                	return jsonDateFormat(value);    	
-                }
+        		return jsonDateFormat(value);
             }
         },{
             field: 'gzenddate',
             title: '费用终止日',
         	formatter : function (value, row, index) {
-                if (value=="") {
-                    return '';
-                
-                } else {                   	
-                	return jsonDateFormat(value);    	
-                }
+        		return jsonDateFormat(value);
             }
         },{
             field: 'qt',
@@ -573,6 +508,7 @@ function addact(id) {
 	  
   }	
   
+  //劳动合同
   if(id==6){
 	  
 	  //合同期限类型
@@ -599,8 +535,74 @@ function addact(id) {
 	  $('#nwconnumber_'+id).val("");
 	  $('#lwconname_'+id).val("");		  
 	  
-  }  
+  }
   
+  
+ //专业技术
+ if(id==5){
+	 
+	  $('#id_'+id).val("");
+	 
+	  //专业技术资格序列
+	  initdroplist($("#xulie_"+id),"/outmanager/config/dict_json","","专业技术资格序列");	
+	  
+	  //专业技术资格名称
+	  initdroplist($("#name_"+id),"/outmanager/config/dict_json","","专业技术资格名称");  
+	  	  	  
+	  //资格专业分类
+	  initdroplist($("#zytype_"+id),"/outmanager/config/dict_json","","资格专业分类");
+	  	  
+	  //专业子分类
+	  initdroplist($("#subtype_"+id),"/outmanager/config/dict_json","","专业子分类");	 
+	  
+	  //取得资格途径
+	  initdroplist($("#gotway_"+id),"/outmanager/config/dict_json","","取得资格途径");	
+	
+	  //资格等级
+	  initdroplist($("#dengji_"+id),"/outmanager/config/dict_json","","资格等级");		  
+	  
+	  //是否为主要专业技术资质
+	  initdroplist($("#ismain_"+id),"/outmanager/config/dict_json","","通用是否");  
+	  
+	  
+	  $('#startdate_'+id).val("");	
+	  $('#endtime_'+id).val("");
+	  
+	  $('#gotdate_'+id).val("");
+	  $('#outdate_'+id).val("");
+	  
+	  $('#gotway_'+id).val("");
+	  $('#shareunit_'+id).val("");
+	  	  
+	  $('#qt_'+id).val("");	  
+	  $('#zsnumber_'+id).val("");
+
+	  
+  }   
+  
+ 
+ //技能认定
+ if(id==4){
+	 
+	  $('#id_'+id).val("");
+	 
+	  //认定技能资格名称
+	  initdroplist($("#rdname_"+id),"/outmanager/config/dict_json","","认定技能资格名称");	
+	  
+	  //认定技能资格等级
+	  initdroplist($("#rddengji_"+id),"/outmanager/config/dict_json","","认定技能资格等级");  
+	  
+	  //是否为主要
+	  initdroplist($("#ismain_"+id),"/outmanager/config/dict_json","","通用是否");  
+
+	  	  	  
+	  $('#startdate_'+id).val("");	
+	  $('#enddate_'+id).val("");
+
+	  $('#rdunit_'+id).val("");
+	  $('#qt_'+id).val("");	  
+  
+  } 
 
 
   openml(id);
@@ -648,6 +650,74 @@ function editact(id) {
 		  $('#lwconname_'+id).val(selects[0].lwconname);			  
 		  
 	  }
+	  
+	  
+	  //专业技术
+	  if(id==5){
+	 	 
+	 	  $('#id_'+id).val(selects[0].id);
+	 	 
+	 	  //专业技术资格序列
+	 	  initdroplist($("#xulie_"+id),"/outmanager/config/dict_json",selects[0].xulie,"专业技术资格序列");	
+	 	  
+	 	  //专业技术资格名称
+	 	  initdroplist($("#name_"+id),"/outmanager/config/dict_json",selects[0].name,"专业技术资格名称");  
+	 	  	  	  
+	 	  //资格专业分类
+	 	  initdroplist($("#zytype_"+id),"/outmanager/config/dict_json",selects[0].zytype,"资格专业分类");
+	 	  	  
+	 	  //专业子分类
+	 	  initdroplist($("#subtype_"+id),"/outmanager/config/dict_json",selects[0].subtype,"专业子分类");	 
+	 	  
+	 	  //取得资格途径
+	 	  initdroplist($("#gotway_"+id),"/outmanager/config/dict_json",selects[0].gotway,"取得资格途径");	
+	 	
+	 	  //资格等级
+	 	  initdroplist($("#dengji_"+id),"/outmanager/config/dict_json",selects[0].dengji,"资格等级");		  
+	 	  
+	 	  //是否为主要专业技术资质
+	 	  initdroplist($("#ismain_"+id),"/outmanager/config/dict_json",selects[0].ismain,"通用是否");  
+	 	  
+	 	  
+		  $('#startdate_'+id).val(jsonDateFormat(selects[0].startdate));	
+		  $('#endtime_'+id).val(jsonDateFormat(selects[0].endtime));
+		  
+		  $('#gotdate_'+id).val(jsonDateFormat(selects[0].gotdate));
+		  $('#outdate_'+id).val(jsonDateFormat(selects[0].outdate));
+		  
+		  
+		  
+		  $('#zsnumber_'+id).val(selects[0].zsnumber);
+		  $('#gotway_'+id).val(selects[0].gotway);
+		  
+		  $('#shareunit_'+id).val(selects[0].shareunit);				  
+		  $('#qt_'+id).val(selects[0].qt);
+	 	  
+		  
+	   }    
+	  //技能认定
+	  if(id==4){
+	 	 
+	 	  $('#id_'+id).val(selects[0].id);
+	 	 
+	 	  //认定技能资格名称
+	 	  initdroplist($("#rdname_"+id),"/outmanager/config/dict_json",selects[0].rdname,"认定技能资格名称");	
+	 	  
+	 	  //认定技能资格等级
+	 	  initdroplist($("#rddengji_"+id),"/outmanager/config/dict_json",selects[0].rddengji,"认定技能资格等级"); 
+	 	  
+	 	  
+		  //是否为主要
+	 	  initdroplist($("#ismain_"+id),"/outmanager/config/dict_json",selects[0].ismain,"通用是否");  
+
+	 	  	  	  
+	 	  $('#startdate_'+id).val(jsonDateFormat(selects[0].startdate));	
+	 	  $('#enddate_'+id).val(jsonDateFormat(selects[0].enddate));
+
+	 	  $('#rdunit_'+id).val(selects[0].rdunit);
+	 	  $('#qt_'+id).val(selects[0].qt);	  
+	   
+	   }
 
 	      	 
 	  openml(id);
@@ -699,14 +769,14 @@ function doExport() {
 
 
 //删除所选的记录
-function delrecode (id,url,listurl,arr) {
+function delrecode(id,url,listurl,arr) {
 	
 	$.ajax({
 		  type: 'POST',
 		  url: url,		  
 		  dataType: "text",
 		  contentType:'application/json;charset=UTF-8', 		  
-		  data: JSON.stringify(arr),		  
+		  data: JSON.stringify(todelarr(arr)),		  
 		  success: function(data){
 
 			  alert("处理成功");

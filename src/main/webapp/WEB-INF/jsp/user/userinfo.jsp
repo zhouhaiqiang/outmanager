@@ -293,7 +293,7 @@
             
             
             <div class="tab-pane" id="pan4">           
-             	<!---------------------职业信息---------------------- -->
+             	<!---------------------技能信息---------------------- -->
              	
 			        <div id="toolbar4" class="btn-group">
 			            <button id="btn_add" type="button" class="btn btn-default" onclick="addact(4);">
@@ -304,17 +304,17 @@
 			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 			            </button>
 			  
-			            <button id="btn_delete" type="button" class="btn btn-default" onclick="delact(4);">
+			            <button id="btn_delete" type="button" class="btn btn-default" onclick="delact(4,'/outmanager/userinfo/jineng_del','/outmanager/userinfo/jineng_list_json?uid=${user.id}');">
 			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 			            </button>
 
 			        </div>
 			        <table id="tb_data4"></table>             	
              	
-             	<!---------------------职业信息---------------------- -->
+             	<!--------------------技能信息---------------------- -->
             </div>            
             <div class="tab-pane" id="pan5">           
-             	<!---------------------技能信息---------------------- -->
+             	<!---------------------专业技术信息---------------------- -->
              	
  			        <div id="toolbar5" class="btn-group">
 			            <button id="btn_add" type="button" class="btn btn-default" onclick="addact(5);">
@@ -325,14 +325,14 @@
 			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 			            </button>
 			  
-			            <button id="btn_delete" type="button" class="btn btn-default" onclick="delact(5);">
+			            <button id="btn_delete" type="button" class="btn btn-default" onclick="delact(5,'/outmanager/userinfo/zhiye_del','/outmanager/userinfo/zhiye_list_json?uid=${user.id}');">
 			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 			            </button>
 
 			        </div>
 			        <table id="tb_data5"></table>            	
              	
-             	<!---------------------技能信息---------------------- -->
+             	<!--------------------专业技术信息---------------------- -->
             </div>
             
             <div class="tab-pane" id="pan6">  
@@ -383,6 +383,359 @@
       </div>
     <!--------------------- 列表区域---------------------- -->
     
+    
+    
+    
+    
+    
+    
+    <!---------------------对话窗口4-----------------------start---->
+   <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >  
+       <div class="modal-dialog" role="document" style="width:800px;">  
+           <div class="modal-content">  
+               <div class="modal-header">  
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">  
+                       <span aria-hidden="true">×</span>  
+                   </button>  
+                   <h4 class="modal-title" id="myModalLabel">职业技能信息</h4>  
+               </div>  
+               <div class="modal-body"> 
+               <form id="editform4">  
+               
+               <!-- id -->
+               <input type="hidden" id="id_4" name="id">
+               <!-- 用户id -->
+               <input type="hidden" id="userid" name="userid" value="${user.id}">
+
+               <table class="table table-bordered">
+               
+                 <tbody>
+                 
+                 
+                 <tr>
+                     <td class="active"> 
+                        <label  class="control-label">认定起始日期</label>
+                    </td>
+                    <td> 
+         
+                        <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="startdate_4" name="startdate" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">认定终止日期</label>
+                    </td>
+                    <td>                         
+                        <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="enddate_4" name="enddate" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+                    </td>
+                    
+                   </tr>                  
+                 
+                 
+               
+                   
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">认定单位<span style="color:red">*</span></label>
+                    </td>
+                    <td> 
+         
+          		    
+					   <input  class="form-control" id="rdunit_4" name="rdunit" >
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">认定技术资格名称<span style="color:red">*</span></label>
+                    </td>
+                    <td>                         
+ 						
+           		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="rdname_4" name="rdname" title="请选择 ...">                      
+					  </select>  
+					  						
+                    </td>
+                    
+                   </tr>
+                   
+
+                   
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">认定技能等级</label>
+                    </td>
+                    <td> 
+         
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="rddengji_4" name="rddengji" title="请选择 ...">                      
+					  </select>  
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">是否主要认定</label>
+                    </td>
+                    <td>                         
+ 						
+           		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="ismain_4" name="ismain" title="请选择 ...">                      
+					  </select>  
+					  						
+                    </td>
+                    
+                   </tr>
+                   
+                   
+                  <tr>
+                     <td class="active"> 
+                        <label  class="control-label">其他说明</label>
+                    </td>
+                    <td> 
+         
+
+          		      <input  class="form-control" id="qt_4" name="qt" > 				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                       
+                    </td>
+                    <td>                         
+                    
+                    </td>
+                    
+                   </tr>                                        
+                  
+                 </tbody>
+               </table>
+                    
+                    
+                </form> 
+               </div>  
+               <div class="modal-footer">  
+                   <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>  
+                   <button type="button" class="btn btn-danger" onclick="Ok_btn(4,'/outmanager/userinfo/jineng_update','/outmanager/userinfo/jineng_list_json?uid=${user.id}');">保存</button>  
+               </div>  
+           </div>  
+       </div>  
+   </div>  
+   <!---------------------对话窗口4-----------------------end---->   
+    
+    
+    
+    
+    
+    
+   <!---------------------对话窗口5-----------------------start---->
+   <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >  
+       <div class="modal-dialog" role="document" style="width:800px;">  
+           <div class="modal-content">  
+               <div class="modal-header">  
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">  
+                       <span aria-hidden="true">×</span>  
+                   </button>  
+                   <h4 class="modal-title" id="myModalLabel">专业技术资格信息</h4>  
+               </div>  
+               <div class="modal-body"> 
+               <form id="editform5">  
+               
+               <!-- id -->
+               <input type="hidden" id="id_5" name="id">
+               <!-- 用户id -->
+               <input type="hidden" id="userid" name="userid" value="${user.id}">
+
+               <table class="table table-bordered">
+               
+                 <tbody>
+                 
+                 
+                 <tr>
+                     <td class="active"> 
+                        <label  class="control-label">起始日期</label>
+                    </td>
+                    <td> 
+         
+                        <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="startdate_5" name="startdate" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">终止日期</label>
+                    </td>
+                    <td>                         
+                        <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="endtime_5" name="endtime" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+                    </td>
+                    
+                   </tr>                  
+                 
+                 
+               
+                   
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">专业技术资格序列<span style="color:red">*</span></label>
+                    </td>
+                    <td> 
+         
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="xulie_5" name="xulie" title="请选择 ...">                      
+					  </select>  
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">专业技术资格名称<span style="color:red">*</span></label>
+                    </td>
+                    <td>                         
+ 						
+           		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="name_5" name="name" title="请选择 ...">                      
+					  </select>  
+					  						
+                    </td>
+                    
+                   </tr>
+                   
+
+                   
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">专业分类</label>
+                    </td>
+                    <td> 
+         
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="zytype_5" name="zytype" title="请选择 ...">                      
+					  </select>  
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">专业子分类</label>
+                    </td>
+                    <td>                         
+ 						
+           		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="subtype_5" name="subtype" title="请选择 ...">                      
+					  </select>  
+					  						
+                    </td>
+                    
+                   </tr>
+                   
+                   
+                  <tr>
+                     <td class="active"> 
+                        <label  class="control-label">其他说明</label>
+                    </td>
+                    <td> 
+         
+
+          		      <input  class="form-control" id="qt_5" name="qt" > 				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">专业资质证书编号</label>
+                    </td>
+                    <td>                         
+                    	<input  class="form-control" id="zsnumber_5" name="zsnumber" > 
+                    </td>
+                    
+                   </tr>                                        
+ 
+ 
+ 
+ 
+                 <tr>
+                     <td class="active"> 
+                        <label  class="control-label">资格取得日期</label>
+                    </td>
+                    <td> 
+         
+                        <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="gotdate_5" name="gotdate" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">资格到期日</label>
+                    </td>
+                    <td>                         
+                        <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="outdate_5" name="outdate" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+                    </td>
+                    
+                   </tr>  
+ 
+ 
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">取得资格途径<span style="color:red">*</span></label>
+                    </td>
+                    <td> 
+         
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="gotway_5" name="gotway" title="请选择 ...">                      
+					  </select>  
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">专业技术资格等级<span style="color:red">*</span></label>
+                    </td>
+                    <td>                         
+ 						
+           		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="dengji_5" name="dengji" title="请选择 ...">                      
+					  </select>  
+					  						
+                    </td>
+                    
+                   </tr> 
+                               
+               
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">授予单位</label>
+                    </td>
+                    <td> 
+
+					  <input  class="form-control" id="shareunit_5" name="shareunit" >  
+         
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">是否为主要专业技术资质</label>
+                    </td>
+                    <td>                         
+ 						
+           		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="ismain_5" name="ismain" title="请选择 ...">                      
+					  </select>  
+					  						
+                    </td>
+                    
+                   </tr>               
+               
+                    
+                 </tbody>
+               </table>
+                    
+                    
+                </form> 
+               </div>  
+               <div class="modal-footer">  
+                   <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>  
+                   <button type="button" class="btn btn-danger" onclick="Ok_btn(5,'/outmanager/userinfo/zhiye_update','/outmanager/userinfo/zhiye_list_json?uid=${user.id}');">保存</button>  
+               </div>  
+           </div>  
+       </div>  
+   </div>  
+   <!---------------------对话窗口5-----------------------end---->    
     
     
    <!---------------------对话窗口6-----------------------start---->

@@ -16,7 +16,7 @@ public class JsonUtil {
 	
 	
 	//对时间格式化
-	public static Gson gson = new GsonBuilder()
+	public static Gson gson = new GsonBuilder().serializeNulls()
 			.registerTypeAdapter(Date.class,  new LongDateTypeAdapter())
 			.create();
 	

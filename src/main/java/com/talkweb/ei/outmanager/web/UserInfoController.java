@@ -346,17 +346,17 @@ public class UserInfoController {
 	
 	
 	
-	/***************专业技术部分***********************start***********/
+	/***************技能技术部分***********************start***********/
 	/**
 	 * 分页查询
 	 * @param uid
 	 * @return
 	 */
 	
-	@RequestMapping(value = "/zhuanye_list_json", method = RequestMethod.GET, produces = {
+	@RequestMapping(value = "/jineng_list_json", method = RequestMethod.GET, produces = {
 	"application/json; charset=utf-8" })
 	@ResponseBody	
-	private PageResult getzhuanyeList(String uid){
+	private PageResult getjinengList(String uid){
 				
 
 		//构建条件
@@ -385,9 +385,9 @@ public class UserInfoController {
 	 * @param jsonstr
 	 * @return
 	 */
-	@RequestMapping(value = "/zhuanye_update", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
+	@RequestMapping(value = "/jineng_update", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody  
-    public String updatezhuanye(@RequestBody String jsonstr) {
+    public String updatejineng(@RequestBody String jsonstr) {
 		
 		
 		logger.info("user_update======="+jsonstr);   
@@ -416,9 +416,9 @@ public class UserInfoController {
 	 * @param jsonstr
 	 * @return
 	 */
-	@RequestMapping(value = "/zhuanye_del", method = RequestMethod.POST)
+	@RequestMapping(value = "/jineng_del", method = RequestMethod.POST)
     @ResponseBody  
-    public String delzhuanye(@RequestBody String jsonstr) {
+    public String deljineng(@RequestBody String jsonstr) {
 		
 		
 		logger.info("del user======="+jsonstr);   
@@ -436,7 +436,7 @@ public class UserInfoController {
 		return "OK";
 		
     } 
-	/***************专业技术部分***********************end***********/		
+	/***************技能部分***********************end***********/		
 	
 	
 	/***************劳动关系部分***********************start***********/

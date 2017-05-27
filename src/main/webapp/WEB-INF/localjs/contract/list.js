@@ -279,14 +279,14 @@ function doExport() {
 
 
 //删除所选的记录
-function delrecode (url,arr) {
+function delrecode(url,arr) {
 
 	$.ajax({
 		  type: 'POST',
 		  url: url,		  
 		  dataType: "text",
 		  contentType:'application/json;charset=UTF-8', 		  
-		  data: JSON.stringify(arr),		  
+		  data: JSON.stringify(todelarr(arr)),		  
 		  success: function(data){
 
 			  alert("处理成功");
