@@ -40,12 +40,28 @@ import com.talkweb.ei.di.common.JsonUtil;
 import com.talkweb.ei.di.common.PageResult;
 import com.talkweb.ei.di.common.ViewExcel;
 import com.talkweb.ei.outmanager.dao.OutUserMapper;
+import com.talkweb.ei.outmanager.dao.TOutUserFpinfoMapper;
+import com.talkweb.ei.outmanager.dao.TOutUserHtMapper;
+import com.talkweb.ei.outmanager.dao.TOutUserJcMapper;
+import com.talkweb.ei.outmanager.dao.TOutUserJninfoMapper;
+import com.talkweb.ei.outmanager.dao.TOutUserJyinfoMapper;
+import com.talkweb.ei.outmanager.dao.TOutUserZyinfoMapper;
 import com.talkweb.ei.outmanager.model.OutCompany;
 import com.talkweb.ei.outmanager.model.OutContract;
 import com.talkweb.ei.outmanager.model.OutContractExample;
 import com.talkweb.ei.outmanager.model.OutUser;
 import com.talkweb.ei.outmanager.model.OutUserExample;
 import com.talkweb.ei.outmanager.model.OutUser_S;
+import com.talkweb.ei.outmanager.model.TOutUserHt;
+import com.talkweb.ei.outmanager.model.TOutUserHtExample;
+import com.talkweb.ei.outmanager.model.TOutUserJc;
+import com.talkweb.ei.outmanager.model.TOutUserJcExample;
+import com.talkweb.ei.outmanager.model.TOutUserJninfo;
+import com.talkweb.ei.outmanager.model.TOutUserJninfoExample;
+import com.talkweb.ei.outmanager.model.TOutUserJyinfo;
+import com.talkweb.ei.outmanager.model.TOutUserJyinfoExample;
+import com.talkweb.ei.outmanager.model.TOutUserZyinfo;
+import com.talkweb.ei.outmanager.model.TOutUserZyinfoExample;
 import com.talkweb.ei.outmanager.service.IUserService;
 
 
@@ -60,6 +76,26 @@ public class UserController {
 	
 	@Autowired
 	private OutUserMapper outUserMapper;	
+		
+	@Autowired
+	private TOutUserFpinfoMapper tOutUserFpinfoMapper;
+
+	@Autowired
+	private TOutUserHtMapper tOutUserHtMapper;
+	
+	@Autowired
+	private TOutUserJcMapper tOutUserJcMapper;	
+	
+	@Autowired
+	private TOutUserJyinfoMapper tOutUserJyinfoMapper;
+	
+	@Autowired
+	private TOutUserJninfoMapper tOutUserJninfoMapper;	
+	
+	@Autowired
+	private TOutUserZyinfoMapper tOutUserZyinfoMapper;		
+	
+	
 
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -615,68 +651,65 @@ public class UserController {
 	 */
 	private ModelAndView exportJiaoyu(ModelMap model) {
 		//构建条件
-		OutUserExample sample = new OutUserExample();
+		TOutUserJyinfoExample sample = new TOutUserJyinfoExample();
 		
 		
-		OutUserExample.Criteria criteria = sample.createCriteria();
+		TOutUserJyinfoExample.Criteria criteria = sample.createCriteria();
 		
-		//只查询外包用户
-		criteria.andUsertypeEqualTo("1");
-				
-		int total = userService.getUserSize(sample);
-		List<OutUser> list = userService.getUserList(ExcelUtil.MAXEXPORTNUM, 0, sample);
+
+		List<TOutUserJyinfo> list = tOutUserJyinfoMapper.selectByExample(sample);
 
         //varList 数据（二维数据）
         List<List> varList =  new ArrayList<List>();
         List<String> line;
-		for (OutUser user:list) {
+        
+        OutUser mapuser;
+        
+		for (TOutUserJyinfo user:list) {
 			 line = new ArrayList<String>();
 			 
+			 mapuser = userService.getUser(user.getUserid());
 		 
-			 
-	         line.add(user.getCode());
-	         line.add(user.getName());
-	         line.add(user.getIdnumber());
-	         line.add(user.getSex());
+			 line.add("");
+			 			 
+			 //人员编号	姓名	学校	入学时间	毕业时间
+	         line.add(mapuser.getCode());
+	         line.add(mapuser.getName());
+	         line.add(user.getSchool());
+	         line.add(DateUtil.format(user.getStartdate()));
+	         line.add(DateUtil.format(user.getEnddate()));
 
-	         line.add(user.getContype());
-	         line.add(user.getBirthday());
-	         line.add(user.getZhengzhi());
-	         line.add(user.getNationality());
-	         line.add(user.getMail());
+	         //学历	学历证书编号	是否最高学历	是否全日制学历	学位
+	         line.add(user.getXueli());
+	         line.add(user.getXuelizsnumber());
+	         line.add(user.getIsmaxxl());
+	         line.add(user.getIsqrz());
+	         line.add(user.getXuewei());
 	         
 	         
-	         //户口类型	户口所在地	民族	移居国外者	进入外包单位日期	
-	         line.add(user.getHukoutype());
-	         line.add(user.getHukouaddress());	
-	         line.add(user.getMingz());
-	         line.add(user.getIsout());		         
-	         line.add(DateUtil.format(user.getInworkdate()));
+	         //第一学位类别	第二学位类别	学位授予日期	学位授予单位	学位证书编号	是否最高学位
+	         line.add(user.getD1xwtype());
+	         line.add(user.getD2xwtype());	
+	         line.add(DateUtil.format(user.getXwdate()));
+	         line.add(user.getXwunit());		         
+	         line.add(user.getXwzsnumber());
+	         line.add(user.getIsmaxxw());
 	         
-	         //从事联通业务开始日期(不可修改)	分配开始日期	所属外包公司	所属外包合同编号	组织名称
-	         line.add(DateUtil.format(user.getInunicomdate()));	
-	         line.add(DateUtil.format(user.getFenpeidate()));
-	         line.add(user.getCompanyid());
-	         line.add(user.getConcode());
-	         line.add(user.getUnit());
-	         
-	         
-	         //从事外包业务类型	从事联通服务途径	增员途径说明	纳税地	社保缴纳地	
-	         line.add(user.getYwtype());
-	         line.add(user.getYwtj());
-	         line.add(user.getTjmark());
-	         line.add(user.getNsaddress());
-	         line.add(user.getSbaddress());
+	         //同等学历	相当毕业	专业类别	专业子类别	第一专业	第二专业
+	         line.add(user.getTdxl());	
+	         line.add(user.getXdby());
+	         line.add(user.getZytype());
+	         line.add(user.getZysubtype());
+	         line.add(user.getD1zy());
+	         line.add(user.getD2zy());
 	         
 	         
-	         //岗位序列	岗位分类	参考岗级	考核信息	备用1	备用2
-	         line.add(user.getGwnumber());
-	         line.add(user.getGwtype());
-	         line.add(user.getGwdj());
-	         line.add(user.getKaohei());
-	         line.add(user.getBak1());
-	         line.add(user.getBak2());
-	         
+	         //学制	学习形式	学习情况	备注
+	         line.add(user.getXuezhi());
+	         line.add(user.getXxxs());
+	         line.add(user.getXxqk());
+	         line.add(user.getQt());
+	        
 	         line.add(user.getId());
 	         	         
 	         varList.add(line);
@@ -687,58 +720,50 @@ public class UserController {
 		//titles  列标题
         List<String> titles = new ArrayList<String>();
         
-        //基本信息
-        // 人员编号	姓名	身份证号码	性别
-
+        //教育信息
+        //人员编号	姓名	学校	入学时间	毕业时间	
+        titles.add("操作模式");
         titles.add("人员编号");
         titles.add("姓名");
-        titles.add("身份证号码");        
-        titles.add("性别");
+        titles.add("学校");        
+        titles.add("入学时间");
+        titles.add("毕业时间");
         
+        //学历	学历证书编号	是否最高学历	是否全日制学历	学位	
+        titles.add("学历");       
+        titles.add("学历证书编号");
+        titles.add("是否最高学历");
+        titles.add("是否全日制学历");
+        titles.add("学位");
         
-        titles.add("人员类型");       
-        titles.add("出生日期");
-        titles.add("政治面貌");
-        titles.add("国籍");
-        titles.add("电子邮件地址");
+        //第一学位类别	第二学位类别	学位授予日期	学位授予单位	学位证书编号	是否最高学位
+        titles.add("第二学位类别");
+        titles.add("学位授予日期");
+        titles.add("学位授予单位");       
+        titles.add("学位证书编号");        
+        titles.add("是否最高学位");  
         
-        //户口类型	户口所在地	民族	移居国外者	进入外包单位日期	
-        titles.add("户口类型");
-        titles.add("户口所在地");
-        titles.add("民族");
-        titles.add("移居国外者");       
-        titles.add("进入外包单位日期");  
-        
-        //从事联通业务开始日期(不可修改)	分配开始日期	所属外包公司	所属外包合同编号	组织名称	
-        titles.add("从事联通业务开始日期");
-        titles.add("分配开始日期");
-        titles.add("所属外包公司");
-        titles.add("所属外包合同编号");       
-        titles.add("组织名称");    
+        //同等学历	相当毕业	专业类别	专业子类别	第一专业	第二专业	
+        titles.add("同等学历");	
+        titles.add("相当毕业");
+        titles.add("专业类别");
+        titles.add("专业子类别");
+        titles.add("第一专业");       
+        titles.add("第二专业");    
 
-        //从事外包业务类型	从事联通服务途径	增员途径说明	纳税地	社保缴纳地	
-        titles.add("从事外包业务类型");
-        titles.add("从事联通服务途径");
-        titles.add("增员途径说明");
-        titles.add("纳税地");       
-        titles.add("社保缴纳地");  
-        
-        //岗位序列	岗位分类	参考岗级	考核信息	备用1	备用2
-        
-        titles.add("岗位序列");
-        titles.add("岗位分类");
-        titles.add("参考岗级");
-        titles.add("考核信息");       
-        titles.add("备用1	"); 
-        titles.add("备用2"); 
-        
+        //学制	学习形式	学习情况	备注
+        titles.add("学制");
+        titles.add("学习形式");
+        titles.add("学习情况");
+        titles.add("备注");       
+
         //额外系统关键字
         titles.add("校验标识");
         
        	
 
         //数据传递
-        model.put("name", "外包人员基本信息"); 
+        model.put("name", "外包人员教育信息"); 
         model.put("titles", titles); 
         model.put("varList", varList);
         ViewExcel viewExcel = new ViewExcel();    
@@ -762,7 +787,95 @@ public class UserController {
 	 * @return
 	 */
 	private ModelAndView exportZhuanye(ModelMap model) {
-		return null;
+
+		//构建条件
+		TOutUserZyinfoExample sample = new TOutUserZyinfoExample();
+		
+		
+		TOutUserZyinfoExample.Criteria criteria = sample.createCriteria();
+		
+
+		List<TOutUserZyinfo> list = tOutUserZyinfoMapper.selectByExample(sample);
+
+        //varList 数据（二维数据）
+        List<List> varList =  new ArrayList<List>();
+        List<String> line;
+        
+        OutUser mapuser;
+        
+		for (TOutUserZyinfo user:list) {
+			 line = new ArrayList<String>();
+			 
+			 mapuser = userService.getUser(user.getUserid());
+		 
+			 line.add("");
+			 			 
+			 //人员编号	姓名	专业技术资格序列	专业技术资格名称	专业分类	
+	         line.add(mapuser.getCode());
+	         line.add(mapuser.getName());
+	         
+	         line.add(user.getXulie());
+	         line.add(user.getName());
+	         line.add(user.getZytype());
+	         
+	         //专业子分类	其它请注明	专业技术资格证书编号  取得资格日期
+	         line.add(user.getSubtype());
+	         line.add(user.getQt());
+	         line.add(user.getZsnumber());
+	         line.add(DateUtil.format(user.getGotdate()));
+
+	         
+	         //取得资格途径	专业技术资格等级	到期日	资格授予单位	是否主要专业技术资格 
+	         line.add(user.getGotway());
+	         line.add(user.getDengji());	         
+	         line.add(DateUtil.format(user.getOutdate()));
+	         line.add(user.getShareunit());
+	         line.add(user.getIsmain());
+	         
+	         	         
+	         line.add(user.getId());
+	         	         
+	         varList.add(line);
+		}
+		
+		
+		
+		//titles  列标题
+        List<String> titles = new ArrayList<String>();
+        
+        //人员编号	姓名	专业技术资格序列	专业技术资格名称	专业分类	
+        titles.add("操作模式");
+        titles.add("人员编号");
+        titles.add("姓名");       
+        titles.add("专业技术资格序列");
+        titles.add("专业技术资格名称");
+        titles.add("专业分类");
+        
+        //专业子分类	其它请注明	专业技术资格证书编号  取得资格日期		
+        titles.add("专业子分类");       
+        titles.add("其它请注明");
+        titles.add("专业技术资格证书编号");
+        titles.add("取得资格日期");
+       
+        
+        //取得资格途径	专业技术资格等级	到期日	资格授予单位	是否主要专业技术资格        
+        titles.add("取得资格途径");       
+        titles.add("专业技术资格等级");
+        titles.add("到期日");
+        titles.add("资格授予单位"); 
+        titles.add("是否主要专业技术资格");
+        
+        //额外系统关键字
+        titles.add("校验标识");
+        
+       	
+
+        //数据传递
+        model.put("name", "外包人员职业技能信息"); 
+        model.put("titles", titles); 
+        model.put("varList", varList);
+        ViewExcel viewExcel = new ViewExcel();    
+        return new ModelAndView(viewExcel, model);
 	}
 	
 	
@@ -772,16 +885,170 @@ public class UserController {
 	 * @return
 	 */
 	private ModelAndView exportZhiye(ModelMap model) {
-		return null;
+		
+		
+		//构建条件
+		TOutUserJninfoExample sample = new TOutUserJninfoExample();
+		
+		
+		TOutUserJninfoExample.Criteria criteria = sample.createCriteria();
+		
+
+		List<TOutUserJninfo> list = tOutUserJninfoMapper.selectByExample(sample);
+
+        //varList 数据（二维数据）
+        List<List> varList =  new ArrayList<List>();
+        List<String> line;
+        
+        OutUser mapuser;
+        
+		for (TOutUserJninfo user:list) {
+			 line = new ArrayList<String>();
+			 
+			 mapuser = userService.getUser(user.getUserid());
+		 
+			 line.add("");
+			 			 
+			 //人员编号	姓名	认定开始日期	认定终止日期	认定单位
+	         line.add(mapuser.getCode());
+	         line.add(mapuser.getName());
+	         line.add(DateUtil.format(user.getStartdate()));
+	         line.add(DateUtil.format(user.getEnddate()));
+	         line.add(user.getRdunit());
+	         
+	         //认定技能资格名称	认定技能资格等级	其他请注明	是否主要认定
+	         line.add(user.getRdname());
+	         line.add(user.getRddengji());
+	         line.add(user.getQt());
+	         line.add(user.getIsmain());
+
+	         line.add(user.getId());
+	         	         
+	         varList.add(line);
+		}
+		
+		
+		
+		//titles  列标题
+        List<String> titles = new ArrayList<String>();
+        
+        //操作模式	人员编号	姓名	认定开始日期	认定终止日期	认定单位	
+        titles.add("操作模式");
+        titles.add("人员编号");
+        titles.add("姓名");       
+        titles.add("认定开始日期");
+        titles.add("认定终止日期");
+        titles.add("认定单位");
+        
+        //认定技能资格名称	认定技能资格等级	其他请注明	是否主要认定
+        titles.add("认定技能资格名称");       
+        titles.add("认定技能资格等级");
+        titles.add("其他请注明");
+        titles.add("是否主要认定");
+       
+        //额外系统关键字
+        titles.add("校验标识");
+        
+       	
+
+        //数据传递
+        model.put("name", "外包人员职业技能信息"); 
+        model.put("titles", titles); 
+        model.put("varList", varList);
+        ViewExcel viewExcel = new ViewExcel();    
+        return new ModelAndView(viewExcel, model);
 	}
 	
 	/**
-	 * 导出外包人员劳动信息
+	 * 导出外包人员劳动合同信息
 	 * @param model
 	 * @return
 	 */
 	private ModelAndView exportLaodong(ModelMap model) {
-		return null;
+		//构建条件
+		TOutUserHtExample sample = new TOutUserHtExample();
+		
+		
+		TOutUserHtExample.Criteria criteria = sample.createCriteria();
+		
+
+		List<TOutUserHt> list = tOutUserHtMapper.selectByExample(sample);
+
+        //varList 数据（二维数据）
+        List<List> varList =  new ArrayList<List>();
+        List<String> line;
+        
+        OutUser mapuser;
+        
+		for (TOutUserHt user:list) {
+			 line = new ArrayList<String>();
+			 
+			 mapuser = userService.getUser(user.getUserid());
+		 
+			 line.add("");
+			 			 
+			 //操作模式	人员编号	姓名	合同类型	劳动合同编号	合同期限类型
+	         line.add(mapuser.getCode());
+	         line.add(mapuser.getName());
+	         line.add(user.getContype());
+	         line.add(user.getConnumber());
+	         line.add(user.getConqxtype());
+	         
+	         //劳动合同起始日期	劳动合同终止日期	劳动合同状态	劳动合同期限	劳动合同签订单位	
+	         line.add(DateUtil.format(user.getStartdate()));
+	         line.add(DateUtil.format(user.getEnddate()));
+	         line.add(user.getConstatus());
+	         line.add(user.getQixian());
+	         line.add(user.getUnit());
+	       
+
+	         //劳务合同签订的甲方公司	对应劳务合同编号	劳务合同名称
+	         line.add(user.getUnit());	         
+	         line.add(user.getNwconnumber());
+	         line.add(user.getLwconname());
+	         
+	         line.add(user.getId());
+	         	         
+	         varList.add(line);
+		}
+		
+		
+		
+		//titles  列标题
+        List<String> titles = new ArrayList<String>();
+        
+        //操作模式	人员编号	姓名	合同类型	劳动合同编号	合同期限类型		
+        titles.add("操作模式");
+        titles.add("人员编号");
+        titles.add("姓名");       
+        titles.add("合同类型");
+        titles.add("劳动合同编号");
+        titles.add("合同期限类型");
+        
+        //劳动合同起始日期	劳动合同终止日期	劳动合同状态	劳动合同期限	劳动合同签订单位	
+        titles.add("劳动合同起始日期");       
+        titles.add("劳动合同终止日期");
+        titles.add("劳动合同状态");
+        titles.add("劳动合同期限");
+        titles.add("劳动合同签订单位");
+       
+        
+        //劳务合同签订的甲方公司	对应劳务合同编号	劳务合同名称
+        titles.add("劳务合同签订的甲方公司");       
+        titles.add("对应劳务合同编号");
+        titles.add("劳务合同名称");
+        
+        //额外系统关键字
+        titles.add("校验标识");
+        
+       	
+
+        //数据传递
+        model.put("name", "外包人员劳动合同信息"); 
+        model.put("titles", titles); 
+        model.put("varList", varList);
+        ViewExcel viewExcel = new ViewExcel();    
+        return new ModelAndView(viewExcel, model);
 	}
 	
 	/**
@@ -790,7 +1057,68 @@ public class UserController {
 	 * @return
 	 */
 	private ModelAndView exportJiechu(ModelMap model) {
-		return null;
+		//构建条件
+		TOutUserJcExample sample = new TOutUserJcExample();
+		
+		
+		TOutUserJcExample.Criteria criteria = sample.createCriteria();
+		
+
+		List<TOutUserJc> list = tOutUserJcMapper.selectByExample(sample);
+
+        //varList 数据（二维数据）
+        List<List> varList =  new ArrayList<List>();
+        List<String> line;
+        
+        OutUser mapuser;
+        
+		for (TOutUserJc user:list) {
+			 line = new ArrayList<String>();
+			 
+			 mapuser = userService.getUser(user.getUserid());
+		 
+			 line.add("");
+			 			 
+			 //操作模式	人员编号	姓名	解除原因	解除外包关系日期	费用最终日期	途径说明（新外包公司名称）
+	         line.add(mapuser.getCode());
+	         line.add(mapuser.getName());
+	         line.add(user.getJcreason());
+	         
+	         line.add(DateUtil.format(user.getJcdate()));
+	         line.add(DateUtil.format(user.getGzenddate()));
+	         line.add(user.getQt());
+
+	         line.add(user.getId());
+	         	         
+	         varList.add(line);
+		}
+		
+		
+		
+		//titles  列标题
+        List<String> titles = new ArrayList<String>();
+        
+        //操作模式	人员编号	姓名	解除原因	解除外包关系日期	费用最终日期	途径说明（新外包公司名称）
+        titles.add("操作模式");
+        titles.add("人员编号");
+        titles.add("姓名"); 
+        titles.add("解除原因"); 
+        
+        titles.add("解除外包关系日期");
+        titles.add("费用最终日期");
+        titles.add("途径说明（新外包公司名称）");
+        
+        //额外系统关键字
+        titles.add("校验标识");
+        
+       	
+
+        //数据传递
+        model.put("name", "外包人员解除关系信息"); 
+        model.put("titles", titles); 
+        model.put("varList", varList);
+        ViewExcel viewExcel = new ViewExcel();    
+        return new ModelAndView(viewExcel, model);
 	}	
 	
 	

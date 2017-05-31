@@ -142,8 +142,7 @@
              <select class="btn btn-default" name="datatype" id="datatype" title="请选择导出的数据...">	
              
              	<option value="">--请选择导出信息--</option>	
-				<option>基本信息</option>	
-				<option>分配信息</option>
+				<option>基本信息</option>			
 				<option>教育信息</option>
 				<option>职业技能</option>
 				<option>专业技术</option> 

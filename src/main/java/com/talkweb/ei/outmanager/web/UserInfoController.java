@@ -210,7 +210,7 @@ public class UserInfoController {
 			//页面上没有ID说明是新增
 			if(StringUtils.isEmpty(outUser.getId())){
 				outUser.setId(UUID.randomUUID().toString());
-								
+				outUser.setIsqrz("是"); //页面上没有输入
 				tOutUserJyinfoMapper.insert(outUser);
 			} else {				
 				tOutUserJyinfoMapper.updateByPrimaryKey(outUser);
