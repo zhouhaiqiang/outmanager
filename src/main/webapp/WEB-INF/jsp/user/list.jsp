@@ -490,7 +490,7 @@
                      </td>
               
                     <td> 
-                        <label  class="control-label">核算到最新单元</label>
+                        <label  class="control-label">核算到最小单元</label>
                     </td>
                     <td >                  
                          <select class="form-control selectpicker show-tick"  name="iszuixin" id="iszuixin" title="请选择 ...">

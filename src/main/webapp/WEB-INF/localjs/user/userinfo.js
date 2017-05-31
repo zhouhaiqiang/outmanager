@@ -80,10 +80,10 @@ var TableInit = function () {
                 field: 'company',
                 title: '公司名称'
             },{
-                field: 'concode',
+                field: 'connumber',
                 title: '合同编号'
             },{
-                field: 'unit',
+                field: 'fwdept',
                 title: '服务部门'
             }, {
                 field: 'startdate',
@@ -107,19 +107,13 @@ var TableInit = function () {
                 field: 'gwjb',
                 title: '参考岗级'
             },{
-                field: 'kaohei',
+                field: 'kaohe',
                 title: '考核信息'
             },{
-                field: 'jicong',
-                title: '基从单元负责人'
-            },{
-                field: 'zuixiaody',
-                title: '核算到最小单元'
-            },{
-                field: 'bak1',
+                field: 'qt1',
                 title: '备用1'
             },{
-                field: 'bak2',
+                field: 'qt2',
                 title: '备用1'
             }
             
@@ -155,7 +149,7 @@ var TableInit = function () {
             checkbox: true
         },{
             field: 'school',
-            title: '学校'
+            title: '毕业学校'
         },{
             field: 'startdate',
             title: '入学时间',
@@ -172,13 +166,13 @@ var TableInit = function () {
             field: 'xueli',
             title: '学历'
         },{
-            field: 'ismax',
+            field: 'ismaxxl',
             title: '是否最高学历'
         },{
             field: 'xuewei',
             title: '学位'
         },{
-            field: 'zy',
+            field: 'd1zy',
             title: '第一专业'
         }
         
@@ -604,7 +598,104 @@ function addact(id) {
   
   } 
 
+ //教育信息
+ if(id==3){
+	 
+	  $('#id_'+id).val("");
+	 
+	  //学历
+	  initdroplist($("#xueli_"+id),"/outmanager/config/dict_json","","学历");	
+	  
+	  //是否最高学历
+	  initdroplist($("#ismaxxl_"+id),"/outmanager/config/dict_json","","通用是否");		  
+	  
+	  //学位
+	  initdroplist($("#xuewei_"+id),"/outmanager/config/dict_json","","学位");  
+	  
+	  //是否最高学位
+	  initdroplist($("#ismaxxw_"+id),"/outmanager/config/dict_json","","通用是否");  
 
+	  //同等学历
+	  initdroplist($("#tdxl_"+id),"/outmanager/config/dict_json","","同等学历");  
+
+	  //相当毕业
+	  initdroplist($("#xdby_"+id),"/outmanager/config/dict_json","","相当毕业");  
+	  
+	  //专业类别
+	  initdroplist($("#zytype_"+id),"/outmanager/config/dict_json","","专业类别");  	  
+	  
+	  
+	  //专业子类别
+	  initdroplist($("#zysubtype_"+id),"/outmanager/config/dict_json","","专业子类别");  
+	  	  	  
+	
+	  //学习形式
+	  initdroplist($("#xxxs_"+id),"/outmanager/config/dict_json","","学习形式");  	
+	  
+	  $('#school_'+id).val("");
+	  
+	  $('#startdate_'+id).val("");
+	  $('#enddate_'+id).val("");
+	  $('#xwdate_'+id).val("");
+	  
+	  $('#xwzsnumber_'+id).val("");
+	  $('#xlzsnumber_'+id).val("");
+	  $('#xwunit_'+id).val("");
+	  
+	  $('#d1xwtype_'+id).val("");
+	  $('#d2xwtype_'+id).val("");
+	  
+	  $('#d1zy_'+id).val("");
+	  $('#d2zy_'+id).val("");
+
+	  $('#xuezhi_'+id).val("");
+	  $('#xxqk_'+id).val("");
+	  $('#qt_'+id).val("");	  
+  
+  }
+ 
+ 
+ 
+ 
+ 
+ //分配信息
+ if(id==2){
+	 
+	  $('#id_'+id).val("");
+	  $('#fwdept_'+id).val("");
+	 
+	  //合同编号
+	  initdroplist($("#connumber_"+id),"/outmanager/config/contractcode_json","","")	  
+	  
+	  //公司名称
+	  initdroplist($("#company_"+id),"/outmanager/config/companyjson","","");
+	  
+	  //岗位序列
+	  initdroplist($("#gw_"+id),"/outmanager/config/dict_json","","岗位序列");  	  
+	  	  
+
+	  //岗位等级
+	  initdroplist($("#gwjb_"+id),"/outmanager/config/dict_json","","参考岗级");  	  
+	  
+	  //基层单元负责人
+	  initdroplist($("#fzr_"+id),"/outmanager/config/dict_json","","通用是否"); 
+	  
+	  //核算到最小单元
+	  initdroplist($("#iszuixiao_"+id),"/outmanager/config/dict_json","","通用是否");  	
+
+	  
+	  
+	  
+	  $('#startdate_'+id).val("");
+	  $('#enddate_'+id).val("");
+	
+	  $('#kaohei_'+id).val("");	 
+	  $('#qt1_'+id).val("");
+	  $('#qt2_'+id).val("");
+  
+  }  
+ 
+  //打开对话框
   openml(id);
 }
 
@@ -718,8 +809,106 @@ function editact(id) {
 	 	  $('#qt_'+id).val(selects[0].qt);	  
 	   
 	   }
+	  
+	  
+	  
+	  //教育信息
+	  if(id==3){
+	 	 
+	 	  $('#id_'+id).val(selects[0].id);
+	 	 
+		  //学历
+		  initdroplist($("#xueli_"+id),"/outmanager/config/dict_json",selects[0].xueli,"学历");	
+		  
+		  //是否最高学历
+		  initdroplist($("#ismaxxl_"+id),"/outmanager/config/dict_json",selects[0].ismaxxl,"通用是否");		  
+		  
+		  //学位
+		  initdroplist($("#xuewei_"+id),"/outmanager/config/dict_json",selects[0].xuewei,"学位");  
+		  
+		  //是否最高学位
+		  initdroplist($("#ismaxxw_"+id),"/outmanager/config/dict_json",selects[0].ismaxxw,"通用是否");  
 
-	      	 
+		  //同等学历
+		  initdroplist($("#tdxl_"+id),"/outmanager/config/dict_json",selects[0].tdxl,"同等学历");  
+
+		  //相当毕业
+		  initdroplist($("#xdby_"+id),"/outmanager/config/dict_json",selects[0].xdby,"相当毕业");  
+		  
+		  //专业类别
+		  initdroplist($("#zytype_"+id),"/outmanager/config/dict_json",selects[0].zytype,"专业类别");  	  
+		  		  
+		  //专业子类别
+		  initdroplist($("#zysubtype_"+id),"/outmanager/config/dict_json",selects[0].zysubtype,"专业子类别");  
+		  
+		  //学习形式
+		  initdroplist($("#xxxs_"+id),"/outmanager/config/dict_json",selects[0].xxxs,"学习形式");  	
+		  
+		  $('#school_'+id).val(selects[0].school);
+		  
+		  $('#startdate_'+id).val(jsonDateFormat(selects[0].startdate));
+		  $('#enddate_'+id).val(jsonDateFormat(selects[0].enddate));
+		  
+		  $('#xwdate_'+id).val(jsonDateFormat(selects[0].xwdate));
+		  	  
+		  $('#xwzsnumber_'+id).val(selects[0].xwzsnumber);
+		  $('#xuelizsnumber_'+id).val(selects[0].xuelizsnumber);
+		  $('#xwunit_'+id).val(selects[0].xwunit);
+		  
+		  $('#d1xwtype_'+id).val(selects[0].d1xwtype);
+		  $('#d2xwtype_'+id).val(selects[0].d2xwtype);
+		  
+		  $('#d1zy_'+id).val(selects[0].d1zy);
+		  $('#d2zy_'+id).val(selects[0].d2zy);
+
+		  $('#xuezhi_'+id).val(selects[0].xuezhi);
+		  $('#xxqk_'+id).val(selects[0].xxqk);
+		  $('#qt_'+id).val(selects[0].qt);
+		  
+	   
+	   }	
+	  
+	  
+	  //分配信息
+	  if(id==2){
+	 	 
+		  $('#id_'+id).val(selects[0].id);
+		  
+		  $('#fwdept_'+id).val(selects[0].fwdept);
+	 	 
+	 	  //合同编号
+	 	  initdroplist($("#connumber_"+id),"/outmanager/config/contractcode_json",selects[0].connumber,"")	  
+	 	  
+	 	  //公司名称
+	 	  initdroplist($("#company_"+id),"/outmanager/config/companyjson",selects[0].company,"");
+	 	  
+	 	  //岗位序列
+	 	  initdroplist($("#gw_"+id),"/outmanager/config/dict_json",selects[0].gw,"岗位序列"); 
+	 	  
+	 	  
+	 	  //岗位分类
+	 	  initdroplist($("#gwtype_"+id),"/outmanager/config/dict_json",selects[0].gwtype,selects[0].gw); 
+	 
+	 	  
+	 	  //岗位等级
+	 	  initdroplist($("#gwjb_"+id),"/outmanager/config/dict_json",selects[0].gwjb,"参考岗级");  	  
+	 	  
+	 	  //基层单元负责人
+	 	  initdroplist($("#fzr_"+id),"/outmanager/config/dict_json",selects[0].fzr,"通用是否"); 
+	 	  
+	 	  //核算到最小单元
+	 	  initdroplist($("#iszuixiao_"+id),"/outmanager/config/dict_json",selects[0].iszuixiao,"通用是否");  	
+
+
+	 	  $('#startdate_'+id).val(jsonDateFormat(selects[0].startdate));
+	 	  $('#enddate_'+id).val(jsonDateFormat(selects[0].enddate));
+	 	
+	 	  $('#kaohei_'+id).val(selects[0].kaohei);	 
+	 	  $('#qt1_'+id).val(selects[0].qt1);
+	 	  $('#qt2_'+id).val(selects[0].qt2);
+	   
+	  }
+      	 
 	  openml(id);
 
   } else {
@@ -1002,7 +1191,7 @@ function initdroplist(obj,url,defvalue,lx){
 function chggwnumber(selvalue){
 	
 	//岗位分类
-	initdroplist($("#gwtype"),"/outmanager/config/dict_json","",selvalue)
+	initdroplist($("#gwtype_2"),"/outmanager/config/dict_json","",selvalue)
 	
 	
 }
@@ -1046,6 +1235,23 @@ var setting6 = {
 		}
 	};
 
+var setting2 = {
+		view: {
+			dblClickExpand: false
+		},
+		data: {
+			simpleData: {
+				enable: true
+			}
+		},
+		callback: {
+			beforeClick: beforeClick,
+			onClick: onClick2  //填值地方不一样
+		}
+	};
+
+
+
 	var zNodes =[
 		{id:1, pId:0, name:"北京"},
 		{id:2, pId:1, name:"三明"},
@@ -1066,6 +1272,7 @@ var setting6 = {
 			  success: function(data){
 				
 				  $.fn.zTree.init($("#treeDemo6"), setting6, data.rows);
+				  $.fn.zTree.init($("#treeDemo2"), setting2, data.rows);
 								  				  
 			  }			  			  
 			});		
@@ -1113,6 +1320,27 @@ var setting6 = {
 		$("#unit_6").val(v);
 		//选定之后隐藏
 		hideMenu();
+	}
+	
+	
+	function onClick2(e, treeId, treeNode) {
+		
+		var zTree = $.fn.zTree.getZTreeObj("treeDemo2"),
+		nodes = zTree.getSelectedNodes(),
+		v = "";
+		
+
+		nodes.sort(function compare(a,b){return a.id-b.id;});
+		for (var i=0, l=nodes.length; i<l; i++) {
+			v += nodes[i].name + ",";
+		}
+		
+		if (v.length > 0 ) v = v.substring(0, v.length-1);
+		
+		//赋值
+		$("#fwdept_2").val(v);
+		//选定之后隐藏
+		hideMenu();
 	}	
 	
 
@@ -1130,12 +1358,30 @@ var setting6 = {
 		$("#menuContent6").css({left:newleft + "px", top:newtop + cityObj.outerHeight() + "px"}).slideDown("fast");
 
 		$("body").bind("mousedown", onBodyDown);
+	}
+	
+	
+	
+	function showMenu2() {
+		var cityObj = $("#fwdept_2");
+		var cityOffset = cityObj.offset();
+		
+		
+		var newleft=cityOffset.left-150;
+		
+		var newtop=cityOffset.top-40;
+
+		
+		$("#menuContent2").css({left:newleft + "px", top:newtop + cityObj.outerHeight() + "px"}).slideDown("fast");
+
+		$("body").bind("mousedown", onBodyDown);
 	}	
 	
 	
 	//隐藏选择框
 	function hideMenu() {
 		$("#menuContent6").fadeOut("fast");
+		$("#menuContent2").fadeOut("fast");
 		$("body").unbind("mousedown", onBodyDown);
 	}
 	
@@ -1144,7 +1390,10 @@ var setting6 = {
 	function onBodyDown(event) {
 		if (!(event.target.id == "menuBtn" 
 			|| event.target.id == "menuContent6" 
-			|| $(event.target).parents("#menuContent6").length>0)) {
+			|| $(event.target).parents("#menuContent6").length>0
+			|| event.target.id == "menuContent2" 
+			|| $(event.target).parents("#menuContent2").length>0)	
+		) {
 			hideMenu();
 		}
 	}

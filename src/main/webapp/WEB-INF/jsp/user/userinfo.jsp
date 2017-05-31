@@ -28,6 +28,9 @@
 <!-- 引入zTree控件 -->
 <%@include file="../common/ztree.jsp" %>
 
+<!-- 标签 -->
+<%@include file="../common/tag.jsp" %>
+
 <!--  页面私有js --> 
 <script src="../localjs/common.js"></script>
   
@@ -210,9 +213,9 @@
                      <td class="active"> 
                         <label  class="control-label">进外包单位日期</label>                      
                      </td>
-                    <td>                         
-                      ${user.inworkdate}
                      
+                    <td>                         
+                     	<fmt:formatDate value="${user.inworkdate}" pattern="yyyy-MM-dd"/>
                      </td>
                     <td class="active"> 
                         <label  class="control-label">从事外包业务类型</label>
@@ -229,7 +232,8 @@
                         <label  class="control-label">从事联通服务日期</label>                      
                      </td>
                     <td>                         
-                      ${user.inunicomdate}
+
+                      <fmt:formatDate value="${user.inunicomdate}" pattern="yyyy-MM-dd"/>
                      
                      </td>
                     <td class="active"> 
@@ -257,7 +261,7 @@
 			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 			            </button>
 			  
-			            <button id="btn_delete" type="button" class="btn btn-default" onclick="delact(2);">
+			            <button id="btn_delete" type="button" class="btn btn-default" onclick="delact(2,'/outmanager/userinfo/fenpei_del','/outmanager/userinfo/fenpei_list_json?uid=${user.id}');">
 			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 			            </button>
 
@@ -280,7 +284,7 @@
 			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
 			            </button>
 			  
-			            <button id="btn_delete" type="button" class="btn btn-default" onclick="delact(3);">
+			            <button id="btn_delete" type="button" class="btn btn-default" onclick="delact(3,'/outmanager/userinfo/jiaoyu_del','/outmanager/userinfo/jiaoyu_list_json?uid=${user.id}');">
 			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 			            </button>
 
@@ -384,12 +388,497 @@
     <!--------------------- 列表区域---------------------- -->
     
     
+   <!---------------------对话窗口2-----------------------start---->
+   <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >  
+       <div class="modal-dialog" role="document" style="width:800px;">  
+           <div class="modal-content">  
+               <div class="modal-header">  
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">  
+                       <span aria-hidden="true">×</span>  
+                   </button>  
+                   <h4 class="modal-title" id="myModalLabel">分配信息</h4>  
+               </div>  
+               <div class="modal-body"> 
+               <form id="editform2">  
+               
+               <!-- id -->
+               <input type="hidden" id="id_2" name="id">
+               <!-- 用户id -->
+               <input type="hidden" id="userid" name="userid" value="${user.id}">
+
+               <table class="table table-bordered">
+               
+                 <tbody>
+                  <tr>
+                     <td class="active"> 
+                        <label  class="control-label">服务部门<span style="color:red">*</span></label>
+                    </td>
+                    <td> 
+         
+                       <input type="text" class="form-control" id="fwdept_2" name="fwdept" readonly onclick="showMenu2(); return false;">
+                        <div id="menuContent2" class="menuContent" style="display:none;z-index:9;position: fixed; left:1px;top:1px;">
+							<ul id="treeDemo2" class="ztree"></ul>
+					    </div>
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">公司名称<span style="color:red">*</span></label>
+                    </td>
+                    <td>                         
+ 						
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="company_2" name="company" title="请选择 ...">                      
+					  </select> 					  						
+                    </td>
+                    
+                   </tr>    
+                   
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">合同编号<span style="color:red">*</span></label>
+                    </td>
+                    <td colspan="3"> 
+         
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="connumber_2" name="connumber" title="请选择 ...">                      
+					  </select>  
+				                                       
+          		      	            
+                     </td>
+                     
+                    </tr>    
+                   
+                   <tr>                    
+                     
+                    <td class="active"> 
+                        <label  class="control-label">开始日期<span style="color:red">*</span></label>
+                    </td>
+                    <td>                         
+ 						
+          		        <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="startdate_2" name="startdate" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>  
+					  						
+                    </td>                    
+                    <td class="active"> 
+                        <label  class="control-label">结束日期<span style="color:red">*</span></label>
+                    </td>
+                    <td>                         
+ 						
+          		        <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="enddate_2" name="enddate" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>  
+					  						
+                    </td>
+                    
+                   </tr>                                
+                 
+                                 
+                 
+                 
+                    <tr>
+                     <td class="active"> 
+                        <label  class="control-label">岗位序列</label>
+                    </td>
+                    <td> 
+         
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="gw_2" name="gw" onchange="chggwnumber(this.value);" title="请选择 ...">                      
+					  </select> 
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">岗位分类</label>
+                    </td>
+                    <td>                         
+ 						
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="gwtype_2" name="gwtype" title="请选择 ...">                      
+					  </select> 
+					  						
+                    </td>
+                   </tr>                
+                                                       
+                  
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">岗位等级</label>
+                    </td>
+                    <td> 
+         
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="gwjb_2" name="gwjb" title="请选择 ...">                      
+					  </select> 
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">考核信息</label>
+                    </td>
+                    <td>                         
+ 						<input  class="form-control" id="kaohe_2" name="kaohe" >
+          		    	
+                    </td>
+                   </tr>  
+                   
+                                    
+                  
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">备用1</label>
+                    </td>
+                    <td> 
+         
+          		       <input  class="form-control" id="qt1_2" name="qt1" >
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">备用2</label>
+                    </td>
+                    <td>                         
+ 						
+					   <input  class="form-control" id="qt2_2" name="qt2" >
+					  						
+                    </td>
+                   </tr>  
+                                    
+                      <tr>
+                     <td> 
+                        <label  class="control-label">基层单元负责人</label>
+                    </td>
+                    <td >                         
+                         <select class="form-control selectpicker show-tick" id="fzr_2"  name="fzr"  title="请选择 ...">                          	     
+                         <option>是 </option>                        
+                         <option>否</option> 
+                                         
+					   </select>
+                     </td>
+              
+                    <td> 
+                        <label  class="control-label">核算到最小单元</label>
+                    </td>
+                    <td >                  
+                         <select class="form-control selectpicker show-tick" id="iszuixiao_2" name="iszuixiao"  title="请选择 ...">
+                            	     
+                         <option>是 </option>                        
+                         <option>否</option> 
+                                         
+					   </select>
+                    </td>                   
+                   </tr>                                                                     
+                  
+                 </tbody>
+               </table>
+                    
+                    
+                </form> 
+               </div>  
+               <div class="modal-footer">  
+                   <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>  
+                   <button type="button" class="btn btn-danger" onclick="Ok_btn(2,'/outmanager/userinfo/fenpei_update','/outmanager/userinfo/fenpei_list_json?uid=${user.id}');">保存</button>  
+               </div>  
+           </div>  
+       </div>  
+   </div>  
+   <!---------------------对话窗口2-----------------------end---->   
+    
+    
+   <!---------------------对话窗口3-----------------------start---->
+   <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >  
+       <div class="modal-dialog" role="document" style="width:800px;">  
+           <div class="modal-content">  
+               <div class="modal-header">  
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">  
+                       <span aria-hidden="true">×</span>  
+                   </button>  
+                   <h4 class="modal-title" id="myModalLabel">教育信息</h4>  
+               </div>  
+               <div class="modal-body"> 
+               <form id="editform3">  
+               
+               <!-- id -->
+               <input type="hidden" id="id_3" name="id">
+               <!-- 用户id -->
+               <input type="hidden" id="userid" name="userid" value="${user.id}">
+
+               <table class="table table-bordered">
+               
+                 <tbody>
+                
+                  <tr>
+                     <td class="active"> 
+                        <label  class="control-label">毕业学校<span style="color:red">*</span></label>
+                    </td>
+                    <td colspan="3"> 
+         
+          		      <input  class="form-control" id="school_3" name="school" >               
+                     </td>
+                    
+                    
+                   </tr>               
+                
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">入学时间<span style="color:red">*</span></label>
+                    </td>
+                    <td> 
+         
+          		        <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="startdate_3" name="startdate" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>           		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">毕业时间<span style="color:red">*</span></label>
+                    </td>
+                    <td>                         
+ 						
+          		        <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="enddate_3" name="enddate" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div> 					  						
+                    </td>
+                    
+                   </tr>                
+                 
+                  <tr>
+                     <td class="active"> 
+                        <label  class="control-label">学历<span style="color:red">*</span></label>
+                    </td>
+                    <td> 
+         
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="xueli_3" name="xueli" title="请选择 ...">                      
+					  </select>  
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">学历证书编号</label>
+                    </td>
+                    <td>                         
+ 						
+           		     <input  class="form-control" id="xuelizsnumber_3" name="xuelizsnumber" >  
+					  						
+                    </td>
+                    
+                   </tr>    
+                   
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">是否最高学历<span style="color:red">*</span></label>
+                    </td>
+                    <td> 
+         
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="ismaxxl_3" name="ismaxxl" title="请选择 ...">                      
+					  </select>  
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">学位</label>
+                    </td>
+                    <td>                         
+ 						
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="xuewei_3" name="xuewei" title="请选择 ...">                      
+					  </select>  
+					  						
+                    </td>
+                    
+                   </tr>                                
+                 
+                 
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">第一专业</label>
+                    </td>
+                    <td> 
+         
+          		       <input  class="form-control" id="d1zy_3" name="d1zy" >  
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">第一学位类型</label>
+                    </td>
+                    <td>                         
+ 						
+          		      <input  class="form-control" id="d1xwtype_3" name="d1xwtype" >  
+					  						
+                    </td>
+                   </tr>                  
+                 
+                        <tr>
+                     <td class="active"> 
+                        <label  class="control-label">第二学位类型</label>
+                    </td>
+                    <td> 
+         
+          		       <input  class="form-control" id="d2xwtype_3" name="d2xwtype" >  
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">学位授予日期</label>
+                    </td>
+                    <td>                         
+ 						
+          		        <div class="input-group date form_date col-md-9" data-date="" data-date-format="yyyy-mm-dd">
+		                    <input class="form-control" size="16" type="text" value="" id="xwdate_3" name="xwdate" readonly>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div> 
+					  						
+                    </td>
+                   </tr>     
+                               
+                 
+                 <tr>
+                     <td class="active"> 
+                        <label  class="control-label">学位授予单位</label>
+                    </td>
+                    <td> 
+         
+                      <input  class="form-control" id="xwunit_3" name="xwunit" >  
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">学位编号</label>
+                    </td>
+                    <td>                         
+                        <input  class="form-control" id="xwzsnumber_3" name="xwzsnumber" >  
+                    </td>
+                    
+                   </tr>                  
+                 
+                 
+                    <tr>
+                     <td class="active"> 
+                        <label  class="control-label">是否最高学位</label>
+                    </td>
+                    <td> 
+         
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="ismaxxw_3" name="ismaxxw" title="请选择 ...">                      
+					  </select> 
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">同等学历</label>
+                    </td>
+                    <td>                         
+ 						
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="tdxl_3" name="tdxl" title="请选择 ...">                      
+					  </select> 
+					  						
+                    </td>
+                   </tr>                
+                                                       
+                  
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">相当毕业</label>
+                    </td>
+                    <td> 
+         
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="xdby_3" name="xdby" title="请选择 ...">                      
+					  </select> 
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">专业类别</label>
+                    </td>
+                    <td>                         
+ 						
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="zytype_3" name="zytype" title="请选择 ...">                      
+					  </select> 
+					  						
+                    </td>
+                   </tr>                   
+                  
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">专业子类别</label>
+                    </td>
+                    <td> 
+         
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="zysubtype_3" name="zysubtype" title="请选择 ...">                      
+					  </select> 
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">第二专业</label>
+                    </td>
+                    <td>                         
+ 						
+					  <input  class="form-control" id="d2zy_3" name="d2zy" >
+					  						
+                    </td>
+                   </tr>  
+                                    
+                  
+                    <tr>
+                     <td class="active"> 
+                        <label  class="control-label">学制（年）</label>
+                    </td>
+                    <td> 
+         
+          		      <input  class="form-control" id="xuezhi_3" name="xuezhi" > 
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">学习形式</label>
+                    </td>
+                    <td>                         
+ 						
+          		      <select class="form-control selectpicker show-tick" data-live-search="true"  id="xxxs_3" name="xxxs" title="请选择 ...">                      
+					  </select> 
+					  						
+                    </td>
+                   </tr>                 
+                  
+                   <tr>
+                     <td class="active"> 
+                        <label  class="control-label">学习情况</label>
+                    </td>
+                    <td> 
+         
+          		      <input  class="form-control" id="xxqk_3" name="xxqk" > 
+				                                       
+          		      	            
+                     </td>
+                    <td class="active"> 
+                        <label  class="control-label">备注</label>
+                    </td>
+                    <td>                         
+ 						
+          		       <input  class="form-control" id="qt_3" name="qt" >  
+					  						
+                    </td>
+                   </tr>                 
+                    
+                  
+                  
+                 </tbody>
+               </table>
+                    
+                    
+                </form> 
+               </div>  
+               <div class="modal-footer">  
+                   <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>  
+                   <button type="button" class="btn btn-danger" onclick="Ok_btn(3,'/outmanager/userinfo/jiaoyu_update','/outmanager/userinfo/jiaoyu_list_json?uid=${user.id}');">保存</button>  
+               </div>  
+           </div>  
+       </div>  
+   </div>  
+   <!---------------------对话窗口3-----------------------end---->   
     
     
     
-    
-    
-    <!---------------------对话窗口4-----------------------start---->
+   <!---------------------对话窗口4-----------------------start---->
    <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >  
        <div class="modal-dialog" role="document" style="width:800px;">  
            <div class="modal-content">  
