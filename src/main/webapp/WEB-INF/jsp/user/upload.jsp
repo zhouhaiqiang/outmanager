@@ -73,7 +73,7 @@ function submitExcel(){
                            
                                            
                         <div class="col-sm-1" style="text-align:left;">
-                            <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary" onclick="submitExcel();">导入数据</button>
+                            <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-danger" onclick="submitExcel();">导入数据</button>
                         </div>
                         
                                      

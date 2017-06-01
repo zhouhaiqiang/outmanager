@@ -20,14 +20,25 @@
 
 
 <script type="text/javascript">
-$(function(){
-	loadRightPage("业务管理","<%=path%>/common/blank.html","menua_000");
-});
+	$(function(){
+		loadRightPage("业务管理","<%=path%>/common/blank.html","menua_000");
+	});
 
 	function getTree(id){
 		 $("#topnav li").click(function () {
 		        $(this).addClass("curr").siblings().removeClass("curr");//增加删除新样式
 		 });
+		 
+		
+		 //左边菜单显示处理
+		 for(var i=2;i<7;i++){
+			 if(id==i){	
+				 $('#menu'+i).show();
+ 
+			 } else {				
+				 $('#menu'+i).hide();
+			 }			 
+		 }
 	}
 	
 	function changemenucolor(id){
@@ -88,32 +99,42 @@ $(function(){
 			<li>
 				<span id='UserName'></span>
 			<img src="<%=path%>/talkweb/bpm_new/img/man.png" width="12" height="15" /><span id='UserName'>${userName}</span>
-			<%--<span onclick="closePage();" style='cursor:pointer'>退出</span>
-			
-			--%></li>
+			<span onclick="chgpwd();" style='cursor:pointer'>密码修改</span>	
+
+			</li>
 
 		</ul>
 	</div>
 </div>
 </div>
+
+
 <!--导航 begin-->
 <div class="nav">
        <ul id="topnav">
+            <!-- 
        		<li>
            		<a id="a_1" onclick="getTree(1)" href="javascript:void(0);">首页</a>
             </li>
+             -->
+             
             <li>
            		<a id="a_2" onclick="getTree(2)" href="javascript:void(0);">业务管理</a>
             </li>
             <li>           		
-           		<a id="a_3" onclick="getTree(3)" href="javascript:void(0);">系统管理</a>
+           		<a id="a_3" onclick="getTree(3)" href="javascript:void(0);">业务活动管理</a>
             </li>
             <li>           		
-           		<a id="a_4" onclick="getTree(4)" href="javascript:void(0);">示范管理</a>          		
+           		<a id="a_4" onclick="getTree(4)" href="javascript:void(0);">报表平台管理</a>          		
             </li>
             <li>           		
-           		<a id="a_5" onclick="getTree(5)" href="javascript:void(0);">常用文档</a>
+           		<a id="a_5" onclick="getTree(5)" href="javascript:void(0);">常用文档</a>          	
             </li>
+            <li>           		
+           		<a id="a_6" onclick="getTree(6)" href="javascript:void(0);">系统管理</a>          	
+            </li>            
+            
+           
        </ul>
 </div>
     
@@ -122,7 +143,16 @@ $(function(){
 	<!--头部 end-->
 	<div region="bottom" border="true" fit="true" style="width:100%;height:100%">
 		<div class="panel layout-panel layout-panel-west" style="width: 228px; top: 120px; left: 0px;" abp="27">
-		        <div class="menu_x" id="menu" >
+		
+				<!-- 首页 -->
+				<!-- 首页 -->
+				<!-- 首页 -->
+				<!-- 首页 -->
+				<!-- 首页 -->
+		
+		
+		        <!-- 业务管理 -->
+		        <div class="menu_x" id="menu2">
 		            <div class="column-1 left">
 		                <div class="daibanleftmenu" id="menulist">
 		                	<h4 class="curr">
@@ -225,6 +255,80 @@ $(function(){
 		                </div>
 		            </div>
 		        </div>
+		        
+		        
+		        
+		        
+		        <!-- 业务活动管理-->
+		        <div class="menu_x" id="menu3" style="display:none;">
+		            <div class="column-1 left">
+		                <div class="daibanleftmenu" id="menulist">
+		                	<h4 class="curr">
+								<a href='javascript:' id='menua_000' onclick='changemenucolor("menua_000");loadRightPage("业务管理","<%=path%>/common/blank.html","menua_000");showChild(id);'  href="javascript:">业务活动管理</a>
+							</h4>															                
+		                	<h4>
+								<a href='javascript:' id='menua_001' onclick='changemenucolor("menua_001");loadRightPage("外包公司信息管理","<%=path%>/common/blank.html","menua_001");showChild(id);'  href="javascript:">外包公司信息管理</a>
+							</h4>
+							<ul class="tag-list"  id="menua_001_1">
+								<li class="menuli" id="menu001" onclick="changClass('menu001')">
+									<a id='menua_001_01' onclick='loacalPage("外包公司信息维护","../data/company_list","menua_001_01")' href="javascript:">外包公司信息维护</a>
+								</li>	
+								<li class="tag-list" id="menua_001_2">	
+									<a id='menua_001_01' onclick='loacalPage("外包公司批量上传","../data/company_upload","menua_001_01")' href="javascript:">外包公司批量上传</a>
+								</li>							
+							</ul>
+
+		                </div>
+		            </div>
+		        </div>		        
+		        
+		        
+		        <!-- 报表平台管理-->
+		        <div class="menu_x" id="menu4" style="display:none;">
+		            <div class="column-1 left">
+		                <div class="daibanleftmenu" id="menulist">
+		                	<h4 class="curr">
+								<a href='javascript:' id='menua_000' onclick='changemenucolor("menua_000");loadRightPage("业务管理","<%=path%>/common/blank.html","menua_000");showChild(id);'  href="javascript:">报表平台管理</a>
+							</h4>															                
+		                	<h4>
+								<a href='javascript:' id='menua_001' onclick='changemenucolor("menua_001");loadRightPage("外包公司信息管理","<%=path%>/common/blank.html","menua_001");showChild(id);'  href="javascript:">外包公司信息管理</a>
+							</h4>
+							<ul class="tag-list"  id="menua_001_1">
+								<li class="menuli" id="menu001" onclick="changClass('menu001')">
+									<a id='menua_001_01' onclick='loacalPage("外包公司信息维护","../data/company_list","menua_001_01")' href="javascript:">外包公司信息维护</a>
+								</li>	
+								<li class="tag-list" id="menua_001_2">	
+									<a id='menua_001_01' onclick='loacalPage("外包公司批量上传","../data/company_upload","menua_001_01")' href="javascript:">外包公司批量上传</a>
+								</li>							
+							</ul>
+
+		                </div>
+		            </div>
+		        </div>		        
+		        
+		        
+		        <!-- 常用文档-->
+		        <div class="menu_x" id="menu5" style="display:none;">
+		            <div class="column-1 left">
+		                <div class="daibanleftmenu" id="menulist">
+		                	<h4 class="curr">
+								<a href='javascript:' id='menua_4_000' onclick='changemenucolor("menua_4_000");loadRightPage("常用文档","<%=path%>/common/blank.html","menua_000");'  href="javascript:">常用文档</a>
+							</h4>															                		                	
+		                </div>
+		            </div>
+		        </div>	
+		        	        
+			    <!-- 系统管理-->
+		        <div class="menu_x" id="menu6" style="display:none;">
+		            <div class="column-1 left">
+		                <div class="daibanleftmenu" id="menulist">
+		                	<h4 class="curr">
+								<a href='javascript:' id='menua_4_000' onclick='changemenucolor("menua_4_000");loadRightPage("系统管理","<%=path%>/common/blank.html","menua_000");'  href="javascript:">系统管理</a>
+							</h4>															                		                	
+		                </div>
+		            </div>
+		        </div>		        
+		        
 		</div>
 		
 		<!--layout-west----end-->

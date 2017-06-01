@@ -127,7 +127,7 @@
                
                  <tbody>
                    <tr>
-                     <td> 
+                     <td class="active"> 
                         <label  class="control-label">合同类型<span style="color:red">*</span></label>
                         
                      </td>
@@ -141,7 +141,7 @@
                         </select>
                         
                      </td>
-                    <td> 
+                    <td class="active"> 
                         <label  class="control-label">合同名称<span style="color:red">*</span></label>
                     </td>
                     <td> 
@@ -154,7 +154,7 @@
                    </tr>
                    
                    <tr>
-                     <td> 
+                     <td class="active"> 
                         <label  class="control-label">合同编号<span style="color:red">*</span></label>
                     </td>
                     <td>    
@@ -162,7 +162,7 @@
                         <textarea rows="2" cols="20" class="form-control" id="conCode" name="conCode" ></textarea>                                    
                         </div>
                      </td>
-                    <td> 
+                    <td class="active"> 
                         <label  class="control-label">业务范围<span style="color:red">*</span></label>
                     </td>
                     <td>                         
@@ -174,7 +174,7 @@
                    </tr>                   
                    
                    <tr>                    
-                    <td> 
+                    <td class="active"> 
                         <label  class="control-label">签署主体<span style="color:red">*</span></label>
                     </td>
                     <td>      
@@ -183,7 +183,7 @@
                        </div>
                     </td>
                     
-                    <td> 
+                    <td class="active"> 
                         <label  class="control-label">外包公司<span style="color:red">*</span></label>
                     </td>
                     <td>      
@@ -199,7 +199,7 @@
                     </td>                   
                   </tr>                   
                    <tr>
-                     <td> 
+                     <td class="active"> 
                         <label  class="control-label">开始时间<span style="color:red">*</span></label>
                     </td>
                     <td>    
@@ -209,7 +209,7 @@
 							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 		                </div>                     </td>
                      
-                    <td> 
+                    <td class="active"> 
                         <label  class="control-label">结束时间<span style="color:red">*</span></label>
                     </td>
                     <td>    
@@ -225,7 +225,7 @@
                    
                    
                   <tr>
-                     <td> 
+                     <td class="active"> 
                         <label  class="control-label">合同期限</label>
                     </td>
                     <td>          
@@ -234,7 +234,7 @@
                      </div>
                      </td>
                      
-                    <td> 
+                    <td class="active"> 
                         <label  class="control-label">合同金额</label>
                     </td>
                     <td>          
@@ -248,7 +248,7 @@
                             
                                 
                   <tr>
-                     <td> 
+                     <td class="active"> 
                         <label  class="control-label">合同文本</label>
                     </td>
                     <td colspan="3">                         
@@ -259,7 +259,7 @@
                    </tr>          
                                 
                   <tr>
-                    <td> 
+                    <td class="active"> 
                         <label  class="control-label">补充协议</label>
                     </td>
                     <td colspan="3">                  

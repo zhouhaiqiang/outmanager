@@ -132,7 +132,7 @@
                
                  <tbody>
                    <tr>
-                     <td> 
+                     <td class="active"> 
                         <label  class="control-label">公司类型<span style="color:red">*</span></label>
                         
                      </td>
@@ -146,7 +146,7 @@
                         </select>
                         
                      </td>
-                    <td> 
+                    <td class="active"> 
                         <label  class="control-label">公司名称<span style="color:red">*</span></label>
                     </td>
                     <td> 
@@ -159,7 +159,7 @@
                    </tr>
                    
                    <tr>
-                     <td> 
+                     <td class="active"> 
                         <label  class="control-label">公司资质<span style="color:red">*</span></label>
                     </td>
                     <td>    
@@ -167,7 +167,7 @@
                         <textarea rows="2" cols="20" class="form-control" id="zizhi" name="zizhi"></textarea>                                    
                         </div>
                      </td>
-                    <td> 
+                    <td class="active"> 
                         <label  class="control-label">经营范围<span style="color:red">*</span></label>
                     </td>
                     <td>                         
@@ -180,7 +180,7 @@
                    
                    
                    <tr>
-                     <td> 
+                     <td class="active"> 
                         <label  class="control-label">法人代表<span style="color:red">*</span></label>
                     </td>
                     <td>    
@@ -188,7 +188,7 @@
                         <input type="text" class="form-control" id="boss" name="boss">
                         </div>
                      </td>
-                    <td> 
+                    <td class="active"> 
                         <label  class="control-label">注册地址<span style="color:red">*</span></label>
                     </td>
                     <td>         
@@ -201,7 +201,7 @@
                    
                    
                   <tr>
-                     <td> 
+                     <td class="active"> 
                         <label  class="control-label">注册资本</label>
                     </td>
                     <td>          
@@ -209,7 +209,7 @@
                         <input type="text" class="form-control" id="zijin" name="zijin">
                      </div>
                      </td>
-                    <td> 
+                    <td class="active"> 
                         <label  class="control-label">组织名称<span style="color:red">*</span></label>
                     </td>
                     <td>      
@@ -221,7 +221,7 @@
                    </tr>          
                                 
                   <tr>
-                     <td> 
+                     <td class="active"> 
                         <label  class="control-label">营业执照</label>
                     </td>
                     <td colspan="3">                         
@@ -232,7 +232,7 @@
                    </tr>          
                                 
                   <tr>
-                    <td> 
+                    <td class="active"> 
                         <label  class="control-label">公司资质</label>
                     </td>
                     <td colspan="3">                  
