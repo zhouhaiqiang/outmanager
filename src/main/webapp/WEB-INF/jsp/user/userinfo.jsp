@@ -543,25 +543,19 @@
                    </tr>  
                                     
                       <tr>
-                     <td> 
+                     <td class="active"> 
                         <label  class="control-label">基层单元负责人</label>
                     </td>
                     <td >                         
-                         <select class="form-control selectpicker show-tick" id="fzr_2"  name="fzr"  title="请选择 ...">                          	     
-                         <option>是 </option>                        
-                         <option>否</option> 
-                                         
+                         <select class="form-control selectpicker show-tick" id="fzr_2"  name="fzr"  title="请选择 ...">                          	                           
 					   </select>
                      </td>
               
-                    <td> 
+                    <td class="active"> 
                         <label  class="control-label">核算到最小单元</label>
                     </td>
                     <td >                  
                          <select class="form-control selectpicker show-tick" id="iszuixiao_2" name="iszuixiao"  title="请选择 ...">
-                            	     
-                         <option>是 </option>                        
-                         <option>否</option> 
                                          
 					   </select>
                     </td>                   

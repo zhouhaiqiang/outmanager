@@ -678,7 +678,7 @@ function addact(id) {
 	  initdroplist($("#gwjb_"+id),"/outmanager/config/dict_json","","参考岗级");  	  
 	  
 	  //基层单元负责人
-	  initdroplist($("#fzr_"+id),"/outmanager/config/dict_json","","通用是否"); 
+	  initdroplist($("#fzr_"+id),"/outmanager/config/dict_json","","基层单元负责人"); 
 	  
 	  //核算到最小单元
 	  initdroplist($("#iszuixiao_"+id),"/outmanager/config/dict_json","","通用是否");  	
@@ -875,7 +875,7 @@ function editact(id) {
 		  $('#id_'+id).val(selects[0].id);
 		  
 		  $('#fwdept_'+id).val(selects[0].fwdept);
-	 	 
+		 
 	 	  //合同编号
 	 	  initdroplist($("#connumber_"+id),"/outmanager/config/contractcode_json",selects[0].connumber,"")	  
 	 	  
@@ -893,8 +893,10 @@ function editact(id) {
 	 	  //岗位等级
 	 	  initdroplist($("#gwjb_"+id),"/outmanager/config/dict_json",selects[0].gwjb,"参考岗级");  	  
 	 	  
-	 	  //基层单元负责人
-	 	  initdroplist($("#fzr_"+id),"/outmanager/config/dict_json",selects[0].fzr,"通用是否"); 
+
+		  //基层单元负责人
+		  initdroplist($("#fzr_"+id),"/outmanager/config/dict_json",selects[0].fzr,"基层单元负责人"); 
+
 	 	  
 	 	  //核算到最小单元
 	 	  initdroplist($("#iszuixiao_"+id),"/outmanager/config/dict_json",selects[0].iszuixiao,"通用是否");  	

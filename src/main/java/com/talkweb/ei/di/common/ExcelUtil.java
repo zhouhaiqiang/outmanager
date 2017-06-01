@@ -37,7 +37,7 @@ public class ExcelUtil
 {
 	
     //excle 最大导出行数
-    public static final int MAXEXPORTNUM = 5000;
+    public static final int MAXEXPORTNUM = 5000*4;
     
     //公司模板列数
     public static final int GS_COL_NUM = 12;

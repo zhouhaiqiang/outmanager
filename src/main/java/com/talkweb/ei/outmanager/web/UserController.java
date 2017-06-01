@@ -19,7 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +31,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
 import com.talkweb.ei.di.common.Const;
 import com.talkweb.ei.di.common.DateUtil;
 import com.talkweb.ei.di.common.ExcelUtil;
@@ -46,9 +44,6 @@ import com.talkweb.ei.outmanager.dao.TOutUserJcMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserJninfoMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserJyinfoMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserZyinfoMapper;
-import com.talkweb.ei.outmanager.model.OutCompany;
-import com.talkweb.ei.outmanager.model.OutContract;
-import com.talkweb.ei.outmanager.model.OutContractExample;
 import com.talkweb.ei.outmanager.model.OutUser;
 import com.talkweb.ei.outmanager.model.OutUserExample;
 import com.talkweb.ei.outmanager.model.OutUser_S;
@@ -399,7 +394,7 @@ public class UserController {
         
         //读取excel 的内容 防止内存溢出
         //基本信息
-        List<String> exlValues = ExcelUtil.readFileExcel(rootPath+fileName,0,5,ExcelUtil.MAXEXPORTNUM+5,ExcelUtil.USER_COL_NUM);
+        List<String> exlValues = ExcelUtil.readFileExcel(rootPath+fileName,0,4,ExcelUtil.MAXEXPORTNUM+4,ExcelUtil.USER_COL_NUM);
        
         String result = "导入成功！";
         
@@ -408,41 +403,46 @@ public class UserController {
         	result = "导入失败！请检测数据文件格式！";
         }
            
+//        boolean ret;
+//        List<String> exlValues;
+//        String result = "导入成功！";
+        
+        
         //教育信息
-        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,1,5,ExcelUtil.MAXEXPORTNUM+5,ExcelUtil.USER_COL_NUM_JY);
+        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,1,4,ExcelUtil.MAXEXPORTNUM+4,ExcelUtil.USER_COL_NUM_JY);
         ret = userService.importJiaoyu(exlValues);
         if(!ret) {
         	result = "导入失败！请检测数据文件格式！";
         }      
         
-//        //职业信息
-//        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,2,5,ExcelUtil.MAXEXPORTNUM+5,ExcelUtil.USER_COL_NUM_ZY);
-//        ret = userService.importZhiye(exlValues);
-//        if(!ret) {
-//        	result = "导入失败！请检测数据文件格式！";
-//        }  
-//        
-//        
-//        //专业信息
-//        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,3,5,ExcelUtil.MAXEXPORTNUM+5,ExcelUtil.USER_COL_NUM_ZZ);
-//        ret = userService.importZhuanye(exlValues);
-//        if(!ret) {
-//        	result = "导入失败！请检测数据文件格式！";
-//        }             
-//           
-//        //劳动关系
-//        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,4,5,ExcelUtil.MAXEXPORTNUM+5,ExcelUtil.USER_COL_NUM_LD);
-//        ret = userService.importLaodong(exlValues);
-//        if(!ret) {
-//        	result = "导入失败！请检测数据文件格式！";
-//        }       
-//        
-//        //解除关系
-//        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,5,5,ExcelUtil.MAXEXPORTNUM+5,ExcelUtil.USER_COL_NUM_JC);
-//        ret = userService.importJiechu(exlValues);
-//        if(!ret) {
-//        	result = "导入失败！请检测数据文件格式！";
-//        }          
+        //职业技能信息
+        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,2,4,ExcelUtil.MAXEXPORTNUM+4,ExcelUtil.USER_COL_NUM_ZY);
+        ret = userService.importZhiye(exlValues);
+        if(!ret) {
+        	result = "导入失败！请检测数据文件格式！";
+        }  
+        
+        
+        //专业信息
+        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,3,4,ExcelUtil.MAXEXPORTNUM+4,ExcelUtil.USER_COL_NUM_ZZ);
+        ret = userService.importZhuanye(exlValues);
+        if(!ret) {
+        	result = "导入失败！请检测数据文件格式！";
+        }             
+           
+        //劳动关系
+        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,4,4,ExcelUtil.MAXEXPORTNUM+4,ExcelUtil.USER_COL_NUM_LD);
+        ret = userService.importLaodong(exlValues);
+        if(!ret) {
+        	result = "导入失败！请检测数据文件格式！";
+        }       
+        
+        //解除关系
+        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,5,4,ExcelUtil.MAXEXPORTNUM+4,ExcelUtil.USER_COL_NUM_JC);
+        ret = userService.importJiechu(exlValues);
+        if(!ret) {
+        	result = "导入失败！请检测数据文件格式！";
+        }          
         
         model.addAttribute("msg", result);
      
@@ -526,7 +526,7 @@ public class UserController {
 		List<OutUser> list = userService.getUserList(ExcelUtil.MAXEXPORTNUM, 0, sample);
 
         //varList 数据（二维数据）
-        List<List> varList =  new ArrayList<List>();
+        List<List<?>> varList =  new ArrayList<List<?>>();
         List<String> line;
 		for (OutUser user:list) {
 			 line = new ArrayList<String>();
@@ -654,13 +654,13 @@ public class UserController {
 		TOutUserJyinfoExample sample = new TOutUserJyinfoExample();
 		
 		
-		TOutUserJyinfoExample.Criteria criteria = sample.createCriteria();
+		//TOutUserJyinfoExample.Criteria criteria = sample.createCriteria();
 		
 
 		List<TOutUserJyinfo> list = tOutUserJyinfoMapper.selectByExample(sample);
 
         //varList 数据（二维数据）
-        List<List> varList =  new ArrayList<List>();
+        List<List<?>> varList =  new ArrayList<List<?>>();
         List<String> line;
         
         OutUser mapuser;
@@ -798,7 +798,7 @@ public class UserController {
 		List<TOutUserZyinfo> list = tOutUserZyinfoMapper.selectByExample(sample);
 
         //varList 数据（二维数据）
-        List<List> varList =  new ArrayList<List>();
+        List<List<?>> varList =  new ArrayList<List<?>>();
         List<String> line;
         
         OutUser mapuser;
@@ -897,7 +897,7 @@ public class UserController {
 		List<TOutUserJninfo> list = tOutUserJninfoMapper.selectByExample(sample);
 
         //varList 数据（二维数据）
-        List<List> varList =  new ArrayList<List>();
+        List<List<?>> varList =  new ArrayList<List<?>>();
         List<String> line;
         
         OutUser mapuser;
@@ -975,7 +975,7 @@ public class UserController {
 		List<TOutUserHt> list = tOutUserHtMapper.selectByExample(sample);
 
         //varList 数据（二维数据）
-        List<List> varList =  new ArrayList<List>();
+        List<List<?>> varList =  new ArrayList<List<?>>();
         List<String> line;
         
         OutUser mapuser;
@@ -1067,7 +1067,7 @@ public class UserController {
 		List<TOutUserJc> list = tOutUserJcMapper.selectByExample(sample);
 
         //varList 数据（二维数据）
-        List<List> varList =  new ArrayList<List>();
+        List<List<?>> varList =  new ArrayList<List<?>>();
         List<String> line;
         
         OutUser mapuser;
