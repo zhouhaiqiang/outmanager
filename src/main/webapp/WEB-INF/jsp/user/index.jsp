@@ -209,17 +209,17 @@
 									
 									
 								<li class="tag-list" id="menua_001_2">	
-									<a id='menua_001_01' onclick='loacalPage("银行信息维护","../pay/queryBankPage.action","menua_001_01")' href="javascript:">外包费用信息维护</a>
+									<a id='menua_001_01' onclick='loacalPage("外包费用信息维护","../gongzi/grlist","menua_001_01")' href="javascript:">外包费用信息维护</a>
 								</li>																
 								<li class="tag-list" id="menua_001_2">	
-									<a id='menua_001_01' onclick='loacalPage("银行信息维护","../pay/queryBankPage.action","menua_001_01")' href="javascript:">外包费用批量上传</a>
+									<a id='menua_001_01' onclick='loacalPage("外包费用批量上传","../gongzi/upload","menua_001_01")' href="javascript:">外包费用批量上传</a>
 								</li>										
 								<li class="tag-list" id="menua_001_2">	
-									<a id='menua_001_01' onclick='loacalPage("银行信息维护","../pay/queryBankPage.action","menua_001_01")' href="javascript:">外包集体费用信息维护</a>
+									<a id='menua_001_01' onclick='loacalPage("外包集体费用信息维护","../gongzi/jtlist","menua_001_01")' href="javascript:">外包集体费用信息维护</a>
 								</li>																
 							</ul>							
 							
-							
+							<!-- 
 							<h4>
 								<a href='javascript:' id='menua_005' onclick='changemenucolor("menua_005");showChild(id);'>外包信息报表管理 </a>
 							</h4>
@@ -227,30 +227,30 @@
 									
 									
 								<li class="tag-list" id="menua_001_2">	
-									<a id='menua_001_01' onclick='loacalPage("银行信息维护","../pay/queryBankPage.action","menua_001_01")' href="javascript:">规范型外包合同报表</a>
+									<a id='menua_001_01' onclick='loacalPage("规范型外包合同报表","../pay/queryBankPage.action","menua_001_01")' href="javascript:">规范型外包合同报表</a>
 								</li>																
 								<li class="tag-list" id="menua_001_2">	
-									<a id='menua_001_01' onclick='loacalPage("银行信息维护","../pay/queryBankPage.action","menua_001_01")' href="javascript:">紧密型外包合同报表</a>
+									<a id='menua_001_01' onclick='loacalPage("紧密型外包合同报表","../pay/queryBankPage.action","menua_001_01")' href="javascript:">紧密型外包合同报表</a>
 								</li>										
 								<li class="tag-list" id="menua_001_2">	
-									<a id='menua_001_01' onclick='loacalPage("银行信息维护","../pay/queryBankPage.action","menua_001_01")' href="javascript:">紧密型人员信息报表 </a>
+									<a id='menua_001_01' onclick='loacalPage("紧密型人员信息报表","../pay/queryBankPage.action","menua_001_01")' href="javascript:">紧密型人员信息报表 </a>
 								</li>	
 								
 								<li class="tag-list" id="menua_001_2">	
-									<a id='menua_001_01' onclick='loacalPage("银行信息维护","../pay/queryBankPage.action","menua_001_01")' href="javascript:">紧密型信息统计报表 </a>
+									<a id='menua_001_01' onclick='loacalPage("紧密型信息统计报表","../pay/queryBankPage.action","menua_001_01")' href="javascript:">紧密型信息统计报表 </a>
 								</li>																
 								<li class="tag-list" id="menua_001_2">	
-									<a id='menua_001_01' onclick='loacalPage("银行信息维护","../pay/queryBankPage.action","menua_001_01")' href="javascript:">外包费用信息报表 </a>
+									<a id='menua_001_01' onclick='loacalPage("外包费用信息报表","../pay/queryBankPage.action","menua_001_01")' href="javascript:">外包费用信息报表 </a>
 								</li>										
 								<li class="tag-list" id="menua_001_2">	
-									<a id='menua_001_01' onclick='loacalPage("银行信息维护","../pay/queryBankPage.action","menua_001_01")' href="javascript:">外包费用信息报表 </a>
+									<a id='menua_001_01' onclick='loacalPage("外包费用信息报表 ","../pay/queryBankPage.action","menua_001_01")' href="javascript:">外包费用信息报表 </a>
 								</li>
 																	
 								<li class="tag-list" id="menua_001_2">	
 									<a id='menua_001_01' onclick='loacalPage("银行信息维护","../pay/queryBankPage.action","menua_001_01")' href="javascript:">发薪人员维护表 </a>
 								</li>																							
 							</ul>
-										
+							 -->			
 								
 		                </div>
 		            </div>
