@@ -70,7 +70,7 @@ var TableInit = function () {
     //初始化Table
     oTableInit.Init = function () {
         $('#tb_data').bootstrapTable({
-            url: '/outmanager/user/user_list_json',         //请求后台的URL（*）
+            url: '/outmanager/gongzi/grlist_json',         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
@@ -97,34 +97,33 @@ var TableInit = function () {
             columns: [{
                 checkbox: true
             },{
-                field: 'unit',
-                title: '服务部门'
+                field: 'month',
+                title: '月份'
             },{
-                field: 'code',
+                field: 'unit',
+                title: '联通组织'
+            },{
+                field: 'companyid',
+                title: '公司名称'
+            },{
+                field: 'usercode',
                 title: '人员编号'
             },{
                 field: 'name',
-                title: '人员姓名'
-            }, {
-                field: 'companyid',
-                title: '公司名称'
-            },
-            
-            {
-                field: 'concode',
-                title: '合同编号'
+                title: '姓名'
             },{
-                field: 'ywtype',
-                title: '业务类型'
-            }, {
-                field: 'id',
-                title: '操作',
-                formatter : function (value, row, index) { 
-                	   
-                    	return "<a href='/outmanager/user/showuser?id="+value+"'>详细</a>";    	
-               
-                }
-            },
+                field: 'yfa',
+                title: '应发工资'
+            },{
+                field: 'shifa',
+                title: '实发工资'
+            },{
+                field: 'gswuxian',
+                title: '五险一金公司部分'
+            },{
+                field: 'gsgl',
+                title: '集体支出总额'
+            }
             
             ]
         });
