@@ -479,7 +479,7 @@
             return 'Search';
         },
         formatNoMatches: function () {
-            return 'No matching records found';
+            return '';//'No matching records found';
         },
         formatPaginationSwitch: function () {
             return 'Hide/Show pagination';

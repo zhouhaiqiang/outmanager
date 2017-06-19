@@ -11,6 +11,9 @@
 	
 <!-- 新 Bootstrap-table.js  之前引入 -->
 <script src="../static/bootstraptable/bootstrap-table.js"></script>
+
+<script type="text/javascript" src="../static/bootstraptable/bootstrap-table-zh-CN.js"></script>
+
 <link rel="stylesheet" href="//rawgit.com/vitalets/x-editable/master/dist/bootstrap3-editable/css/bootstrap-editable.css">
 <script src="../static/bootstraptable/ga.js"></script>
 
