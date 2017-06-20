@@ -42,6 +42,7 @@ import com.talkweb.ei.outmanager.dao.VOutUsergzMapper;
 import com.talkweb.ei.outmanager.model.OutUser;
 import com.talkweb.ei.outmanager.model.OutUserExample;
 import com.talkweb.ei.outmanager.model.OutUser_S;
+import com.talkweb.ei.outmanager.model.TOutGongzi;
 import com.talkweb.ei.outmanager.model.TOutGongziExample;
 import com.talkweb.ei.outmanager.model.TOutUserFpinfo;
 import com.talkweb.ei.outmanager.model.TOutUserFpinfoExample;
@@ -219,35 +220,35 @@ public class GongziController {
 //	
 //	
 //	
-//	/**
-//	 * 添加或更新
-//	 * @param jsonstr
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/grupdate", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
-//    @ResponseBody  
-//    public String updateGrgongzi(@RequestBody String jsonstr) {
-//		
-//		
-//		logger.info("user_update======="+jsonstr);   
-//			
-//		TOutUserFpinfo outUser = JsonUtil.gson.fromJson(jsonstr,TOutUserFpinfo.class);  
-//		
-//		if(outUser!=null){
-//			
-//			//页面上没有ID说明是新增
-//			if(StringUtils.isEmpty(outUser.getId())){
-//				outUser.setId(UUID.randomUUID().toString());
-//								
-//				tOutUserFpinfoMapper.insert(outUser);
-//			} else {				
-//				tOutUserFpinfoMapper.updateByPrimaryKey(outUser);
-//			}
-//		}
-//
-//		return "OK";
-//		
-//    } 
+	/**
+	 * 添加或更新
+	 * @param jsonstr
+	 * @return
+	 */
+	@RequestMapping(value = "/grupdate", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody  
+    public String updateGrgongzi(@RequestBody String jsonstr) {
+		
+		
+		logger.info("grgz_update======="+jsonstr);   
+			
+		TOutGongzi tOutGongzi = JsonUtil.gson.fromJson(jsonstr,TOutGongzi.class);  
+		
+		if(tOutGongzi!=null){
+			
+			//页面上没有ID说明是新增
+			if(StringUtils.isEmpty(tOutGongzi.getId())){
+				tOutGongzi.setId(UUID.randomUUID().toString());
+								
+				tOutGongziMapper.insert(tOutGongzi);
+			} else {				
+				tOutGongziMapper.updateByPrimaryKey(tOutGongzi);
+			}
+		}
+
+		return "OK";
+		
+    } 
 //	
 //	
 //	
@@ -283,27 +284,27 @@ public class GongziController {
 //	
 //	
 //	
-//
-//	@RequestMapping(value = "/grdel", method = RequestMethod.POST)
-//    @ResponseBody  
-//    public String delGr(@RequestBody String jsonstr) {
-//		
-//		
-//		logger.info("del user======="+jsonstr);   
-//	
-//		
-//		List<TOutUserFpinfo> retList = JsonUtil.gson.fromJson(jsonstr,  
-//                new TypeToken<List<TOutUserFpinfo>>() {  
-//                }.getType());  
-//
-//		for(TOutUserFpinfo element:retList)
-//        {
-//			tOutUserFpinfoMapper.deleteByPrimaryKey(element.getId());
-//        }
-//		
-//		return "OK";
-//		
-//    } 
+
+	@RequestMapping(value = "/grdel", method = RequestMethod.POST)
+    @ResponseBody  
+    public String delGr(@RequestBody String jsonstr) {
+		
+		
+		logger.info("del user======="+jsonstr);   
+	
+		
+		List<TOutGongzi> retList = JsonUtil.gson.fromJson(jsonstr,  
+                new TypeToken<List<TOutGongzi>>() {  
+                }.getType());  
+
+		for(TOutGongzi element:retList)
+        {
+			tOutGongziMapper.deleteByPrimaryKey(element.getId());
+        }
+		
+		return "OK";
+		
+    } 
 //	
 //	
 //	

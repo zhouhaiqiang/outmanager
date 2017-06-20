@@ -3,8 +3,9 @@ package com.talkweb.ei.outmanager.web;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,17 +13,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.talkweb.ei.di.common.PageResult;
 import com.talkweb.ei.outmanager.dao.OrgMapper;
+import com.talkweb.ei.outmanager.dao.OutUserMapper;
+import com.talkweb.ei.outmanager.model.KeyValue;
 import com.talkweb.ei.outmanager.model.KeyValueObj;
 import com.talkweb.ei.outmanager.model.OutCompany;
 import com.talkweb.ei.outmanager.model.OutCompanyExample;
 import com.talkweb.ei.outmanager.model.OutContract;
 import com.talkweb.ei.outmanager.model.OutContractExample;
-import com.talkweb.ei.outmanager.model.OutUser;
-import com.talkweb.ei.outmanager.model.OutUser_S;
 import com.talkweb.ei.outmanager.model.TOutDict;
 import com.talkweb.ei.outmanager.model.TreeNode;
 import com.talkweb.ei.outmanager.service.IDataService;
 import com.talkweb.ei.outmanager.service.IDictory;
+
 
 /**
  * 项目字典和配置表读取综合服务提供
@@ -43,7 +45,15 @@ public class ConfigController {
 	
 	
 	@Autowired
-	private OrgMapper orgMapper;		
+	private OrgMapper orgMapper;
+	
+	
+	@Autowired
+	private OutUserMapper outUserMapper;	
+	
+	@Autowired
+	private EhCacheCacheManager cacheManager;
+	
 	
 	// ajax json
 	@RequestMapping(value = "/companyjson", method = RequestMethod.GET, produces = {
@@ -189,6 +199,7 @@ public class ConfigController {
 	 * 分页查询Unit
 	 * @return
 	 */
+	@Cacheable(value="dictCache", key="units")
 	private PageResult getUnits_json(){
 
 		List<TreeNode> list = orgMapper.selectOrg();
@@ -199,6 +210,30 @@ public class ConfigController {
 		return ret;			
 	}		
 	
+	/**
+	 * 动态取得联通公司和部门
+	 */
+	@RequestMapping(value = "/getusers_json", method = RequestMethod.GET, produces = {
+			"application/json; charset=utf-8" })
+	@ResponseBody	
 	
+	/**
+	 * 分页查询users
+	 * @return
+	 */
+	
+	@Cacheable(value="dictCache", key="users")
+	private PageResult getUsers_json(String lx){
+
+		//System.out.println("users========"+cacheManager.getCache("dictCache").get("users"));
+		
+		//建议用缓存处理
+		List<KeyValue> list = orgMapper.selectUser(lx);
+				
+		//构建返回值
+		PageResult ret = new PageResult(true,list,list.size());
+		//System.out.println("----users------"+ret);
+		return ret;			
+	}	
 	
 }

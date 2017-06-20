@@ -14,10 +14,23 @@
   </resultMap>
   
 
+  <!-- 最简单的key value 格式，用于页面展示 -->
+  <resultMap id="KeyValueResultMap" type="com.talkweb.ei.outmanager.model.KeyValue">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+     
+  </resultMap>
+
   
   
   <select id="selectOrg" resultMap="BaseResultMap"> 
   	select org_id as id, parent_id as pId, org_name as name from t_pub_org t where t.isshow=1    
   </select>
+  
+  
+  <select id="selectUser" resultMap="KeyValueResultMap" parameterType="java.lang.String"> 
+  	select id,name||'__'||companyid as name  from T_OUT_USER u where u.usertype=1 and  companyid= #{companyid,jdbcType=VARCHAR}
+  </select>
+  
   
 </mapper>

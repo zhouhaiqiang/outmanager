@@ -10,7 +10,7 @@ $(function () {
 	//合同编号
 	initdroplist($("#query_concode"),"/outmanager/config/contractcode_json","","");
 	
-	
+
 	//月份选择
 	initmonthlist($("#query_startmonth"),"");
 	initmonthlist($("#query_endmonth"),"");
@@ -106,7 +106,7 @@ var TableInit = function () {
                 field: 'companyid',
                 title: '公司名称'
             },{
-                field: 'usercode',
+                field: 'code',
                 title: '人员编号'
             },{
                 field: 'name',
@@ -121,7 +121,7 @@ var TableInit = function () {
                 field: 'gswuxian',
                 title: '五险一金公司部分'
             },{
-                field: 'gsgl',
+                field: 'qtjine',
                 title: '集体支出总额'
             }
             
@@ -198,45 +198,12 @@ var ButtonInit = function () {
 
     $('#btn_add').click(function(){
 
-
-	
+      //添加时必须清掉的项目
+      $('#id').val("");
     	
   	  //初始下拉框
   	  initdroplist($("#companyid"),"/outmanager/config/companyjson","","")  	  
-  	  
-      //合同编号
-      initdroplist($("#concode"),"/outmanager/config/contractcode_json","","")      	  
-  	  
-
-  	  //政治面貌
-	  initdroplist($("#zhengzhi"),"/outmanager/config/dict_json","","政治面貌")
-		
-	  //国籍
-	  initdroplist($("#nationality"),"/outmanager/config/dict_json","","国籍")
-	  
-	  //民族
-	  initdroplist($("#mingz"),"/outmanager/config/dict_json","","民族")	  
-	  
-	  //户口类型
-	  initdroplist($("#hukoutype"),"/outmanager/config/dict_json","","户口类型")	  
-	  
-	  //从事外包业务类型
-	  initdroplist($("#ywtype"),"/outmanager/config/dict_json","","从事外包业务类型")	  
-	  
-	  //从事联通服务途径
-	  initdroplist($("#ywtj"),"/outmanager/config/dict_json","","从事联通服务途径")
-	  
-	  //纳税地
-	  initdroplist($("#nsaddress"),"/outmanager/config/dict_json","","纳税地")	  
-	  
-	  //社保缴纳地
-	  initdroplist($("#sbaddress"),"/outmanager/config/dict_json","","社保缴纳地")	  
-	  
-	  //岗位序列
-	  initdroplist($("#gwnumber"),"/outmanager/config/dict_json","","岗位序列")	  
-	  	  	  	  
-	  //参考岗级
-	  initdroplist($("#gwdj"),"/outmanager/config/dict_json","","参考岗级")	  	  
+  	
 	 
   	  //显示添加窗口
   	  openml();
@@ -255,8 +222,51 @@ var ButtonInit = function () {
     
         	  //给modal表单 赋值
         	  $('#id').val(selects[0].id);
-        	  $('#unit').val(selects[0].unit);
-        	  $('#name').val(selects[0].name);
+
+        	  initmonthlist($("#month"),selects[0].month);
+        	  
+          	  //初始下拉框
+          	  initdroplist($("#companyid"),"/outmanager/config/companyjson",selects[0].companyid,"") 
+          	  
+          	  
+          	  //用户
+          	  initdropuser($("#username"),"/outmanager/config/getusers_json",selects[0].name+"__"+selects[0].companyid, selects[0].companyid)	         	  
+          	  $("#userid").val(selects[0].userid);
+          	  
+          	  
+          	  $("#jiben").val(selects[0].jiben);
+          	  $("#jixiao").val(selects[0].jixiao);
+          	  $("#jintie").val(selects[0].jintie);
+          	  $("#guojie").val(selects[0].guojie);
+          	  
+          	  $("#jiaban").val(selects[0].jiaban);
+          	  $("#qtgz").val(selects[0].qtgz);
+          	  $("#yfa").val(selects[0].yfa);
+          	  $("#sxkk").val(selects[0].sxkk);  
+          	  
+          	  
+          	  $("#shkk").val(selects[0].shkk);
+          	  $("#shifa").val(selects[0].shifa);
+          	  $("#yanglao").val(selects[0].yanglao);
+          	  $("#shengyu").val(selects[0].shengyu);         	  
+     
+          	  
+          	  
+          	  $("#shiye").val(selects[0].shiye);
+          	  $("#yiliao").val(selects[0].yiliao);
+          	  $("#gongshang").val(selects[0].gongshang);
+          	  $("#gongji").val(selects[0].gongji);           	  
+          	  
+          	  
+          	  $("#gswuxian").val(selects[0].gswuxian);
+          	  $("#gonghui").val(selects[0].gonghui);
+          	  $("#guanli").val(selects[0].guanli);
+          	  $("#shuijin").val(selects[0].shuijin);   
+          	  
+          	  $("#qtjine").val(selects[0].qtjine);
+          	  $("#remark").val(selects[0].remark);
+          	  $("#startfwdate").val(selects[0].startfwdate);
+          	  $("#startbxdate").val(selects[0].startbxdate);            	  
         	      	 
         	  openml();
 
@@ -279,7 +289,7 @@ var ButtonInit = function () {
         		  //处理删除多个
         		  // var selects = $.parseJSON(JSON.stringify(arr));
 
-        		   delrecode("/outmanager/user/user_del",arr);
+        		   delrecode("/outmanager/gongzi/grdel",arr);
         	   };
         	  
    
@@ -385,7 +395,7 @@ function refreshtab(){
 	$('#tb_data').bootstrapTable(  
             "refresh",  
             {   
-            	url: '/outmanager/user/user_list_json',
+            	url: '/outmanager/gongzi/grlist_json',
             }  
   );
 	
@@ -495,7 +505,7 @@ function Ok_btn(){
     var jsonstr =  JSON.stringify(jsonuserinfo);  
 	
     //调用后台
-	updaterecode("/outmanager/user/user_update",jsonstr);
+	updaterecode("/outmanager/gongzi/grupdate",jsonstr);
 	
 	//提交数据到后台	
 	$('#myModal').modal("hide");
@@ -553,16 +563,68 @@ function initdroplist(obj,url,defvalue,lx){
 	});
 }
 
-//岗位序列——类型联动
-function chggwnumber(selvalue){
+
+/**
+ * obj  下拉选择框object
+ * url    区数据url
+ * defvalue  默认选择的id值
+ * clm 取列的名字，默认是‘name’
+ * 初始化下拉选择框
+ * @returns
+ */
+function initdropuser(obj,url,defvalue,lx){  
 	
-	//岗位分类
-	initdroplist($("#gwtype"),"/outmanager/config/dict_json","",selvalue)
+	//参数
+	var par = {
+            "lx":lx
+        };
 	
+	$.ajax({    
+	        "type" : 'get',    
+	        "url": url,  
+	        "data": par,
+	        "dataType" : "json", 
+	        "timeout": 30000,
+	        "success" : function(data) {    
+	        	 
+		         var rows = data.rows;  
+		         var opts = "";
+		        
+		         rows.forEach(function(keyvalue){  
+		        		        	
+		        	 if(defvalue==keyvalue.name){
+		        		 opts += "<option selected value="+keyvalue.id+">"+keyvalue.name+"</option>";
+		        	 } else {
+		        		 opts += "<option value="+keyvalue.id+">"+keyvalue.name+"</option>";
+		        	 }
+		        			        	  
+		         })
+		         
+		         //添加选项
+		         obj.empty();
+		         obj.append(opts);
+		         
+		         //重新显示
+		         obj.selectpicker('refresh');
+		         obj.selectpicker('render');
+		         
+	        }
+	
+	});
+}
+
+//公司和人员联动
+function chgcompany(selvalue){	
+	//人员
+	initdropuser($("#username"),"/outmanager/config/getusers_json","",selvalue)	
 	
 }
 
 
+//人员选择
+function chgusername(selvalue){	
+	$("#userid").val(selvalue);	
+}
 
 //获取最近12个月的数据
 var last_year_month = function() {  

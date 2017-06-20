@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+
+<!-- 数据字典缓存 -->
+<ehcache name="DICT">  
+     
+    <diskStore path="java.io.tmpdir/ehcache"/>  
+      
+    <!-- 默认缓存 -->  
+    <defaultCache  
+           maxElementsInMemory="100"  
+           eternal="false"  
+           timeToIdleSeconds="36000"  
+           timeToLiveSeconds="36000"  
+           overflowToDisk="false"/>  
+             
+    <!-- 菜单缓存 -->      
+    <cache name="dictCache"   
+           maxElementsInMemory="100"   
+           eternal="false"  
+           timeToIdleSeconds="36000"  
+           timeToLiveSeconds="36000"  
+           overflowToDisk="false"   
+           memoryStoreEvictionPolicy="LRU"/>  
+      
+</ehcache>

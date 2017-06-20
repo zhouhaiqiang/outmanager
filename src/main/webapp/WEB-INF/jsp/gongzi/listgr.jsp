@@ -194,7 +194,7 @@
                     </td>
                     <td>    
                
-                      <select class="form-control selectpicker show-tick" data-live-search="true" name="companyid" id="companyid" title="请选择 ...">                      
+                      <select class="form-control selectpicker show-tick" data-live-search="true" name="companyid" id="companyid" title="请选择 ..." onchange="chgcompany(this.value);">                      
 					  </select>                                       
                      </td>
 
@@ -207,8 +207,12 @@
                         <label  class="control-label">姓名<span style="color:red">*</span></label>
                     </td>
                     <td>      
-                      <div class="form-group">                   
-                        <input type="text" class="form-control" id="name" name="name" value='' >
+                      <div class="form-group"> 
+                        <!-- 用户选择特殊处理，必须关联 -->                  
+                        <input type="hidden" class="form-control" id="userid" name="userid" value='' >
+                        <select class="form-control selectpicker show-tick" data-live-search="false" name="username" id="username" title="请选择 ..." onchange="chgusername(this.value);">                      
+					    </select>                            
+
                        </div>
                     </td>
                     
@@ -216,7 +220,7 @@
                         <label  class="control-label">固定工资<span style="color:red">*</span></label>
                     </td>
                     <td>      
-                      <input type="text" class="form-control" id="jiben" name="jiben" value='' >
+                      <input type="text" class="form-control" id="jiben" name="jiben" value='0' >
                     </td>                   
                   </tr>     
                   
@@ -228,14 +232,14 @@
                     </td>
                     <td>    
                                         
-		       		  <input type="text" class="form-control" id="jixiao" name="jixiao" value='' >                 
+		       		  <input type="text" class="form-control" id="jixiao" name="jixiao" value='0' >                 
 		            </td>
                      
                     <td class="active"> 
                         <label  class="control-label">津贴</label>
                     </td>
                     <td>    
-                       <input type="text" class="form-control" id="jintie" name="jintie" value='' > 
+                       <input type="text" class="form-control" id="jintie" name="jintie" value='0' > 
 		              
                      </td>
                     
@@ -247,7 +251,7 @@
                         <label  class="control-label">过节费</label>
                     </td>
                     <td>          
-                       <input type="text" class="form-control" id="guojie" name="guojie" value='' >  
+                       <input type="text" class="form-control" id="guojie" name="guojie" value='0' >  
                      </td>
 
                      
@@ -255,7 +259,7 @@
                         <label  class="control-label">加班工资</label>
                     </td>
                     <td>          
-         		      <input type="text" class="form-control" id="jiaban" name="jiaban" value='' >   
+         		      <input type="text" class="form-control" id="jiaban" name="jiaban" value='0' >   
                      </td>
                      
                     </tr>
@@ -267,7 +271,7 @@
                         <label  class="control-label">其他工资</label>
                     </td>
                     <td >                         
-         		       <input type="text" class="form-control" id="qtgz" name="qtgz" value='' >                          
+         		       <input type="text" class="form-control" id="qtgz" name="qtgz" value='0' >                          
                      </td>
               
                     <td class="active"> 
@@ -275,7 +279,7 @@
                     </td>
                     <td >                  
 
-         		      <input type="text" class="form-control" id="yfa" name="yfa" value='' >                       
+         		      <input type="text" class="form-control" id="yfa" name="yfa" value='0' >                       
                        
                     </td>
                     
@@ -312,14 +316,14 @@
                         <label  class="control-label">税前扣款</label>
                     </td>
                     <td >                         
-                         <input type="text" class="form-control" id="sqkk" name="sqkk">
+                         <input type="text" class="form-control" id="sxkk" name="sxkk" value="0">
                     </td>
               
                     <td class="active"> 
                         <label  class="control-label">税后扣款</label>
                     </td>
                     <td>                  
-                       <input type="text" class="form-control" id="shkk" name="shkk">
+                       <input type="text" class="form-control" id="shkk" name="shkk" value="0">
                     </td>
                     
                    </tr>
@@ -330,14 +334,14 @@
                         <label  class="control-label">实发金额</label>
                     </td>
                     <td >                         
-                         <input type="text" class="form-control" id="shifa" name="shifa">
+                         <input type="text" class="form-control" id="shifa" name="shifa" value="0">
                     </td>
               
                     <td class="active"> 
                         <label  class="control-label">养老保险</label>
                     </td>
                     <td>                  
-                       <input type="text" class="form-control" id="yanglao" name="yanglao">
+                       <input type="text" class="form-control" id="yanglao" name="yanglao" value="0">
                     </td>
                     
                    </tr>                  
@@ -347,14 +351,14 @@
                         <label  class="control-label">生育保险</label>
                     </td>
                     <td >                         
-                         <input type="text" class="form-control" id="shengyu" name="shengyu">
+                         <input type="text" class="form-control" id="shengyu" name="shengyu" value="0">
                     </td>
               
                     <td class="active"> 
                         <label  class="control-label">失业保险</label>
                     </td>
                     <td>                  
-                       <input type="text" class="form-control" id="shiye" name="shiye">
+                       <input type="text" class="form-control" id="shiye" name="shiye" value="0">
                     </td>
                     
                    </tr>  
@@ -364,14 +368,14 @@
                         <label  class="control-label">医疗保险</label>
                     </td>
                     <td >                         
-                         <input type="text" class="form-control" id="yiliao" name="yiliao">
+                         <input type="text" class="form-control" id="yiliao" name="yiliao" value="0">
                     </td>
               
                     <td class="active"> 
                         <label  class="control-label">工伤保险</label>
                     </td>
                     <td>                  
-                       <input type="text" class="form-control" id="gongshang" name="gongshang">
+                       <input type="text" class="form-control" id="gongshang" name="gongshang" value="0">
                     </td>                   
                    </tr> 
                    
@@ -380,14 +384,14 @@
                         <label  class="control-label">公积金</label>
                     </td>
                     <td >                         
-                         <input type="text" class="form-control" id="gongji" name="gongji">
+                         <input type="text" class="form-control" id="gongji" name="gongji" value="0">
                     </td>
               
                     <td class="active"> 
                         <label  class="control-label">公司五险一金小计</label>
                     </td>
                     <td>                  
-                       <input type="text" class="form-control" id="wuxian" name="wuxian">
+                       <input type="text" class="form-control" id="gswuxian" name="gswuxian" value="0">
                     </td>                   
                    </tr>                     
                                       
@@ -396,14 +400,14 @@
                         <label  class="control-label">工会会费</label>
                     </td>
                     <td >                         
-                         <input type="text" class="form-control" id="gonghui" name="gonghui">
+                         <input type="text" class="form-control" id="gonghui" name="gonghui" value="0">
                     </td>
               
                     <td class="active"> 
                         <label  class="control-label">管理费</label>
                     </td>
                     <td>                  
-                       <input type="text" class="form-control" id="guanli" name="guanli">
+                       <input type="text" class="form-control" id="guanli" name="guanli" value="0">
                     </td>                   
                    </tr>
                    
@@ -413,14 +417,14 @@
                         <label  class="control-label">税金</label>
                     </td>
                     <td >                         
-                         <input type="text" class="form-control" id="shuijin" name="shuijin">
+                         <input type="text" class="form-control" id="shuijin" name="shuijin" value="0">
                     </td>
               
                     <td class="active"> 
                         <label  class="control-label">其他支出</label>
                     </td>
                     <td>                  
-                       <input type="text" class="form-control" id="qtjine" name="qtjine">
+                       <input type="text" class="form-control" id="qtjine" name="qtjine" value="0">
                     </td>                   
                    </tr>                  
                    
