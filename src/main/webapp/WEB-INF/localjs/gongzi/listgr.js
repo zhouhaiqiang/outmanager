@@ -137,19 +137,18 @@ var TableInit = function () {
            limit: params.limit,   //页面大小
            offset: params.offset,  //页码
            
-           name:$("#query_name").val(),
+           username:$("#query_name").val(),
            unit:$("#query_unit").val(),
            companyid:$("#query_companyid").val(),
            
            
            concode:$("#query_concode").val(),
-           code:$("#query_code").val(),
-           date:$("#query_date").val(),          
-           
+           usercode:$("#query_code").val(),
+           startmonth:$("#query_startmonth").val(), 
+           endmonth:$("#query_endmonth").val(),
      
         };
-        
-
+      
         return temp;
     };
     
@@ -336,7 +335,7 @@ function doExport() {
         return;
     }       
     
-    var url="/outmanager/user/export?type="+datatype;
+    var url="/outmanager/gongzi/grexport";
     window.open(url,'','toolbar=yes,menubar=yes,resizable=yes,location=yes,status=yes,scrollbars=yes');
     setTimeout("focus();",5); 
            

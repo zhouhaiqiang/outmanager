@@ -70,15 +70,11 @@ public class ConfigController {
 	 * @return
 	 */
 	private PageResult getCompanyList(String lx){
-		
-		//构建条件
-		OutCompanyExample sample = new OutCompanyExample();
-		
-		int total = IDataService.getCompanySize(sample);
-		List<OutCompany> list = IDataService.getCompanyList(total, 0, sample);
 
+		
+		List<OutCompany> list = IDataService.getAllCompanyList();
 		//构建返回值
-		PageResult ret = new PageResult(true,toKeyValueCom(list),total);
+		PageResult ret = new PageResult(true,toKeyValueCom(list),list.size());
 		System.out.println("----------"+ret);
 		return ret;			
 	}
@@ -100,19 +96,13 @@ public class ConfigController {
 	 * @return
 	 */
 	private PageResult contractcode_json(String lx){
-		
-		//构建条件
-		OutContractExample sample = new OutContractExample();
-		
-		sample.setDistinct(true);
-		
-		int total = IDataService.getContractSize(sample);
-		List<OutContract> list = IDataService.getContractList(total, 0, sample);
+
+		List<OutContract> list = IDataService.getAllContractList();
 		
 		
 		//构建返回值
-		PageResult ret = new PageResult(true,toKeyValueCon(list),total);
-		System.out.println("----------"+ret);
+		PageResult ret = new PageResult(true,toKeyValueCon(list),list.size());
+		//System.out.println("----------"+ret);
 		return ret;			
 	}	
 	
@@ -199,14 +189,13 @@ public class ConfigController {
 	 * 分页查询Unit
 	 * @return
 	 */
-	@Cacheable(value="dictCache", key="units")
 	private PageResult getUnits_json(){
 
-		List<TreeNode> list = orgMapper.selectOrg();
+		List<TreeNode> list = iDictory.getAllUnit();
 				
 		//构建返回值
 		PageResult ret = new PageResult(true,list,list.size());
-		System.out.println("----Units------"+ret);
+		//System.out.println("----Units------"+ret);
 		return ret;			
 	}		
 	
@@ -222,13 +211,13 @@ public class ConfigController {
 	 * @return
 	 */
 	
-	@Cacheable(value="dictCache", key="users")
+
 	private PageResult getUsers_json(String lx){
 
 		//System.out.println("users========"+cacheManager.getCache("dictCache").get("users"));
 		
 		//建议用缓存处理
-		List<KeyValue> list = orgMapper.selectUser(lx);
+		List<KeyValue> list = iDictory.getUserByCom(lx);
 				
 		//构建返回值
 		PageResult ret = new PageResult(true,list,list.size());

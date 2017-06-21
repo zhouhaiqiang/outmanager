@@ -16,11 +16,11 @@ public interface IDataService {
 	
 	/********公司接口*******************************************start******************/
 	/**
-	 * 取公司列表
+	 * 取全部公司列表
 	 * @param sample
 	 * @return
 	 */
-	List<OutCompany>getCompanyList(OutCompanyExample sample);
+	List<OutCompany>getAllCompanyList();
 	
 	//总条数
 	int getCompanySize(OutCompanyExample sample);
@@ -86,11 +86,11 @@ public interface IDataService {
 	
 	/********合同接口*******************************************start******************/
 	/**
-	 * 取公司列表
+	 * 取全部的合同列表
 	 * @param sample
 	 * @return
 	 */
-	List<OutCompany>getContractList(OutContractExample sample);
+	List<OutContract>getAllContractList();
 	
 	
 	/**

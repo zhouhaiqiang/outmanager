@@ -210,7 +210,7 @@
                       <div class="form-group"> 
                         <!-- 用户选择特殊处理，必须关联 -->                  
                         <input type="hidden" class="form-control" id="userid" name="userid" value='' >
-                        <select class="form-control selectpicker show-tick" data-live-search="false" name="username" id="username" title="请选择 ..." onchange="chgusername(this.value);">                      
+                        <select class="form-control selectpicker show-tick" data-live-search="true" name="username" id="username" title="请选择 ..." onchange="chgusername(this.value);">                      
 					    </select>                            
 
                        </div>

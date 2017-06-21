@@ -1,13 +1,12 @@
 package com.talkweb.ei.outmanager.web;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +28,7 @@ import com.talkweb.ei.di.common.DateUtil;
 import com.talkweb.ei.di.common.ExcelUtil;
 import com.talkweb.ei.di.common.JsonUtil;
 import com.talkweb.ei.di.common.PageResult;
+import com.talkweb.ei.di.common.StringUtils;
 import com.talkweb.ei.di.common.ViewExcel;
 import com.talkweb.ei.outmanager.dao.TOutGongziMapper;
 import com.talkweb.ei.outmanager.dao.TOutJthyMapper;
@@ -394,75 +394,180 @@ public class GongziController {
 //	
 //	
 //	
-//	/**
-//	 * 导出合同信息到excel
-//	 * @param type 用户信息类型，比如基本信息等等
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/jtexport", method = RequestMethod.GET)
-//	private ModelAndView jtexport(ModelMap model,String type){
-//		
-//		//构建条件
-//		TOutUserJcExample sample = new TOutUserJcExample();
-//		
-//		
-//		TOutUserJcExample.Criteria criteria = sample.createCriteria();
-//		
-//
-//		List<TOutUserJc> list = tOutUserJcMapper.selectByExample(sample);
-//
-//        //varList 数据（二维数据）
-//        List<List<?>> varList =  new ArrayList<List<?>>();
-//        List<String> line;
-//        
-//        OutUser mapuser;
-//        
-//		for (TOutUserJc user:list) {
-//			 line = new ArrayList<String>();
-//			 
-//			 //mapuser = //userService.getUser(user.getUserid());
-//		 
-//			 line.add("");
-//			 			 
-//			 //操作模式	人员编号	姓名	解除原因	解除外包关系日期	费用最终日期	途径说明（新外包公司名称）
-//	         //line.add(mapuser.getCode());
-//	        // line.add(mapuser.getName());
-//	         line.add(user.getJcreason());
-//	         
-//	         line.add(DateUtil.format(user.getJcdate()));
-//	         line.add(DateUtil.format(user.getGzenddate()));
-//	         line.add(user.getQt());
-//
-//	         line.add(user.getId());
-//	         	         
-//	         varList.add(line);
-//		}
-//		
-//		
-//		
-//		//titles  列标题
-//        List<String> titles = new ArrayList<String>();
-//        
-//        //操作模式	人员编号	姓名	解除原因	解除外包关系日期	费用最终日期	途径说明（新外包公司名称）
-//        titles.add("操作模式");
-//        titles.add("人员编号");
-//        titles.add("姓名"); 
-//        titles.add("解除原因"); 
-//        
-//        titles.add("解除外包关系日期");
-//        titles.add("费用最终日期");
-//        titles.add("途径说明（新外包公司名称）");
-//        
-//        //额外系统关键字
-//        titles.add("校验标识");
-//
-//        //数据传递
-//        model.put("name", "外包人员解除关系信息"); 
-//        model.put("titles", titles); 
-//        model.put("varList", varList);
-//        ViewExcel viewExcel = new ViewExcel();    
-//        return new ModelAndView(viewExcel, model);
-//	}
+	/**
+	 * 导出合同信息到excel
+	 * @return
+	 */
+	@RequestMapping(value = "/grexport", method = RequestMethod.GET)
+	private ModelAndView grexport(ModelMap model){
+		
+		//构建条件
+		VOutUsergzExample sample = new VOutUsergzExample();
+		
+		
+		VOutUsergzExample.Criteria criteria = sample.createCriteria();
+		
+		int limit = iUserGz.getUserGzSize(sample);
+
+		List<VOutUsergz> list = iUserGz.getUserGzList(limit, 0, sample);
+
+        //varList 数据（二维数据）
+        List<List<?>> varList =  new ArrayList<List<?>>();
+        List<String> line;
+        
+        OutUser mapuser;
+        
+		for (VOutUsergz user:list) {
+			 line = new ArrayList<String>();
+			 
+			 BigDecimal xj = new BigDecimal("0");
+		 
+			 line.add("");
+			 			 
+			 //操作模式	人员编号	姓名	身份证号码	归属外包公司名称
+	         line.add(user.getCode());
+	         line.add(user.getName());	         
+	         line.add(user.getIdnumber());	         
+	         line.add(user.getCompanyid());
+
+
+	         
+	         //发薪月度	固定工资	绩效工资	津贴补贴	过节费
+	         line.add(user.getMonth());
+	         line.add(StringUtils.formatBigDecimal(user.getJiben()));
+	         xj = xj.add(user.getJiben());
+	         
+	         line.add(StringUtils.formatBigDecimal(user.getJixiao()));
+	         xj = xj.add(user.getJixiao());
+	         
+	         line.add(StringUtils.formatBigDecimal(user.getJintie()));
+	         xj = xj.add(user.getJintie());
+	         
+	         line.add(StringUtils.formatBigDecimal(user.getGuojie()));
+	         xj = xj.add(user.getGuojie());
+	         
+	         //加班工资	其他工资性支出	应发金额	税前扣款项	税后扣款项
+	         line.add(StringUtils.formatBigDecimal(user.getJiaban()));
+	         xj = xj.add(user.getJiaban());
+	         
+	         line.add(StringUtils.formatBigDecimal(user.getQtgz()));
+	         xj = xj.add(user.getQtgz());
+	         
+	         line.add(StringUtils.formatBigDecimal(user.getYfa()));	  
+	         xj = xj.add(user.getYfa());
+	         
+	         line.add(StringUtils.formatBigDecimal(user.getSxkk()));
+	         xj = xj.add(user.getSxkk());
+	         
+	         line.add(StringUtils.formatBigDecimal(user.getShkk()));
+	         xj = xj.add(user.getShkk());
+	         
+	         
+	         //社保公积金扣减额	个人所得税扣缴额	实发金额	养老保险	生育保险
+	         line.add(StringUtils.formatBigDecimal(user.getGongji()));
+	         xj = xj.add(user.getGongji());
+	         
+	         line.add(StringUtils.formatBigDecimal(user.getGeren()));
+	         xj = xj.add(user.getGeren());
+	         
+	         line.add(StringUtils.formatBigDecimal(user.getShifa()));	  
+	         xj = xj.add(user.getShifa());
+	         
+	         line.add(StringUtils.formatBigDecimal(user.getYanglao()));
+	         xj = xj.add(user.getYanglao());
+	         
+	         line.add(StringUtils.formatBigDecimal(user.getShengyu()));	
+	         xj = xj.add(user.getShengyu());
+	         
+	         ///失业保险	医疗保险	工伤保险	公积金	小计
+	         line.add(StringUtils.formatBigDecimal(user.getShiye()));
+	         xj = xj.add(user.getShiye());
+	         
+	         line.add(StringUtils.formatBigDecimal(user.getYiliao()));	
+	         xj = xj.add(user.getYiliao());
+	         
+	         line.add(StringUtils.formatBigDecimal(user.getGongshang()));
+	         xj = xj.add(user.getGongshang());
+	         
+	         line.add(StringUtils.formatBigDecimal(user.getGongji()));
+	         xj = xj.add(user.getGongji());
+	         
+	         //小计
+	         line.add(StringUtils.formatBigDecimal(xj));	         
+	         
+	         //为本企业服务起始日期	在本企业缴纳社会保险起始日期	工会会费	管理费	税金	其他人工支出项目	备注
+	         line.add(DateUtil.format(user.getStartfwdate()));
+	         line.add(DateUtil.format(user.getStartbxdate()));	         
+	          
+	         line.add(StringUtils.formatBigDecimal(user.getGonghui()));
+	         line.add(StringUtils.formatBigDecimal(user.getGuanli()));	  
+	         line.add(StringUtils.formatBigDecimal(user.getShuijin()));
+	         line.add(StringUtils.formatBigDecimal(user.getQtjine()));	  	         
+	         line.add(user.getRemark());	       
+	         
+	         line.add(user.getId());
+	         	         
+	         varList.add(line);
+		}
+		
+		
+		
+		//titles  列标题
+        List<String> titles = new ArrayList<String>();
+        
+        //操作模式	人员编号	姓名	身份证号码	归属外包公司名称	
+
+        titles.add("操作模式");
+        titles.add("人员编号");
+        titles.add("姓名"); 
+        titles.add("身份证号码");        
+        titles.add("归属外包公司名称");
+        
+        //发薪月度	固定工资	绩效工资	津贴补贴	过节费	
+        titles.add("发薪月度");
+        titles.add("固定工资");
+        titles.add("绩效工资");
+        titles.add("津贴补贴");
+        titles.add("过节费");
+        
+        //加班工资	其他工资性支出	应发金额	税前扣款项	税后扣款项	
+        titles.add("加班工资");
+        titles.add("其他工资性支出");
+        titles.add("应发金额");
+        titles.add("税前扣款项");
+        titles.add("税后扣款项");
+        
+        //社保公积金扣减额	个人所得税扣缴额	实发金额	养老保险	生育保险
+        titles.add("社保公积金扣减额");
+        titles.add("个人所得税扣缴额");
+        titles.add("实发金额");
+        titles.add("养老保险");
+        titles.add("生育保险");       
+
+        
+        //失业保险	医疗保险	工伤保险	公积金	小计	
+        titles.add("失业保险");
+        titles.add("医疗保险");
+        titles.add("工伤保险");
+        titles.add("公积金");
+        titles.add("小计");          
+        
+        //为本企业服务起始日期	在本企业缴纳社会保险起始日期	工会会费	管理费	税金	其他人工支出项目	备注        
+        titles.add("为本企业服务起始日期");
+        titles.add("在本企业缴纳社会保险起始日期");
+        titles.add("工会会费");
+        titles.add("管理费");
+        titles.add("税金");            
+        titles.add("其他人工支出项目");
+        titles.add("备注");         
+        
+        //数据传递
+        model.put("name", "外包人员个人费用信息"); 
+        model.put("titles", titles); 
+        model.put("varList", varList);
+        ViewExcel viewExcel = new ViewExcel();    
+        return new ModelAndView(viewExcel, model);
+	}
 //	
 //	
 //	
@@ -546,5 +651,8 @@ public class GongziController {
 
 	
 	/**********************************业务接口*****************************end*********/
+	
+	
+	
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.talkweb.ei.di.common.DateUtil;
@@ -27,9 +28,9 @@ public class DataServiceImpl implements IDataService {
 	private OutContractMapper outContractMapper;		
 
 	@Override
-	public List<OutCompany> getCompanyList(OutCompanyExample sample) {
-		// TODO Auto-generated method stub
-		return null;
+	@Cacheable(value="dictCache", key="#root.targetClass + #root.methodName")
+	public List<OutCompany> getAllCompanyList() {
+		return outCompanyMapper.selectByExample(new OutCompanyExample());
 	}
 
 	@Override
@@ -304,9 +305,10 @@ public class DataServiceImpl implements IDataService {
 	}
 
 	@Override
-	public List<OutCompany> getContractList(OutContractExample sample) {
+	@Cacheable(value="dictCache", key="#root.targetClass + #root.methodName")
+	public List<OutContract> getAllContractList() {
 		// TODO Auto-generated method stub
-		return null;
+		return outContractMapper.selectByExample(new OutContractExample());
 	}
 
 	@Override

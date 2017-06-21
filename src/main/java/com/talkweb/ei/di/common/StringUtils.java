@@ -1,6 +1,7 @@
 package com.talkweb.ei.di.common;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -97,5 +98,30 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	public static Integer toInteger(Object val){
 		return toLong(val).intValue();
 	}
+	
+	/**
+	 * 格式化输出BigDecimal的金额，保存两位小数
+	 * @param val
+	 * @return
+	 */
+	public static String formatBigDecimal(BigDecimal val){
+		
+		if(val==null) return "0";
+		return val.toString();
+	}
+	
+	/*public static void main(String args[])  {
+		//测试BigDecimal
+		
+		BigDecimal b1 = new BigDecimal(1);
+		BigDecimal b2 = new BigDecimal(2);
+		
+		BigDecimal aa = b1.add(b2);
+		System.out.println("test add==1=="+b1);
+		System.out.println("test add=2==="+b2);
+		System.out.println("test add=aa==="+aa);
+		
+		
+	}*/
 	
 }
