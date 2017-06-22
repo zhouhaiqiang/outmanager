@@ -229,7 +229,7 @@ var ButtonInit = function () {
           	  
           	  
           	  //用户
-          	  initdropuser($("#username"),"/outmanager/config/getusers_json",selects[0].name+"__"+selects[0].companyid, selects[0].companyid)	         	  
+          	  initdropuser($("#username"),"/outmanager/config/getusers_json",selects[0].name, selects[0].companyid)	         	  
           	  $("#userid").val(selects[0].userid);
           	  
           	  
@@ -323,12 +323,6 @@ var ButtonInit = function () {
 //导出对账信息
 function doExport() {
           
-	var datatype = $('#datatype').val();
-	
-	if(datatype==""){
-		alert("请选择导出数据类型！");
-		return;
-	}
     var bool = window.confirm("导出有点慢，确定导出吗？");
     
     if(!bool){            

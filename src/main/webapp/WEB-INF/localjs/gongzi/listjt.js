@@ -15,12 +15,7 @@ $(function () {
 	initmonthlist($("#query_startmonth"),"");
 	initmonthlist($("#query_endmonth"),"");
 	
-	
-	initmonthlist($("#month"),"");
-	//合同编号新增
-	initdroplist($("#concode"),"/outmanager/config/contractcode_json","","");
-	
-	
+
 	
 	//选择公司查询条件
 	try {		
@@ -74,7 +69,7 @@ var TableInit = function () {
     //初始化Table
     oTableInit.Init = function () {
         $('#tb_data').bootstrapTable({
-            url: '/outmanager/user/user_list_json',         //请求后台的URL（*）
+            url: '/outmanager/gongzi/jtlist_json',         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
@@ -101,33 +96,40 @@ var TableInit = function () {
             columns: [{
                 checkbox: true
             },{
+                field: 'month',
+                title: '月份'
+            },{
                 field: 'unit',
-                title: '服务部门'
+                title: '联通组织'
             },{
-                field: 'code',
-                title: '人员编号'
-            },{
-                field: 'name',
-                title: '人员姓名'
-            }, {
                 field: 'companyid',
                 title: '公司名称'
+            }, {
+                field: 'concode',
+                title: '合同编号'
             },
             
             {
-                field: 'concode',
-                title: '合同编号'
+                field: 'zcze',
+                title: '集体支出总额'
             },{
-                field: 'ywtype',
-                title: '业务类型'
+                field: 'ghhy',
+                title: '工会会费'
             }, {
-                field: 'id',
-                title: '操作',
-                formatter : function (value, row, index) { 
-                	   
-                    	return "<a href='/outmanager/user/showuser?id="+value+"'>详细</a>";    	
-               
-                }
+                field: 'glh',
+                title: '管理费'
+            },{
+                field: 'shuijin',
+                title: '税金'
+            },{
+                field: 'qt',
+                title: '其他人工支出项目'
+            }, {
+                field: 'lzrhy',
+                title: '离职前人工费用'
+            }, {
+                field: 'remark',
+                title: '备注'
             },
             
             ]
@@ -142,14 +144,14 @@ var TableInit = function () {
            limit: params.limit,   //页面大小
            offset: params.offset,  //页码
            
-           name:$("#query_name").val(),
+         
            unit:$("#query_unit").val(),
            companyid:$("#query_companyid").val(),
-           
-           
+                      
            concode:$("#query_concode").val(),
-           code:$("#query_code").val(),
-           date:$("#query_date").val(),          
+           
+           startmonth:$("#query_startmonth").val(),
+           endmonth:$("#query_endmonth").val(),          
            
      
         };
@@ -203,45 +205,15 @@ var ButtonInit = function () {
 
     $('#btn_add').click(function(){
 
-
-	
-    	
+      //添加时必须清掉的项目
+      $('#id').val("");
+      
   	  //初始下拉框
   	  initdroplist($("#companyid"),"/outmanager/config/companyjson","","")  	  
   	  
       //合同编号
       initdroplist($("#concode"),"/outmanager/config/contractcode_json","","")      	  
-  	  
-
-  	  //政治面貌
-	  initdroplist($("#zhengzhi"),"/outmanager/config/dict_json","","政治面貌")
-		
-	  //国籍
-	  initdroplist($("#nationality"),"/outmanager/config/dict_json","","国籍")
-	  
-	  //民族
-	  initdroplist($("#mingz"),"/outmanager/config/dict_json","","民族")	  
-	  
-	  //户口类型
-	  initdroplist($("#hukoutype"),"/outmanager/config/dict_json","","户口类型")	  
-	  
-	  //从事外包业务类型
-	  initdroplist($("#ywtype"),"/outmanager/config/dict_json","","从事外包业务类型")	  
-	  
-	  //从事联通服务途径
-	  initdroplist($("#ywtj"),"/outmanager/config/dict_json","","从事联通服务途径")
-	  
-	  //纳税地
-	  initdroplist($("#nsaddress"),"/outmanager/config/dict_json","","纳税地")	  
-	  
-	  //社保缴纳地
-	  initdroplist($("#sbaddress"),"/outmanager/config/dict_json","","社保缴纳地")	  
-	  
-	  //岗位序列
-	  initdroplist($("#gwnumber"),"/outmanager/config/dict_json","","岗位序列")	  
-	  	  	  	  
-	  //参考岗级
-	  initdroplist($("#gwdj"),"/outmanager/config/dict_json","","参考岗级")	  	  
+  	    	  
 	 
   	  //显示添加窗口
   	  openml();
@@ -257,12 +229,24 @@ var ButtonInit = function () {
           if(arr.length==1){ 
         
         	  var selects = $.parseJSON(JSON.stringify(arr));
-    
+
         	  //给modal表单 赋值
         	  $('#id').val(selects[0].id);
-        	  $('#unit').val(selects[0].unit);
-        	  $('#name').val(selects[0].name);
+
+        	  //初始下拉框
+        	  initmonthlist($("#month"),selects[0].month);
+          	  initdroplist($("#companyid"),"/outmanager/config/companyjson",selects[0].companyid,"");           	  
+          	  initdroplist($("#concode"),"/outmanager/config/contractcode_json",selects[0].concode,"");
         	      	 
+        
+          	  $('#ghhy').val(selects[0].ghhy);
+          	  $('#glh').val(selects[0].glh);
+          	  $('#shuijin').val(selects[0].shuijin);
+          	  $('#qt').val(selects[0].qt);
+          	  $('#lzrhy').val(selects[0].lzrhy);
+          	  $('#remark').val(selects[0].remark);
+          	  
+          	  
         	  openml();
 
           } else {
@@ -284,7 +268,7 @@ var ButtonInit = function () {
         		  //处理删除多个
         		  // var selects = $.parseJSON(JSON.stringify(arr));
 
-        		   delrecode("/outmanager/user/user_del",arr);
+        		   delrecode("/outmanager/gongzi/jtdel",arr);
         	   };
         	  
    
@@ -318,20 +302,14 @@ var ButtonInit = function () {
 
 //导出对账信息
 function doExport() {
-          
-	var datatype = $('#datatype').val();
 	
-	if(datatype==""){
-		alert("请选择导出数据类型！");
-		return;
-	}
     var bool = window.confirm("导出有点慢，确定导出吗？");
     
     if(!bool){            
         return;
     }       
     
-    var url="/outmanager/user/export?type="+datatype;
+    var url="/outmanager/gongzi/jtexport";
     window.open(url,'','toolbar=yes,menubar=yes,resizable=yes,location=yes,status=yes,scrollbars=yes');
     setTimeout("focus();",5); 
            
@@ -390,7 +368,7 @@ function refreshtab(){
 	$('#tb_data').bootstrapTable(  
             "refresh",  
             {   
-            	url: '/outmanager/user/user_list_json',
+            	url: '/outmanager/gongzi/jtlist_json',
             }  
   );
 	
@@ -421,22 +399,7 @@ $('#editform').bootstrapValidator({
     },
         
     fields: {
-        name: {
-            validators: {
-                notEmpty: {
-                    message: '姓名必填'
-                }
-            }
-        },
-        
-        idnumber: {
-            validators: {
-                notEmpty: {
-                    message: '省份证必填'
-                }
-            }
-        },
-         
+
         unit: {
             validators: {
                 notEmpty: {
@@ -445,13 +408,7 @@ $('#editform').bootstrapValidator({
             }
         },
         
-        inunicomdate: {
-            validators: {
-                notEmpty: {
-                    message: '从事联通业务开始时间必填'
-                }
-            }
-        },
+
         
         companyid: {
             validators: {
@@ -500,7 +457,7 @@ function Ok_btn(){
     var jsonstr =  JSON.stringify(jsonuserinfo);  
 	
     //调用后台
-	updaterecode("/outmanager/user/user_update",jsonstr);
+	updaterecode("/outmanager/gongzi/jtupdate",jsonstr);
 	
 	//提交数据到后台	
 	$('#myModal').modal("hide");

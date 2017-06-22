@@ -44,6 +44,8 @@ import com.talkweb.ei.outmanager.model.OutUserExample;
 import com.talkweb.ei.outmanager.model.OutUser_S;
 import com.talkweb.ei.outmanager.model.TOutGongzi;
 import com.talkweb.ei.outmanager.model.TOutGongziExample;
+import com.talkweb.ei.outmanager.model.TOutJthy;
+import com.talkweb.ei.outmanager.model.TOutJthyExample;
 import com.talkweb.ei.outmanager.model.TOutUserFpinfo;
 import com.talkweb.ei.outmanager.model.TOutUserFpinfoExample;
 import com.talkweb.ei.outmanager.model.TOutUserHt;
@@ -183,43 +185,59 @@ public class GongziController {
 	
 	
 	
-//	/**
-//	 * 集体费用
-//	 * 分页查询分配信息
-//	 * @param uid
-//	 * @return
-//	 */
-//	
-//	@RequestMapping(value = "/jtlist_json", method = RequestMethod.GET, produces = {
-//	"application/json; charset=utf-8" })
-//	@ResponseBody	
-//	private PageResult getJtList(String uid){
-//				
-//
-//		//构建条件
-//		TOutUserFpinfoExample sample = new TOutUserFpinfoExample();
-//		
-//		
-//		TOutUserFpinfoExample.Criteria criteria = sample.createCriteria();
-//		
-//		//只查询当前用户
-//		criteria.andUseridEqualTo(uid);
-//		
-//		List<TOutUserFpinfo> list = tOutUserFpinfoMapper.selectByExample(sample);
-//		
-//				
-//		//构建返回值
-//		PageResult ret = new PageResult(true,list,list.size());			
-//		System.out.println("----------"+ret);	
-//		return ret;
-//			
-//	}	
-//	
-//	
-//	
-//	
-//	
-//	
+	/**
+	 * 集体费用
+	 * 分页查询分配信息
+	 * @param uid
+	 * @return
+	 */
+	
+	@RequestMapping(value = "/jtlist_json", method = RequestMethod.GET, produces = {
+	"application/json; charset=utf-8" })
+	@ResponseBody	
+	private PageResult getJtList(int limit, int offset, String companyid,String unit,String username, String usercode,String concode,String startmonth,String endmonth){
+				
+
+		//构建条件
+		TOutJthyExample sample = new TOutJthyExample();
+		
+		
+		TOutJthyExample.Criteria criteria = sample.createCriteria();
+		
+		if(StringUtils.isNotEmpty(companyid)){
+			criteria.andCompanyidEqualTo(companyid);
+		}
+		if(StringUtils.isNotEmpty(unit)){
+			criteria.andUnitEqualTo(unit);
+		}
+		
+		
+		if(StringUtils.isNotEmpty(concode)){
+			criteria.andConcodeEqualTo(concode);
+		}
+		
+		//时间段的查询
+		if(StringUtils.isNotEmpty(startmonth)&&StringUtils.isNotEmpty(endmonth)){
+			criteria.andMonthBetween(startmonth, endmonth);
+		}		
+
+		sample.setLimit(offset+limit);
+		sample.setOffset(offset+1);		
+		
+		
+	
+		long total = tOutJthyMapper.countByExample(sample);
+		List<TOutJthy> list = tOutJthyMapper.selectPageByExample(sample);
+						
+		//构建返回值
+		PageResult ret = new PageResult(true,list,Integer.parseInt(total+""));			
+		System.out.println("----------"+ret);	
+		return ret;
+			
+	}	
+	
+
+	
 	/**
 	 * 添加或更新
 	 * @param jsonstr
@@ -249,41 +267,41 @@ public class GongziController {
 		return "OK";
 		
     } 
-//	
-//	
-//	
-//	/**
-//	 * 添加或更新
-//	 * @param jsonstr
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/jtupdate", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
-//    @ResponseBody  
-//    public String updateJtgongzi(@RequestBody String jsonstr) {
-//		
-//		
-//		logger.info("user_update======="+jsonstr);   
-//			
-//		TOutUserFpinfo outUser = JsonUtil.gson.fromJson(jsonstr,TOutUserFpinfo.class);  
-//		
-//		if(outUser!=null){
-//			
-//			//页面上没有ID说明是新增
-//			if(StringUtils.isEmpty(outUser.getId())){
-//				outUser.setId(UUID.randomUUID().toString());
-//								
-//				tOutUserFpinfoMapper.insert(outUser);
-//			} else {				
-//				tOutUserFpinfoMapper.updateByPrimaryKey(outUser);
-//			}
-//		}
-//
-//		return "OK";
-//		
-//    } 	
-//	
-//	
-//	
+	
+	
+	
+	/**
+	 * 添加或更新
+	 * @param jsonstr
+	 * @return
+	 */
+	@RequestMapping(value = "/jtupdate", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody  
+    public String updateJtgongzi(@RequestBody String jsonstr) {
+		
+		
+		logger.info("user_update======="+jsonstr);   
+			
+		TOutJthy outUser = JsonUtil.gson.fromJson(jsonstr,TOutJthy.class);  
+		
+		if(outUser!=null){
+			
+			//页面上没有ID说明是新增
+			if(StringUtils.isEmpty(outUser.getId())){
+				outUser.setId(UUID.randomUUID().toString());
+								
+				tOutJthyMapper.insert(outUser);
+			} else {				
+				tOutJthyMapper.updateByPrimaryKey(outUser);
+			}
+		}
+
+		return "OK";
+		
+    } 	
+	
+	
+	
 
 	@RequestMapping(value = "/grdel", method = RequestMethod.POST)
     @ResponseBody  
@@ -305,30 +323,30 @@ public class GongziController {
 		return "OK";
 		
     } 
-//	
-//	
-//	
-//
-//	@RequestMapping(value = "/jtdel", method = RequestMethod.POST)
-//    @ResponseBody  
-//    public String delJt(@RequestBody String jsonstr) {
-//		
-//		
-//		logger.info("del user======="+jsonstr);   
-//	
-//		
-//		List<TOutUserFpinfo> retList = JsonUtil.gson.fromJson(jsonstr,  
-//                new TypeToken<List<TOutUserFpinfo>>() {  
-//                }.getType());  
-//
-//		for(TOutUserFpinfo element:retList)
-//        {
-//			tOutUserFpinfoMapper.deleteByPrimaryKey(element.getId());
-//        }
-//		
-//		return "OK";
-//		
-//    } 
+	
+	
+	
+
+	@RequestMapping(value = "/jtdel", method = RequestMethod.POST)
+    @ResponseBody  
+    public String delJt(@RequestBody String jsonstr) {
+		
+		
+		logger.info("del user======="+jsonstr);   
+	
+		
+		List<TOutJthy> retList = JsonUtil.gson.fromJson(jsonstr,  
+                new TypeToken<List<TOutJthy>>() {  
+                }.getType());  
+
+		for(TOutJthy element:retList)
+        {
+			tOutJthyMapper.deleteByPrimaryKey(element.getId());
+        }
+		
+		return "OK";
+		
+    } 
 //	
 //	/**
 //     * 用户信息导入（多sheet导入）
@@ -561,6 +579,8 @@ public class GongziController {
         titles.add("其他人工支出项目");
         titles.add("备注");         
         
+        titles.add("校验标识");
+        
         //数据传递
         model.put("name", "外包人员个人费用信息"); 
         model.put("titles", titles); 
@@ -568,85 +588,93 @@ public class GongziController {
         ViewExcel viewExcel = new ViewExcel();    
         return new ModelAndView(viewExcel, model);
 	}
-//	
-//	
-//	
-//	/**
-//	 * 导出excel
-//	 * @param type 用户信息类型，比如基本信息等等
-//	 * @return
-//	 */
-//	@RequestMapping(value = "/exportjt", method = RequestMethod.GET)
-//	private ModelAndView exportjt(ModelMap model,String type){
-//		
-//		//构建条件
-//		TOutUserJcExample sample = new TOutUserJcExample();
-//		
-//		
-//		TOutUserJcExample.Criteria criteria = sample.createCriteria();
-//		
-//
-//		List<TOutUserJc> list = tOutUserJcMapper.selectByExample(sample);
-//
-//        //varList 数据（二维数据）
-//        List<List<?>> varList =  new ArrayList<List<?>>();
-//        List<String> line;
-//        
-//        OutUser mapuser;
-//        
-//		for (TOutUserJc user:list) {
-//			 line = new ArrayList<String>();
-//			 
-//			
-//		 
-//			 line.add("");
-//			 			 
-//			 //操作模式	人员编号	姓名	解除原因	解除外包关系日期	费用最终日期	途径说明（新外包公司名称）
-//	         //line.add(mapuser.getCode());
-//	         //line.add(mapuser.getName());
-//	         line.add(user.getJcreason());
-//	         
-//	         line.add(DateUtil.format(user.getJcdate()));
-//	         line.add(DateUtil.format(user.getGzenddate()));
-//	         line.add(user.getQt());
-//
-//	         line.add(user.getId());
-//	         	         
-//	         varList.add(line);
-//		}
-//		
-//		
-//		
-//		//titles  列标题
-//        List<String> titles = new ArrayList<String>();
-//        
-//        //操作模式	人员编号	姓名	解除原因	解除外包关系日期	费用最终日期	途径说明（新外包公司名称）
-//        titles.add("操作模式");
-//        titles.add("人员编号");
-//        titles.add("姓名"); 
-//        titles.add("解除原因"); 
-//        
-//        titles.add("解除外包关系日期");
-//        titles.add("费用最终日期");
-//        titles.add("途径说明（新外包公司名称）");
-//        
-//        //额外系统关键字
-//        titles.add("校验标识");
-//        
-//       	
-//
-//        //数据传递
-//        model.put("name", "外包人员解除关系信息"); 
-//        model.put("titles", titles); 
-//        model.put("varList", varList);
-//        ViewExcel viewExcel = new ViewExcel();    
-//        return new ModelAndView(viewExcel, model);
-//	}	
-//	
-//	
-//	
-//	
-//	/***************分配部分***********************end***********/
+	
+	
+	
+	/**
+	 * 导出excel
+	 * @param type 用户信息类型，比如基本信息等等
+	 * @return
+	 */
+	@RequestMapping(value = "/jtexport", method = RequestMethod.GET)
+	private ModelAndView exportjt(ModelMap model,String type){
+		
+		//构建条件
+		TOutJthyExample sample = new TOutJthyExample();
+		
+		
+		TOutJthyExample.Criteria criteria = sample.createCriteria();
+		
+
+		List<TOutJthy> list = tOutJthyMapper.selectByExample(sample);
+
+        //varList 数据（二维数据）
+        List<List<?>> varList =  new ArrayList<List<?>>();
+        List<String> line;
+        
+        OutUser mapuser;
+        
+		for (TOutJthy user:list) {
+			 line = new ArrayList<String>();
+			 
+			
+		 
+			 line.add("");		 			 
+			 //操作模式	发生费用所属组织	外包公司名称	外包合同编号	期间	
+	         line.add(user.getUnit());
+	         line.add(user.getCompanyid());
+	         line.add(user.getConcode());
+	         line.add(user.getMonth());
+	         
+	         
+	         //工会会费	管理费	税金	其他人工支出项目	离职前人工费用	备注
+	         line.add(StringUtils.formatBigDecimal(user.getGhhy()));
+	         line.add(StringUtils.formatBigDecimal(user.getGlh()));
+	         line.add(StringUtils.formatBigDecimal(user.getShuijin()));
+	         line.add(StringUtils.formatBigDecimal(user.getQt()));
+	         line.add(StringUtils.formatBigDecimal(user.getLzrhy()));
+	         line.add(user.getRemark());
+
+	         line.add(user.getId());
+	         	         
+	         varList.add(line);
+		}
+		
+		
+		
+		//titles  列标题
+        List<String> titles = new ArrayList<String>();
+        
+        //操作模式	发生费用所属组织	外包公司名称	外包合同编号	期间	
+        titles.add("操作模式");
+        titles.add("发生费用所属组织");
+        titles.add("外包公司名称"); 
+        titles.add("外包合同编号");         
+        titles.add("期间");
+        
+        //工会会费	管理费	税金	其他人工支出项目	离职前人工费用	备注
+        titles.add("工会会费");
+        titles.add("管理费");
+        titles.add("税金");
+        titles.add("其他人工支出项目");
+        titles.add("离职前人工费用");
+        titles.add("备注");
+        
+        //额外系统关键字
+        titles.add("校验标识");
+               	
+        //数据传递
+        model.put("name", "外包集体费用信息"); 
+        model.put("titles", titles); 
+        model.put("varList", varList);
+        ViewExcel viewExcel = new ViewExcel();    
+        return new ModelAndView(viewExcel, model);
+	}	
+	
+	
+	
+	
+
 	
 
 	

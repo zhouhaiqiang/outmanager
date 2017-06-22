@@ -217,7 +217,7 @@
                     </td>
                     <td>      
                       <div class="form-group">                   
-                        <input type="text" class="form-control" id="ghhy" name="ghhy" value='' >
+                        <input type="text" class="form-control" id="ghhy" name="ghhy" value='0' >
                        </div>
                     </td>
                     
@@ -225,7 +225,7 @@
                         <label  class="control-label">管理费</label>
                     </td>
                     <td>      
-                      <input type="text" class="form-control" id="glh" name="jiben" value='' >
+                      <input type="text" class="form-control" id="glh" name="glh" value='0' >
                     </td>                   
                   </tr>                       
                    
@@ -236,7 +236,7 @@
                     </td>
                     <td>      
                       <div class="form-group">                   
-                        <input type="text" class="form-control" id="shuijin" name="shuijin" value='' >
+                        <input type="text" class="form-control" id="shuijin" name="shuijin" value='0' >
                        </div>
                     </td>
                     
@@ -244,7 +244,7 @@
                         <label  class="control-label">其他人工支出项目</label>
                     </td>
                     <td>      
-                      <input type="text" class="form-control" id="qt" name="qt" value='' >
+                      <input type="text" class="form-control" id="qt" name="qt" value='0' >
                     </td>                   
                   </tr> 
                   
@@ -254,7 +254,7 @@
                     </td>
                     <td>      
                       <div class="form-group">                   
-                        <input type="text" class="form-control" id="lzrhy" name="lzrhy" value='' >
+                        <input type="text" class="form-control" id="lzrhy" name="lzrhy" value='0' >
                        </div>
                     </td>
                     
