@@ -110,6 +110,20 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		return val.toString();
 	}
 	
+	/**
+	 * 取得一个合法的BigDecimal
+	 * @param val
+	 * @return
+	 */
+	public static BigDecimal toBigDecimal(String val){
+		
+		try{
+			return new BigDecimal(val);
+		} catch (Exception e) {
+			return new BigDecimal(0);
+		}
+	}	
+	
 	/*public static void main(String args[])  {
 		//测试BigDecimal
 		

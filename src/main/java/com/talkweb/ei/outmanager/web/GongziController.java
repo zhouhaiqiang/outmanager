@@ -347,71 +347,74 @@ public class GongziController {
 		return "OK";
 		
     } 
-//	
-//	/**
-//     * 用户信息导入（多sheet导入）
-//     * @param file
-//     * @param request
-//     * @param model
-//     * @return
-//     */
-//    @RequestMapping(value = "/grimport")
-//    
-//    //事务开启
-//    //@Transactional 
-//    public String grimport(
-//            @RequestParam(value = "excelFile", required = false) MultipartFile file, ModelMap model)
-//    {
-//        // 创建根路径的保存变量
-//        String rootPath;
-//        SimpleDateFormat format = new SimpleDateFormat("yyyy\\MM\\dd\\");
-//        String subpath = format.format(new Date());
-//
-//        rootPath = Const.TMPFILE_ROOT + subpath;
-//
-//        System.out.println("开始...");
-//      
-//        String fileName = file.getOriginalFilename();
-//       
-//       
-//        File targetFile = new File(rootPath, fileName);
-//        if (!targetFile.exists())
-//        {
-//            targetFile.mkdirs();
-//        }
-//
-//        // 保存
-//        try
-//        {
-//            file.transferTo(targetFile);
-//            
-//            System.out.println("文件上传ok...");
-//        } catch (Exception e)
-//        {
-//            //e.printStackTrace();
-//            System.out.println("文件上传err...");
-//        }
-//        
-//        
-//        
-//        
-//        //读取excel 的内容 防止内存溢出
-//        //基本信息
-//        List<String> exlValues = ExcelUtil.readFileExcel(rootPath+fileName,0,4,ExcelUtil.MAXEXPORTNUM+4,ExcelUtil.USER_COL_NUM);
-//       
-//        String result = "导入成功！";
-//        
-//        boolean ret =  false;//= userService.importBase(exlValues);
-//        if(!ret) {
-//        	result = "导入失败！请检测数据文件格式！";
-//        }
-//        
-//        
-//        return result;
-//    }
-//	
-//	
-//	
+	
+	/**
+     * 用户信息导入（多sheet导入）
+     * @param file
+     * @param request
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/grimport")
+    
+    //事务开启
+    //@Transactional 
+    public String grimport(
+            @RequestParam(value = "excelFile", required = false) MultipartFile file, @RequestParam("modeltype") String modeltype, ModelMap model)
+    {
+    	
+        // 创建根路径的保存变量
+        String rootPath;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy\\MM\\dd\\");
+        String subpath = format.format(new Date());
+
+        rootPath = Const.TMPFILE_ROOT + subpath;
+
+        System.out.println("开始...");
+      
+        String fileName = file.getOriginalFilename();
+       
+       
+        File targetFile = new File(rootPath, fileName);
+        if (!targetFile.exists())
+        {
+            targetFile.mkdirs();
+        }
+
+        // 保存
+        try
+        {
+            file.transferTo(targetFile);
+            
+            System.out.println("文件上传ok...");
+        } catch (Exception e)
+        {
+            //e.printStackTrace();
+            System.out.println("文件上传err...");
+        }
+        List<String> exlValues;
+        boolean ret =  false;
+        //读取数据和导入到db
+        if("0".equals(modeltype)){
+        	exlValues = ExcelUtil.readFileExcel(rootPath+fileName,0,5,ExcelUtil.MAXEXPORTNUM+5,ExcelUtil.HY_COL_NUM_GR);
+        	ret = iUserGz.importGrhy(exlValues);
+        } else {
+        	exlValues = ExcelUtil.readFileExcel(rootPath+fileName,1,5,ExcelUtil.MAXEXPORTNUM+5,ExcelUtil.HY_COL_NUM_JT);
+        	ret = iUserGz.importJthy(exlValues);
+        }
+
+        String result = "导入成功！";
+
+        if(!ret) {
+        	result = "导入失败！请检测数据文件格式！";
+        }
+        
+        model.addAttribute("msg", result);
+        return "/common/showmsg";
+    }
+	
+	
+	
 	/**
 	 * 导出合同信息到excel
 	 * @return
@@ -671,16 +674,7 @@ public class GongziController {
         return new ModelAndView(viewExcel, model);
 	}	
 	
-	
-	
-	
-
-	
-
-	
 	/**********************************业务接口*****************************end*********/
-	
-	
-	
+
 	
 }

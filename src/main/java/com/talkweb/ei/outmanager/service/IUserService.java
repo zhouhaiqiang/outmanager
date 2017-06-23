@@ -116,6 +116,12 @@ public interface IUserService {
 	 */
 	OutUser getUser(String ID);
 	
+
+	/**
+	 * 取一个用户（用户编号唯一）
+	 * @return
+	 */
+	OutUser getUserByCode(String code);	
 	
 	
 	/**

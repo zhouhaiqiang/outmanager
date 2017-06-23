@@ -921,7 +921,8 @@ public class UserServiceImpl implements IUserService {
 	 * @param code
 	 * @return
 	 */
-	private OutUser getUserByCode(String code) {
+	@Override
+	public OutUser getUserByCode(String code) {
 		OutUserExample example = new OutUserExample();
 		
 		OutUserExample.Criteria criteria = example.createCriteria();

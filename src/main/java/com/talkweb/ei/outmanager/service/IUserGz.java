@@ -29,4 +29,28 @@ public interface IUserGz {
 	List<VOutUsergz>getUserGzList(int limit,int offset, VOutUsergzExample sample);
 	
 
+	
+	/**
+	 * 个人费用信息导入
+	 * 
+	 * @param  List<String> exldata
+	 * @return
+	 */
+	boolean importGrhy(List<String> exldata);	
+	
+	
+	/**
+	 * 个人费用信息导入
+	 * 
+	 * @param  List<String> exldata
+	 * @return
+	 */
+	boolean importJthy(List<String> exldata);		
+	
+	
+	
+	
+	
+	
+	
 }

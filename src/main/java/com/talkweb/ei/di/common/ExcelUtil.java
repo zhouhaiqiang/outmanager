@@ -57,7 +57,13 @@ public class ExcelUtil
     //用户基本信息列数_LD
     public static final int USER_COL_NUM_LD = 16;     
     //用户基本信息列数_JC
-    public static final int USER_COL_NUM_JC = 8;    
+    public static final int USER_COL_NUM_JC = 8;  
+    
+    //个人费用模板列数
+    public static final int HY_COL_NUM_GR = 33;   
+    //集体费用模板列数
+    public static final int HY_COL_NUM_JT = 12;
+    
     /**
      * 读取excel 的第一sheet 的第一列（手机号码）
      * @param filePath
