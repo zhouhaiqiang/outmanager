@@ -37,7 +37,8 @@
 					$("#loginLabel").text("密码为空!");	
 					return false;
 				}
-				
+
+				alert(111);
 				$("#loginform").submit();
 				return true;
 			}

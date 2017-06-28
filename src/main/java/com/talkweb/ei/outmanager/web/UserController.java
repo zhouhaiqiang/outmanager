@@ -88,11 +88,9 @@ public class UserController {
 	private TOutUserJninfoMapper tOutUserJninfoMapper;	
 	
 	@Autowired
-	private TOutUserZyinfoMapper tOutUserZyinfoMapper;		
-	
+	private TOutUserZyinfoMapper tOutUserZyinfoMapper;	
 	
 
-	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	private String login(Model model) {
 		//List<Book> list = bookService.getList();
@@ -100,6 +98,16 @@ public class UserController {
 		// list.jsp + model = ModelAndView		
 		return "user/login";// WEB-INF/jsp/"list".jsp
 	}
+	
+	
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	private String logout(Model model) {
+		
+		userService.logout();
+		return "user/login";
+	}	
+	
 	
 	/**********************************认证接口************************start**************/
 	/**
@@ -110,8 +118,8 @@ public class UserController {
 	@RequestMapping(value = "/auth", method = RequestMethod.POST)
 	private String auth( @RequestParam("userId") String userid,@RequestParam("password") String pwd, ModelMap modelMap,HttpServletRequest request) {
 		
-		userid = "di";
-		pwd = "wwwwww";
+		//userid = "di";
+		//pwd = "wwwwww";
 		
 		boolean ret = userService.auth(userid, pwd);
 		

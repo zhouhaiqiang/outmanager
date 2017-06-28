@@ -22,6 +22,15 @@ public interface IUserService {
 	
 	
 	/**
+	 * 认证
+	 * 
+	 * @param  String userid, String pwd
+	 * @return
+	 */
+	boolean logout();	
+	
+	
+	/**
 	 * 用户基本信息导入
 	 * 
 	 * @param  List<String> exldata

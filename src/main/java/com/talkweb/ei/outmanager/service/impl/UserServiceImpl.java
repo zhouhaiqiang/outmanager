@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ import com.talkweb.ei.outmanager.dao.TOutUserJcMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserJninfoMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserJyinfoMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserZyinfoMapper;
-import com.talkweb.ei.outmanager.model.OutContract;
 import com.talkweb.ei.outmanager.model.OutUser;
 import com.talkweb.ei.outmanager.model.OutUserExample;
 import com.talkweb.ei.outmanager.model.TOutUserFpinfo;
@@ -27,8 +27,8 @@ import com.talkweb.ei.outmanager.model.TOutUserJc;
 import com.talkweb.ei.outmanager.model.TOutUserJninfo;
 import com.talkweb.ei.outmanager.model.TOutUserJyinfo;
 import com.talkweb.ei.outmanager.model.TOutUserZyinfo;
-import com.talkweb.ei.outmanager.model.TOutUserZyinfoExample;
 import com.talkweb.ei.outmanager.service.IUserService;
+import com.talkweb.ei.shiro.ShiroToken;
 
 
 @Service
@@ -57,35 +57,44 @@ public class UserServiceImpl implements IUserService {
 	private TOutUserJninfoMapper tOutUserJninfoMapper;	
 	
 	@Autowired
-	private TOutUserZyinfoMapper tOutUserZyinfoMapper;		
-	
+	private TOutUserZyinfoMapper tOutUserZyinfoMapper;	
+
 	@Override
 	public boolean auth(String userid, String pwd) {
 		
 		
 		try {
-		
-			String dbpwd = outUserMapper.selectByPrimaryKey(userid).getPwd();
-		
-			//密码加密后比较
 
-            //doxxxxxx
-			
-			
-			
-			
-			if(dbpwd.equals(pwd)){
-				return true;
-			}
-		
+			ShiroToken token = new ShiroToken(userid, pwd);
+            token.setRememberMe(false);           
+            //登录
+            SecurityUtils.getSubject().login(token);
+            
+            
+			return true;
 		
 		} catch(Exception e) {
-			e.printStackTrace();
-			
+			e.printStackTrace();	
 		}
 		logger.info("认证失败！");
 		return false;
 	}
+	
+	
+
+	@Override
+	public boolean logout() {
+		try {
+            //登出
+            SecurityUtils.getSubject().logout();
+			return true;
+		
+		} catch(Exception e) {
+			e.printStackTrace();	
+		}
+		logger.info("登出失败");
+		return false;
+	}	
 
 	@Override
 	public boolean importBase(List<String> exldata) {
@@ -938,14 +947,6 @@ public class UserServiceImpl implements IUserService {
 		}
 		return null;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
 }
