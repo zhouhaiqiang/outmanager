@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+    <!-- Shiro生命周期处理器-->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
+	
+	<!-- 授权 认证 -->
+	<bean id="jdbcRealm" class="com.talkweb.ei.outmanager.service.impl.UserRealm"></bean>
+	
+	<!-- Shiro安全管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="jdbcRealm"></property>	
+	</bean>
+		
+	
+	<!-- 相当于调用SecurityUtils.setSecurityManager(securityManager) -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
+        <property name="arguments" ref="securityManager"/>
+    </bean>
+    
+    
+    <!-- 用户资源访问控制 -->
+  	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		
+		<!--系统登录url-->
+	    <property name="loginUrl" value="/user/login" />
+		<!--登录OK url-->
+		<property name="successUrl" value="/user/index" />
+		
+	 </bean>	  
+    
+
+</beans>
