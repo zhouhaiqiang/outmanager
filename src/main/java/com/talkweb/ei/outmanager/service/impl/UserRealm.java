@@ -32,37 +32,52 @@ public class UserRealm extends AuthorizingRealm {
 	 * 授权
 	 */
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
-//        //获取登录时输入的用户名
-//        String loginName = (String) principalCollection.fromRealm(getName()).iterator().next();
-//        //到数据库查是否有此对象
-//        User user = this.getDao().findByName(loginName);
-//        if (user != null) {
-//            //权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
-//            SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//            //用户的角色集合
-//            info.setRoles(user.getRolesName());
-//            //用户的角色对应的所有权限，如果只使用角色定义访问权限，下面的四行可以不要
-//            List<Role> roleList = user.getRoleList();
-//            for (Role role : roleList) {
-//                info.addStringPermissions(role.getPermissionsString());
-//            }
-//            return info;
-//        }
-//        return null;
+        //获取登录时输入的用户名
+		OutUser inuser = (OutUser) arg0.fromRealm(getName()).iterator().next();
+        //到数据库查是否有此对象
+        OutUser user = userService.getUser(inuser.getId());
+        
+        if (user != null) {
+            //权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
+            SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+            
+            //角色          
+            Set<String> roles = new HashSet<String>();
+            //权限
+            Set<String> permissions = new HashSet<String>();
+            
+            if("0".equals(user.getUsertype())){           	
+            	//管理者
+            	roles.add("manager");
+            	
+            	
+            	//button view
+            	permissions.add("add");            	
+            	permissions.add("mod");
+            	permissions.add("del");            	
+            	permissions.add("export");           	
+            	permissions.add("import");
+            	
+            	//报表
+            	permissions.add("report");
+            	
+            	
+            } else {
+            	//普通用户
+            	roles.add("user");
+            }
+            
+            permissions.add("query");
+            
+            //用户的角色集合和权限
+            info.setRoles(roles);
+            info.addStringPermissions(permissions);
+            
+            
+            return info;
+        }
+        return null;
 		
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		Set roles =  new HashSet();
-		roles.add("Admin");
-		roles.add("Manager");
-		roles.add("User");
-		
-		info.setRoles(roles);
-		
-		Set perms =  new HashSet();
-		perms.add("add");
-		info.addStringPermissions(perms);
-		
-		return info;
 	}
 
 	@Override
@@ -74,32 +89,13 @@ public class UserRealm extends AuthorizingRealm {
 		//页面传送的认证令牌
 		ShiroToken token = (ShiroToken) arg0;
         String userid = token.getUsername();
-        String pwd = token.getPswd();
+          
+        OutUser inuser = userService.getUser(userid);        
+        AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(inuser, inuser.getPwd(), this.getName());
+        SecurityUtils.getSubject().getSession().setAttribute("currentUser", this.getName());
         
-        OutUser inuser = userService.getUser(userid);
-        System.out.println("=====user============="+inuser.getPwd());
-        
-        if("di".equals(token.getUsername())){    
-            AuthenticationInfo authcInfo = new SimpleAuthenticationInfo("di", "wwwwww", this.getName());    
-            SecurityUtils.getSubject().getSession().setAttribute("currentUser", this.getName());  
-            return authcInfo;    
-        }else if("user".equals(token.getUsername())){    
-            AuthenticationInfo authcInfo = new SimpleAuthenticationInfo("user", "user", this.getName());    
-            SecurityUtils.getSubject().getSession().setAttribute("currentUser", this.getName());  
-            return authcInfo;    
-        }     
-        
-        
-        OutUser user = userService.getUser(userid);
-//        if(pwd.equals(user.getPwd())){
-//        	
-//        	//认证通过
-//        	return new SimpleAuthenticationInfo(user,pwd, getName());
-//        }
-        
-        return null;
-	
-		
+        return authcInfo;
+
 	}
 
 }

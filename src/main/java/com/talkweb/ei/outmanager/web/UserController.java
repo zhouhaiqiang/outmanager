@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,7 @@ import com.talkweb.ei.outmanager.dao.TOutUserJcMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserJninfoMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserJyinfoMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserZyinfoMapper;
+import com.talkweb.ei.outmanager.model.OutCompany;
 import com.talkweb.ei.outmanager.model.OutUser;
 import com.talkweb.ei.outmanager.model.OutUserExample;
 import com.talkweb.ei.outmanager.model.OutUser_S;
@@ -58,6 +61,7 @@ import com.talkweb.ei.outmanager.model.TOutUserJyinfoExample;
 import com.talkweb.ei.outmanager.model.TOutUserZyinfo;
 import com.talkweb.ei.outmanager.model.TOutUserZyinfoExample;
 import com.talkweb.ei.outmanager.service.IUserService;
+import com.talkweb.ei.shiro.CryptographyUtil;
 
 
 @Controller
@@ -106,8 +110,34 @@ public class UserController {
 		
 		userService.logout();
 		return "user/login";
+	}
+	
+	
+	@RequestMapping(value = "/chgpwd", method = RequestMethod.GET)
+	
+	@RequiresUser
+	private String chgpwd(Model model) {
+		
+		return "user/chgpwd";
 	}	
 	
+	
+	@RequestMapping(value = "/updatepwd", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody  
+    public String updatePwd(@RequestBody String jsonstr) {
+	
+		
+		
+	   Map<String,String> par = JsonUtil.gson.fromJson(jsonstr,HashMap.class);
+	   
+	   OutUser loginuser = (OutUser)SecurityUtils.getSubject().getPrincipal();
+
+	   loginuser.setPwd(CryptographyUtil.md5(par.get("password"),"java1234"));
+	
+	   userService.updateUser(loginuser);
+		
+		return "OK";
+	}
 	
 	/**********************************认证接口************************start**************/
 	/**
@@ -118,9 +148,7 @@ public class UserController {
 	@RequestMapping(value = "/auth", method = RequestMethod.POST)
 	private String auth( @RequestParam("userId") String userid,@RequestParam("password") String pwd, ModelMap modelMap,HttpServletRequest request) {
 		
-		//userid = "di";
-		//pwd = "wwwwww";
-		
+
 		boolean ret = userService.auth(userid, pwd);
 		
 		if(ret){
@@ -328,7 +356,7 @@ public class UserController {
 				outUser.setCode("SX" +new Date().getTime() );
 				
 				//默认密码
-				outUser.setPwd("111111");
+				outUser.setPwd(CryptographyUtil.md5("111111", "java1234"));
 				
 				userService.addUser(outUser);
 			} else {				

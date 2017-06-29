@@ -894,8 +894,15 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public boolean updateUser(OutUser sample) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		try {
+			outUserMapper.updateByPrimaryKeySelective(sample);
+		} catch (Exception e) {
+			return false;
+		}
+		
+		
+		return true;
 	}
 
 	@Override

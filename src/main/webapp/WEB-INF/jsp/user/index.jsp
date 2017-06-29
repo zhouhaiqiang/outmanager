@@ -85,6 +85,21 @@
 		});
 		$(obj).css("background-color","rgb(239, 236, 236)");
 	}
+	
+	
+	//登出
+	function logout(url){
+		if (window.confirm("确定登出?")) { 
+			self.location=url; 
+		}
+	}
+
+	//修改密码
+	function chgpwd(url){
+		window.open (url, "newwindow", "height=200, width=400, top=300,left=400, toolbar =no, menubar=no, scrollbars=no, resizable=no, location=no, status=no")
+				
+	}	
+	
 </script>
 <body>
 <input type="hidden" id="path" value="<%=path%>" />
@@ -97,11 +112,16 @@
 <div class="info" id="top_div_info">
 		<ul>
 			<li>
-				<span id='UserName'></span>
-			<img src="<%=path%>/talkweb/bpm_new/img/man.png" width="12" height="15" /><span id='UserName'>${userName}</span>
-			<span onclick="chgpwd();" style='cursor:pointer'>密码修改</span>	
-
-			</li>
+			<shiro:user>		
+			<img src="<%=path%>/talkweb/bpm_new/img/man.png" width="12" height="15" />
+			<span><shiro:principal property="name"/></span>
+			
+			<span> &nbsp;&nbsp; </span>
+            <span onclick="chgpwd('<%=path%>/user/chgpwd');" style='cursor:pointer'>密码修改</span>
+            <span> &nbsp;&nbsp; </span>           
+            <span onclick="logout('<%=path%>/user/logout');" style='cursor:pointer'>退出</span>
+			</shiro:user>
+		  
 
 		</ul>
 	</div>
@@ -112,28 +132,27 @@
 <!--导航 begin-->
 <div class="nav">
        <ul id="topnav">
-            <!-- 
-       		<li>
-           		<a id="a_1" onclick="getTree(1)" href="javascript:void(0);">首页</a>
-            </li>
-             -->
-             
+              
             <li>
            		<a id="a_2" onclick="getTree(2)" href="javascript:void(0);">业务管理</a>
             </li>
             <li>           		
            		<a id="a_3" onclick="getTree(3)" href="javascript:void(0);">业务活动管理</a>
             </li>
+            
+         <!-- 权限控制 --> 
+         <shiro:hasRole name="manager">
             <li>           		
            		<a id="a_4" onclick="getTree(4)" href="javascript:void(0);">报表平台管理</a>          		
             </li>
             <li>           		
            		<a id="a_5" onclick="getTree(5)" href="javascript:void(0);">常用文档</a>          	
             </li>
+
             <li>           		
            		<a id="a_6" onclick="getTree(6)" href="javascript:void(0);">系统管理</a>          	
             </li>            
-            
+          </shiro:hasRole> 
            
        </ul>
 </div>

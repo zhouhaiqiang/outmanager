@@ -38,7 +38,6 @@
 					return false;
 				}
 
-				alert(111);
 				$("#loginform").submit();
 				return true;
 			}
