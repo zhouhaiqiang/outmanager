@@ -142,9 +142,12 @@
             
          <!-- 权限控制 --> 
          <shiro:hasRole name="manager">
+            <!-- 
             <li>           		
            		<a id="a_4" onclick="getTree(4)" href="javascript:void(0);">报表平台管理</a>          		
             </li>
+            
+             -->
             <li>           		
            		<a id="a_5" onclick="getTree(5)" href="javascript:void(0);">常用文档</a>          	
             </li>
@@ -286,14 +289,18 @@
 								<a href='javascript:' id='menua_000' onclick='changemenucolor("menua_000");loadRightPage("业务管理","<%=path%>/common/blank.html","menua_000");showChild(id);'  href="javascript:">业务活动管理</a>
 							</h4>															                
 		                	<h4>
-								<a href='javascript:' id='menua_001' onclick='changemenucolor("menua_001");loadRightPage("外包公司信息管理","<%=path%>/common/blank.html","menua_001");showChild(id);'  href="javascript:">外包公司信息管理</a>
+								<a href='javascript:' id='menua_001' onclick='changemenucolor("menua_001");loadRightPage("人员业务活动","<%=path%>/common/blank.html","menua_001");showChild(id);'  href="javascript:">人员业务活动</a>
 							</h4>
 							<ul class="tag-list"  id="menua_001_1">
 								<li class="menuli" id="menu001" onclick="changClass('menu001')">
-									<a id='menua_001_01' onclick='loacalPage("外包公司信息维护","../data/company_list","menua_001_01")' href="javascript:">外包公司信息维护</a>
+									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属管理","../data/company_list","menua_001_01")' href="javascript:">人员业务活动归属管理</a>
 								</li>	
+								
 								<li class="tag-list" id="menua_001_2">	
-									<a id='menua_001_01' onclick='loacalPage("外包公司批量上传","../data/company_upload","menua_001_01")' href="javascript:">外包公司批量上传</a>
+									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属批量新增","../data/company_upload","menua_001_01")' href="javascript:">人员业务活动归属批量新增</a>
+								</li>									
+								<li class="tag-list" id="menua_001_3">	
+									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属批量导入","../data/company_upload","menua_001_01")' href="javascript:">人员业务活动归属批量导入</a>
 								</li>							
 							</ul>
 
@@ -342,8 +349,24 @@
 		            <div class="column-1 left">
 		                <div class="daibanleftmenu" id="menulist">
 		                	<h4 class="curr">
-								<a href='javascript:' id='menua_4_000' onclick='changemenucolor("menua_4_000");loadRightPage("系统管理","<%=path%>/common/blank.html","menua_000");'  href="javascript:">系统管理</a>
-							</h4>															                		                	
+								<a href='javascript:' id='menua_6_000' onclick='changemenucolor("menua_4_000");loadRightPage("系统管理","<%=path%>/common/blank.html","menua_000");'  href="javascript:">系统管理</a>
+							</h4>	
+
+							<ul class="tag-list"  id="menua_006_1">
+								<li class="menuli" id="menu001" onclick="changClass('menu001')">
+									<a id='menua_001_01' onclick='loacalPage("权限分配","../system/userlist","menua_001_01")' href="javascript:">权限分配</a>
+								</li>	
+								<li class="tag-list" id="menua_006_2">	
+									<a id='menua_001_01' onclick='loacalPage("用户职责批量导入","../data/company_upload","menua_001_01")' href="javascript:">用户职责批量导入</a>
+								</li>									
+								<li class="tag-list" id="menua_006_3">	
+									<a id='menua_001_01' onclick='loacalPage("用户职责批量导出","../data/company_upload","menua_001_01")' href="javascript:">用户职责批量导出</a>
+								</li>							
+							</ul>							
+							
+							
+							
+																					                		                	
 		                </div>
 		            </div>
 		        </div>		        

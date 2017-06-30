@@ -123,5 +123,52 @@ COMMENT ON COLUMN javaoas.T_OUT_DICT.name IS '显示名称';
 
 
 
+/* Build Table Structure */
+CREATE TABLE javaoas.T_OUT_DUTY
+(
+	Id VARCHAR2(50) NOT NULL,
+	name VARCHAR2(50) NOT NULL,
+	remark VARCHAR2(200) NOT NULL,
+	bak VARCHAR2(50)
+);
+/* Add Primary Key */
+ALTER TABLE javaoas.T_OUT_DUTY ADD CONSTRAINT pkT_OUT_DUTY
+	PRIMARY KEY (Id);
+
+/* Add Comments */
+COMMENT ON COLUMN javaoas.T_OUT_DUTY.Id IS 'ID';
+COMMENT ON COLUMN javaoas.T_OUT_DUTY.name IS '职务名称';
+COMMENT ON COLUMN javaoas.T_OUT_DUTY.remark IS '职务描述';
+COMMENT ON COLUMN javaoas.T_OUT_DUTY.bak IS 'bak';
+
+
+
+/* Build Table Structure */
+CREATE TABLE javaoas.T_OUT_DUTYMaping
+(
+	Id VARCHAR2(50) NOT NULL,
+	userid VARCHAR2(50) NOT NULL,
+	dutyid VARCHAR2(50) NOT NULL,
+	unitid VARCHAR2(50) NOT NULL,
+	selforg VARCHAR2(50) NOT NULL,
+	suborg VARCHAR2(50) NOT NULL,	
+	remark VARCHAR2(200) NOT NULL
+);
+/* Add Primary Key */
+ALTER TABLE javaoas.T_OUT_DUTYMaping ADD CONSTRAINT pkT_OUT_DUTYMaping
+	PRIMARY KEY (Id);
+
+/* Add Comments */
+COMMENT ON COLUMN javaoas.T_OUT_DUTYMaping.Id IS 'ID';
+COMMENT ON COLUMN javaoas.T_OUT_DUTYMaping.userid IS '用户id';
+COMMENT ON COLUMN javaoas.T_OUT_DUTYMaping.dutyid IS '职务id';
+COMMENT ON COLUMN javaoas.T_OUT_DUTYMaping.unitid IS '单位ID';
+COMMENT ON COLUMN javaoas.T_OUT_DUTYMaping.selforg IS '是否管理本单位';
+COMMENT ON COLUMN javaoas.T_OUT_DUTYMaping.suborg IS '是否管理子单位';
+COMMENT ON COLUMN javaoas.T_OUT_DUTYMaping.remark IS '描述';
+
+
+
+
 
 
