@@ -5,6 +5,7 @@ import java.util.List;
 import com.talkweb.ei.outmanager.model.KeyValue;
 import com.talkweb.ei.outmanager.model.TOutDict;
 import com.talkweb.ei.outmanager.model.TOutDictExample;
+import com.talkweb.ei.outmanager.model.TOutDuty;
 import com.talkweb.ei.outmanager.model.TreeNode;
 
 /**
@@ -45,6 +46,13 @@ public interface IDictory {
 	 * @return
 	 */
 	List<TreeNode> getAllUnit();	
+	
+
+	/**
+	 * 查找配置的职务信息
+	 * @return
+	 */
+	List<TOutDuty> getAllDuty();		
 	
 	
 

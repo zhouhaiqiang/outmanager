@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.talkweb.ei.outmanager.dao.OrgMapper;
 import com.talkweb.ei.outmanager.dao.TOutDictMapper;
+import com.talkweb.ei.outmanager.dao.TOutDutyMapper;
 import com.talkweb.ei.outmanager.model.KeyValue;
 import com.talkweb.ei.outmanager.model.TOutDict;
 import com.talkweb.ei.outmanager.model.TOutDictExample;
+import com.talkweb.ei.outmanager.model.TOutDuty;
 import com.talkweb.ei.outmanager.model.TreeNode;
 import com.talkweb.ei.outmanager.service.IDictory;
 
@@ -25,6 +27,10 @@ public class DictoryServiceImpl implements IDictory {
 	
 	@Autowired
 	private OrgMapper orgMapper;
+	
+	
+	@Autowired
+	private TOutDutyMapper tOutDutyMapper;//Ö°Îñ
 
 
 	@Override
@@ -54,6 +60,13 @@ public class DictoryServiceImpl implements IDictory {
 	@Cacheable(value="dictCache", key="#root.targetClass + #root.methodName")
 	public List<TreeNode> getAllUnit() {
 		return orgMapper.selectOrg();
+	}
+
+	@Override
+	@Cacheable(value="dictCache", key="#root.targetClass + #root.methodName")
+	public List<TOutDuty> getAllDuty() {
+	
+		return  tOutDutyMapper.selectByExample(null);
 	}
 
 }

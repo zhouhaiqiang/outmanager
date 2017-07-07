@@ -41,23 +41,7 @@ public class ConfigController {
 	
 	@Autowired
 	private IDictory iDictory;		
-	
-	
-	@Autowired
-	private OrgMapper orgMapper;
-	
-	
-	@Autowired
-	private OutUserMapper outUserMapper;	
-	
-	@Autowired
-	private EhCacheCacheManager cacheManager;
-	
-	
-	@Autowired
-	private TOutDutyMapper tOutDutyMapper;
-	
-	
+
 	// ajax json
 	@RequestMapping(value = "/companyjson", method = RequestMethod.GET, produces = {
 			"application/json; charset=utf-8" })
@@ -150,7 +134,7 @@ public class ConfigController {
 		
 		
 		//查全部的职务
-		List<TOutDuty> list = tOutDutyMapper.selectByExample(null);
+		List<TOutDuty> list = iDictory.getAllDuty();
 				
 		//构建返回值
 		PageResult ret = new PageResult(true,list,list.size());

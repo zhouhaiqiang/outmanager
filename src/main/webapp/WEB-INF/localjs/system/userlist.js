@@ -3,8 +3,6 @@
 $(function () {
 	
     //6.页面项目初始化部分
-	//初始下拉框
-	initdroplist($("#query_companyid"),"/outmanager/config/companyjson","","")
 	
 	
 	//选择公司查询条件
@@ -238,10 +236,7 @@ var ButtonInit = function () {
   	  
   	  //职务选择框
   	  initdroplist($("#duty"),"/outmanager/config/duty_json","","")
-  	  
-  	  
-  	  initdroplist($("#unit"),"/outmanager/config/companyjson","","")
-  	  
+  		  
   	  
   	  $('#editModal').modal("show");
   	  
@@ -267,13 +262,10 @@ var ButtonInit = function () {
           	  
           	  //职务选择框
           	  initdroplist($("#duty"),"/outmanager/config/duty_json",selects[0].duty,"")
-          	  
-          	  
-          	  
-          	  
+
           	  $('#unitid').val(selects[0].unitid);
           	  $('#unit').val(selects[0].unit);
-          	  initdroplist($("#unit"),"/outmanager/config/companyjson","","")
+          	
 
         	  $('#editModal').modal("show");
 
