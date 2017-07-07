@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,13 +13,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.talkweb.ei.di.common.PageResult;
 import com.talkweb.ei.outmanager.dao.OrgMapper;
 import com.talkweb.ei.outmanager.dao.OutUserMapper;
+import com.talkweb.ei.outmanager.dao.TOutDutyMapper;
 import com.talkweb.ei.outmanager.model.KeyValue;
 import com.talkweb.ei.outmanager.model.KeyValueObj;
 import com.talkweb.ei.outmanager.model.OutCompany;
-import com.talkweb.ei.outmanager.model.OutCompanyExample;
 import com.talkweb.ei.outmanager.model.OutContract;
-import com.talkweb.ei.outmanager.model.OutContractExample;
 import com.talkweb.ei.outmanager.model.TOutDict;
+import com.talkweb.ei.outmanager.model.TOutDuty;
 import com.talkweb.ei.outmanager.model.TreeNode;
 import com.talkweb.ei.outmanager.service.IDataService;
 import com.talkweb.ei.outmanager.service.IDictory;
@@ -53,6 +52,10 @@ public class ConfigController {
 	
 	@Autowired
 	private EhCacheCacheManager cacheManager;
+	
+	
+	@Autowired
+	private TOutDutyMapper tOutDutyMapper;
 	
 	
 	// ajax json
@@ -127,9 +130,35 @@ public class ConfigController {
 		PageResult ret = new PageResult(true,list,list.size());
 		System.out.println("----dirc------"+ret);
 		return ret;			
-	}	
+	}
 	
+	
+	
+	
+	
+	// ajax json
+	@RequestMapping(value = "/duty_json", method = RequestMethod.GET, produces = {
+			"application/json; charset=utf-8" })
+	@ResponseBody	
+
+	/**
+	 * 字典查询
+	 * @param lx
+	 * @return
+	 */
+	private PageResult getDuty(String lx){
 		
+		
+		//查全部的职务
+		List<TOutDuty> list = tOutDutyMapper.selectByExample(null);
+				
+		//构建返回值
+		PageResult ret = new PageResult(true,list,list.size());
+		System.out.println("----getDuty------"+ret);
+		return ret;			
+	}	
+		
+
 	
 	/**
 	 * 合同对象

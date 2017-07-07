@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.formula.functions.T;
 import org.slf4j.Logger;
@@ -23,13 +25,19 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.talkweb.ei.di.common.Const;
 import com.talkweb.ei.di.common.ExcelUtil;
+import com.talkweb.ei.di.common.JsonUtil;
 import com.talkweb.ei.di.common.PageResult;
+import com.talkweb.ei.outmanager.dao.TOutDutyMapper;
 import com.talkweb.ei.outmanager.dao.TOutDutymapingMapper;
 import com.talkweb.ei.outmanager.dao.VOutUserdutyMapper;
 import com.talkweb.ei.outmanager.model.OutUser;
 import com.talkweb.ei.outmanager.model.OutUserExample;
 import com.talkweb.ei.outmanager.model.OutUser_S;
+import com.talkweb.ei.outmanager.model.TOutDuty;
+import com.talkweb.ei.outmanager.model.TOutDutyExample;
+import com.talkweb.ei.outmanager.model.TOutDutymaping;
 import com.talkweb.ei.outmanager.model.TOutDutymapingExample;
+import com.talkweb.ei.outmanager.model.TOutGongzi;
 import com.talkweb.ei.outmanager.model.VOutUserduty;
 import com.talkweb.ei.outmanager.model.VOutUserdutyExample;
 import com.talkweb.ei.outmanager.service.IUserService;
@@ -50,7 +58,8 @@ public class SystemManagerController {
 	@Autowired
 	private TOutDutymapingMapper tOutDutymapingMapper;
 	
-	
+	@Autowired
+	private TOutDutyMapper tOutDutyMapper;
 	
 	
 	
@@ -149,6 +158,8 @@ public class SystemManagerController {
 	private PageResult getUserDutyList(String uid){
 				
 
+	    System.out.println("---取用户的职务信息-------"+uid);
+		
 		//构建条件
 		VOutUserdutyExample sample = new VOutUserdutyExample();
 		
@@ -163,7 +174,7 @@ public class SystemManagerController {
 		
 		//构建返回值
 		PageResult ret = new PageResult(true,list,Integer.parseInt(total+""));			
-		System.out.println("----------"+ret);	
+			
 		return ret;
 			
 	}	
@@ -306,6 +317,58 @@ public class SystemManagerController {
         return "/common/showmsg";
     } 	
 	
+    
+    
+      
+	/**
+	 * 添加或更新
+	 * @param jsonstr
+	 * @return
+	 */
+	@RequestMapping(value = "/duty_update", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody  
+    public String updateDuty(@RequestBody String jsonstr) {
+		
+		
+		logger.info("duty_update======="+jsonstr);   
+			
+		TOutDutymaping tOutGongzi = JsonUtil.gson.fromJson(jsonstr,TOutDutymaping.class);  
+		
+		if(tOutGongzi!=null){
+			
+			
+			//职务id填充
+			if(StringUtils.isEmpty(tOutGongzi.getDutyid())){
+				TOutDutyExample example = new TOutDutyExample();
+				TOutDutyExample.Criteria criteria = example.createCriteria();
+				
+				//只查询一个用户
+				criteria.andNameEqualTo(tOutGongzi.getRemark());
+				
+				List<TOutDuty> list = tOutDutyMapper.selectByExample(example);
+				
+				if(list!=null&&list.size()>0){
+					tOutGongzi.setDutyid(list.get(0).getId());
+				}
+				
+				
+			}
+			
+			//页面上没有ID说明是新增
+			if(StringUtils.isEmpty(tOutGongzi.getId())){
+				tOutGongzi.setId(UUID.randomUUID().toString());
+								
+				tOutDutymapingMapper.insert(tOutGongzi);
+			} else {				
+				tOutDutymapingMapper.updateByPrimaryKey(tOutGongzi);
+			}
+		}
+
+		return "OK";
+		
+    }     
+    
+    
     
 	@RequestMapping(value = "/duty_del", method = RequestMethod.POST)
     @ResponseBody  

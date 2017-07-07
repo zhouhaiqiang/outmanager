@@ -110,7 +110,7 @@
               
                
                <!-- userid -->
-               <input type="hidden" id="id" name="id">
+               <input type="hidden" id="uid" name="uid">
 
                <div class="tab-pane" id="pan2">
             	<!---------------------职责列表---------------------- -->
@@ -161,21 +161,38 @@
                
                <!-- userid 编辑的用户id -->
                <input type="hidden" id="userid" name="userid">
+               
+               <!-- map id -->
+               <input type="hidden" id="id" name="id">
 
                <table class="table table-bordered">
                
                  <tbody>
-                   <tr>
+ 
+                    <tr>
+                     <td class="active"> 
+                        <label class="control-label">职责名<span style="color:red">*</span></label>
+                    </td>
+                    <td>                  
+                        <select class="form-control selectpicker show-tick" data-live-search="true"  name="remark" id="duty" title="请选择 ...">                          	                          
+					   </select>
+                       <input type="hidden" class="form-control" id="dutyid" name="dutyid" >        
+                     </td>
+
+                   </tr> 
+ 
+ 
+             
                     <tr>
                      <td class="active"> 
                         <label class="control-label">组织名称<span style="color:red">*</span></label>
                     </td>
                     <td>                  
-                     <input type="text" class="form-control" id="unitid" name="unitid" readonly onclick="showMenu1(); return false;">
+                        <input type="text" class="form-control" id="unit" name="unit" readonly onclick="showMenu1(); return false;">
                         <div id="menuContent1" class="menuContent" style="display:none;z-index:9;position: fixed; left:1px;top:1px;">
 							<ul id="treeDemo1" class="ztree"></ul>
 					    </div>
-                                  
+                        <input type="hidden" class="form-control" id="unitid" name="unitid" >      
                      </td>
 
                    </tr>
@@ -186,9 +203,7 @@
                     </td>
                     <td>    
                     	<select class="form-control selectpicker show-tick"  name="selforg" id="selforg" title="请选择 ...">                          	     
-                         <option>是 </option>                        
-                         <option>否</option> 
-                                         
+                        
 					   </select>
                      </td>
                      
@@ -201,9 +216,7 @@
                     </td>
                     <td>                         
  						 <select class="form-control selectpicker show-tick"  name="suborg" id="suborg" title="请选择 ...">                          	     
-                         <option>是 </option>                        
-                         <option>否</option> 
-                                         
+                        
 					   </select>
                     </td>
                     
@@ -218,7 +231,13 @@
                               
               </form> 
   
-             </div>  
+             </div> 
+             <div class="modal-footer">  
+                   <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>  
+                   <button type="button" class="btn btn-danger" onclick="Ok_btn();">保存</button>  
+             </div>              
+             
+              
     
            </div>  
        </div>  

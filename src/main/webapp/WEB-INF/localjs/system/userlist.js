@@ -118,6 +118,54 @@ var TableInit = function () {
     };
     
 
+	//初始化人员职责列表（空表）
+    $('#tb_data2').bootstrapTable({
+        url: '/outmanager/system/userduyt_list_json?uid=xxxxx',         //请求后台的URL（*）
+        method: 'get',                      //请求方式（*）
+        toolbar: '#toolbar2',                //工具按钮用哪个容器
+        striped: false,                      //是否显示行间隔色
+        cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+        pagination: false,                   //是否显示分页（*）
+        sortable: false,                     //是否启用排序       
+        sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+        pageNumber:1,                       //初始化加载第一页，默认第一页
+        pageSize: 100,                       //每页的记录行数（*）
+        pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+        search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+        strictSearch: false,
+        showColumns: false,                  //是否显示所有的列
+        showRefresh: false,                  //是否显示刷新按钮
+        clickToSelect: false,                //是否启用点击选中行
+        height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+        uniqueId: "id",                     //每一行的唯一标识，一般为主键列
+        showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
+        cardView: false,                    //是否显示详细视图
+        detailView: false,                   //是否显示父子表
+        columns: [{
+            checkbox: true
+        },{
+            field: 'duty',
+            title: '职责名称'
+        },{
+            field: 'remark',
+            title: '职责描述'
+        },{
+            field: 'unit',
+            title: '组织名称'
+        },{
+            field: 'selforg',
+            title: '管理本单位'
+        },{
+            field: 'suborg',
+            title: '管理子单位'
+        }
+        
+        ]
+    });   
+    
+    
+    
+    
 
     //得到查询的参数
     oTableInit.queryParams = function (params) {
@@ -179,15 +227,59 @@ var ButtonInit = function () {
 
     $('#btn_add').click(function(){
 
-  	 
+  	  $('#id').val("");
+  	  $('#unitid').val("");
+  	  $('#unit').val("");
+  	  
+  	  //初始化控件
+  	  initdroplist($("#selforg"),"/outmanager/config/dict_json","是","通用是否")
+  	  
+  	  initdroplist($("#suborg"),"/outmanager/config/dict_json","是","通用是否")
+  	  
+  	  //职务选择框
+  	  initdroplist($("#duty"),"/outmanager/config/duty_json","","")
+  	  
+  	  
+  	  initdroplist($("#unit"),"/outmanager/config/companyjson","","")
+  	  
+  	  
   	  $('#editModal').modal("show");
+  	  
+  	  
         
      });
     
       // 编辑任务按钮点击事件
       $('#btn_edit').click(function(){
     	 
-  
+    	  var arr = $('#tb_data2').bootstrapTable('getSelections');          
+          if(arr.length==1){ 
+        
+        	  var selects = $.parseJSON(JSON.stringify(arr));
+        	
+        	  
+        	  $('#id').val(selects[0].id);
+
+          	  //初始化控件
+          	  initdroplist($("#selforg"),"/outmanager/config/dict_json",selects[0].selforg,"通用是否")
+          	  
+          	  initdroplist($("#suborg"),"/outmanager/config/dict_json",selects[0].suborg,"通用是否")
+          	  
+          	  //职务选择框
+          	  initdroplist($("#duty"),"/outmanager/config/duty_json",selects[0].duty,"")
+          	  
+          	  
+          	  
+          	  
+          	  $('#unitid').val(selects[0].unitid);
+          	  $('#unit').val(selects[0].unit);
+          	  initdroplist($("#unit"),"/outmanager/config/companyjson","","")
+
+        	  $('#editModal').modal("show");
+
+          } else {
+              alert("请选择要编辑的记录！");
+          } 
       });
     
       // 删除任务按钮点击事件
@@ -291,7 +383,9 @@ function updaterecode (url,jsonstr) {
 			  alert("处理成功");
 			  
 			  //刷新
-			  refreshtab();
+			  //refreshtab();
+			  
+			  refreshduty($('#uid').val());
 		  },
 		  
 		  
@@ -315,6 +409,7 @@ function refreshtab(){
 
 //刷新职务
 function refreshduty(uid){
+
 	$('#tb_data2').bootstrapTable(  
             "refresh",  
             {   
@@ -327,51 +422,18 @@ function refreshduty(uid){
 
 //show modal
 function openml(uid){
-       	
-	//取用户职务信息
-    $('#tb_data2').bootstrapTable({
-        url: '/outmanager/system/userduyt_list_json?uid='+uid,         //请求后台的URL（*）
-        method: 'get',                      //请求方式（*）
-        toolbar: '#toolbar2',                //工具按钮用哪个容器
-        striped: false,                      //是否显示行间隔色
-        cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-        pagination: false,                   //是否显示分页（*）
-        sortable: false,                     //是否启用排序       
-        sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
-        pageNumber:1,                       //初始化加载第一页，默认第一页
-        pageSize: 100,                       //每页的记录行数（*）
-        pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-        search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-        strictSearch: false,
-        showColumns: false,                  //是否显示所有的列
-        showRefresh: false,                  //是否显示刷新按钮
-        clickToSelect: false,                //是否启用点击选中行
-        height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-        uniqueId: "id",                     //每一行的唯一标识，一般为主键列
-        showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
-        cardView: false,                    //是否显示详细视图
-        detailView: false,                   //是否显示父子表
-        columns: [{
-            checkbox: true
-        },{
-            field: 'duty',
-            title: '职责名称'
-        },{
-            field: 'remark',
-            title: '职责描述'
-        },{
-            field: 'unit',
-            title: '组织名称'
-        },{
-            field: 'selforg',
-            title: '管理本单位'
-        },{
-            field: 'suborg',
-            title: '管理子单位'
-        }
-        
-        ]
-    });	
+	
+		
+	//选定用户	
+	//列表
+	$('#uid').val(uid);
+	//职务编辑
+	$('#userid').val(uid);
+ 	
+
+    
+    //强制刷新
+    refreshduty(uid);
 	
 	$('#myModal').modal("show"); 
 }
@@ -470,10 +532,10 @@ function Ok_btn(){
     var jsonstr =  JSON.stringify(jsonuserinfo);  
 	
     //调用后台
-	updaterecode("/outmanager/user/user_update",jsonstr);
+	updaterecode("/outmanager/system/duty_update",jsonstr);
 	
 	//提交数据到后台	
-	$('#myModal').modal("hide");
+	$('#editModal').modal("hide");
 	
 }
 
@@ -629,13 +691,19 @@ var setting1 = {
 		var zTree = $.fn.zTree.getZTreeObj("treeDemo1"),
 		nodes = zTree.getSelectedNodes(),
 		v = "";
+		id = "";
 		nodes.sort(function compare(a,b){return a.id-b.id;});
 		for (var i=0, l=nodes.length; i<l; i++) {
-			v += nodes[i].name + ",";
+			v += nodes[i].name + ",";		
+			id += nodes[i].id + ",";
+		
 		}
 		if (v.length > 0 ) v = v.substring(0, v.length-1);
-		var cityObj = $("#unit");
-		cityObj.attr("value", v);
+		if (id.length > 0 ) id = id.substring(0, id.length-1);
+
+		$("#unit").val(v);
+		$("#unitid").val(id);
+
 	}	
 	
 
@@ -647,12 +715,14 @@ var setting1 = {
 		$("body").bind("mousedown", onBodyDown);
 	}
 	
+	
 	function showMenu1() {
 		var cityObj = $("#unit");
+	
 		var cityOffset = cityObj.offset();
 		
 		
-		var newleft=cityOffset.left-160;
+		var newleft=cityOffset.left-365;
 		
 		var newtop=cityOffset.top-40;
 
