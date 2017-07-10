@@ -152,17 +152,18 @@ public class UserController {
 		boolean ret = userService.auth(userid, pwd);
 		
 		if(ret){
-			
-			// 设置登录信息
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put(Const.SESSION_USER, userid);
-			
-			String userName = outUserMapper.selectByPrimaryKey(userid).getName();
-			map.put(Const.SESSION_NAME, userName);
-			insertLoginInfo(request, map);
-			
-			modelMap.addAttribute("userName", userName);
+
+			//检查session信息
+			Iterator<Object> atts = SecurityUtils.getSubject().getSession().getAttributeKeys().iterator();						
+		    while (atts.hasNext()) {
+				String key = (String)atts.next();
+				
+				System.out.println(key+"=key==========value="+SecurityUtils.getSubject().getSession().getAttribute(key));
+				
+			}			
+
 			return "user/index";
+
 		}
 		
 //		Result result = new Result();
@@ -171,7 +172,6 @@ public class UserController {
 //		model.("result",result);
 		modelMap.addAttribute("msg", "用户密码认证失败!");
 
-		
 		return "user/login";
 	}	
 	
