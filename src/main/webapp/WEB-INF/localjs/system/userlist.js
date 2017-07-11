@@ -318,20 +318,15 @@ var ButtonInit = function () {
 
 //导出对账信息
 function doExport() {
-          
-	var datatype = $('#datatype').val();
+   
 	
-	if(datatype==""){
-		alert("请选择导出数据类型！");
-		return;
-	}
     var bool = window.confirm("导出有点慢，确定导出吗？");
     
     if(!bool){            
         return;
     }       
     
-    var url="/outmanager/user/export?type="+datatype;
+    var url="/outmanager/system/export";
     window.open(url,'','toolbar=yes,menubar=yes,resizable=yes,location=yes,status=yes,scrollbars=yes');
     setTimeout("focus();",5); 
            

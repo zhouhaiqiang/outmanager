@@ -134,7 +134,7 @@
        <ul id="topnav">
               
             <li>
-           		<a id="a_2" onclick="getTree(2)" href="javascript:void(0);">业务管理</a>
+           		<a id="a_2" onclick="getTree(2)" href="javascript:void(0);">业务管理  </a>
             </li>
             <li>           		
            		<a id="a_3" onclick="getTree(3)" href="javascript:void(0);">业务活动管理</a>
@@ -413,11 +413,9 @@
 									<a id='menua_001_01' onclick='loacalPage("权限分配","../system/userlist","menua_001_01")' href="javascript:">权限分配</a>
 								</li>	
 								<li class="tag-list" id="menua_006_2">	
-									<a id='menua_001_01' onclick='loacalPage("用户职责批量导入","../data/company_upload","menua_001_01")' href="javascript:">用户职责批量导入</a>
-								</li>									
-								<li class="tag-list" id="menua_006_3">	
-									<a id='menua_001_01' onclick='loacalPage("用户职责批量导出","../data/company_upload","menua_001_01")' href="javascript:">用户职责批量导出</a>
-								</li>							
+									<a id='menua_001_01' onclick='loacalPage("用户职责批量导入","../system/dutyupload","menua_001_01")' href="javascript:">用户职责批量导入</a>
+								</li>	
+																					
 							</ul>							
 							
 							

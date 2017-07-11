@@ -21,15 +21,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.talkweb.ei.di.common.Const;
 import com.talkweb.ei.di.common.ExcelUtil;
 import com.talkweb.ei.di.common.JsonUtil;
 import com.talkweb.ei.di.common.PageResult;
+import com.talkweb.ei.di.common.ViewExcel;
 import com.talkweb.ei.outmanager.dao.TOutDutyMapper;
 import com.talkweb.ei.outmanager.dao.TOutDutymapingMapper;
 import com.talkweb.ei.outmanager.dao.VOutUserdutyMapper;
+import com.talkweb.ei.outmanager.model.OutCompany;
+import com.talkweb.ei.outmanager.model.OutCompanyExample;
 import com.talkweb.ei.outmanager.model.OutUser;
 import com.talkweb.ei.outmanager.model.OutUserExample;
 import com.talkweb.ei.outmanager.model.OutUser_S;
@@ -40,6 +45,7 @@ import com.talkweb.ei.outmanager.model.TOutDutymapingExample;
 import com.talkweb.ei.outmanager.model.TOutGongzi;
 import com.talkweb.ei.outmanager.model.VOutUserduty;
 import com.talkweb.ei.outmanager.model.VOutUserdutyExample;
+import com.talkweb.ei.outmanager.model.OutCompanyExample.Criteria;
 import com.talkweb.ei.outmanager.service.IUserService;
 
 
@@ -398,7 +404,81 @@ public class SystemManagerController {
 		return "OK";
 		
     } 
-    
+	
+	
+	
+	
+	
+	
+	/**
+	 * 导出公司信息到excel
+	 * @param type
+	 * @param unit
+	 * @param name
+	 * @return
+	 */
+	@RequestMapping(value = "/export", method = RequestMethod.GET)
+	private ModelAndView exportUserDutys(ModelMap model,String unit,String uid){
+		
+
+		//构建条件
+		VOutUserdutyExample sample = new VOutUserdutyExample();
+		
+		VOutUserdutyExample.Criteria criteria = sample.createCriteria();
+		
+		if(StringUtils.isNotEmpty(unit)){
+			criteria.andUnitidEqualTo(unit);
+		}
+		
+		if(StringUtils.isNotEmpty(uid)){
+			criteria.andUseridEqualTo(uid);
+		}
+		
+		sample.setOrderByClause("userid asc");
+
+		List<VOutUserduty> list = vOutUserdutyMapper.selectByExample(sample);
+		
+        //varList 数据（二维数据）
+        List<List> varList =  new ArrayList<List>();
+        List<String> line;
+		for (VOutUserduty company:list) {
+			 line = new ArrayList<String>();
+
+			 line.add("");			 
+	         line.add(company.getName());
+	         line.add(company.getUserid());
+	         line.add(company.getDuty());
+	         line.add("是");
+	         line.add(company.getId());
+        
+	         varList.add(line);
+		}
+		
+		
+		
+		//titles  列标题
+        List<String> titles = new ArrayList<String>();
+        
+        //基本信息
+        titles.add("操作模式");
+        titles.add("姓名");
+        titles.add("员工编号");
+        titles.add("职责");
+        titles.add("控制值");
+        titles.add("校验码");
+        
+        
+
+        //数据传递
+        model.put("name", "用户职责"); 
+        model.put("titles", titles); 
+        model.put("varList", varList);
+        ViewExcel viewExcel = new ViewExcel();    
+        return new ModelAndView(viewExcel, model);   
+	
+			
+	}	
+	
 
 	
 	/**********************************业务接口*****************************end*********/

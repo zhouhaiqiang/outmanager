@@ -48,7 +48,7 @@ function submitExcel(){
 <body>
     <div class="panel-body" style="padding-bottom:0px;width:95%;font-size:12px">
         <div class="panel panel-default">
-            <div class="panel-heading">外包人员信息批量导入</div>
+            <div class="panel-heading">用户职责批量导入</div>
             <div class="panel-body">
                <form  id="fileUpload" action="/outmanager/user/import" method="post" enctype="multipart/form-data">
                     <div class="form-group" style="margin-top:15px">
@@ -62,7 +62,7 @@ function submitExcel(){
 					
 					         <br>
 					         <font color='red'>
-					             注意：只支持excle文件格式!<a href='/outmanager/filemodel/外包人员维护模板.xls' target='_blank'>模板下载</a>
+					             注意：只支持excle文件格式!<a href='/outmanager/filemodel/用户职责导入模板.xls' target='_blank'>模板下载</a>
 					         </font>
 					         
 					         
