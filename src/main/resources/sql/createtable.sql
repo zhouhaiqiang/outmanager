@@ -170,5 +170,68 @@ COMMENT ON COLUMN javaoas.T_OUT_DUTYMaping.remark IS '描述';
 
 
 
+-- Create table
+create table T_OUT_ACTION
+(
+  ID        VARCHAR2(50) not null,
+  USERID    VARCHAR2(50) not null,
+  YWLINE    VARCHAR2(50) not null,
+  YWACTION  VARCHAR2(50) not null,
+  STARTDATE DATE default sysdate not null,
+  ENDDATE   DATE,
+  ISCB      VARCHAR2(50) default '是' not null,
+  REMARK    VARCHAR2(200)
+)
+tablespace DATA1
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the table 
+comment on table T_OUT_ACTION
+  is '业务活动';
+-- Add comments to the columns 
+comment on column T_OUT_ACTION.ID
+  is 'ID';
+comment on column T_OUT_ACTION.USERID
+  is '用户id';
+comment on column T_OUT_ACTION.YWLINE
+  is '业务线';
+comment on column T_OUT_ACTION.YWACTION
+  is '业务活动';
+comment on column T_OUT_ACTION.STARTDATE
+  is '开始日期';
+comment on column T_OUT_ACTION.ENDDATE
+  is '结束日期';
+comment on column T_OUT_ACTION.ISCB
+  is '是否计入成本';
+comment on column T_OUT_ACTION.REMARK
+  is '备注';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table T_OUT_ACTION
+  add constraint PKT_OUT_ACTION primary key (ID)
+  using index 
+  tablespace DATA1
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table T_OUT_ACTION
+  add constraint FKT_OUT_ACTION foreign key (USERID)
+  references T_OUT_USER (ID);
+
+
+
+
 
 
