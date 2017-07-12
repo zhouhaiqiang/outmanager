@@ -344,12 +344,17 @@
 								</shiro:hasAnyRoles>	
 								
 								<shiro:hasAnyRoles name="系统管理员,人员业务活动管理">
+								
+								<!--  暂时不做
 								<li class="tag-list" id="menua_001_2">	
 									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属批量新增","../action/padd","menua_001_01")' href="javascript:">人员业务活动归属批量新增</a>
-								</li>	
+								</li>
+								 -->
+									
 								<li class="tag-list" id="menua_001_2">	
 									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属批量创建","../action/pcreate","menua_001_01")' href="javascript:">人员业务活动归属批量新增</a>
-								</li>									
+								</li>	
+																
 								</shiro:hasAnyRoles>
 								
 								<shiro:hasAnyRoles name="系统管理员,人员业务活动管理">								

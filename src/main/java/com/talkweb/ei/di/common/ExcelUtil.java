@@ -64,6 +64,11 @@ public class ExcelUtil
     //集体费用模板列数
     public static final int HY_COL_NUM_JT = 12;
     
+    //人员活动模板列数
+    public static final int ACTION_COL_NUM = 9;
+    
+    
+    
     /**
      * 读取excel 的第一sheet 的第一列（手机号码）
      * @param filePath

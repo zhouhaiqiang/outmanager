@@ -50,26 +50,18 @@ function submitExcel(){
         <div class="panel panel-default">
             <div class="panel-heading">外包费用批量导入</div>
             <div class="panel-body">
-               <form  id="fileUpload" action="/outmanager/gongzi/grimport" method="post" enctype="multipart/form-data">
+               <form  id="fileUpload" action="/outmanager/action/actionimport" method="post" enctype="multipart/form-data">
                     <div class="form-group" style="margin-top:15px">
                         
                         <div class="col-sm-5">
                           
-					        <br>
-					        
-					        <select class="control-label col-sm-5" id="modeltype" name="modeltype">
-						        <option value='0'>外包人员费用信息</option>
-						        <option value='1'>外包集体费用信息</option>
-					        </select>
-					       			  
-							<br>
-							<br>               
+					              
 					        <label class="control-label col-sm-3" for="txt_search_departmentname">选择文件：</label> 
 					        <input type="file"  id="excelFile" name="excelFile" size=50>
 					
 					         <br>
 					         <font color='red'>
-					                  	注意：只支持excle文件格式!<a href='/outmanager/filemodel/外包人员维护模板.xls' target='_blank'>模板下载</a>
+					                  	注意：只支持excle文件格式!<a href='/outmanager/filemodel/人员业务活动模板.xls' target='_blank'>模板下载</a>
 					         </font>
 					         
 					         

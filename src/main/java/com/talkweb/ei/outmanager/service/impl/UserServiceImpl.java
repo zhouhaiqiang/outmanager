@@ -873,8 +873,11 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public List<OutUser> getUserList(OutUserExample sample) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		long count = outUserMapper.countByExample(sample);
+		sample.setLimit(Integer.parseInt(count+""));
+		sample.setOffset(1);
+		return outUserMapper.selectPageByExample(sample);	
 	}
 
 	@Override

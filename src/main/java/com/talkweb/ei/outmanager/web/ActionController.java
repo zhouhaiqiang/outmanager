@@ -65,7 +65,9 @@ import com.talkweb.ei.outmanager.model.VOutUseraction;
 import com.talkweb.ei.outmanager.model.VOutUseractionExample;
 import com.talkweb.ei.outmanager.model.VOutUsergz;
 import com.talkweb.ei.outmanager.model.VOutUsergzExample;
+import com.talkweb.ei.outmanager.service.IActionService;
 import com.talkweb.ei.outmanager.service.IUserGz;
+import com.talkweb.ei.outmanager.service.IUserService;
 
 /**
  * 用户管理的信息操作
@@ -84,23 +86,15 @@ public class ActionController {
 	@Autowired
 	private TOutActionMapper tOutActionMapper;
 
+	@Autowired
+	private IUserService userService;
 	
 	@Autowired
-	private IUserGz iUserGz;
+	private IActionService actionService;	
 	
 	
-	
-
-	@Autowired
-	private TOutGongziMapper tOutGongziMapper;	
-	
-	@Autowired
-	private TOutJthyMapper tOutJthyMapper;		
 
 	/**********************************业务接口***************************start***********/
-	
-	
-	
 	
 	/**
 	 * 列表
@@ -197,7 +191,7 @@ public class ActionController {
 	 */
 	@RequestMapping(value = "/update", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody  
-    public String updateGrgongzi(@RequestBody String jsonstr) {
+    public String updateAction(@RequestBody String jsonstr) {
 		
 		
 		logger.info("action_update======="+jsonstr);   
@@ -224,9 +218,44 @@ public class ActionController {
     } 
 	
 	
+	/**
+	 * 添加或更新
+	 * @param jsonstr
+	 * @return
+	 */
+	@RequestMapping(value = "/pcreateaction", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody  
+    public String pcreateaction(@RequestBody String jsonstr) {
+		
+		
+		logger.info("pcreateaction======="+jsonstr);   
+			
+		VOutUseraction userAction = JsonUtil.gson.fromJson(jsonstr,VOutUseraction.class); 
+		
+		boolean ret = false;
+		
+		if(userAction!=null){
+			
+			//查找单位下的人员			
+			OutUserExample sample = new OutUserExample();			
+			OutUserExample.Criteria criteria = sample.createCriteria();			
+			criteria.andUnitEqualTo(userAction.getUnit());
+			
+			List<OutUser> list = userService.getUserList(sample);
+
+			//添加活动
+			ret = actionService.pCreateAction(list, userAction);
+		}
+		
+		if(ret){
+			return "批量添加用户活动成功！";
+		} else {	
+			return "批量添加用户活动失败！";
+		}
 	
+    }	
 	
-	
+
 
 	
 	/**
@@ -236,12 +265,12 @@ public class ActionController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/grimport")
+    @RequestMapping(value = "/actionimport")
     
     //事务开启
     //@Transactional 
-    public String grimport(
-            @RequestParam(value = "excelFile", required = false) MultipartFile file, @RequestParam("modeltype") String modeltype, ModelMap model)
+    public String actionImport(
+            @RequestParam(value = "excelFile", required = false) MultipartFile file, ModelMap model)
     {
     	
         // 创建根路径的保存变量
@@ -276,13 +305,9 @@ public class ActionController {
         List<String> exlValues;
         boolean ret =  false;
         //读取数据和导入到db
-        if("0".equals(modeltype)){
-        	exlValues = ExcelUtil.readFileExcel(rootPath+fileName,0,5,ExcelUtil.MAXEXPORTNUM+5,ExcelUtil.HY_COL_NUM_GR);
-        	ret = iUserGz.importGrhy(exlValues);
-        } else {
-        	exlValues = ExcelUtil.readFileExcel(rootPath+fileName,1,5,ExcelUtil.MAXEXPORTNUM+5,ExcelUtil.HY_COL_NUM_JT);
-        	ret = iUserGz.importJthy(exlValues);
-        }
+
+        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,0,1,ExcelUtil.MAXEXPORTNUM+1,ExcelUtil.ACTION_COL_NUM);
+        ret = actionService.importAction(exlValues);
 
         String result = "导入成功！";
 
