@@ -3,10 +3,16 @@ package com.talkweb.ei.outmanager.web;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.formula.functions.T;
 import org.slf4j.Logger;
@@ -33,6 +39,7 @@ import com.talkweb.ei.di.common.ViewExcel;
 import com.talkweb.ei.outmanager.dao.TOutDutyMapper;
 import com.talkweb.ei.outmanager.dao.TOutDutymapingMapper;
 import com.talkweb.ei.outmanager.dao.VOutUserdutyMapper;
+import com.talkweb.ei.outmanager.model.DocBean;
 import com.talkweb.ei.outmanager.model.OutCompany;
 import com.talkweb.ei.outmanager.model.OutCompanyExample;
 import com.talkweb.ei.outmanager.model.OutUser;
@@ -84,13 +91,14 @@ public class SystemManagerController {
 		return "/system/userlist";
 	}	
 	
+
 	
-	@RequestMapping(value = "/dutylist", method = RequestMethod.GET)
+	
+	
+	@RequestMapping(value = "/doclist", method = RequestMethod.GET)
 	private String dutylist(Model model,String id) {
-		
-		OutUser user = userService.getUser(id);		
-		model.addAttribute("user", user);			
-		return "user/userinfo";
+	
+		return "system/doclist";
 	}	
 	
 
@@ -216,7 +224,47 @@ public class SystemManagerController {
 	
 	
 	
-	
+	/**
+	 * 常用文档列表
+	 * @param limit
+	 * @param offset
+	 * @return
+	 */
+	@RequestMapping(value = "/doc_list_json", method = RequestMethod.GET, produces = {
+	"application/json; charset=utf-8" })
+	@ResponseBody	
+	private PageResult getDocList(int limit, int offset,HttpSession session){
+				
+
+		//根目录的时间路径
+		String realPath = session.getServletContext().getRealPath("/");
+		
+		//模板路基
+		realPath +="/filemodel";
+		
+		List<DocBean> list = new ArrayList<DocBean>();
+		
+		
+		//列出目录下的所有文件
+		Collection<File> collection = FileUtils.listFiles(new File(realPath), new String[]{"xls","doc"}, true);
+		
+		File file;
+		DocBean docBean;
+		for (Iterator iterator = collection.iterator(); iterator.hasNext();) {
+			file = (File) iterator.next();
+			docBean = new DocBean();
+			docBean.setName(file.getName());
+			docBean.setUrl("/outmanager/filemodel/"+file.getName());
+			
+			list.add(docBean);
+		}
+		
+		//构建返回值
+		PageResult ret = new PageResult(true,list,collection.size());			
+		System.out.println("----------"+ret);	
+		return ret;
+			
+	}	
 
 	
 	/**

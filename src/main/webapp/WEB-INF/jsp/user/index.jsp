@@ -150,11 +150,12 @@
              -->
              
              
-        <shiro:hasRole name="外包信息附件查询岗">     
+       
+        <shiro:hasAnyRoles name="系统管理员,外包信息附件查询岗">    
             <li>           		
            		<a id="a_5" onclick="getTree(5)" href="javascript:void(0);">常用文档</a>          	
             </li>           
-        </shiro:hasRole>
+        </shiro:hasAnyRoles>
 
 		             
         <shiro:hasRole name="系统管理员">       
@@ -402,7 +403,25 @@
 		                <div class="daibanleftmenu" id="menulist">
 		                	<h4 class="curr">
 								<a href='javascript:' id='menua_4_000' onclick='changemenucolor("menua_4_000");loadRightPage("常用文档","<%=path%>/common/blank.html","menua_000");'  href="javascript:">常用文档</a>
-							</h4>															                		                	
+							</h4>	
+							
+							<ul class="tag-list"  id="menua_4_000_1">
+								<li class="menuli" id="menu001" onclick="changClass('menu001')">
+									<a id='menua_004_01' onclick='loacalPage("常用文档","../system/doclist","menua_001_01")' href="javascript:">常用文档</a>
+								</li>	
+							
+																					
+							</ul>							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+																					                		                	
 		                </div>
 		            </div>
 		        </div>	
