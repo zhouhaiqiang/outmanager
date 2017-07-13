@@ -10,5 +10,9 @@ public interface OrgMapper {
     List<TreeNode> selectOrg();
     
     List<KeyValue> selectUser(String companyid);
+
+    List<TreeNode> getSubOrgByName(String name);
+    
+    List<TreeNode> getSubOrgByID(String orgid);
     
 }

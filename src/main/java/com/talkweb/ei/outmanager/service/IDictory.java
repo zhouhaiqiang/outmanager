@@ -52,7 +52,22 @@ public interface IDictory {
 	 * 查找配置的职务信息
 	 * @return
 	 */
-	List<TOutDuty> getAllDuty();		
+	List<TOutDuty> getAllDuty();	
+	
+	
+	
+	/**
+	 * 查找给定组织下的所有组织连成组织名 返回格式：/xxxx/xxxx/xxxxx/
+	 * @return
+	 */
+	String getUnitNameByName(String name);
+	
+	/**
+	 * 查找给定组织下的所有组织连成组织名 返回格式：/xxxx/xxxx/xxxxx/
+	 * @return
+	 */
+	String getUnitNameById(String orgid );	
+	
 	
 	
 

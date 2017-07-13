@@ -251,8 +251,10 @@
             </div>
             <div class="tab-pane" id="pan2">
             	<!---------------------分配信息---------------------- -->
-            			
+            		<shiro:hasAnyRoles name="系统管理员,外包人员信息维护岗">	
 			        <div id="toolbar2" class="btn-group">
+			        
+			         
 			            <button id="btn_add" type="button" class="btn btn-default" onclick="addact(2);">
 			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 			            </button>
@@ -266,6 +268,7 @@
 			            </button>
 
 			        </div>
+			        </shiro:hasAnyRoles>
 			        <table id="tb_data2"></table>
   	
             	<!---------------------分配信息---------------------- -->
@@ -274,7 +277,7 @@
             
             <div class="tab-pane" id="pan3">
             	<!---------------------教育信息---------------------- -->
-            	
+            		<shiro:hasAnyRoles name="系统管理员,外包人员信息维护岗">
 					<div id="toolbar3" class="btn-group">
 			            <button id="btn_add" type="button" class="btn btn-default" onclick="addact(3);">
 			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
@@ -289,6 +292,7 @@
 			            </button>
 
 			        </div>
+			        </shiro:hasAnyRoles>
 			        <table id="tb_data3"></table>          	
             	
             	
@@ -298,7 +302,7 @@
             
             <div class="tab-pane" id="pan4">           
              	<!---------------------技能信息---------------------- -->
-             	
+             		<shiro:hasAnyRoles name="系统管理员,外包人员信息维护岗">
 			        <div id="toolbar4" class="btn-group">
 			            <button id="btn_add" type="button" class="btn btn-default" onclick="addact(4);">
 			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
@@ -313,13 +317,15 @@
 			            </button>
 
 			        </div>
+			        
+			        </shiro:hasAnyRoles>
 			        <table id="tb_data4"></table>             	
              	
              	<!--------------------技能信息---------------------- -->
             </div>            
             <div class="tab-pane" id="pan5">           
              	<!---------------------专业技术信息---------------------- -->
-             	
+             	<shiro:hasAnyRoles name="系统管理员,外包人员信息维护岗">
  			        <div id="toolbar5" class="btn-group">
 			            <button id="btn_add" type="button" class="btn btn-default" onclick="addact(5);">
 			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
@@ -334,6 +340,7 @@
 			            </button>
 
 			        </div>
+			        </shiro:hasAnyRoles>
 			        <table id="tb_data5"></table>            	
              	
              	<!--------------------专业技术信息---------------------- -->
@@ -342,6 +349,7 @@
             <div class="tab-pane" id="pan6">  
             	<!---------------------劳动信息---------------------- -->
             	
+            	<shiro:hasAnyRoles name="系统管理员,外包人员信息维护岗">
  			        <div id="toolbar6" class="btn-group">
 			            <button id="btn_add" type="button" class="btn btn-default" onclick="addact(6);">
 			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
@@ -356,6 +364,7 @@
 			            </button>
 
 			        </div>
+			        </shiro:hasAnyRoles>
 			        <table id="tb_data6"></table>           	
             	
             	<!---------------------劳动信息---------------------- -->         
@@ -364,7 +373,7 @@
             
             <div class="tab-pane" id="pan7">           
              	<!---------------------解除关系信息---------------------- -->
-             	
+             	<shiro:hasAnyRoles name="系统管理员,外包人员信息维护岗">
              		<div id="toolbar7" class="btn-group">
 			            <button id="btn_add" type="button" class="btn btn-default" onclick="addact(7);">
 			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
@@ -379,6 +388,7 @@
 			            </button>
 
 			        </div>
+			        </shiro:hasAnyRoles>
 			        <table id="tb_data7"></table>
              	<!---------------------解除关系信息---------------------- -->
             </div>                        

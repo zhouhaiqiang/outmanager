@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ import com.talkweb.ei.outmanager.model.OutCompanyExample.Criteria;
 import com.talkweb.ei.outmanager.model.OutContract;
 import com.talkweb.ei.outmanager.model.OutContractExample;
 import com.talkweb.ei.outmanager.service.IDataService;
+import com.talkweb.ei.outmanager.service.IDictory;
 import com.talkweb.ei.outmanager.service.IUserService;
 
 
@@ -56,6 +58,10 @@ public class DataController {
 	//业务操作一般通过服务来实现
 	@Autowired
 	private IDataService IDataService;	
+	
+	
+	@Autowired
+	private IDictory iDictory;	
 	
 	
 	@RequestMapping(value = "/company_list", method = RequestMethod.GET)
@@ -157,9 +163,43 @@ public class DataController {
 		if(StringUtils.isNotEmpty(type)){
 			criteria.andConTypeEqualTo(type);
 		}
-		if(StringUtils.isNotEmpty(unit)){
-			criteria.andUnitLike("%"+unit+"%");
+		
+		
+		//数据权限控制
+		//维护或者查询刚都能处理		
+		String opt_orgid = (String)SecurityUtils.getSubject().getSession().getAttribute("外包合同信息维护岗");		
+		if(StringUtils.isEmpty(opt_orgid)) opt_orgid = (String)SecurityUtils.getSubject().getSession().getAttribute("外包合同信息查询岗");
+		
+		if(StringUtils.isNotEmpty(opt_orgid)&&!opt_orgid.equals("14")){
+			
+			opt_orgid = iDictory.getUnitNameById(opt_orgid);
+			if(opt_orgid!=null&&opt_orgid.length()>2000){				
+				opt_orgid = opt_orgid.substring(0, 2000);				
+			}
+			criteria.andUnitRECLike(opt_orgid);
+			
 		}
+		
+
+		if(StringUtils.isNotEmpty(unit)){
+			
+			unit = iDictory.getUnitNameByName(unit);
+			
+			if(unit!=null&&unit.length()>2000){				
+				unit = unit.substring(0, 2000);				
+			}
+
+			//包括子单位
+			//criteria.andUnitLike("%"+unit+"%");
+			criteria.andUnitRECLike(unit);
+		}		
+	
+		
+		
+		
+		
+		
+		
 		if(StringUtils.isNotEmpty(name)){
 			criteria.andNameLike("%"+name+"%");
 		}

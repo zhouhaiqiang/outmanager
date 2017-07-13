@@ -30,6 +30,9 @@
   
 <script src="../localjs/user/list.js"></script>
 
+<!-- 引入标签文件 -->
+<%@include file="../common/tag.jsp" %>
+
 
 </head>
 
@@ -123,6 +126,8 @@
               
 		<!--------------------- 列表区域---------------------- -->
         <div id="toolbar" class="btn-group">
+        
+        <shiro:hasAnyRoles name="系统管理员,外包人员信息维护岗">	
             <button id="btn_add" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
             </button>
@@ -133,7 +138,8 @@
              -->
             <button id="btn_delete" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
-            </button>
+            </button>            
+        </shiro:hasAnyRoles>
             
             <button id="btn_export" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出

@@ -60,6 +60,7 @@ import com.talkweb.ei.outmanager.model.TOutUserJyinfo;
 import com.talkweb.ei.outmanager.model.TOutUserJyinfoExample;
 import com.talkweb.ei.outmanager.model.TOutUserZyinfo;
 import com.talkweb.ei.outmanager.model.TOutUserZyinfoExample;
+import com.talkweb.ei.outmanager.service.IDictory;
 import com.talkweb.ei.outmanager.service.IUserService;
 import com.talkweb.ei.shiro.CryptographyUtil;
 
@@ -74,10 +75,8 @@ public class UserController {
 	private IUserService userService;
 	
 	@Autowired
-	private OutUserMapper outUserMapper;	
+	private IDictory iDictory;	
 		
-	@Autowired
-	private TOutUserFpinfoMapper tOutUserFpinfoMapper;
 
 	@Autowired
 	private TOutUserHtMapper tOutUserHtMapper;
@@ -274,10 +273,33 @@ public class UserController {
 		}
 		
 		
+		//数据权限控制
+		//维护或者查询刚都能处理		
+		String opt_orgid = (String)SecurityUtils.getSubject().getSession().getAttribute("外包人员信息维护岗");		
+		if(StringUtils.isEmpty(opt_orgid)) opt_orgid = (String)SecurityUtils.getSubject().getSession().getAttribute("外包人员信息查询岗");
 		
+		if(StringUtils.isNotEmpty(opt_orgid)&&!opt_orgid.equals("14")){
+			
+			opt_orgid = iDictory.getUnitNameById(opt_orgid);
+			if(opt_orgid!=null&&opt_orgid.length()>2000){				
+				opt_orgid = opt_orgid.substring(0, 2000);				
+			}
+			criteria.andUnitRECLike(opt_orgid);
+			
+		}
 		
+
 		if(StringUtils.isNotEmpty(unit)){
-			criteria.andUnitLike("%"+unit+"%");
+			
+			unit = iDictory.getUnitNameByName(unit);
+			
+			if(unit!=null&&unit.length()>2000){				
+				unit = unit.substring(0, 2000);				
+			}
+
+			//包括子单位
+			//criteria.andUnitLike("%"+unit+"%");
+			criteria.andUnitRECLike(unit);
 		}
 		if(StringUtils.isNotEmpty(name)){
 			criteria.andNameLike("%"+name+"%");

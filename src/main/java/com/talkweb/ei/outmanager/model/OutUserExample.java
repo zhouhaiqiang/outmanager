@@ -1716,6 +1716,13 @@ public class OutUserExample extends ExampleObj {
             addCriterion("UNIT like", value, "unit");
             return (Criteria) this;
         }
+        
+        
+        //特殊的单位处理，格式如下：/xxxx/xxxxx/
+        public Criteria andUnitRECLike(String value) {
+            addCriterion(" '"+value+"' like '%/'||UNIT||'/%'");
+            return (Criteria) this;
+        }  
 
         public Criteria andUnitNotLike(String value) {
             addCriterion("UNIT not like", value, "unit");

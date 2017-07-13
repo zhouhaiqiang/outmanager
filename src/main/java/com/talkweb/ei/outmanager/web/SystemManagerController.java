@@ -12,9 +12,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.ss.formula.functions.T;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +38,6 @@ import com.talkweb.ei.outmanager.dao.TOutDutyMapper;
 import com.talkweb.ei.outmanager.dao.TOutDutymapingMapper;
 import com.talkweb.ei.outmanager.dao.VOutUserdutyMapper;
 import com.talkweb.ei.outmanager.model.DocBean;
-import com.talkweb.ei.outmanager.model.OutCompany;
-import com.talkweb.ei.outmanager.model.OutCompanyExample;
 import com.talkweb.ei.outmanager.model.OutUser;
 import com.talkweb.ei.outmanager.model.OutUserExample;
 import com.talkweb.ei.outmanager.model.OutUser_S;
@@ -49,10 +45,8 @@ import com.talkweb.ei.outmanager.model.TOutDuty;
 import com.talkweb.ei.outmanager.model.TOutDutyExample;
 import com.talkweb.ei.outmanager.model.TOutDutymaping;
 import com.talkweb.ei.outmanager.model.TOutDutymapingExample;
-import com.talkweb.ei.outmanager.model.TOutGongzi;
 import com.talkweb.ei.outmanager.model.VOutUserduty;
 import com.talkweb.ei.outmanager.model.VOutUserdutyExample;
-import com.talkweb.ei.outmanager.model.OutCompanyExample.Criteria;
 import com.talkweb.ei.outmanager.service.IUserService;
 
 
