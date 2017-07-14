@@ -15,4 +15,7 @@ public interface OrgMapper {
     
     List<TreeNode> getSubOrgByID(String orgid);
     
+
+    List<TreeNode> getOrgByName(String name);
+    
 }

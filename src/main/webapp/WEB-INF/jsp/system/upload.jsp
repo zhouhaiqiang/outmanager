@@ -50,7 +50,7 @@ function submitExcel(){
         <div class="panel panel-default">
             <div class="panel-heading">用户职责批量导入</div>
             <div class="panel-body">
-               <form  id="fileUpload" action="/outmanager/user/import" method="post" enctype="multipart/form-data">
+               <form  id="fileUpload" action="/outmanager/system/import" method="post" enctype="multipart/form-data">
                     <div class="form-group" style="margin-top:15px">
                         
                         <div class="col-sm-5">

@@ -66,8 +66,25 @@ public interface IDictory {
 	 * 查找给定组织下的所有组织连成组织名 返回格式：/xxxx/xxxx/xxxxx/
 	 * @return
 	 */
-	String getUnitNameById(String orgid );	
+	String getUnitNameById(String orgid );
 	
+	
+	
+	/**
+	 * 找匹配的单位ID
+	 * @param name
+	 * @return
+	 */
+	String getUnitIDByName(String name);
+	
+	
+
+	/**
+	 * 找匹配的职责ID
+	 * @param name
+	 * @return
+	 */
+	String getDutyIDByName(String name);
 	
 	
 

@@ -354,11 +354,7 @@
 									
 								<li class="tag-list" id="menua_001_2">	
 									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属批量创建","../action/pcreate","menua_001_01")' href="javascript:">人员业务活动归属批量新增</a>
-								</li>	
-																
-								</shiro:hasAnyRoles>
-								
-								<shiro:hasAnyRoles name="系统管理员,人员业务活动管理">								
+								</li>									
 								<li class="tag-list" id="menua_001_3">	
 									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属批量导入","../action/upload","menua_001_01")' href="javascript:">人员业务活动归属批量导入</a>
 								</li>	
@@ -408,20 +404,8 @@
 							<ul class="tag-list"  id="menua_4_000_1">
 								<li class="menuli" id="menu001" onclick="changClass('menu001')">
 									<a id='menua_004_01' onclick='loacalPage("常用文档","../system/doclist","menua_001_01")' href="javascript:">常用文档</a>
-								</li>	
-							
-																					
-							</ul>							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-																					                		                	
+								</li>																												
+							</ul>																												                		                	
 		                </div>
 		            </div>
 		        </div>	

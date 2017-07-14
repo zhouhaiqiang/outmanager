@@ -14,6 +14,7 @@ import com.talkweb.ei.outmanager.model.KeyValue;
 import com.talkweb.ei.outmanager.model.TOutDict;
 import com.talkweb.ei.outmanager.model.TOutDictExample;
 import com.talkweb.ei.outmanager.model.TOutDuty;
+import com.talkweb.ei.outmanager.model.TOutDutyExample;
 import com.talkweb.ei.outmanager.model.TreeNode;
 import com.talkweb.ei.outmanager.service.IDictory;
 
@@ -32,6 +33,8 @@ public class DictoryServiceImpl implements IDictory {
 	
 	@Autowired
 	private TOutDutyMapper tOutDutyMapper;//职务
+	
+	
 
 
 	@Override
@@ -110,5 +113,37 @@ public class DictoryServiceImpl implements IDictory {
 			
 		}		
 		return names;
+	}
+
+	
+	
+	@Override
+	public String getUnitIDByName(String name) {
+		      
+		//查找匹配的ID
+		List<TreeNode> tmpuserlist = orgMapper.getOrgByName(name);	
+		
+		if(tmpuserlist!=null && tmpuserlist.size()>0){
+			return tmpuserlist.get(0).getId();
+		}
+		return null;
+		
+	}
+
+	@Override
+	public String getDutyIDByName(String name) {
+				
+		TOutDutyExample sample = new TOutDutyExample();
+		TOutDutyExample.Criteria criteria = sample.createCriteria();
+		
+		//字典大类
+		criteria.andNameEqualTo(name);		
+		List<TOutDuty> list =  tOutDutyMapper.selectByExample(sample);
+		
+		if(list!=null && list.size()>0){
+			return list.get(0).getId();
+		}		
+		return null;
+		
 	}
 }

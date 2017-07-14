@@ -48,12 +48,6 @@ public class DataController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	private IUserService IUserService;
-	
-	@Autowired
-	private OutUserMapper outUserMapper;
-	
 	
 	//业务操作一般通过服务来实现
 	@Autowired
@@ -194,11 +188,7 @@ public class DataController {
 			criteria.andUnitRECLike(unit);
 		}		
 	
-		
-		
-		
-		
-		
+
 		
 		if(StringUtils.isNotEmpty(name)){
 			criteria.andNameLike("%"+name+"%");

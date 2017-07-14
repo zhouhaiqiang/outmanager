@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
+import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +68,7 @@ import com.talkweb.ei.outmanager.model.VOutUseractionExample;
 import com.talkweb.ei.outmanager.model.VOutUsergz;
 import com.talkweb.ei.outmanager.model.VOutUsergzExample;
 import com.talkweb.ei.outmanager.service.IActionService;
+import com.talkweb.ei.outmanager.service.IDictory;
 import com.talkweb.ei.outmanager.service.IUserGz;
 import com.talkweb.ei.outmanager.service.IUserService;
 
@@ -92,7 +95,8 @@ public class ActionController {
 	@Autowired
 	private IActionService actionService;	
 	
-	
+	@Autowired
+	private IDictory iDictory;		
 
 	/**********************************业务接口***************************start***********/
 	
@@ -154,10 +158,38 @@ public class ActionController {
 		
 		VOutUseractionExample.Criteria criteria = sample.createCriteria();
 
+		//数据权限控制
+		//维护或者查询刚都能处理		
+		String opt_orgid = (String)SecurityUtils.getSubject().getSession().getAttribute("人员业务活动管理");		
+
+		if(StringUtils.isNotEmpty(opt_orgid)&&!opt_orgid.equals("14")){
+			
+			opt_orgid = iDictory.getUnitNameById(opt_orgid);
+			if(opt_orgid!=null&&opt_orgid.length()>2000){				
+				opt_orgid = opt_orgid.substring(0, 2000);				
+			}
+			criteria.andUnitRECLike(opt_orgid);
+			
+		}
+		
 
 		if(StringUtils.isNotEmpty(unit)){
-			criteria.andUnitEqualTo(unit);
+			
+			unit = iDictory.getUnitNameByName(unit);
+			
+			if(unit!=null&&unit.length()>2000){				
+				unit = unit.substring(0, 2000);				
+			}
+
+			//包括子单位
+			//criteria.andUnitLike("%"+unit+"%");
+			criteria.andUnitRECLike(unit);
 		}
+		
+		
+		
+		
+		
 		if(StringUtils.isNotEmpty(username)){
 			criteria.andNameLike(username);
 		}
@@ -238,8 +270,26 @@ public class ActionController {
 			
 			//查找单位下的人员			
 			OutUserExample sample = new OutUserExample();			
-			OutUserExample.Criteria criteria = sample.createCriteria();			
+			OutUserExample.Criteria criteria = sample.createCriteria();	
+						
+			//外包用户
+			criteria.andUsertypeEqualTo("1");
+			
+			//所选单位
 			criteria.andUnitEqualTo(userAction.getUnit());
+			
+			//权限控制，不能跨越自己的管理范围			
+			String opt_orgid = (String)SecurityUtils.getSubject().getSession().getAttribute("人员业务活动管理");		
+
+			if(StringUtils.isNotEmpty(opt_orgid)&&!opt_orgid.equals("14")){
+				
+				opt_orgid = iDictory.getUnitNameById(opt_orgid);
+				if(opt_orgid!=null&&opt_orgid.length()>2000){				
+					opt_orgid = opt_orgid.substring(0, 2000);				
+				}
+				criteria.andUnitRECLike(opt_orgid);
+				
+			}			
 			
 			List<OutUser> list = userService.getUserList(sample);
 

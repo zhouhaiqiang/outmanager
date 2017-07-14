@@ -45,5 +45,11 @@
   		select id,name from T_OUT_USER u where u.usertype=1 and  companyid= #{companyid,jdbcType=VARCHAR}
   </select>
   
+  <select id="getOrgByName" parameterType="java.lang.String" resultMap="BaseResultMap"> 
+  		select org_id as id, parent_id as pId, org_name as name from t_pub_org
+  		where org_name='${value}' and isshow=1   
+  </select>  
+  
+  
   
 </mapper>

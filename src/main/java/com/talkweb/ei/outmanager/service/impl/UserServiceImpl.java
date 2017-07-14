@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.talkweb.ei.di.common.DateUtil;
 import com.talkweb.ei.di.common.StringUtils;
 import com.talkweb.ei.outmanager.dao.OutUserMapper;
+import com.talkweb.ei.outmanager.dao.TOutDutymapingMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserFpinfoMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserHtMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserJcMapper;
@@ -21,12 +22,14 @@ import com.talkweb.ei.outmanager.dao.TOutUserJyinfoMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserZyinfoMapper;
 import com.talkweb.ei.outmanager.model.OutUser;
 import com.talkweb.ei.outmanager.model.OutUserExample;
+import com.talkweb.ei.outmanager.model.TOutDutymaping;
 import com.talkweb.ei.outmanager.model.TOutUserFpinfo;
 import com.talkweb.ei.outmanager.model.TOutUserHt;
 import com.talkweb.ei.outmanager.model.TOutUserJc;
 import com.talkweb.ei.outmanager.model.TOutUserJninfo;
 import com.talkweb.ei.outmanager.model.TOutUserJyinfo;
 import com.talkweb.ei.outmanager.model.TOutUserZyinfo;
+import com.talkweb.ei.outmanager.service.IDictory;
 import com.talkweb.ei.outmanager.service.IUserService;
 import com.talkweb.ei.shiro.ShiroToken;
 
@@ -58,6 +61,15 @@ public class UserServiceImpl implements IUserService {
 	
 	@Autowired
 	private TOutUserZyinfoMapper tOutUserZyinfoMapper;	
+	
+	@Autowired
+	private TOutDutymapingMapper tOutDutymapingMapper;	
+	
+	@Autowired
+	private IDictory iDictory;		
+	
+	
+	
 
 	@Override
 	public boolean auth(String userid, String pwd) {
@@ -956,6 +968,109 @@ public class UserServiceImpl implements IUserService {
 			return tmpuserlist.get(0);
 		}
 		return null;
+	}
+
+
+
+	@Override
+	public boolean importDuty(List<String> exldata) {
+		try {
+			TOutDutymaping entity;
+			
+			for(String rowvalue:exldata){			
+				//映射属性
+			
+				entity = mappingDuty(rowvalue);	
+				
+				//映射文件没问题
+				if(entity!=null){
+					//修改用户
+					if("修改".equals(entity.getChangeModel())){
+						
+						tOutDutymapingMapper.updateByPrimaryKey(entity);
+						
+					} else {
+						
+						if(entity!=null) {
+							tOutDutymapingMapper.insert(entity);	
+							
+						}					
+					}
+				} else {
+					logger.info("数据映射有问题，或者更新时没找到对应的数据==========="+entity);
+				}
+	
+			}	
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+	}
+	
+	
+	/**
+	 * 用户职责映射
+	 * @param rowvalue
+	 * @return
+	 */
+	private TOutDutymaping mappingDuty(String rowvalue) {
+		//加上行符号
+		rowvalue+="#end";
+		
+	    String cellvalues[] = rowvalue.split("#");
+	    
+	    //数据不合规范
+	    if(cellvalues==null){	        
+	        return null;
+	    }
+	    
+	    
+	    TOutDutymaping  entity = new TOutDutymaping();
+	    
+	    //`id` VARCHAR(50) NOT NULL COMMENT 'id', 自动生成	 变更时    
+	    
+	    entity.setChangeModel(cellvalues[0]);
+	    
+	    
+	    //查找对应用户
+    	try {
+	    	
+    		OutUser tmpuser = getUserByCode(cellvalues[2]);
+	    	entity.setUserid(tmpuser.getId()); 
+    	} catch(Exception e){
+    		
+    		logger.error("更新的用户对象不存在！！！"+cellvalues[2]);	
+    		//删除的对象，保存记录
+    		entity.setUserid(cellvalues[2]); 
+    		//return null;
+    		
+    	}	    
+	    
+	    
+	    
+	    if("修改".equals(cellvalues[0])){
+	    	//校验关键字
+	    	entity.setId(cellvalues[5]);	
+	    } else {    	
+	    	entity.setId(UUID.randomUUID().toString()); 
+	    }
+
+	    //操作模式	姓名	人员编号	职责	控制值	校验标识
+	    //职责id 从职责里面找对应的ID
+	    entity.setDutyid(iDictory.getDutyIDByName(cellvalues[3]));
+
+	    entity.setRemark(cellvalues[3]);
+	    
+	    //单位ID，通过名字找组织ID
+	    entity.setUnitid(iDictory.getUnitIDByName(cellvalues[4]));
+
+	    
+	    entity.setSelforg("是");
+	    entity.setSuborg("是");
+	    
+	    return entity;
 	}
 
 

@@ -38,7 +38,13 @@ public interface IUserService {
 	 */
 	boolean importBase(List<String> exldata);	
 	
-
+	/**
+	 * 用户职责信息导入
+	 * 
+	 * @param  List<String> exldata
+	 * @return
+	 */
+	boolean importDuty(List<String> exldata);
 	
 	/**
 	 * 分配信息导入

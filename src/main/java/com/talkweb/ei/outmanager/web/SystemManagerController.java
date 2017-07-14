@@ -98,8 +98,8 @@ public class SystemManagerController {
 
 	@RequestMapping(value = "/dutyupload", method = RequestMethod.GET)
 	
-	//公司信息导入
-	private String uploadCompany(Model model) {	
+	//用户职责信息导入
+	private String uploadDuty(Model model) {	
 		return "/system/upload";
 	}
 	
@@ -304,61 +304,19 @@ public class SystemManagerController {
             //e.printStackTrace();
             System.out.println("文件上传err...");
         }
-        
-        
-        
+
         
         //读取excel 的内容 防止内存溢出
         //基本信息
-        List<String> exlValues = ExcelUtil.readFileExcel(rootPath+fileName,0,4,ExcelUtil.MAXEXPORTNUM+4,ExcelUtil.USER_COL_NUM);
+        List<String> exlValues = ExcelUtil.readFileExcel(rootPath+fileName,0,1,ExcelUtil.MAXEXPORTNUM+1,ExcelUtil.DUTY_COL_NUM);
        
         String result = "导入成功！";
         
-        boolean ret = userService.importBase(exlValues);
+        boolean ret = userService.importDuty(exlValues);
         if(!ret) {
         	result = "导入失败！请检测数据文件格式！";
         }
-           
-//        boolean ret;
-//        List<String> exlValues;
-//        String result = "导入成功！";
         
-        
-        //教育信息
-        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,1,4,ExcelUtil.MAXEXPORTNUM+4,ExcelUtil.USER_COL_NUM_JY);
-        ret = userService.importJiaoyu(exlValues);
-        if(!ret) {
-        	result = "导入失败！请检测数据文件格式！";
-        }      
-        
-        //职业技能信息
-        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,2,4,ExcelUtil.MAXEXPORTNUM+4,ExcelUtil.USER_COL_NUM_ZY);
-        ret = userService.importZhiye(exlValues);
-        if(!ret) {
-        	result = "导入失败！请检测数据文件格式！";
-        }  
-        
-        
-        //专业信息
-        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,3,4,ExcelUtil.MAXEXPORTNUM+4,ExcelUtil.USER_COL_NUM_ZZ);
-        ret = userService.importZhuanye(exlValues);
-        if(!ret) {
-        	result = "导入失败！请检测数据文件格式！";
-        }             
-           
-        //劳动关系
-        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,4,4,ExcelUtil.MAXEXPORTNUM+4,ExcelUtil.USER_COL_NUM_LD);
-        ret = userService.importLaodong(exlValues);
-        if(!ret) {
-        	result = "导入失败！请检测数据文件格式！";
-        }       
-        
-        //解除关系
-        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,5,4,ExcelUtil.MAXEXPORTNUM+4,ExcelUtil.USER_COL_NUM_JC);
-        ret = userService.importJiechu(exlValues);
-        if(!ret) {
-        	result = "导入失败！请检测数据文件格式！";
-        }          
         
         model.addAttribute("msg", result);
      

@@ -67,7 +67,8 @@ public class ExcelUtil
     //人员活动模板列数
     public static final int ACTION_COL_NUM = 9;
     
-    
+    //用户职责导入模板列数
+    public static final int DUTY_COL_NUM = 6;    
     
     /**
      * 读取excel 的第一sheet 的第一列（手机号码）
