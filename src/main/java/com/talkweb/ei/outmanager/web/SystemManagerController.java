@@ -448,7 +448,8 @@ public class SystemManagerController {
 	         line.add(company.getName());
 	         line.add(company.getUserid());
 	         line.add(company.getDuty());
-	         line.add("ÊÇ");
+	         line.add(company.getUnit());
+	         //line.add("ÊÇ");
 	         line.add(company.getId());
         
 	         varList.add(line);
