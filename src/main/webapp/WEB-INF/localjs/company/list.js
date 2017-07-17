@@ -52,25 +52,38 @@ var TableInit = function () {
             showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
             detailView: false,                   //是否显示父子表
+            
+            //表格导出相关设置
+            //showExport : true,                   //是否显示
+            //exportDataType : "basic",              //数据导出类型    basic, all, selected
+            //exportTypes: ['excel'], //['json', 'xml', 'csv', 'txt', 'sql', 'excel'], 导出文件格式
+            
             columns: [{
                 checkbox: true
             }, {
                 field: 'unit',
+                align:"center",
                 title: '组织名称'
+                	
             }, {
                 field: 'name',
+                align:"center",
                 title: '公司名称'
             }, {
                 field: 'conType',
+                align:"center",
                 title: '公司类型'
             }, {
                 field: 'boss',
+                align:"center",
                 title: '法人代表'
             }, {
                 field: 'address',
+                align:"center",
                 title: '注册地址'
             }, {
                 field: 'zijin',
+                align:"center",
                 title: '注册资本(万元)'
             },
             ]

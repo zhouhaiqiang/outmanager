@@ -99,8 +99,7 @@
             <button id="btn_export" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
             </button>            
-            
-            
+         
         </div>
         <table id="tb_data"></table>
                
