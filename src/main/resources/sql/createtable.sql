@@ -234,4 +234,70 @@ alter table T_OUT_ACTION
 
 
 
+  
+  
+-- Create table
+create table T_OUT_REPORT
+(
+  ID      VARCHAR2(50) not null,
+  REPDATE DATE not null,
+  NAME    VARCHAR2(50) not null,
+  UNIT    VARCHAR2(50),
+  REPTYPE VARCHAR2(50) not null,
+  REPDATA VARCHAR2(4000) not null,
+  REPCODE VARCHAR2(50),
+  INTF    VARCHAR2(50) not null,
+  REMARK  VARCHAR2(200)
+)
+tablespace DATA1
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the table 
+comment on table T_OUT_REPORT
+  is '外包人员数据报表';
+-- Add comments to the columns 
+comment on column T_OUT_REPORT.ID
+  is 'ID';
+comment on column T_OUT_REPORT.REPDATE
+  is '报告日期';
+comment on column T_OUT_REPORT.NAME
+  is '报告名';
+comment on column T_OUT_REPORT.UNIT
+  is '组织单位';
+comment on column T_OUT_REPORT.REPTYPE
+  is '报告类型';
+comment on column T_OUT_REPORT.REPDATA
+  is '报告json数据';
+comment on column T_OUT_REPORT.REPCODE
+  is '报告编号';  
+comment on column T_OUT_REPORT.INTF
+  is '接口状态';    
+comment on column T_OUT_REPORT.REMARK
+  is '说明';
+
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table T_OUT_REPORT
+  add constraint PK_T_OUT_REPORT primary key (ID)
+  using index 
+  tablespace DATA1
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  ); 
+  
+  
+  
+  
 

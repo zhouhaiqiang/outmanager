@@ -41,8 +41,10 @@
 		 }
 	}
 	
-	function changemenucolor(id){
-	    var h4 = $("#menulist").find("h4");
+	
+	//改变颜色
+	function changemenucolor(id,plist){
+	    var h4 = $("#"+plist).find("h4");
 	    h4.each(function(){
 	       $(this).attr("class",""); 
 	    });
@@ -61,14 +63,22 @@
 	    loadRightPage(title,url,id);
 	}
 	
-	function showChild(id){
-		var ul = $("#menulist").find("ul");
+	
+	//处理菜单的显示
+	function showChild(id,plist){
+		
+		//获取操作的总菜单
+		var ul = $("#"+plist).find("ul");
+		
 		ul.each(function(){
 			 $(this).css("display","none");
 	    });
-		 $("#"+id).attr("class","curr");
-		 $("#"+id+"_1").css("display","block");
+		
+		$("#"+id).attr("class","curr");
+		$("#"+id+"_1").css("display","block");
 	}
+	
+	
 	function changClass(id){
 		var name_sb=id.substr(6,7);
 		var bgLis=document.getElementsByTagName("menuli");
@@ -140,14 +150,11 @@
            		<a id="a_3" onclick="getTree(3)" href="javascript:void(0);">业务活动管理</a>
             </li>
             
-         <!-- 权限控制 --> 
-         
-            <!-- 
+  		<shiro:hasAnyRoles name="系统管理员,人员年报维护岗,人员年报查询岗">
             <li>           		
            		<a id="a_4" onclick="getTree(4)" href="javascript:void(0);">报表平台管理</a>          		
             </li>
-            
-             -->
+		</shiro:hasAnyRoles>
              
              
        
@@ -184,28 +191,28 @@
 		        <!-- 业务管理 -->
 		        <div class="menu_x" id="menu2">
 		            <div class="column-1 left">
-		                <div class="daibanleftmenu" id="menulist">
+		                <div class="daibanleftmenu" id="menulist0">
 		                	<h4 class="curr">
-								<a href='javascript:' id='menua_000' onclick='changemenucolor("menua_000");loadRightPage("业务管理","<%=path%>/common/blank.html","menua_000");showChild(id);'  href="javascript:">业务管理</a>
+								<a href='javascript:' id='menua_000' onclick='changemenucolor("menua_000","menulist0");loadRightPage("业务管理","<%=path%>/common/blank.html","menua_000");'  href="javascript:">业务管理</a>
 							</h4>
 							
 								
 							<shiro:hasAnyRoles name="系统管理员,外包公司信息维护岗,外包公司批量导入维护岗,外包公司信息查询岗">	
 									                
 		                	<h4>
-								<a href='javascript:' id='menua_001' onclick='changemenucolor("menua_001");loadRightPage("外包公司信息管理","<%=path%>/common/blank.html","menua_001");showChild(id);'  href="javascript:">外包公司信息管理</a>
+								<a href='javascript:' id='menua_001' onclick='changemenucolor("menua_001","menulist0");loadRightPage("外包公司信息管理","<%=path%>/common/blank.html","menua_001");showChild(id,"menulist0");'  href="javascript:">外包公司信息管理</a>
 							</h4>
 							<ul class="tag-list"  id="menua_001_1">
 							
 							    <shiro:hasAnyRoles name="系统管理员,外包公司信息维护岗,外包公司信息查询岗">
-								<li class="menuli" id="menu001" onclick="changClass('menu001')">
-									<a id='menua_001_01' onclick='loacalPage("外包公司信息维护","../data/company_list","menua_001_01")' href="javascript:">外包公司信息维护</a>
+								<li class="menuli" id="menua_001_2" onclick="changClass('menua_001_2')">
+									<a id='menua_001_2_0' onclick='loacalPage("外包公司信息维护","../data/company_list","menua_001_2_0")' href="javascript:">外包公司信息维护</a>
 								</li>	
 								</shiro:hasAnyRoles>
 								
 								 <shiro:hasAnyRoles name="系统管理员,外包公司批量导入维护岗">
-								<li class="tag-list" id="menua_001_2">	
-									<a id='menua_001_01' onclick='loacalPage("外包公司批量上传","../data/company_upload","menua_001_01")' href="javascript:">外包公司批量上传</a>
+								<li class="tag-list" id="menua_001_3" onclick="changClass('menua_001_3')">	
+									<a id='menua_001_3_0' onclick='loacalPage("外包公司批量上传","../data/company_upload","menua_001_3_0")' href="javascript:">外包公司批量上传</a>
 								</li>								
 								</shiro:hasAnyRoles>						
 							</ul>
@@ -217,7 +224,7 @@
 							
 							<shiro:hasAnyRoles name="系统管理员,外包合同信息维护岗,外包合同批量导入维护岗,外包合同信息查询岗">
 							<h4>
-								<a href='javascript:'id="menua_002"  onclick='changemenucolor("menua_002");showChild(id);'>外包合同信息管理</a>
+								<a href='javascript:'id="menua_002"  onclick='changemenucolor("menua_002","menulist0");showChild(id,"menulist0");'>外包合同信息管理</a>
 							</h4>
 							<ul class="tag-list" style="display:none" id="menua_002_1">
 								
@@ -238,7 +245,7 @@
 							
 							<shiro:hasAnyRoles name="系统管理员,外包人员信息维护岗,外包人员批量导入维护岗,外包人员信息查询岗">
 							<h4>
-								<a href='javascript:' id='menua_003' onclick='changemenucolor("menua_003");showChild(id);'>外包人员信息管理</a>
+								<a href='javascript:' id='menua_003' onclick='changemenucolor("menua_003","menulist0");showChild(id,"menulist0");'>外包人员信息管理</a>
 							</h4>
 							<ul class="tag-list" style="display:none" id="menua_003_1">
 									
@@ -258,7 +265,7 @@
 							
 							<shiro:hasAnyRoles name="系统管理员,薪酬费用维护岗,费用信息批量导入维护岗,薪酬费用查询岗">
 							<h4>
-								<a href='javascript:' id='menua_004' onclick='changemenucolor("menua_004");showChild(id);'>外包人员费用管理 </a>
+								<a href='javascript:' id='menua_004' onclick='changemenucolor("menua_004","menulist0");showChild(id,"menulist0");'>外包人员费用管理 </a>
 							</h4>
 							<ul class="tag-list" style="display:none" id="menua_004_1">
 									
@@ -285,7 +292,7 @@
 							
 							<!-- 
 							<h4>
-								<a href='javascript:' id='menua_005' onclick='changemenucolor("menua_005");showChild(id);'>外包信息报表管理 </a>
+								<a href='javascript:' id='menua_005' onclick='changemenucolor("menua_005","menulist0");showChild(id,"menulist0");'>外包信息报表管理 </a>
 							</h4>
 							<ul class="tag-list" style="display:none" id="menua_005_1">
 									
@@ -326,37 +333,37 @@
 		        <!-- 业务活动管理-->
 		        <div class="menu_x" id="menu3" style="display:none;">
 		            <div class="column-1 left">
-		                <div class="daibanleftmenu" id="menulist">
+		                <div class="daibanleftmenu" id="menulist1">
 		                	<h4 class="curr">
-								<a href='javascript:' id='menua_000' onclick='changemenucolor("menua_000");loadRightPage("业务管理","<%=path%>/common/blank.html","menua_000");showChild(id);'  href="javascript:">业务活动管理</a>
+								<a href='javascript:' id='menua_005' onclick='changemenucolor("menua_005","menulist1");loadRightPage("业务管理","<%=path%>/common/blank.html","menua_005");'  href="javascript:">业务活动管理</a>
 							</h4>	
 							
 							
 							<shiro:hasAnyRoles name="系统管理员,人员业务活动管理,人员业务活动上报,人员业务活动上报情况查询">
 																					                
 		                	<h4>
-								<a href='javascript:' id='menua_001' onclick='changemenucolor("menua_001");loadRightPage("人员业务活动","<%=path%>/common/blank.html","menua_001");showChild(id);'  href="javascript:">人员业务活动</a>
+								<a href='javascript:' id='menua_006' onclick='changemenucolor("menua_006","menulist1");loadRightPage("人员业务活动","<%=path%>/common/blank.html","menua_006");showChild(id,"menulist1");'  href="javascript:">人员业务活动</a>
 							</h4>
-							<ul class="tag-list"  id="menua_001_1">
+							<ul class="tag-list"  id="menua_006_1">
 								<shiro:hasAnyRoles name="系统管理员,人员业务活动管理">
-								<li class="menuli" id="menu001" onclick="changClass('menu001')">
-									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属管理","../action/list","menua_001_01")' href="javascript:">人员业务活动归属管理</a>
+								<li class="menuli" id="menu006_1_1" onclick="changClass('menu006_1_1')">
+									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属管理","../action/list","menua_006_1_1")' href="javascript:">人员业务活动归属管理</a>
 								</li>
 								</shiro:hasAnyRoles>	
 								
 								<shiro:hasAnyRoles name="系统管理员,人员业务活动管理">
 								
 								<!--  暂时不做
-								<li class="tag-list" id="menua_001_2">	
-									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属批量新增","../action/padd","menua_001_01")' href="javascript:">人员业务活动归属批量新增</a>
+								<li class="tag-list" id="menua_006_1_2">	
+									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属批量新增","../action/padd","menua_006_1_2")' href="javascript:">人员业务活动归属批量新增</a>
 								</li>
 								 -->
 									
-								<li class="tag-list" id="menua_001_2">	
-									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属批量创建","../action/pcreate","menua_001_01")' href="javascript:">人员业务活动归属批量新增</a>
+								<li class="tag-list" id="menua_006_1_3">	
+									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属批量创建","../action/pcreate","menua_006_1_3")' href="javascript:">人员业务活动归属批量新增</a>
 								</li>									
-								<li class="tag-list" id="menua_001_3">	
-									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属批量导入","../action/upload","menua_001_01")' href="javascript:">人员业务活动归属批量导入</a>
+								<li class="tag-list" id="menua_006_1_4">	
+									<a id='menua_001_01' onclick='loacalPage("人员业务活动归属批量导入","../action/upload","menua_006_1_4")' href="javascript:">人员业务活动归属批量导入</a>
 								</li>	
 								
 								</shiro:hasAnyRoles>						
@@ -372,21 +379,84 @@
 		        <!-- 报表平台管理-->
 		        <div class="menu_x" id="menu4" style="display:none;">
 		            <div class="column-1 left">
-		                <div class="daibanleftmenu" id="menulist">
+		                <div class="daibanleftmenu" id="menulist2">
 		                	<h4 class="curr">
-								<a href='javascript:' id='menua_000' onclick='changemenucolor("menua_000");loadRightPage("业务管理","<%=path%>/common/blank.html","menua_000");showChild(id);'  href="javascript:">报表平台管理</a>
-							</h4>															                
+								<a href='javascript:' id='menua_007' onclick='changemenucolor("menua_007","menulist2");loadRightPage("报表平台管理","<%=path%>/common/blank.html","menua_007");'  href="javascript:">报表平台管理</a>
+							</h4>	
+							
+							<shiro:hasAnyRoles name="系统管理员,人员年报维护岗">	
+																					                
 		                	<h4>
-								<a href='javascript:' id='menua_001' onclick='changemenucolor("menua_001");loadRightPage("外包公司信息管理","<%=path%>/common/blank.html","menua_001");showChild(id);'  href="javascript:">外包公司信息管理</a>
+								<a href='javascript:' id='menua_008' onclick='changemenucolor("menua_008","menulist2");loadRightPage("数据抽取","<%=path%>/common/blank.html","menua_008");showChild(id,"menulist2");'  href="javascript:">数据抽取</a>
 							</h4>
-							<ul class="tag-list"  id="menua_001_1">
-								<li class="menuli" id="menu001" onclick="changClass('menu001')">
-									<a id='menua_001_01' onclick='loacalPage("外包公司信息维护","../data/company_list","menua_001_01")' href="javascript:">外包公司信息维护</a>
+							<ul class="tag-list" style="display:none" id="menua_008_1">
+								<li class="menuli" id="menua_008_1_1" onclick="changClass('menua_008_1_1')">
+									<a id='menua_008_1_1_1' onclick='loacalPage("人员年报表数据抽取","../report/yearcreate","menua_008_1_1_1")' href="javascript:">人员年报表数据抽取</a>
 								</li>	
-								<li class="tag-list" id="menua_001_2">	
-									<a id='menua_001_01' onclick='loacalPage("外包公司批量上传","../data/company_upload","menua_001_01")' href="javascript:">外包公司批量上传</a>
-								</li>							
+								<li class="tag-list" id="menua_008_1_2">	
+									<a id='menua_008_1_2_1' onclick='loacalPage("人员季报表数据抽取","../report/seacreate","menua_008_1_2_1")' href="javascript:">人员季报表数据抽取</a>
+								</li>
+								
+								<li class="tag-list" id="menua_008_1_3">	
+									<a id='menua_008_1_3_1' onclick='loacalPage("人员月报表数据抽取","../report/monthcreate","menua_008_1_3_1")' href="javascript:">人员月报表数据抽取</a>
+								</li>																
 							</ul>
+							
+							</shiro:hasAnyRoles>
+
+
+							<shiro:hasAnyRoles name="系统管理员,人员年报维护岗,人员年报查询岗">	
+																					                
+		                	<h4>
+								<a href='javascript:' id='menua_009' onclick='changemenucolor("menua_009","menulist2");loadRightPage("人员年报表平台","<%=path%>/common/blank.html","menua_009");showChild(id,"menulist2");'  href="javascript:">人员年报表平台</a>
+							</h4>
+							<ul class="tag-list" style="display:none"  id="menua_009_1">
+								<li class="menuli" id="menua_009_1_1" onclick="changClass('menua_009_1_1')">
+									<a id='menua_009_1_1_1' onclick='loacalPage("人员季报表维护","../report/yearquery","menua_009_1_1_1")' href="javascript:">人员年报表维护</a>
+								</li>
+								
+								<!-- 	
+								<li class="tag-list" id="menua_009_1_2">	
+									<a id='menua_009_1_2_1' onclick='loacalPage("人员季报表维护","../report/company_upload","menua_009_1_2_1")' href="javascript:">人员季报表维护</a>
+								</li>
+								 -->
+																				
+							</ul>
+							
+
+																					                
+		                	<h4>
+								<a href='javascript:' id='menua_010' onclick='changemenucolor("menua_010","menulist2");loadRightPage("人员季报表平台","<%=path%>/common/blank.html","menua_010");showChild(id,"menulist2");'  href="javascript:">人员季报表平台</a>
+							</h4>
+							<ul class="tag-list"  style="display:none" id="menua_010_1">
+								<li class="menuli" id="menua_010_1_1" onclick="changClass('menua_010_1_1')">
+									<a id='menua_010_1_1' onclick='loacalPage("人员季报表维护","../report/seaquery","menua_010_1_1")' href="javascript:">人员季报表维护</a>
+								</li>	
+																							
+							</ul>
+
+																					                
+		                	<h4>
+								<a href='javascript:' id='menua_011' onclick='changemenucolor("menua_011","menulist2");loadRightPage("人员月报表平台","<%=path%>/common/blank.html","menua_011");showChild(id,"menulist2");'  href="javascript:">人员月报表平台</a>
+							</h4>
+							<ul class="tag-list" style="display:none" id="menua_011_1">
+							
+								<li class="menuli" id="menua_011_1_1" onclick="changClass('menua_011_1_1')">
+									<a id='menua_011_1_1_1' onclick='loacalPage("人员月报表维护","../report/monthquery","menua_011_1_1_1")' href="javascript:">人员月报表维护</a>
+								</li>	
+																						
+							</ul>
+							
+							</shiro:hasAnyRoles>
+
+
+
+
+
+
+
+
+
 
 		                </div>
 		            </div>
@@ -396,9 +466,9 @@
 		        <!-- 常用文档-->
 		        <div class="menu_x" id="menu5" style="display:none;">
 		            <div class="column-1 left">
-		                <div class="daibanleftmenu" id="menulist">
+		                <div class="daibanleftmenu" id="menulist3">
 		                	<h4 class="curr">
-								<a href='javascript:' id='menua_4_000' onclick='changemenucolor("menua_4_000");loadRightPage("常用文档","<%=path%>/common/blank.html","menua_000");'  href="javascript:">常用文档</a>
+								<a href='javascript:' id='menua_4_000' onclick='changemenucolor("menua_4_000","menulist3");loadRightPage("常用文档","<%=path%>/common/blank.html","menua_000");'  href="javascript:">常用文档</a>
 							</h4>	
 							
 							<ul class="tag-list"  id="menua_4_000_1">
@@ -413,9 +483,9 @@
 			    <!-- 系统管理-->
 		        <div class="menu_x" id="menu6" style="display:none;">
 		            <div class="column-1 left">
-		                <div class="daibanleftmenu" id="menulist">
+		                <div class="daibanleftmenu" id="menulist4">
 		                	<h4 class="curr">
-								<a href='javascript:' id='menua_6_000' onclick='changemenucolor("menua_4_000");loadRightPage("系统管理","<%=path%>/common/blank.html","menua_000");'  href="javascript:">系统管理</a>
+								<a href='javascript:' id='menua_6_000' onclick='changemenucolor("menua_4_000","menulist4");loadRightPage("系统管理","<%=path%>/common/blank.html","menua_000");'  href="javascript:">系统管理</a>
 							</h4>	
 
 							<ul class="tag-list"  id="menua_006_1">
