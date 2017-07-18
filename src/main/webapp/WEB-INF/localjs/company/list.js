@@ -2,6 +2,12 @@
 //on load
 $(function () {
 
+    //初始化reset
+    $('#btn_reset').click(function(){	
+    	formReset();	
+    }); 
+	
+	
     //1.初始化Table
     var oTable = new TableInit();
     oTable.Init();

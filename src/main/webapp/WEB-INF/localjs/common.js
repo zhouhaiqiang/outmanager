@@ -79,6 +79,17 @@ function todelarr(arr) {
 
 
 
+/**
+ * from reset
+ * @returns
+ */
+function formReset()
+{	
+	document.getElementById("formSearch").reset()
+}
+
+
+
 
 
 

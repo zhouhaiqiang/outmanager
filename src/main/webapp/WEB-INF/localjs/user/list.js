@@ -10,6 +10,12 @@ $(function () {
 	//合同编号
 	initdroplist($("#query_concode"),"/outmanager/config/contractcode_json","","")
 	
+	
+	//初始化reset
+    $('#btn_reset').click(function(){	
+    	formReset();	
+    }); 
+	
 	//选择公司查询条件
 	try {		
 		zTreeInitData();			

@@ -4,7 +4,11 @@ $(function () {
 	
     //6.页面项目初始化部分
 	
-	
+	//初始化reset
+    $('#btn_reset').click(function(){	
+    	formReset();	
+    });
+    
 	//选择公司查询条件
 	try {		
 		zTreeInitData();			

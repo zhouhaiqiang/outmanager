@@ -3,6 +3,13 @@
 $(function () {
 	
 
+	//选择公司查询条件
+	try {		
+		zTreeInitData();			
+	} catch(e){
+		alert("单位数据初始化失败！");
+	}	
+	
     //时间控件
     $('.form_date').datetimepicker({
         language:  'zh-CN',
@@ -157,16 +164,25 @@ var ButtonInit = function () {
     oInit.Init = function () {
         
      //初始化页面上面的按钮事件
-     $('#btn_query').click(function(){
-              	 
+     $('#btn_query').click(function(){        	 
     	  //处理查询		
 		  refreshtab();
      });
+     
+     
+    //初始化reset
+    $('#btn_reset').click(function(){	
+    	formReset();	
+    }); 
+    
 
     $('#btn_add').click(function(){
 
-  	  //初始下拉框
-  	  initdroplist($("#companyid"),"/outmanager/config/companyjson","")
+      //id必须清空
+      $('#id').val();	
+    	
+      //初始下拉框
+      initdroplist($("#companyid"),"/outmanager/config/companyjson","","")  
 
   	  //显示添加窗口
   	  openml();
@@ -196,8 +212,7 @@ var ButtonInit = function () {
         	  $('#jine').val(selects[0].jine);   
         	  $('#yewu').val(selects[0].yewu);
         	  $('#qixian').val(selects[0].qixian);       	  
-        	  $('#companyid').val(selects[0].companyid);
-        	  
+
         	  $('#conCode').val(selects[0].conCode);
         	 
         	
@@ -206,9 +221,8 @@ var ButtonInit = function () {
         	  
         	  
         	  //初始下拉框
-        	  initdroplist($("#companyid"),"/outmanager/config/companyjson",selects[0].companyid)
+        	  initdroplist($("#companyid"),"/outmanager/config/companyjson",selects[0].companyid,"")
 
-        	 
         	  openml();
 
           } else {
@@ -469,32 +483,192 @@ function Ok_btn(){
  * obj  下拉选择框object
  * url    区数据url
  * defvalue  默认选择的id值
+ * clm 取列的名字，默认是‘name’
  * 初始化下拉选择框
  * @returns
  */
-function initdroplist(obj,url,defvalue){  
+function initdroplist(obj,url,defvalue,lx){  
+	
+	//参数
+	var par = {
+            "lx":lx
+        };
+	
 	$.ajax({    
 	        "type" : 'get',    
 	        "url": url,  
-	        "dataType" : "json",    
+	        "data": par,
+	        "dataType" : "json", 
+	        "timeout": 30000,
 	        "success" : function(data) {    
 	        	 
 		         var rows = data.rows;  
 		         var opts = "";
 		        
-		         rows.forEach(function(keyvalue){  	
-		        	
+		         rows.forEach(function(keyvalue){  
+		        		        	
 		        	 if(defvalue==keyvalue.name){
-		        		 opts += "<option value='"+keyvalue.name+"' selected >"+keyvalue.name+"</option>";
+		        		 opts += "<option selected >"+keyvalue.name+"</option>";
 		        	 } else {
-		        		 opts += "<option value='"+keyvalue.name+"'>"+keyvalue.name+"</option>";
+		        		 opts += "<option>"+keyvalue.name+"</option>";
 		        	 }
 		        			        	  
 		         })
 		         
 		         //添加选项
+		         obj.empty();
 		         obj.append(opts);
+		         
+		         //重新显示
+		         obj.selectpicker('refresh');
+		         obj.selectpicker('render');
+		         
 	        }
+	
 	});
 }
+
+
+
+/**
+ *  **************zTree js********************
+ *  *******************************
+ *  *******************************
+ *  *******************************
+ */
+var setting = {
+		view: {
+			dblClickExpand: false
+		},
+		data: {
+			simpleData: {
+				enable: true
+			}
+		},
+		callback: {
+			beforeClick: beforeClick,
+			onClick: onClick
+		}
+	};
+
+
+var setting1 = {
+		view: {
+			dblClickExpand: false
+		},
+		data: {
+			simpleData: {
+				enable: true
+			}
+		},
+		callback: {
+			beforeClick: beforeClick,
+			onClick: onClick1  //填值地方不一样
+		}
+	};
+
+	var zNodes =[
+		{id:1, pId:0, name:"北京"},
+		{id:2, pId:1, name:"三明"},
+		{id:3, pId:1, name:"长沙"}
+	 ];
+	
+	
+	//取初始化数据
+	function zTreeInitData(){
+		
+		$.ajax({
+			  type: 'GET',
+			  url: "/outmanager/config/getunits_json",		  
+			  dataType: "json",
+			  contentType:'application/json;charset=UTF-8', 		  		   
+			  success: function(data){
+		
+				  $.fn.zTree.init($("#treeDemo"), setting, data.rows);
+				  $.fn.zTree.init($("#treeDemo1"), setting1, data.rows);
+								  				  
+			  }			  			  
+			});		
+				
+	}
+	
+	
+	
+    //树操作事件
+	function beforeClick(treeId, treeNode) {
+//		var check = (treeNode && !treeNode.isParent);
+//		if (!check) alert("只能选择城市...");
+//		return check;
+	}
+	
+
+	function onClick(e, treeId, treeNode) {
+		var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+		nodes = zTree.getSelectedNodes(),
+		v = "";
+		nodes.sort(function compare(a,b){return a.id-b.id;});
+		for (var i=0, l=nodes.length; i<l; i++) {
+			v += nodes[i].name + ",";
+		}
+		if (v.length > 0 ) v = v.substring(0, v.length-1);
+		var cityObj = $("#query_unit");
+		cityObj.attr("value", v);
+	}
+	
+	function onClick1(e, treeId, treeNode) {
+		var zTree = $.fn.zTree.getZTreeObj("treeDemo1"),
+		nodes = zTree.getSelectedNodes(),
+		v = "";
+		nodes.sort(function compare(a,b){return a.id-b.id;});
+		for (var i=0, l=nodes.length; i<l; i++) {
+			v += nodes[i].name + ",";
+		}
+		if (v.length > 0 ) v = v.substring(0, v.length-1);
+		var cityObj = $("#unit");
+		cityObj.attr("value", v);
+	}	
+	
+
+	function showMenu() {
+		var cityObj = $("#query_unit");
+		var cityOffset = cityObj.offset();
+		$("#menuContent").css({left:cityOffset.left + "px", top:cityOffset.top + cityObj.outerHeight() + "px"}).slideDown("fast");
+
+		$("body").bind("mousedown", onBodyDown);
+	}
+	
+	function showMenu1() {
+		var cityObj = $("#unit");
+		var cityOffset = cityObj.offset();
+		
+		
+		var newleft=cityOffset.left-160;
+		
+		var newtop=cityOffset.top-40;
+
+		
+		$("#menuContent1").css({left:newleft + "px", top:newtop + cityObj.outerHeight() + "px"}).slideDown("fast");
+
+		$("body").bind("mousedown", onBodyDown);
+	}	
+	
+	
+	//隐藏选择框
+	function hideMenu() {
+		$("#menuContent").fadeOut("fast");
+		$("#menuContent1").fadeOut("fast");
+		$("body").unbind("mousedown", onBodyDown);
+	}
+	
+	
+	//处理隐藏选择框事件
+	function onBodyDown(event) {
+		if (!(event.target.id == "menuBtn" 
+			|| event.target.id == "menuContent" 
+			|| $(event.target).parents("#menuContent").length>0
+			|| event.target.id == "menuContent1" 
+			|| $(event.target).parents("#menuContent1").length>0)) {
+			hideMenu();
+		}
+	}
 

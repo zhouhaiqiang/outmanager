@@ -56,8 +56,12 @@
                         
                         
                         <label class="control-label col-sm-1" for="txt_search_statu">签署主体</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="query_unit">
+							<div class="col-sm-2">
+                            <input type="text" class="form-control" id="query_unit" readonly onclick="showMenu(); return false;">
+                         
+                            <div id="menuContent" class="menuContent" style="display:none;z-index:9;position: fixed;left:100px;top:100px">
+								<ul id="treeDemo" class="ztree"></ul>
+							</div>
                         </div>
                         
                      <label class="control-label col-sm-1" for="txt_search_statu">合同称名</label>
@@ -67,7 +71,7 @@
                                            
                         <!--------------------- 查询按钮区域---------------------- -->                   
                         <div class="col-sm-1" style="text-align:left;">
-                            <button type="button" style="margin-left:50px" id="btn_query1" class="btn btn-danger">重置</button>
+                            <button type="button" style="margin-left:50px" id="btn_reset" class="btn btn-danger">重置</button>
                             
                         </div>
                         <div class="col-sm-1" style="text-align:left;">
@@ -186,9 +190,10 @@
                         <label  class="control-label">签署主体<span style="color:red">*</span></label>
                     </td>
                     <td>      
-                      <div class="form-group">                   
-                        <input type="text" class="form-control" id="unit" name="unit" value='山西省分公司' >
-                       </div>
+                       <input type="text" class="form-control" id="unit" name="unit" readonly onclick="showMenu1(); return false;">
+                        <div id="menuContent1" class="menuContent" style="display:none;z-index:9;position: fixed; left:1px;top:1px;">
+							<ul id="treeDemo1" class="ztree"></ul>
+					    </div>
                     </td>
                     
                     <td class="active"> 
@@ -199,10 +204,6 @@
                       
                       <select class="selectpicker form-control" data-live-search="true" name="companyid" id="companyid">  
 					  </select>
-                      
-                        <!--               
-                        <input type="text" class="form-control" id="companyid" name="companyid" value='' >
-                         -->
                        </div>
                     </td>                   
                   </tr>                   

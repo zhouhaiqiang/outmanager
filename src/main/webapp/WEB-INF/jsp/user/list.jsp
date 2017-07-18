@@ -57,8 +57,7 @@
                         <label class="control-label col-sm-1" for="txt_search_statu">外包公司</label>
                         <div class="col-sm-2">
                            
-                            <select class="form-control selectpicker show-tick" data-live-search="true" name="query_companyid" id="query_companyid" title="请选择 ...">
-                            	                          
+                            <select class="form-control selectpicker show-tick" data-live-search="true" name="query_companyid" id="query_companyid" title="请选择 ...">                           	                          
 					        </select>
                             
                         </div>

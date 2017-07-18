@@ -64,7 +64,7 @@
                                            
                         <!--------------------- 查询按钮区域---------------------- -->                   
                         <div class="col-sm-1" style="text-align:left;">
-                            <button type="button" style="margin-left:50px" id="btn_query1" class="btn btn-danger">重置</button>
+                            <button type="button" style="margin-left:50px" id="btn_reset" class="btn btn-danger">重置</button>
                             
                         </div>
                         <div class="col-sm-1" style="text-align:left;">

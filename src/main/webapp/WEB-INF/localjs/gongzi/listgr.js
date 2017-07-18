@@ -16,7 +16,10 @@ $(function () {
 	initmonthlist($("#query_endmonth"),"");
 	initmonthlist($("#month"),"");
 	
-	
+	//初始化reset
+    $('#btn_reset').click(function(){	
+    	formReset();	
+    });
 	
 	//选择公司查询条件
 	try {		
