@@ -131,7 +131,7 @@ public class UserController {
 	   
 	   OutUser loginuser = (OutUser)SecurityUtils.getSubject().getPrincipal();
 
-	   loginuser.setPwd(CryptographyUtil.md5(par.get("password"),"java1234"));
+	   loginuser.setPwd(CryptographyUtil.getMd5(par.get("password")));
 	
 	   userService.updateUser(loginuser);
 		
@@ -378,7 +378,7 @@ public class UserController {
 				outUser.setCode("SX" +new Date().getTime() );
 				
 				//ƒ¨»œ√‹¬Î
-				outUser.setPwd(CryptographyUtil.md5("111111", "java1234"));
+				outUser.setPwd(CryptographyUtil.getMd5("111111"));
 				
 				userService.addUser(outUser);
 			} else {				
