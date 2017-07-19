@@ -35,6 +35,7 @@ import com.talkweb.ei.di.common.ViewExcel;
 import com.talkweb.ei.outmanager.dao.TOutActionMapper;
 import com.talkweb.ei.outmanager.dao.TOutGongziMapper;
 import com.talkweb.ei.outmanager.dao.TOutJthyMapper;
+import com.talkweb.ei.outmanager.dao.TOutReportstMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserFpinfoMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserHtMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserJcMapper;
@@ -51,6 +52,8 @@ import com.talkweb.ei.outmanager.model.TOutGongzi;
 import com.talkweb.ei.outmanager.model.TOutGongziExample;
 import com.talkweb.ei.outmanager.model.TOutJthy;
 import com.talkweb.ei.outmanager.model.TOutJthyExample;
+import com.talkweb.ei.outmanager.model.TOutReportst;
+import com.talkweb.ei.outmanager.model.TOutReportstExample;
 import com.talkweb.ei.outmanager.model.TOutUserFpinfo;
 import com.talkweb.ei.outmanager.model.TOutUserFpinfoExample;
 import com.talkweb.ei.outmanager.model.TOutUserHt;
@@ -69,6 +72,7 @@ import com.talkweb.ei.outmanager.model.VOutUsergz;
 import com.talkweb.ei.outmanager.model.VOutUsergzExample;
 import com.talkweb.ei.outmanager.service.IActionService;
 import com.talkweb.ei.outmanager.service.IDictory;
+import com.talkweb.ei.outmanager.service.IReportService;
 import com.talkweb.ei.outmanager.service.IUserGz;
 import com.talkweb.ei.outmanager.service.IUserService;
 
@@ -83,20 +87,13 @@ public class ReportController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	private VOutUseractionMapper vOutUseractionMapper;
 	
 	@Autowired
-	private TOutActionMapper tOutActionMapper;
+	private TOutReportstMapper tOutReportstMapper;
 
-	@Autowired
-	private IUserService userService;
 	
 	@Autowired
-	private IActionService actionService;	
-	
-	@Autowired
-	private IDictory iDictory;		
+	private IReportService reportService;		
 
 	/**********************************业务接口***************************start***********/
 	
@@ -154,59 +151,36 @@ public class ReportController {
 
 
 	/**
-	 * 查询
+	 * 年度报表生成记录
 	 * @param limit
 	 * @param offset
 	 * @param unit
 	 * @param username
 	 * @return
 	 */
-	@RequestMapping(value = "/list_json", method = RequestMethod.GET, produces = {
+	@RequestMapping(value = "/year_list_json", method = RequestMethod.GET, produces = {
 	"application/json; charset=utf-8" })
 	@ResponseBody	
-	private PageResult getActionList(int limit, int offset,String unit,String username){
+	private PageResult getYearRecList(int limit, int offset,String unit,String reqdate){
 				
 
 		//构建条件
-		VOutUseractionExample sample = new VOutUseractionExample();
+		TOutReportstExample sample = new TOutReportstExample();
 		
+		sample.setOrderByClause("REPDATE DESC");
 		
-		VOutUseractionExample.Criteria criteria = sample.createCriteria();
+		TOutReportstExample.Criteria criteria = sample.createCriteria();
 
-		//数据权限控制
-		//维护或者查询刚都能处理		
-		String opt_orgid = (String)SecurityUtils.getSubject().getSession().getAttribute("人员业务活动管理");		
+		
 
-		if(StringUtils.isNotEmpty(opt_orgid)&&!opt_orgid.equals("14")){
-			
-			opt_orgid = iDictory.getUnitNameById(opt_orgid);
-			if(opt_orgid!=null&&opt_orgid.length()>2000){				
-				opt_orgid = opt_orgid.substring(0, 2000);				
-			}
-			criteria.andUnitRECLike(opt_orgid);
-			
+		if(StringUtils.isNotEmpty(unit)){					
+			criteria.andUnitEqualTo(unit);
+		
 		}
-		
 
-		if(StringUtils.isNotEmpty(unit)){
+		if(StringUtils.isNotEmpty(reqdate)){
+			criteria.andRepdateEqualTo(DateUtil.formatStr2Date(reqdate));
 			
-			unit = iDictory.getUnitNameByName(unit);
-			
-			if(unit!=null&&unit.length()>2000){				
-				unit = unit.substring(0, 2000);				
-			}
-
-			//包括子单位
-			//criteria.andUnitLike("%"+unit+"%");
-			criteria.andUnitRECLike(unit);
-		}
-		
-		
-		
-		
-		
-		if(StringUtils.isNotEmpty(username)){
-			criteria.andNameLike(username);
 		}
 
 		
@@ -214,8 +188,8 @@ public class ReportController {
 		sample.setLimit(offset+limit);
 		sample.setOffset(offset+1);		
 
-		long total = vOutUseractionMapper.countByExample(sample);
-		List<VOutUseraction> list =  vOutUseractionMapper.selectPageByExample(sample);
+		long total = tOutReportstMapper.countByExample(sample);
+		List<TOutReportst> list =  tOutReportstMapper.selectPageByExample(sample);
 						
 		//构建返回值
 		PageResult ret = new PageResult(true,list,Integer.parseInt(total+""));			
@@ -232,242 +206,33 @@ public class ReportController {
 
 	
 	/**
-	 * 添加或更新
+	 * 年度报表生产
 	 * @param jsonstr
 	 * @return
 	 */
-	@RequestMapping(value = "/update", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
+	@RequestMapping(value = "/createyear", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody  
-    public String updateAction(@RequestBody String jsonstr) {
+    public String createYearReport(@RequestBody String qdate) {
 		
 		
-		logger.info("action_update======="+jsonstr);   
-			
-		VOutUseraction tOutGongzi = JsonUtil.gson.fromJson(jsonstr,VOutUseraction.class);  
+		logger.info("createYearReport======="+qdate); 
 		
-		if(tOutGongzi!=null){
-			
-			//查找老记录
-			TOutAction old =  tOutActionMapper.selectByPrimaryKey(tOutGongzi.getId());
-			
-			
-			//页面能修改的三个属性
-			old.setStartdate(tOutGongzi.getStartdate());			
-			old.setYwline(tOutGongzi.getYwline());
-			old.setYwaction(tOutGongzi.getYwaction());
-					
-			tOutActionMapper.updateByPrimaryKey(old);
 		
+		//检测之前是否生成过
+		if(reportService.checkReport("年报", qdate)){
+			return "数据已被抽取！";
+		}
+		
+		
+		//创建
+		if(reportService.createReport("年报", qdate)){
+			return "数据已被抽取,创建年度报表成功！";
 		}
 
-		return "OK";
+		return "抽取数据失败！";
 		
     } 
-	
-	
-	/**
-	 * 添加或更新
-	 * @param jsonstr
-	 * @return
-	 */
-	@RequestMapping(value = "/pcreateaction", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
-    @ResponseBody  
-    public String pcreateaction(@RequestBody String jsonstr) {
-		
-		
-		logger.info("pcreateaction======="+jsonstr);   
-			
-		VOutUseraction userAction = JsonUtil.gson.fromJson(jsonstr,VOutUseraction.class); 
-		
-		boolean ret = false;
-		
-		if(userAction!=null){
-			
-			//查找单位下的人员			
-			OutUserExample sample = new OutUserExample();			
-			OutUserExample.Criteria criteria = sample.createCriteria();	
-						
-			//外包用户
-			criteria.andUsertypeEqualTo("1");
-			
-			//所选单位
-			criteria.andUnitEqualTo(userAction.getUnit());
-			
-			//权限控制，不能跨越自己的管理范围			
-			String opt_orgid = (String)SecurityUtils.getSubject().getSession().getAttribute("人员业务活动管理");		
 
-			if(StringUtils.isNotEmpty(opt_orgid)&&!opt_orgid.equals("14")){
-				
-				opt_orgid = iDictory.getUnitNameById(opt_orgid);
-				if(opt_orgid!=null&&opt_orgid.length()>2000){				
-					opt_orgid = opt_orgid.substring(0, 2000);				
-				}
-				criteria.andUnitRECLike(opt_orgid);
-				
-			}			
-			
-			List<OutUser> list = userService.getUserList(sample);
-
-			//添加活动
-			ret = actionService.pCreateAction(list, userAction);
-		}
-		
-		if(ret){
-			return "批量添加用户活动成功！";
-		} else {	
-			return "批量添加用户活动失败！";
-		}
-	
-    }	
-	
-
-
-	
-	/**
-     * 用户信息导入（多sheet导入）
-     * @param file
-     * @param request
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/actionimport")
-    
-    //事务开启
-    //@Transactional 
-    public String actionImport(
-            @RequestParam(value = "excelFile", required = false) MultipartFile file, ModelMap model)
-    {
-    	
-        // 创建根路径的保存变量
-        String rootPath;
-        SimpleDateFormat format = new SimpleDateFormat("yyyy\\MM\\dd\\");
-        String subpath = format.format(new Date());
-
-        rootPath = Const.TMPFILE_ROOT + subpath;
-
-        System.out.println("开始...");
-      
-        String fileName = file.getOriginalFilename();
-       
-       
-        File targetFile = new File(rootPath, fileName);
-        if (!targetFile.exists())
-        {
-            targetFile.mkdirs();
-        }
-
-        // 保存
-        try
-        {
-            file.transferTo(targetFile);
-            
-            System.out.println("文件上传ok...");
-        } catch (Exception e)
-        {
-            //e.printStackTrace();
-            System.out.println("文件上传err...");
-        }
-        List<String> exlValues;
-        boolean ret =  false;
-        //读取数据和导入到db
-
-        exlValues = ExcelUtil.readFileExcel(rootPath+fileName,0,1,ExcelUtil.MAXEXPORTNUM+1,ExcelUtil.ACTION_COL_NUM);
-        ret = actionService.importAction(exlValues);
-
-        String result = "导入成功！";
-
-        if(!ret) {
-        	result = "导入失败！请检测数据文件格式！";
-        }
-        
-        model.addAttribute("msg", result);
-        return "/common/showmsg";
-    }
-	
-	
-	
-	/**
-	 * 导出活动归属信息到excel
-	 * @return
-	 */
-	@RequestMapping(value = "/export", method = RequestMethod.GET)
-	private ModelAndView export(ModelMap model){
-		
-		//构建条件
-		VOutUseractionExample sample = new VOutUseractionExample();
-		
-		
-		VOutUseractionExample.Criteria criteria = sample.createCriteria();
-
-		long total = vOutUseractionMapper.countByExample(sample);
-		
-		//分页条件
-		sample.setLimit(Integer.parseInt(total+""));
-		sample.setOffset(1);		
-		
-		List<VOutUseraction> list =  vOutUseractionMapper.selectPageByExample(sample);
-
-
-        //varList 数据（二维数据）
-        List<List<?>> varList =  new ArrayList<List<?>>();
-        List<String> line;
-        
-        OutUser mapuser;
-        
-		for (VOutUseraction user:list) {
-			 line = new ArrayList<String>();
-			 
-			 BigDecimal xj = new BigDecimal("0");
-		 
-			 line.add("");
-			 			 
-			 //操作模式   组织   人员编号	姓名	业务线  业务活动 是否计入成本  开始日期
-			 line.add(user.getUnit());
-	         line.add(user.getCode());
-	         line.add(user.getName());	         
-	         line.add(user.getYwline());	         
-	         line.add(user.getYwaction());
-	         line.add(user.getIscb());
-
-	         line.add(DateUtil.format(user.getStartdate()));
-          
-	         line.add(user.getId());
-	         	         
-	         varList.add(line);
-		}
-		
-		
-		
-		//titles  列标题
-        List<String> titles = new ArrayList<String>();
-        
-        //操作模式   组织   人员编号	姓名	业务线  业务活动 是否计入成本  开始日期
-
-        titles.add("操作模式");
-        
-        titles.add("组织");
-        
-        titles.add("人员编号");
-        titles.add("姓名"); 
-        titles.add("业务线 ");        
-        titles.add("业务活动");
-        
-        titles.add("是否计入成本");
-        titles.add("开始日期");
-        
-        titles.add("校验标识");
-        
-        //数据传递
-        model.put("name", "人员活动归属信息"); 
-        model.put("titles", titles); 
-        model.put("varList", varList);
-        ViewExcel viewExcel = new ViewExcel();    
-        return new ModelAndView(viewExcel, model);
-	}
-	
-	
-
-	
 	/**********************************业务接口*****************************end*********/
 
 	

@@ -118,6 +118,7 @@ public class DateUtil {
 			}
 			date = (java.util.Date) df.parse(dt);
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return date;
 	}

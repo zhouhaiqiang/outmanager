@@ -89,7 +89,118 @@ function formReset()
 }
 
 
+/**
+ * 检测一年的最后一天 yyyy-mm-dd 格式
+ * 输入是字符串
+ * @returns
+ */
+function checkYlastday(strdate)
+{	
+	//空转换
+	if(strdate==''||strdate=='null'||strdate==null){		
+		return false;
+	}
+		
+	try {
+        var date = string2date(strdate); 
+        var year = date.getFullYear();
+        var month = date.getMonth()+1;  //月份要加1
+        var day = date.getDate();
+        
+        //判断逻辑
+        if(month==12&&day==31){        	
+        	return true;
+        	
+        }
+     }
+     catch (ex) {
+         return false;
+     }
+     
+     return false;
+}
+
+/**
+ * 检测一个季度的最后一天 yyyy-mm-dd 格式
+ * 输入是字符串
+ * @returns
+ */
+function checkSlastday(strdate)
+{	
+	//空转换
+	if(strdate==''||strdate=='null'||strdate==null){		
+		return false;
+	}
+		
+	try {
+        var date = string2date(strdate); 
+        var year = date.getFullYear();
+        var month = date.getMonth()+1;  //月份要加1
+        var day = date.getDate();
+
+        //判断逻辑
+        if(month%3==0){       	
+        	if((month==3||month==12)&&day==31){
+        		return true;
+        	} else if((month==6||month==9)&&day==30){
+        		return true;
+        	}
+        	
+        	
+        }
+     }
+     catch (ex) {
+         return false;
+     }
+     
+     return false;
+}
+
+/**
+ * 检测月份的最后一天 yyyy-mm-dd 格式
+ * 输入是字符串
+ * @returns
+ */
+function checkMlastday(strdate)
+{	
+	
+	
+	//空转换
+	if(strdate==''||strdate=='null'||strdate==null){		
+		return false;
+	}
+		
+	try {
+
+        var date = string2date(strdate); 
+        var year = date.getFullYear();
+        var month = date.getMonth()+1;  //月份要加1
+        var day = date.getDate();
+    
+        //给定月份的最后一天
+        var  tmpdate = new Date(year,month,0);  
+        
+        //月份最后一天比较
+        if(date.getDate()==tmpdate.getDate()){        	
+        	return true;
+        }
+       
+        
+     }
+     catch (ex) {
+         return false;
+     }
+     
+     return false;
+}
 
 
-
+/**
+ * 字符串转日期 支持格式["2008-8-1","2009/9/2","10/3/2010"]
+ * @param str
+ * @returns
+ */
+function string2date(str){
+	return new Date(Date.parse(str.replace(/-/g,  "/")));
+}
 

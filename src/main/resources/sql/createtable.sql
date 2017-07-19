@@ -298,6 +298,58 @@ alter table T_OUT_REPORT
   ); 
   
   
-  
-  
+ -- Create table
+create table T_OUT_REPORTST
+(
+  ID         VARCHAR2(50) not null,
+  REPDATE    DATE not null,
+  UNIT       VARCHAR2(50) not null,
+  REPTYPE    VARCHAR2(50) not null,
+  INTF       VARCHAR2(50) default '不可传送' not null,
+  ISRECREATE VARCHAR2(50) default '不可重新抽取' not null,
+  REMARK     VARCHAR2(200),
+  CREATEDATE DATE default sysdate
+)
+tablespace DATA1
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the table 
+comment on table T_OUT_REPORTST
+  is '外包人员数据报表状态';
+-- Add comments to the columns 
+comment on column T_OUT_REPORTST.ID
+  is 'ID';
+comment on column T_OUT_REPORTST.REPDATE
+  is '报告日期';
+comment on column T_OUT_REPORTST.UNIT
+  is '组织单位';
+comment on column T_OUT_REPORTST.REPTYPE
+  is '报告类型 （年报，季报，月报）';
+comment on column T_OUT_REPORTST.INTF
+  is '接口状态 （没有接口 不可传送）';
+comment on column T_OUT_REPORTST.ISRECREATE
+  is '是否可重新抽取（不可重新抽取）';
+comment on column T_OUT_REPORTST.CREATEDATE
+  is '生成日期';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table T_OUT_REPORTST
+  add constraint PK_T_OUT_REPORTST primary key (ID)
+  using index 
+  tablespace DATA1
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
 
