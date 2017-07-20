@@ -123,18 +123,18 @@ public class ReportServiceImpl implements IReportService {
 		boolean inData = false;
 		//年数据入库
 		if("年报".equals(type)){
-			inData = createYearData(qdate);
+			inData = createYearData(qdate,type);
 		}
 
 		//季度数据入库
 		if("季报".equals(type)){
-			inData = createSecData(qdate);
+			inData = createSecData(qdate,type);
 		}		
 		
 		
 		//月份数据入库
 		if("月报".equals(type)){
-			inData = createMonthrData(qdate);
+			inData = createMonthrData(qdate,type);
 		}		
 		
 		//状态表
@@ -161,12 +161,12 @@ public class ReportServiceImpl implements IReportService {
 	 * @param qdate
 	 * @return
 	 */
-	private boolean createYearData(String qdate){
+	private boolean createYearData(String qdate,String type){
 
 		//分别插入
 		for (int i = 0; i < UNITS.length; i++) {			
 			for (int j = 0; j < YEAR_REPORTNAME.length; j++) {				
-				createRcode(qdate,YEAR_REPORTNAME[j],"年报",UNITS[i],"","[{},{}]");
+				createRcode(qdate,YEAR_REPORTNAME[j],type,UNITS[i],"","[{},{}]");
 				
 			}
 						
@@ -217,13 +217,13 @@ public class ReportServiceImpl implements IReportService {
 	 * @param qdate
 	 * @return
 	 */
-	private boolean createSecData(String qdate){
+	private boolean createSecData(String qdate,String type){
 		
 		
 		//分别插入
 		for (int i = 0; i < UNITS.length; i++) {			
 			for (int j = 0; j < SEC_REPORTNAME.length; j++) {				
-				createRcode(qdate,SEC_REPORTNAME[j],"年报",UNITS[i],"","[{},{}]");
+				createRcode(qdate,SEC_REPORTNAME[j],type,UNITS[i],"","[{},{}]");
 				
 			}
 						
@@ -236,12 +236,12 @@ public class ReportServiceImpl implements IReportService {
 	 * @param qdate
 	 * @return
 	 */
-	private boolean createMonthrData(String qdate){
+	private boolean createMonthrData(String qdate,String type){
 		
 		//分别插入
 		for (int i = 0; i < UNITS.length; i++) {			
 			for (int j = 0; j < MONTH_REPORTNAME.length; j++) {				
-				createRcode(qdate,MONTH_REPORTNAME[j],"年报",UNITS[i],"","[{},{}]");
+				createRcode(qdate,MONTH_REPORTNAME[j],type,UNITS[i],"","[{},{}]");
 				
 			}
 						

@@ -92,7 +92,9 @@ var TableInit = function () {
         var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
            limit: params.limit,   //页面大小
            offset: params.offset,  //页码
-           type: "年报",
+
+           type: "月报",
+ 
      
         };
         
@@ -118,13 +120,13 @@ var ButtonInit = function () {
     	  var qdate = $('#query_date').val();
     	  
     	  //checkSlastday checkMlastday 日期检测
-    	  if(!checkYlastday(qdate)){   		  
-    		  alert("请选择一年的最后一天！");
+    	  if(!checkMlastday(qdate)){   		  
+    		  alert("请选择一月的最后一天！");
     		  return false;
     	  }
     	  
     	  //生成报表
-    	  var url = "/outmanager/report/recode_list_json";    	  
+    	  var url = "/outmanager/report/createmonth";    	  
     	  $.ajax({
     		  type: 'POST',
     		  url: url,		  
@@ -162,7 +164,7 @@ function refreshtab(){
 	$('#tb_data').bootstrapTable(  
             "refresh",  
             {   
-            	url: '/outmanager/report/year_list_json',
+            	url: '/outmanager/report/recode_list_json',
             }  
   );
 	

@@ -32,7 +32,8 @@ var TableInit = function () {
     //初始化Table
     oTableInit.Init = function () {
         $('#tb_data').bootstrapTable({
-            url: '/outmanager/report/recode_list_json',         //请求后台的URL（*）
+            //url: '/outmanager/report/data_list_json',         //请求后台的URL（*）
+        	url: '',         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: false,                      //是否显示行间隔色
@@ -57,29 +58,22 @@ var TableInit = function () {
             cardView: false,                    //是否显示详细视图
             detailView: false,                   //是否显示父子表
             columns: [{
-                field: 'repdate',
-                title: '查询日期',
-            	formatter : function (value, row, index) {
-                    if (value=="") {
-                        return '';
-                    
-                    } else {                   	
-                    	return jsonDateFormat(value);    	
-                    }
-                }	
-                
+                field: 'name',
+                title: '报表名'
+            },{
+                field: 'unit',
+                title: '组织范围'
             },{
                 field: 'intf',
-                title: '数据状态'
-            },{
-                field: 'isrecreate',
                 title: '接口状态'
             },{
                 field: 'id',
                 title: '操作',
-                formatter : function (value, row, index) {
-                	return '--'
-                }
+            	formatter : function (value, row, index) {
+            		//<a href='/outmanager/report/showreport?id="+value+"'>详细数据</a>
+            		return "<a href='/outmanager/report/showreport?id="+value+"'>查看报告</a> ";
+                }	
+                
             }
             ]
         });
@@ -92,8 +86,13 @@ var TableInit = function () {
         var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
            limit: params.limit,   //页面大小
            offset: params.offset,  //页码
-           type: "年报",
-     
+           
+           //参数
+           unit: $('#query_unit').val(),
+           name: $('#query_name').val(),
+           reqdate: $('#query_date').val(),
+           type: "季报",
+        	   
         };
         
 
@@ -118,28 +117,13 @@ var ButtonInit = function () {
     	  var qdate = $('#query_date').val();
     	  
     	  //checkSlastday checkMlastday 日期检测
-    	  if(!checkYlastday(qdate)){   		  
-    		  alert("请选择一年的最后一天！");
+    	  if(!checkSlastday(qdate)){   		  
+    		  alert("请选择季度的最后一天！");
     		  return false;
     	  }
     	  
-    	  //生成报表
-    	  var url = "/outmanager/report/recode_list_json";    	  
-    	  $.ajax({
-    		  type: 'POST',
-    		  url: url,		  
-    		  dataType: "text",
-    		  contentType:'application/json;charset=UTF-8', 		  
-    		  data: qdate,		  
-    		  success: function(data){
-
-    			  alert(data);   			  
-    			  //刷新
-    			  refreshtab();
-    		  },
-    		  
-    		  
-    		});   	  
+    	  //搜索
+    	  refreshtab();   	  
      	  
 
      });
@@ -162,7 +146,7 @@ function refreshtab(){
 	$('#tb_data').bootstrapTable(  
             "refresh",  
             {   
-            	url: '/outmanager/report/year_list_json',
+            	url: '/outmanager/report/data_list_json',
             }  
   );
 	

@@ -2,6 +2,9 @@ package com.talkweb.ei.outmanager.dao;
 
 import com.talkweb.ei.outmanager.model.TOutReport;
 import com.talkweb.ei.outmanager.model.TOutReportExample;
+import com.talkweb.ei.outmanager.model.TOutReportst;
+import com.talkweb.ei.outmanager.model.TOutReportstExample;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -93,4 +96,12 @@ public interface TOutReportMapper {
      * @mbg.generated Tue Jul 18 11:12:01 CST 2017
      */
     int updateByPrimaryKey(TOutReport record);
+    
+    
+    
+    //∑÷“≥≤È—Ø
+    List<TOutReport> selectPageByExample(TOutReportExample example);    
+    
+    
+    
 }

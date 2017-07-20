@@ -35,6 +35,7 @@ import com.talkweb.ei.di.common.ViewExcel;
 import com.talkweb.ei.outmanager.dao.TOutActionMapper;
 import com.talkweb.ei.outmanager.dao.TOutGongziMapper;
 import com.talkweb.ei.outmanager.dao.TOutJthyMapper;
+import com.talkweb.ei.outmanager.dao.TOutReportMapper;
 import com.talkweb.ei.outmanager.dao.TOutReportstMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserFpinfoMapper;
 import com.talkweb.ei.outmanager.dao.TOutUserHtMapper;
@@ -52,6 +53,8 @@ import com.talkweb.ei.outmanager.model.TOutGongzi;
 import com.talkweb.ei.outmanager.model.TOutGongziExample;
 import com.talkweb.ei.outmanager.model.TOutJthy;
 import com.talkweb.ei.outmanager.model.TOutJthyExample;
+import com.talkweb.ei.outmanager.model.TOutReport;
+import com.talkweb.ei.outmanager.model.TOutReportExample;
 import com.talkweb.ei.outmanager.model.TOutReportst;
 import com.talkweb.ei.outmanager.model.TOutReportstExample;
 import com.talkweb.ei.outmanager.model.TOutUserFpinfo;
@@ -91,6 +94,9 @@ public class ReportController {
 	@Autowired
 	private TOutReportstMapper tOutReportstMapper;
 
+	
+	@Autowired
+	private TOutReportMapper tOutReportMapper;	
 	
 	@Autowired
 	private IReportService reportService;		
@@ -158,10 +164,10 @@ public class ReportController {
 	 * @param username
 	 * @return
 	 */
-	@RequestMapping(value = "/year_list_json", method = RequestMethod.GET, produces = {
+	@RequestMapping(value = "/recode_list_json", method = RequestMethod.GET, produces = {
 	"application/json; charset=utf-8" })
 	@ResponseBody	
-	private PageResult getYearRecList(int limit, int offset,String unit,String reqdate){
+	private PageResult getRecodeList(int limit, int offset,String type){
 				
 
 		//构建条件
@@ -171,15 +177,73 @@ public class ReportController {
 		
 		TOutReportstExample.Criteria criteria = sample.createCriteria();
 
+		if(StringUtils.isNotEmpty(type)){					
+			criteria.andReptypeEqualTo(type);		
+		}		
+
+		//分页条件
+		sample.setLimit(offset+limit);
+		sample.setOffset(offset+1);		
+
+		long total = tOutReportstMapper.countByExample(sample);
+		List<TOutReportst> list =  tOutReportstMapper.selectPageByExample(sample);
+						
+		//构建返回值
+		PageResult ret = new PageResult(true,list,Integer.parseInt(total+""));			
+		System.out.println("----------"+ret);	
+
+		return ret;
+			
+	}
+	
+	
+	
+	
+	
+	
+	/**
+	 * 报告详细数据
+	 * @param limit
+	 * @param offset
+	 * @param name 报表名字
+	 * @param reqdate
+	 * @param type 报表类型
+	 * @return
+	 */
+	@RequestMapping(value = "/data_list_json", method = RequestMethod.GET, produces = {
+	"application/json; charset=utf-8" })
+	@ResponseBody	
+	private PageResult getDataList(int limit, int offset,String unit,String name,String reqdate,String type){
+				
+
+		//构建条件
+		TOutReportExample sample = new TOutReportExample();
+		
+		//sample.setOrderByClause("REPDATE DESC");
+		
+		TOutReportExample.Criteria criteria = sample.createCriteria();
+
 		
 
+		if(StringUtils.isNotEmpty(name)){					
+			criteria.andNameEqualTo(name);
+		
+		}
+		
+		
 		if(StringUtils.isNotEmpty(unit)){					
 			criteria.andUnitEqualTo(unit);
 		
-		}
+		}		
 
+		if(StringUtils.isNotEmpty(type)){					
+			criteria.andReptypeEqualTo(type);
+		
+		}
+		
 		if(StringUtils.isNotEmpty(reqdate)){
-			criteria.andRepdateEqualTo(DateUtil.formatStr2Date(reqdate));
+			Date rdate = DateUtil.parseDate(reqdate,DateUtil.C_DATE_PATTON_DEFAULT);
+			criteria.andRepdateEqualTo(rdate);
 			
 		}
 
@@ -188,8 +252,8 @@ public class ReportController {
 		sample.setLimit(offset+limit);
 		sample.setOffset(offset+1);		
 
-		long total = tOutReportstMapper.countByExample(sample);
-		List<TOutReportst> list =  tOutReportstMapper.selectPageByExample(sample);
+		long total = tOutReportMapper.countByExample(sample);
+		List<TOutReport> list =  tOutReportMapper.selectPageByExample(sample);
 						
 		//构建返回值
 		PageResult ret = new PageResult(true,list,Integer.parseInt(total+""));			
@@ -231,7 +295,77 @@ public class ReportController {
 
 		return "抽取数据失败！";
 		
+    }
+	
+	
+	
+	
+	/**
+	 * 年度报表生产
+	 * @param jsonstr
+	 * @return
+	 */
+	@RequestMapping(value = "/createsea", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody  
+    public String createSeaReport(@RequestBody String qdate) {
+		
+		
+		logger.info("createSeaReport======="+qdate); 
+		
+		
+		//检测之前是否生成过
+		if(reportService.checkReport("季报", qdate)){
+			return "数据已被抽取！";
+		}
+		
+		
+		//创建
+		if(reportService.createReport("季报", qdate)){
+			return "数据已被抽取,创建季度报表成功！";
+		}
+
+		return "抽取数据失败！";
+		
     } 
+	
+	
+	
+	/**
+	 * 年度报表生产
+	 * @param jsonstr
+	 * @return
+	 */
+	@RequestMapping(value = "/createmonth", produces = "text/html;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody  
+    public String createMonthReport(@RequestBody String qdate) {
+		
+		
+		logger.info("createYearReport======="+qdate); 
+		
+		
+		//检测之前是否生成过
+		if(reportService.checkReport("月报", qdate)){
+			return "数据已被抽取！";
+		}
+		
+		
+		//创建
+		if(reportService.createReport("月报", qdate)){
+			return "数据已被抽取,创建月报表成功！";
+		}
+
+		return "抽取数据失败！";
+		
+    } 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	/**********************************业务接口*****************************end*********/
 
