@@ -124,7 +124,7 @@ var ButtonInit = function () {
     	  }
     	  
     	  //生成报表
-    	  var url = "/outmanager/report/recode_list_json";    	  
+    	  var url = "/outmanager/report/createyear";    	  
     	  $.ajax({
     		  type: 'POST',
     		  url: url,		  
@@ -162,7 +162,7 @@ function refreshtab(){
 	$('#tb_data').bootstrapTable(  
             "refresh",  
             {   
-            	url: '/outmanager/report/year_list_json',
+            	url: '/outmanager/report/recode_list_json',
             }  
   );
 	

@@ -39,7 +39,7 @@
 <body>
     <div class="panel-body" style="padding-bottom:0px;width:95%;font-size:12px">
         <div class="panel panel-default">
-            <div class="panel-heading">数据抽取条件</div>
+            <div class="panel-heading">数据抽取条件（季报）</div>
             <div class="panel-body">
                 <form id="formSearch" class="form-horizontal">
                     <div class="form-group" style="margin-top:10px">
