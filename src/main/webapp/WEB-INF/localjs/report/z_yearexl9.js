@@ -3,18 +3,7 @@
 $(function () {
 	
 	
-    //时间控件
-    $('.form_date').datetimepicker({
-        language:  'zh-CN',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0
-    });
-	
+
     //1.初始化Table
     var oTable = new TableInit();
     oTable.Init();
@@ -70,8 +59,8 @@ var TableInit = function () {
                 field: 'id',
                 title: '操作',
             	formatter : function (value, row, index) {
-            		var url = "/outmanager/report/showreport?id="+value;
-            		return "<a onclick='openfull(\""+url+"\")' href='#'>查看报告</a> ";
+            		//<a href='/outmanager/report/showreport?id="+value+"'>详细数据</a>
+            		return "<a href='/outmanager/report/showreport?id="+value+"'>查看报告</a> ";
                 }	
                 
             }
@@ -91,7 +80,7 @@ var TableInit = function () {
            unit: $('#query_unit').val(),
            name: $('#query_name').val(),
            reqdate: $('#query_date').val(),
-           type: "月报",
+           type: "年报",
         	   
         };
         
@@ -117,8 +106,8 @@ var ButtonInit = function () {
     	  var qdate = $('#query_date').val();
     	  
     	  //checkSlastday checkMlastday 日期检测
-    	  if(!checkMlastday(qdate)){   		  
-    		  alert("请选择一月的最后一天！");
+    	  if(!checkYlastday(qdate)){   		  
+    		  alert("请选择一年的最后一天！");
     		  return false;
     	  }
     	  
@@ -139,16 +128,4 @@ var ButtonInit = function () {
   return oInit; 
 };
 
-
-
-//刷新
-function refreshtab(){
-	$('#tb_data').bootstrapTable(  
-            "refresh",  
-            {   
-            	url: '/outmanager/report/data_list_json',
-            }  
-  );
-	
-}
 

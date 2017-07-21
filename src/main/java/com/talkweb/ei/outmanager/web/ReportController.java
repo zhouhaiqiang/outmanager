@@ -48,6 +48,7 @@ import com.talkweb.ei.outmanager.dao.VOutUsergzMapper;
 import com.talkweb.ei.outmanager.model.OutUser;
 import com.talkweb.ei.outmanager.model.OutUserExample;
 import com.talkweb.ei.outmanager.model.OutUser_S;
+import com.talkweb.ei.outmanager.model.ReportData;
 import com.talkweb.ei.outmanager.model.TOutAction;
 import com.talkweb.ei.outmanager.model.TOutGongzi;
 import com.talkweb.ei.outmanager.model.TOutGongziExample;
@@ -78,6 +79,7 @@ import com.talkweb.ei.outmanager.service.IDictory;
 import com.talkweb.ei.outmanager.service.IReportService;
 import com.talkweb.ei.outmanager.service.IUserGz;
 import com.talkweb.ei.outmanager.service.IUserService;
+import com.talkweb.ei.outmanager.service.impl.ReportServiceImpl;
 
 /**
  * 报表操作
@@ -368,6 +370,69 @@ public class ReportController {
 	
 
 	/**********************************业务接口*****************************end*********/
-
 	
+	
+	
+	
+	
+	/**********************************报表展示*****************************start*********/
+	
+	@RequestMapping(value = "/showreport", method = RequestMethod.GET)
+	private String showReport(Model model,  @RequestParam("id") String id) {	
+		
+		//取出报表对应的模板	
+		TOutReport report = tOutReportMapper.selectByPrimaryKey(id);
+		String repName = report.getName();
+		String repType = report.getReptype();
+		String jsfile = "";
+		if("年报".equals(repType)){
+			jsfile = ReportServiceImpl.YEAR_REPORTTMP.get(repName);
+		} else if("季报".equals(repType)){
+			jsfile = ReportServiceImpl.SEC_REPORTTMP.get(repName);
+		} else {
+			jsfile = ReportServiceImpl.MONTH_REPORTTMP.get(repName);
+		}
+
+		//id传到页面
+		model.addAttribute("report", report);
+		model.addAttribute("jsfile", jsfile);
+		model.addAttribute("repdate", DateUtil.format(report.getRepdate()));
+		return "report/z_tmp_exl";
+	}
+	
+	
+		
+	/**
+	 * 报告详细数据(单个报表）
+	 * @param limit
+	 * @param offset
+	 * @param name 报表名字
+	 * @param reqdate
+	 * @param type 报表类型
+	 * @return
+	 */
+	@RequestMapping(value = "/getexl_json", method = RequestMethod.GET, produces = {
+	"application/json; charset=utf-8" })
+	@ResponseBody	
+	private PageResult getExlList(String id){
+		
+		//直接把表中对应的json数据返回
+		TOutReport tOutReport =  tOutReportMapper.selectByPrimaryKey(id);
+		
+		//构建返回
+		String jsondata = tOutReport.getRepdata();
+		logger.info("报表数据==========="+jsondata);
+		
+		//转成对象数组
+		List<ReportData> list = JsonUtil.gson.fromJson(jsondata,  new TypeToken<List<ReportData>>(){}.getType());
+
+		//数据列编号
+		//list.add(0, new ReportData());
+				
+		//构建返回值
+		return  new PageResult(true,list,list.size());	
+			
+	}	
+	
+	/**********************************报表展示*****************************end*********/
 }

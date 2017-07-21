@@ -71,7 +71,14 @@ var TableInit = function () {
                 title: '操作',
             	formatter : function (value, row, index) {
             		//<a href='/outmanager/report/showreport?id="+value+"'>详细数据</a>
-            		return "<a href='/outmanager/report/showreport?id="+value+"'>查看报告</a> ";
+            		//return "<a href='/outmanager/report/showreport?id="+value+"'>查看报告</a> ";
+            		var url = "/outmanager/report/showreport?id="+value;
+            		return "<a onclick='openfull(\""+url+"\")' href='#'>查看报告</a> ";
+            		
+            		
+            		
+            		
+            		
                 }	
                 
             }

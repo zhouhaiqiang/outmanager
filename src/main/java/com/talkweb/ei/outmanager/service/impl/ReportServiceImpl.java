@@ -1,7 +1,9 @@
 package com.talkweb.ei.outmanager.service.impl;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,8 +55,19 @@ public class ReportServiceImpl implements IReportService {
 			"4-3、紧密型业务外包人员职位层级变动分析",
 			"5-3、紧密型业务外包人员增减变动",
 			"7、人员素质结构优化分析"			
-	}; 
+	};
 	
+	
+	
+	//模板页面定义
+	public static  Map<String,String> YEAR_REPORTTMP = new HashMap<String,String>();
+	static {
+		for (int i = 0; i < YEAR_REPORTNAME.length; i++) {
+			YEAR_REPORTTMP.put(YEAR_REPORTNAME[i], "z_yearexl"+i);
+		}
+				
+	}
+
 	//季度表名字
 	public static final String[] SEC_REPORTNAME={
 			"03紧密型业务外包人员增减变动情况统计表",
@@ -66,13 +79,32 @@ public class ReportServiceImpl implements IReportService {
 				
 	};
 	
+	//模板页面定义
+	public static  Map<String,String> SEC_REPORTTMP = new HashMap<String,String>();
+	static {
+		for (int i = 0; i < SEC_REPORTNAME.length; i++) {
+			SEC_REPORTTMP.put(SEC_REPORTNAME[i], "z_secexl"+i);
+		}
+				
+	}
+	
 	//月报表名字
 	public static final String[] MONTH_REPORTNAME={
 			"1、员工情况表(月报)",
 			"2-3、紧密型业务外包人员增减变动情况(月报)",
 			"3、常用信息统计表(月报)"
 					
-	}; 		
+	}; 	
+	
+	//模板页面定义
+	public static  Map<String,String> MONTH_REPORTTMP = new HashMap<String,String>();
+	static {
+		for (int i = 0; i < MONTH_REPORTNAME.length; i++) {
+			MONTH_REPORTTMP.put(MONTH_REPORTNAME[i], "z_monthexl"+i);
+		}
+				
+	}	
+	
 	
 	@Autowired
 	private TOutReportstMapper tOutReportstMapper;
@@ -107,7 +139,7 @@ public class ReportServiceImpl implements IReportService {
 				return true;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return false;
 		}

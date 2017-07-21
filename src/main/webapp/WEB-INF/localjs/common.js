@@ -204,3 +204,15 @@ function string2date(str){
 	return new Date(Date.parse(str.replace(/-/g,  "/")));
 }
 
+/**
+ * 全屏打开rul
+ * @param url
+ * @returns
+ */
+function openfull(url){
+	window.open(url,'_blank','fullscreen=1');
+}
+
+
+
+
