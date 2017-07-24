@@ -51,10 +51,10 @@ var TableInit = function () {
              //1 行         
              [       
 				{
-				    "title": "员工情况表",
+				    "title": "紧密外包人员增减变动情况表",
 				    "halign":"center",
 				    "align":"center",
-				    "colspan": 47   //跨度
+				    "colspan": 19   //跨度
 				}
 			], 
              //2 行
@@ -63,7 +63,7 @@ var TableInit = function () {
 				    "title": $('#unit').val()+'('+$('#repdate').val()+')',
 				    "halign":"center",
 				    "align":"center",
-				    "colspan": 47   //跨度
+				    "colspan": 19   //跨度
 				},
 			
 			],
@@ -78,41 +78,48 @@ var TableInit = function () {
 		    [
 			 			    
 				{
-				    "title": "单位",
+				    "title": "项目",
 				    "halign":"center",
 				    "align":"center",
 				    "colspan": 1,   //跨行
-				    "rowspan": 5,    //跨列
+				    "rowspan": 4,    //跨列
 				},
 				{
-				    "title": "集团公司人员总量情况",
+				    "title": "上期本单位人数（历史）",
 				    "halign":"center",
 				    "align":"center",
-				    "colspan": 7,   //跨行
-				    "rowspan": 2,    //跨列
+				    "colspan": 1,   //跨行
+				    "rowspan": 4,    //跨列
 				},
 				{
-				    "title": "上市公司",
+				    "title": "上期本单位人数（系统）",
 				    "halign":"center",
 				    "align":"center",
-				    "colspan": 15,   //跨行
+				    "colspan": 1,   //跨行
+				    "rowspan": 4,    //跨列
+				}
+				,
+				{
+				    "title": "本期新增人数",
+				    "halign":"center",
+				    "align":"center",
+				    "colspan": 5,   //跨行
 				    "rowspan": 1,    //跨列
 				}
 				,
 				{
-				    "title": "非上市公司",
+				    "title": "本期减少人数",
 				    "halign":"center",
 				    "align":"center",
-				    "colspan": 12,   //跨行
+				    "colspan": 10,   //跨行
 				    "rowspan": 1,    //跨列
-				}
-				,
+				},
 				{
-				    "title": "实业",
+				    "title": "本期末本单位人数",
 				    "halign":"center",
 				    "align":"center",
-				    "colspan": 12,   //跨行
-				    "rowspan": 1,    //跨列
+				    "colspan": 1,   //跨行
+				    "rowspan": 4,    //跨列
 				}
 				
 				],
@@ -121,127 +128,96 @@ var TableInit = function () {
 				[ //2...
 				   				    
 				  {
-					    "title": "全部人员",
+					    "title": "合计",
 					    "halign":"center",
 					    "align":"center",
-					    "colspan": 15,   //跨行
-					    "rowspan": 1,    //跨列
-					}
-					,
-					{
-					    "title": "全部人员",
+					    "colspan": 1,   //跨行
+					    "rowspan": 3,    //跨列
+				  },{
+					    "title": "开展业务新增人数",
 					    "halign":"center",
 					    "align":"center",
-					    "colspan": 12,   //跨行
-					    "rowspan": 1,    //跨列
-					}
-					,
-					{
-					    "title": "全部人员",
+					    "colspan": 1,   //跨行
+					    "rowspan": 3,    //跨列
+				  },{
+					    "title": "合同制转化人数",
 					    "halign":"center",
 					    "align":"center",
-					    "colspan": 12,   //跨行
+					    "colspan": 1,   //跨行
+					    "rowspan": 3,    //跨列
+				  },{
+					    "title": "劳务派遣转化人数",
+					    "halign":"center",
+					    "align":"center",
+					    "colspan": 1,   //跨行
+					    "rowspan": 3,    //跨列
+				  },{
+					    "title": "企业内调动",
+					    "halign":"center",
+					    "align":"center",
+					    "colspan": 1,   //跨行
+					    "rowspan": 3,    //跨列
+				  },{
+					    "title": "合计",
+					    "halign":"center",
+					    "align":"center",
+					    "colspan": 1,   //跨行
+					    "rowspan": 3,    //跨列
+				  },{
+					    "title": "主动辞职人数",
+					    "halign":"center",
+					    "align":"center",
+					    "colspan": 1,   //跨行
+					    "rowspan": 3,    //跨列
+				  },{
+					    "title": "主动退回外包公司",
+					    "halign":"center",
+					    "align":"center",
+					    "colspan": 4,   //跨行
 					    "rowspan": 1,    //跨列
-					}
-
+				  },{
+					    "title": "整体转经营性业务",
+					    "halign":"center",
+					    "align":"center",
+					    "colspan": 1,   //跨行
+					    "rowspan": 3,    //跨列
+				  },{
+					    "title": "被录用为合同制",
+					    "halign":"center",
+					    "align":"center",
+					    "colspan": 1,   //跨行
+					    "rowspan": 3,    //跨列
+				  },{
+					    "title": "转成劳务派遣",
+					    "halign":"center",
+					    "align":"center",
+					    "colspan": 1,   //跨行
+					    "rowspan": 3,    //跨列
+				  },{
+					    "title": "企业内调动",
+					    "halign":"center",
+					    "align":"center",
+					    "colspan": 1,   //跨行
+					    "rowspan": 3,    //跨列
+				  }
+					
 				   
 				],
 				
 				[ //3...				    
 				    {
-					    "title": "总数",
+					    "title": "合计",
 					    "halign":"center",
 					    "align":"center",
 					    "colspan": 1,   //跨行
-					    "rowspan": 3,    //跨列				    
+					    "rowspan": 2,    //跨列				    
 					},
 					{
-						    "title": "其中：",
+						    "title": "其中",
 						    "halign":"center",
 						    "align":"center",
-						    "colspan": 6,   //跨行
+						    "colspan": 3,   //跨行
 						    "rowspan": 1,    //跨列				    
-					}, 
-					
-					{
-					    "title": "总数",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 3,    //跨列				    
-					},{
-					    "title": "全口径用工总量",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 7,   //跨行
-					    "rowspan": 1,    //跨列				    
-					},{
-					    "title": "离开本单位保留劳动关系人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 3,   //跨行
-					    "rowspan": 1,    //跨列				    
-					},{
-					    "title": "离退休人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 4,   //跨行
-					    "rowspan": 1,    //跨列				    
-					}
-					/////////////////////////////////
-					
-					,{
-					    "title": "总数",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 3,    //跨列				    
-					},{
-					    "title": "从业人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 4,   //跨行
-					    "rowspan": 1,    //跨列				    
-					},{
-					    "title": "离开本单位保留劳动关系人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 3,   //跨行
-					    "rowspan": 1,    //跨列				    
-					},{
-					    "title": "离退休人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 4,   //跨行
-					    "rowspan": 1,    //跨列				    
-					}
-					
-                    /////////////////////////////////
-					
-					,{
-					    "title": "总数",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 3,    //跨列				    
-					},{
-					    "title": "从业人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 4,   //跨行
-					    "rowspan": 1,    //跨列				    
-					},{
-					    "title": "离开本单位保留劳动关系人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 3,   //跨行
-					    "rowspan": 1,    //跨列				    
-					},{
-					    "title": "离退休人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 4,   //跨行
-					    "rowspan": 1,    //跨列				    
 					}
 				    
 				    
@@ -250,344 +226,27 @@ var TableInit = function () {
 				],[ //4...
 				    
 				    {
-					    "title": "全口径用工总量",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 4,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "内部退养人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 2    //跨列				    
-					},{
-					    "title": "离退休人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 2    //跨列				    
-					},
-					////////////////////////
-					{
-					    "title": "合计",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 2    //跨列				    
-					},{
-					    "title": "从业人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 5,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "紧密型外包人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 2    //跨列				    
-					},{
-					    "title": "小计",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 2    //跨列				    
-					},{
-					    "title": "其中:",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 2,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "小计",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 2    //跨列				    
-					},{
-					    "title": "其中:",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 3,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "小计",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 2    //跨列				    
-					},{
-					    "title": "其中:",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 3,   //跨行
-					    "rowspan": 1    //跨列				    
-					}
-					
-					/////////////////////////////
-					,{
-					    "title": "小计",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 2    //跨列				    
-					},{
-					    "title": "其中:",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 2,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "小计",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 2    //跨列				    
-					},{
-					    "title": "其中:",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 3,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "小计",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 2    //跨列				    
-					},{
-					    "title": "其中",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 3,   //跨行
-					    "rowspan": 1    //跨列				    
-					}    
-					
-					/////////////////////////////
-					
-					,{
-					    "title": "小计",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 2    //跨列				    
-					},{
-					    "title": "其中:",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 2,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "小计",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 2    //跨列				    
-					},{
-					    "title": "其中:",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 3,   //跨行
-					    "rowspan": 1    //跨列				    
-					}        
-				    
-				],[ //5...
-				    {
-					    "title": "小计",
+					    "title": "考核退出",
 					    "halign":"center",
 					    "align":"center",
 					    "colspan": 1,   //跨行
 					    "rowspan": 1    //跨列				    
 					},{
-					    "title": "合同制员工",
+					    "title": "违章退出",
 					    "halign":"center",
 					    "align":"center",
 					    "colspan": 1,   //跨行
 					    "rowspan": 1    //跨列				    
 					},{
-					    "title": "劳务派遣人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					} ,{
-					    "title": "紧密型业务外包人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},
-					
-					/////////////////////////////
-					{
-					    "title": "小计",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "合同制员工",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "劳务派遣人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "非全日制用工",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "其他",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "内部退养人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "长期病休假人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "离休",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "退休",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "内退",
+					    "title": "业务结束退出",
 					    "halign":"center",
 					    "align":"center",
 					    "colspan": 1,   //跨行
 					    "rowspan": 1    //跨列				    
 					}
-					
-					/////////////////////////////////////////
-					
-					,{
-					    "title": "合同制员工",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "劳务派遣人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "其他",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "内部退养人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "长期病休假人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "离休",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "退休",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "内退",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					}
-					
-					///////////////////////////////////
-					,{
-					    "title": "合同制员工",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "劳务派遣人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "其他",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "内部退养人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "长期病休假人员",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "离休",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "退休",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					},{
-					    "title": "内退",
-					    "halign":"center",
-					    "align":"center",
-					    "colspan": 1,   //跨行
-					    "rowspan": 1    //跨列				    
-					}
-				                
+	
 			
-			
-			],
+			 ],
 			
 			
 			
@@ -654,90 +313,6 @@ var TableInit = function () {
 	            },{
 	                field: 's',
 	                title: '19'
-	            },{
-	                field: 't',
-	                title: '20'
-	            },{
-	                field: 'u',
-	                title: '21'
-	            },{
-	                field: 'v',
-	                title: '22'
-	            },{
-	                field: 'w',
-	                title: '23'
-	            },{
-	                field: 'x',
-	                title: '24'
-	            },{
-	                field: 'y',
-	                title: '25'
-	            },{
-	                field: 'z',
-	                title: '26'
-	            },{
-	                field: 'a1',
-	                title: '27'
-	            },{
-	                field: 'b1',
-	                title: '28'
-	            },{
-	                field: 'c1',
-	                title: '29'
-	            },{
-	                field: 'd1',
-	                title: '30'
-	            },{
-	                field: 'e1',
-	                title: '31'
-	            },{
-	                field: 'f1',
-	                title: '32'
-	            },{
-	                field: 'g1',
-	                title: '33'
-	            },{
-	                field: 'h1',
-	                title: '34'
-	            },{
-	                field: 'i1',
-	                title: '35'
-	            },{
-	                field: 'j1',
-	                title: '36'
-	            },{
-	                field: 'k1',
-	                title: '37'
-	            },{
-	                field: 'l1',
-	                title: '38'
-	            },{
-	                field: 'm1',
-	                title: '39'
-	            },{
-	                field: 'n1',
-	                title: '40'
-	            },{
-	                field: 'o1',
-	                title: '41'
-	            },{
-	                field: 'p1',
-	                title: '42'
-	            },{
-	                field: 'q1',
-	                title: '43'
-	            },{
-	                field: 'r1',
-	                title: '44'
-	            },{
-	                field: 's1',
-	                title: '45'
-	            },{
-	                field: 't1',
-	                title: '46'
-	            },{
-	                field: 'u1',
-	                title: '47'
 	            }
 	            ]
      
