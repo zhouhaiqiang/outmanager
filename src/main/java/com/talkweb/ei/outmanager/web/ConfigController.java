@@ -14,12 +14,15 @@ import com.talkweb.ei.di.common.PageResult;
 import com.talkweb.ei.outmanager.dao.OrgMapper;
 import com.talkweb.ei.outmanager.dao.OutUserMapper;
 import com.talkweb.ei.outmanager.dao.TOutDutyMapper;
+import com.talkweb.ei.outmanager.dao.TOutReportstMapper;
 import com.talkweb.ei.outmanager.model.KeyValue;
 import com.talkweb.ei.outmanager.model.KeyValueObj;
 import com.talkweb.ei.outmanager.model.OutCompany;
 import com.talkweb.ei.outmanager.model.OutContract;
 import com.talkweb.ei.outmanager.model.TOutDict;
 import com.talkweb.ei.outmanager.model.TOutDuty;
+import com.talkweb.ei.outmanager.model.TOutReportst;
+import com.talkweb.ei.outmanager.model.TOutReportstExample;
 import com.talkweb.ei.outmanager.model.TreeNode;
 import com.talkweb.ei.outmanager.service.IDataService;
 import com.talkweb.ei.outmanager.service.IDictory;
@@ -37,6 +40,10 @@ public class ConfigController {
 	//业务操作一般通过服务来实现
 	@Autowired
 	private IDataService IDataService;	
+	
+	
+	@Autowired
+	private TOutReportstMapper tOutReportstMapper;
 	
 	
 	@Autowired
@@ -236,6 +243,45 @@ public class ConfigController {
 		PageResult ret = new PageResult(true,list,list.size());
 		//System.out.println("----users------"+ret);
 		return ret;			
+	}
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * 报表日期选择
+	 */
+	@RequestMapping(value = "/reportdatejson", method = RequestMethod.GET, produces = {
+			"application/json; charset=utf-8" })
+	@ResponseBody	
+
+	private PageResult getReportDate_json(String lx){
+
+		
+		TOutReportstExample  example = new TOutReportstExample();
+		TOutReportstExample.Criteria criteria = example.createCriteria();
+		example.setOrderByClause("REPDATE DESC");
+		criteria.andReptypeEqualTo(lx);
+		
+		
+		List<TOutReportst> list = tOutReportstMapper.selectByExample(example);
+				
+		//构建返回值
+		PageResult ret = new PageResult(true,list,list.size());
+		//System.out.println("----ReportDate------"+ret);
+		return ret;			
 	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

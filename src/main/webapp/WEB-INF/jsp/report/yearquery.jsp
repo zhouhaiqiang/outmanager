@@ -85,11 +85,10 @@
                        	</div>  	 
                        	
                       <label class="control-label col-sm-1">查询日期<span style="color:red">*</span></label>
-		      			<div class="input-group date form_date col-md-2" data-date="" data-date-format="yyyy-mm-dd">
-		                    <input class="form-control" size="16" type="text" value="" id="query_date" name="query_date" >
-							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-		                </div>                      
-                      </div>                       	
+                      <div class="col-sm-2">
+		      			<select id="query_date" class="form-control" data-live-search="false" title="选择...">
+		      			</select>                      
+                      </div>                        	
                        	                     
                                            
                         <!--------------------- 查询按钮区域---------------------- -->                   

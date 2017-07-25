@@ -22,6 +22,10 @@ $(function () {
     //2.初始化Button的点击事件
     var oButtonInit = new ButtonInit();
     oButtonInit.Init();
+    
+    
+    //初始化时间选择
+    initdroplist($("#query_date"),"/outmanager/config/reportdatejson","","年报") 
 
        
 });
@@ -159,3 +163,51 @@ function refreshtab(){
 	
 }
 
+/**
+ * obj  下拉选择框object
+ * url    区数据url
+ * defvalue  默认选择的id值
+ * clm 取列的名字，默认是‘name’
+ * 初始化下拉选择框
+ * @returns
+ */
+function initdroplist(obj,url,defvalue,lx){  
+	
+	//参数
+	var par = {
+            "lx":lx
+        };
+	
+	$.ajax({    
+	        "type" : 'get',    
+	        "url": url,  
+	        "data": par,
+	        "dataType" : "json", 
+	        "timeout": 30000,
+	        "success" : function(data) {    
+	        	 
+		         var rows = data.rows;  
+		         var opts = "";
+		        
+		         rows.forEach(function(keyvalue){  
+		        		        	
+		        	 if(defvalue==keyvalue.name){
+		        		 opts += "<option selected >"+jsonDateFormat(keyvalue.repdate)+"</option>";
+		        	 } else {
+		        		 opts += "<option>"+jsonDateFormat(keyvalue.repdate)+"</option>";
+		        	 }
+		        			        	  
+		         })
+		         
+		         //添加选项
+		         obj.empty();
+		         obj.append(opts);
+		         
+		         //重新显示
+		         obj.selectpicker('refresh');
+		         obj.selectpicker('render');
+		         
+	        }
+	
+	});
+}

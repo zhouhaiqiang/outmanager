@@ -71,6 +71,18 @@ public class ReportData implements Serializable {
 	private String y1 = "0";
 	private String z1 = "0";	
 	
+	
+	private String a2 = "0";
+	private String b2 = "0";
+	private String c2 = "0";
+	private String d2 = "0";
+	private String e2 = "0";
+	private String f2 = "0";
+	private String g2 = "0";
+	
+	
+	
+	
 	public String getA() {
 		return a;
 	}
@@ -382,6 +394,51 @@ public class ReportData implements Serializable {
 	}
 	public void setZ1(String z1) {
 		this.z1 = z1;
+	}
+	public String getA2() {
+		return a2;
+	}
+	public void setA2(String a2) {
+		this.a2 = a2;
+	}
+	public String getB2() {
+		return b2;
+	}
+	public void setB2(String b2) {
+		this.b2 = b2;
+	}
+	public String getC2() {
+		return c2;
+	}
+	public void setC2(String c2) {
+		this.c2 = c2;
+	}
+	public String getD2() {
+		return d2;
+	}
+	public void setD2(String d2) {
+		this.d2 = d2;
+	}
+	public String getE2() {
+		return e2;
+	}
+	public void setE2(String e2) {
+		this.e2 = e2;
+	}
+	public String getF2() {
+		return f2;
+	}
+	public void setF2(String f2) {
+		this.f2 = f2;
+	}
+	public String getG2() {
+		return g2;
+	}
+	public void setG2(String g2) {
+		this.g2 = g2;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 
