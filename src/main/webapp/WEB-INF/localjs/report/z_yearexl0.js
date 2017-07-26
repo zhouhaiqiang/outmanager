@@ -60,8 +60,8 @@ var TableInit = function () {
              //2 行
 			[
 				{
-				    "title": $('#unit').val()+'('+$('#repdate').val()+')',
-				    "halign":"center",
+					"title": "填报单位："+$('#unit').val()+'('+$('#repdate').val()+')',
+				    "halign":"left",
 				    "align":"center",
 				    "colspan": 36   //跨度
 				},
