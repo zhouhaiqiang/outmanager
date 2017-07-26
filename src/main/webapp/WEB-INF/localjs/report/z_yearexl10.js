@@ -596,85 +596,85 @@ var TableInit = function () {
 	                field: 'i',
 	                title: '9'
 	            },{
-	                field: 'j',
+	                field: 'jd',
 	                title: '10'
 	            },{
-	                field: 'k',
+	                field: 'kd',
 	                title: '11'
 	            },{
-	                field: 'l',
+	                field: 'ld',
 	                title: '12'
 	            },{
-	                field: 'm',
+	                field: 'md',
 	                title: '13'
 	            },{
-	                field: 'n',
+	                field: 'nd',
 	                title: '14'
 	            },{
-	                field: 'o',
+	                field: 'od',
 	                title: '15'
 	            },{
-	                field: 'p',
+	                field: 'pd',
 	                title: '16'
 	            },{
-	                field: 'q',
+	                field: 'qd',
 	                title: '17'
 	            },{
-	                field: 'r',
+	                field: 'rd',
 	                title: '18'
 	            },{
-	                field: 's',
+	                field: 'sd',
 	                title: '19'
 	            },{
-	                field: 't',
+	                field: 'td',
 	                title: '20'
 	            },{
-	                field: 'u',
+	                field: 'ud',
 	                title: '21'
 	            },{
-	                field: 'v',
+	                field: 'vd',
 	                title: '22'
 	            },{
-	                field: 'w',
+	                field: 'wd',
 	                title: '23'
 	            },{
-	                field: 'x',
+	                field: 'xd',
 	                title: '24'
 	            },{
-	                field: 'y',
+	                field: 'yd',
 	                title: '25'
 	            },{
-	                field: 'z',
+	                field: 'zd',
 	                title: '26'
 	            },{
-	                field: 'a1',
+	                field: 'a1d',
 	                title: '27'
 	            },{
-	                field: 'b1',
+	                field: 'b1d',
 	                title: '28'
 	            },{
-	                field: 'c1',
+	                field: 'c1d',
 	                title: '29'
 	            },{
-	                field: 'd1',
+	                field: 'd1d',
 	                title: '30'
 	            },{
-	                field: 'e1',
+	                field: 'e1d',
 	                title: '31'
 	            },{
-	                field: 'f1',
+	                field: 'f1d',
 	                title: '32'
 	            },{
-	                field: 'g1',
+	                field: 'g1d',
 	                title: '33'
 	            },{
-	                field: 'h1',
+	                field: 'h1d',
 	                title: '34'
 	            },{
-	                field: 'i1',
+	                field: 'i1d',
 	                title: '35'
 	            },{
-	                field: 'j1',
+	                field: 'j1d',
 	                title: '36'
 	            },{
 				    field: 'k1',
