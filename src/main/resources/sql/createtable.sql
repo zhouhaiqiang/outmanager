@@ -244,7 +244,7 @@ create table T_OUT_REPORT
   NAME    VARCHAR2(50) not null,
   UNIT    VARCHAR2(50),
   REPTYPE VARCHAR2(50) not null,
-  REPDATA VARCHAR2(4000) not null,
+  REPDATA Clob not null,
   REPCODE VARCHAR2(50),
   INTF    VARCHAR2(50) not null,
   REMARK  VARCHAR2(200)
