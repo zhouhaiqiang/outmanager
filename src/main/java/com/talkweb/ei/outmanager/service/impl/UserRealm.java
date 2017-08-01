@@ -68,7 +68,7 @@ public class UserRealm extends AuthorizingRealm {
 		ShiroToken token = (ShiroToken) arg0;
         String userid = token.getUsername();
           
-        OutUser inuser = userService.getUser(userid);        
+        OutUser inuser = userService.getUserByCode(userid);        
         AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(inuser, inuser.getPwd(), this.getName());
         //SecurityUtils.getSubject().getSession().setAttribute("currentUser", this.getName());
               

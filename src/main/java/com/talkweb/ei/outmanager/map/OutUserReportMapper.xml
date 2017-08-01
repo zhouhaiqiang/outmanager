@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.talkweb.ei.outmanager.dao.OutUserReportMapper">
+  <resultMap id="BaseResultMap" type="com.talkweb.ei.outmanager.model.ReportData">
+    <!--
+     	用户统计报表json 数据查询
+    -->
+ 	<result column="a" jdbcType="VARCHAR" property="a" /> 
+	<result column="b" jdbcType="VARCHAR" property="b" /> 
+	<result column="c" jdbcType="VARCHAR" property="c" /> 
+	<result column="d" jdbcType="VARCHAR" property="d" /> 
+	<result column="e" jdbcType="VARCHAR" property="e" /> 
+	<result column="f" jdbcType="VARCHAR" property="f" /> 
+	<result column="g" jdbcType="VARCHAR" property="g" /> 
+	<result column="h" jdbcType="VARCHAR" property="h" /> 
+	<result column="i" jdbcType="VARCHAR" property="i" /> 
+	<result column="j" jdbcType="VARCHAR" property="j" /> 
+	<result column="k" jdbcType="VARCHAR" property="k" /> 
+	<result column="l" jdbcType="VARCHAR" property="l" /> 
+	<result column="m" jdbcType="VARCHAR" property="m" /> 
+	<result column="n" jdbcType="VARCHAR" property="n" /> 
+	<result column="o" jdbcType="VARCHAR" property="o" /> 
+	<result column="p" jdbcType="VARCHAR" property="p" />	
+	<result column="q" jdbcType="VARCHAR" property="q" /> 
+	<result column="r" jdbcType="VARCHAR" property="r" /> 
+	<result column="s" jdbcType="VARCHAR" property="s" /> 
+	<result column="t" jdbcType="VARCHAR" property="t" />	
+	<result column="u" jdbcType="VARCHAR" property="u" /> 
+	<result column="v" jdbcType="VARCHAR" property="v" /> 
+	<result column="w" jdbcType="VARCHAR" property="w" /> 
+	<result column="x" jdbcType="VARCHAR" property="x" />	
+	<result column="y" jdbcType="VARCHAR" property="y" /> 
+	<result column="z" jdbcType="VARCHAR" property="z" />	
+	<result column="a1" jdbcType="VARCHAR" property="a1" />
+	<result column="b1" jdbcType="VARCHAR" property="b1" />
+	<result column="c1" jdbcType="VARCHAR" property="c1" />
+	<result column="d1" jdbcType="VARCHAR" property="d1" />
+	<result column="e1" jdbcType="VARCHAR" property="e1" />
+	<result column="f1" jdbcType="VARCHAR" property="f1" />
+	<result column="g1" jdbcType="VARCHAR" property="g1" />
+	<result column="h1" jdbcType="VARCHAR" property="h1" />
+	<result column="i1" jdbcType="VARCHAR" property="i1" />
+	<result column="j1" jdbcType="VARCHAR" property="j1" />
+	<result column="k1" jdbcType="VARCHAR" property="k1" />
+	<result column="l1" jdbcType="VARCHAR" property="l1" />
+	<result column="m1" jdbcType="VARCHAR" property="m1" />
+	<result column="n1" jdbcType="VARCHAR" property="n1" />
+	<result column="o1" jdbcType="VARCHAR" property="o1" />
+	<result column="p1" jdbcType="VARCHAR" property="p1" />
+	<result column="q1" jdbcType="VARCHAR" property="q1" />
+	<result column="r1" jdbcType="VARCHAR" property="r1" />
+	<result column="s1" jdbcType="VARCHAR" property="s1" />
+	<result column="t1" jdbcType="VARCHAR" property="t1" />
+	<result column="u1" jdbcType="VARCHAR" property="u1" />
+	<result column="v1" jdbcType="VARCHAR" property="v1" />
+	<result column="w1" jdbcType="VARCHAR" property="w1" />
+	<result column="x1" jdbcType="VARCHAR" property="x1" />
+	<result column="y1" jdbcType="VARCHAR" property="y1" />
+	<result column="z1" jdbcType="VARCHAR" property="z1" />
+	<result column="a2" jdbcType="VARCHAR" property="a2" />
+	<result column="b2" jdbcType="VARCHAR" property="b2" />
+	<result column="c2" jdbcType="VARCHAR" property="c2" />
+	<result column="d2" jdbcType="VARCHAR" property="d2" />
+	<result column="e2" jdbcType="VARCHAR" property="e2" />
+	<result column="f2" jdbcType="VARCHAR" property="f2" />
+	<result column="g2" jdbcType="VARCHAR" property="g2" />
+	<result column="h2" jdbcType="VARCHAR" property="h2" />
+	<result column="i2" jdbcType="VARCHAR" property="i2" />
+	<result column="j2" jdbcType="VARCHAR" property="j2" />
+	<result column="k2" jdbcType="VARCHAR" property="k2" />
+	<result column="l2" jdbcType="VARCHAR" property="l2" />
+	<result column="m2" jdbcType="VARCHAR" property="m2" />
+	<result column="n2" jdbcType="VARCHAR" property="n2" />
+	<result column="o2" jdbcType="VARCHAR" property="o2" />
+	<result column="p2" jdbcType="VARCHAR" property="p2" />
+	<result column="q2" jdbcType="VARCHAR" property="q2" />
+	<result column="r2" jdbcType="VARCHAR" property="r2" />
+	<result column="s2" jdbcType="VARCHAR" property="s2" />
+	<result column="t2" jdbcType="VARCHAR" property="t2" />
+	<result column="u2" jdbcType="VARCHAR" property="u2" />
+	<result column="v2" jdbcType="VARCHAR" property="v2" />
+	<result column="w2" jdbcType="VARCHAR" property="w2" />
+	<result column="x2" jdbcType="VARCHAR" property="x2" />
+	<result column="y2" jdbcType="VARCHAR" property="y2" />
+	<result column="z2" jdbcType="VARCHAR" property="z2" />
+	<result column="a3" jdbcType="VARCHAR" property="a3" />
+	<result column="b3" jdbcType="VARCHAR" property="b3" />
+	<result column="c3" jdbcType="VARCHAR" property="c3" />
+	<result column="d3" jdbcType="VARCHAR" property="d3" />
+	<result column="e3" jdbcType="VARCHAR" property="e3" />
+	<result column="f3" jdbcType="VARCHAR" property="f3" />
+	<result column="g3" jdbcType="VARCHAR" property="g3" />
+	<result column="h3" jdbcType="VARCHAR" property="h3" />
+	<result column="i3" jdbcType="VARCHAR" property="i3" />
+	<result column="j3" jdbcType="VARCHAR" property="j3" />
+	<result column="k3" jdbcType="VARCHAR" property="k3" />
+	<result column="l3" jdbcType="VARCHAR" property="l3" />
+	<result column="m3" jdbcType="VARCHAR" property="m3" />
+	<result column="n3" jdbcType="VARCHAR" property="n3" />
+	<result column="o3" jdbcType="VARCHAR" property="o3" />
+	<result column="p3" jdbcType="VARCHAR" property="p3" />
+	<result column="q3" jdbcType="VARCHAR" property="q3" />
+	<result column="r3" jdbcType="VARCHAR" property="r3" />
+	<result column="s3" jdbcType="VARCHAR" property="s3" />
+	<result column="t3" jdbcType="VARCHAR" property="t3" />
+	<result column="u3" jdbcType="VARCHAR" property="u3" />
+	<result column="v3" jdbcType="VARCHAR" property="v3" />
+	<result column="w3" jdbcType="VARCHAR" property="w3" />
+	<result column="x3" jdbcType="VARCHAR" property="x3" />
+	<result column="y3" jdbcType="VARCHAR" property="y3" />
+	<result column="z3" jdbcType="VARCHAR" property="z3" />
+	<result column="a4" jdbcType="VARCHAR" property="a4" />
+	<result column="b4" jdbcType="VARCHAR" property="b4" />
+	<result column="c4" jdbcType="VARCHAR" property="c4" />
+	<result column="d4" jdbcType="VARCHAR" property="d4" />
+	<result column="e4" jdbcType="VARCHAR" property="e4" />
+	<result column="f4" jdbcType="VARCHAR" property="f4" />
+	<result column="g4" jdbcType="VARCHAR" property="g4" />
+	<result column="h4" jdbcType="VARCHAR" property="h4" />
+	<result column="i4" jdbcType="VARCHAR" property="i4" />
+	<result column="j4" jdbcType="VARCHAR" property="j4" />
+	<result column="k4" jdbcType="VARCHAR" property="k4" />
+	<result column="l4" jdbcType="VARCHAR" property="l4" />
+	<result column="m4" jdbcType="VARCHAR" property="m4" />
+	<result column="n4" jdbcType="VARCHAR" property="n4" />
+	<result column="o4" jdbcType="VARCHAR" property="o4" />
+	<result column="p4" jdbcType="VARCHAR" property="p4" />
+	<result column="q4" jdbcType="VARCHAR" property="q4" />
+	<result column="r4" jdbcType="VARCHAR" property="r4" />
+	<result column="s4" jdbcType="VARCHAR" property="s4" />
+	<result column="t4" jdbcType="VARCHAR" property="t4" />
+	<result column="u4" jdbcType="VARCHAR" property="u4" />
+	<result column="v4" jdbcType="VARCHAR" property="v4" />
+	<result column="w4" jdbcType="VARCHAR" property="w4" />
+	<result column="x4" jdbcType="VARCHAR" property="x4" />
+	<result column="y4" jdbcType="VARCHAR" property="y4" />
+	<result column="z4" jdbcType="VARCHAR" property="z4" />
+	<result column="a5" jdbcType="VARCHAR" property="a5" />
+	<result column="b5" jdbcType="VARCHAR" property="b5" />
+	<result column="c5" jdbcType="VARCHAR" property="c5" />
+	<result column="d5" jdbcType="VARCHAR" property="d5" />
+	<result column="e5" jdbcType="VARCHAR" property="e5" />
+	<result column="f5" jdbcType="VARCHAR" property="f5" />
+	<result column="g5" jdbcType="VARCHAR" property="g5" />
+	<result column="h5" jdbcType="VARCHAR" property="h5" />
+	<result column="i5" jdbcType="VARCHAR" property="i5" />
+	<result column="j5" jdbcType="VARCHAR" property="j5" />
+	<result column="k5" jdbcType="VARCHAR" property="k5" />
+	<result column="l5" jdbcType="VARCHAR" property="l5" />
+	<result column="m5" jdbcType="VARCHAR" property="m5" />
+	<result column="n5" jdbcType="VARCHAR" property="n5" />
+	<result column="o5" jdbcType="VARCHAR" property="o5" />
+	<result column="p5" jdbcType="VARCHAR" property="p5" />
+	<result column="q5" jdbcType="VARCHAR" property="q5" />
+	<result column="r5" jdbcType="VARCHAR" property="r5" />
+	<result column="s5" jdbcType="VARCHAR" property="s5" />
+	<result column="t5" jdbcType="VARCHAR" property="t5" />
+	<result column="u5" jdbcType="VARCHAR" property="u5" />
+	<result column="v5" jdbcType="VARCHAR" property="v5" />
+	<result column="w5" jdbcType="VARCHAR" property="w5" />
+	<result column="x5" jdbcType="VARCHAR" property="x5" />
+	<result column="y5" jdbcType="VARCHAR" property="y5" />
+	<result column="z5" jdbcType="VARCHAR" property="z5" />
+	<result column="a6" jdbcType="VARCHAR" property="a6" />
+	<result column="b6" jdbcType="VARCHAR" property="b6" />
+	<result column="c6" jdbcType="VARCHAR" property="c6" />
+	<result column="d6" jdbcType="VARCHAR" property="d6" />
+	<result column="e6" jdbcType="VARCHAR" property="e6" />
+	<result column="f6" jdbcType="VARCHAR" property="f6" />
+	<result column="g6" jdbcType="VARCHAR" property="g6" />
+	<result column="h6" jdbcType="VARCHAR" property="h6" />
+	<result column="i6" jdbcType="VARCHAR" property="i6" />
+	<result column="j6" jdbcType="VARCHAR" property="j6" />
+	<result column="k6" jdbcType="VARCHAR" property="k6" />
+	<result column="l6" jdbcType="VARCHAR" property="l6" />
+	<result column="m6" jdbcType="VARCHAR" property="m6" />
+	<result column="n6" jdbcType="VARCHAR" property="n6" />
+	<result column="o6" jdbcType="VARCHAR" property="o6" />
+	<result column="p6" jdbcType="VARCHAR" property="p6" />
+	<result column="q6" jdbcType="VARCHAR" property="q6" />
+	<result column="r6" jdbcType="VARCHAR" property="r6" />
+	<result column="s6" jdbcType="VARCHAR" property="s6" />
+	<result column="t6" jdbcType="VARCHAR" property="t6" />
+	<result column="u6" jdbcType="VARCHAR" property="u6" />
+	<result column="v6" jdbcType="VARCHAR" property="v6" />
+	<result column="w6" jdbcType="VARCHAR" property="w6" />
+	<result column="x6" jdbcType="VARCHAR" property="x6" />
+	<result column="y6" jdbcType="VARCHAR" property="y6" />
+	<result column="z6" jdbcType="VARCHAR" property="z6" />
+	<result column="a7" jdbcType="VARCHAR" property="a7" />
+	<result column="b7" jdbcType="VARCHAR" property="b7" />
+	<result column="c7" jdbcType="VARCHAR" property="c7" />
+	<result column="d7" jdbcType="VARCHAR" property="d7" />
+	<result column="e7" jdbcType="VARCHAR" property="e7" />
+	<result column="f7" jdbcType="VARCHAR" property="f7" />
+	<result column="g7" jdbcType="VARCHAR" property="g7" />
+	<result column="h7" jdbcType="VARCHAR" property="h7" />
+	<result column="i7" jdbcType="VARCHAR" property="i7" />
+	<result column="j7" jdbcType="VARCHAR" property="j7" />
+	<result column="k7" jdbcType="VARCHAR" property="k7" />
+	<result column="l7" jdbcType="VARCHAR" property="l7" />
+	<result column="m7" jdbcType="VARCHAR" property="m7" />
+	<result column="n7" jdbcType="VARCHAR" property="n7" />
+	<result column="o7" jdbcType="VARCHAR" property="o7" />
+	<result column="p7" jdbcType="VARCHAR" property="p7" />
+	<result column="q7" jdbcType="VARCHAR" property="q7" />
+	<result column="r7" jdbcType="VARCHAR" property="r7" />
+	<result column="s7" jdbcType="VARCHAR" property="s7" />
+	<result column="t7" jdbcType="VARCHAR" property="t7" />
+	<result column="u7" jdbcType="VARCHAR" property="u7" />
+	<result column="v7" jdbcType="VARCHAR" property="v7" />
+	<result column="w7" jdbcType="VARCHAR" property="w7" />
+	<result column="x7" jdbcType="VARCHAR" property="x7" />
+	<result column="y7" jdbcType="VARCHAR" property="y7" />
+  </resultMap>
+ 
+ 
+  <!--性别统计  -->
+  <select id="countBySex" resultMap="BaseResultMap" parameterType="java.lang.String"> 
+  
+  	select sex as a, count(sex) as b,count(sex) as f,count(sex) as g,count(sex) as k from T_OUT_USER t 
+  	where t.usertype=1 
+  	
+  	 <!--地市带条件  -->
+  	 <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+     </if>
+
+  	group by sex 
+  
+  </select>
+  
+  
+<!--年龄统计  -->
+  <select id="countByAge" resultMap="BaseResultMap" parameterType="java.lang.String"> 
+  
+	select  '1、25岁及以下' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k  
+	  from T_OUT_USER t1 
+	 where t1.usertype=1 and ceil((sysdate - to_date(t1.birthday, 'yyyy-mm-dd')) / 365) &lt; 26 
+	 
+	 <!--地市带条件  -->
+  	 <if test="value != null">
+           and '${value}' like '%/'||t1.unit||'/%'     
+     </if>
+	 
+	 union all 
+	select  '2、26-30岁' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k  
+	  from T_OUT_USER t2
+	 where t2.usertype=1 and ceil((sysdate - to_date(t2.birthday, 'yyyy-mm-dd')) / 365) between 26 and 30
+	 
+	 <!--地市带条件  -->
+  	 <if test="value != null">
+           and '${value}' like '%/'||t2.unit||'/%'     
+     </if>
+	 
+	union all 
+	select  '3、31-35岁' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k  
+	  from T_OUT_USER t3
+	 where t3.usertype=1 and ceil((sysdate - to_date(t3.birthday, 'yyyy-mm-dd')) / 365) between 31 and 35 
+	 
+	 <!--地市带条件  -->
+  	 <if test="value != null">
+           and '${value}' like '%/'||t3.unit||'/%'     
+     </if>
+	 
+	union all 
+	select  '4、36-40岁' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k  
+	  from T_OUT_USER t4
+	 where t4.usertype=1 and ceil((sysdate - to_date(t4.birthday, 'yyyy-mm-dd')) / 365) between 36 and 40 
+	 
+	 <!--地市带条件  -->
+  	 <if test="value != null">
+           and '${value}' like '%/'||t4.unit||'/%'     
+     </if>
+	 
+	union all 
+	select  '5、41-45岁' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k  
+	  from T_OUT_USER t5
+	 where t5.usertype=1 and ceil((sysdate - to_date(t5.birthday, 'yyyy-mm-dd')) / 365) between 41 and 45 
+	 <!--地市带条件  -->
+  	 <if test="value != null">
+           and '${value}' like '%/'||t5.unit||'/%'     
+     </if>	
+	union all 
+	select  '6、46-50岁' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k  
+	  from T_OUT_USER t6
+	 where t6.usertype=1 and ceil((sysdate - to_date(t6.birthday, 'yyyy-mm-dd')) / 365) between 46 and 50 
+	 <!--地市带条件  -->
+  	 <if test="value != null">
+           and '${value}' like '%/'||t6.unit||'/%'     
+     </if>	
+     
+     
+	union all 
+	select  '7、51-55岁' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k  
+	  from T_OUT_USER t7
+	 where t7.usertype=1 and  ceil((sysdate - to_date(t7.birthday, 'yyyy-mm-dd')) / 365) between 51 and 55 
+	
+	 <!--地市带条件  -->
+  	 <if test="value != null">
+           and '${value}' like '%/'||t7.unit||'/%'     
+     </if>
+	
+	union all 
+	select  '8、56岁及以上' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k  
+	  from T_OUT_USER t8
+	 where t8.usertype=1 and  ceil((sysdate - to_date(t8.birthday, 'yyyy-mm-dd')) / 365) &gt;=56 
+	 
+	 <!--地市带条件  -->
+  	 <if test="value != null">
+           and '${value}' like '%/'||t8.unit||'/%'     
+     </if>
+	 
+	union all 
+	select  '9、平均年龄' as a, ceil(avg((sysdate - to_date(t9.birthday, 'yyyy-mm-dd')) / 365)) as b,ceil(avg((sysdate - to_date(t9.birthday, 'yyyy-mm-dd')) / 365)) as f,ceil(avg((sysdate - to_date(t9.birthday, 'yyyy-mm-dd')) / 365)) as g,ceil(avg((sysdate - to_date(t9.birthday, 'yyyy-mm-dd')) / 365)) as k  
+	  from T_OUT_USER t9 where t9.usertype=1 
+  	
+  	 <!--地市带条件  -->
+  	 <if test="value != null">
+           and '${value}' like '%/'||t9.unit||'/%'     
+     </if>
+	union all 
+	select  '10、其他' as a, 0 as b,0 as f,0 as g,0 as k  
+	  from dual
+  
+  </select>  
+  
+  
+
+  <!--民族统计  -->
+  <select id="countByMingz" resultMap="BaseResultMap" parameterType="java.lang.String"> 
+  
+   	  select  '1、汉族' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k  
+      from T_OUT_USER 
+   	  where usertype=1 and  mingz='汉族' 
+   	 <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+     </if>
+   
+	  union all 
+	  select  '2、少数民族' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k   
+	  from T_OUT_USER  where usertype=1  and  mingz!='汉族' 
+    
+      <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+      </if>
+	  union all 
+	  select  '3、其他' as a, 0 as b,0 as f,0 as g,0 as k  
+	  from dual
+  
+ </select>  
+  
+  
+  <!--政治面貌统计  -->
+  <select id="countByZhengz" resultMap="BaseResultMap" parameterType="java.lang.String"> 
+    
+	select '1、中共党员' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k   
+	    from T_OUT_USER  
+	   where usertype=1  and zhengzhi='中国共产党党员'
+	   
+      <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+      </if>	  
+          
+	  union all 
+	  select  '2、中共预备党员' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k   
+	    from T_OUT_USER  where usertype=1  and  zhengzhi='中国共产党预备党员' 
+
+      <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+      </if>
+      	
+	  union all 
+	  select  '3、共青团员' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k   
+	    from T_OUT_USER  where usertype=1  and  zhengzhi='中国共产主义青年团团员'     
+	
+      <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+      </if>
+      	
+	  union all 
+	  select  '4、民主党派' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k   
+	    from T_OUT_USER  where usertype=1  and  zhengzhi='中国农工民主党党员'
+	    
+      <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+      </if>
+      	    
+	  union all 
+	  select  '5、群众' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k   
+	    from T_OUT_USER  where usertype=1  and  zhengzhi='群众'       
+	        
+      <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+      </if>	
+	  union all 
+	  select  '6、其他' as a, 0 as b,0 as f,0 as g,0 as k  
+		  from dual  
+   </select>
+   
+   
+   
+   
+   
+  <!--学历统计  -->
+  <select id="countByXueli" resultMap="BaseResultMap" parameterType="java.lang.String">    
+	select '1、研究生及以上' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k   
+	    from v_out_userxl where xueli in ('博士研究生','硕士研究生') 
+      <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+      </if>	      
+      
+      union all
+      
+ 	select '其中：取得博士学位的' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k   
+	    from v_out_userxl where xueli='博士研究生'
+      <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+      </if>	     
+       union all
+      
+ 	select '其中：取得硕士学位的' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k   
+	    from v_out_userxl where xueli='硕士研究生'
+      <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+      </if>	     
+  
+       union all
+      
+ 	select '2、本科（含双学士）' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k   
+	    from v_out_userxl where xueli='大学本科'
+      <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+      </if>	  
+       union all
+      
+ 	select '3、大专' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k   
+	    from v_out_userxl where xueli in ('大专','大学普通班','大学专科')
+      <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+      </if>	      
+      
+        union all
+      
+ 	select '4、中专及以下' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k   
+	    from v_out_userxl  where xueli in ('中专','高中','技工学校','职业高中')
+      <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+      </if>	
+
+       union all
+      
+ 	select '5、其他' as a, count(*) as b,count(*) as f,count(*) as g,count(*) as k   
+	    from v_out_userxl where  xueli in ('无','',null)
+      <if test="value != null">
+           and '${value}' like '%/'||unit||'/%'     
+      </if>		    
+   </select>   
+   
+   
+   
+   
+   
+   
+   
+
+</mapper>

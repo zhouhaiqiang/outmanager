@@ -1,84 +1,30 @@
 package com.talkweb.ei.outmanager.web;
 
-import java.io.File;
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
-
-import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.talkweb.ei.di.common.Const;
 import com.talkweb.ei.di.common.DateUtil;
-import com.talkweb.ei.di.common.ExcelUtil;
 import com.talkweb.ei.di.common.JsonUtil;
 import com.talkweb.ei.di.common.PageResult;
 import com.talkweb.ei.di.common.StringUtils;
-import com.talkweb.ei.di.common.ViewExcel;
-import com.talkweb.ei.outmanager.dao.TOutActionMapper;
-import com.talkweb.ei.outmanager.dao.TOutGongziMapper;
-import com.talkweb.ei.outmanager.dao.TOutJthyMapper;
 import com.talkweb.ei.outmanager.dao.TOutReportMapper;
 import com.talkweb.ei.outmanager.dao.TOutReportstMapper;
-import com.talkweb.ei.outmanager.dao.TOutUserFpinfoMapper;
-import com.talkweb.ei.outmanager.dao.TOutUserHtMapper;
-import com.talkweb.ei.outmanager.dao.TOutUserJcMapper;
-import com.talkweb.ei.outmanager.dao.TOutUserJninfoMapper;
-import com.talkweb.ei.outmanager.dao.TOutUserJyinfoMapper;
-import com.talkweb.ei.outmanager.dao.TOutUserZyinfoMapper;
-import com.talkweb.ei.outmanager.dao.VOutUseractionMapper;
-import com.talkweb.ei.outmanager.dao.VOutUsergzMapper;
-import com.talkweb.ei.outmanager.model.OutUser;
-import com.talkweb.ei.outmanager.model.OutUserExample;
-import com.talkweb.ei.outmanager.model.OutUser_S;
 import com.talkweb.ei.outmanager.model.ReportData;
-import com.talkweb.ei.outmanager.model.TOutAction;
-import com.talkweb.ei.outmanager.model.TOutGongzi;
-import com.talkweb.ei.outmanager.model.TOutGongziExample;
-import com.talkweb.ei.outmanager.model.TOutJthy;
-import com.talkweb.ei.outmanager.model.TOutJthyExample;
 import com.talkweb.ei.outmanager.model.TOutReport;
 import com.talkweb.ei.outmanager.model.TOutReportExample;
 import com.talkweb.ei.outmanager.model.TOutReportst;
 import com.talkweb.ei.outmanager.model.TOutReportstExample;
-import com.talkweb.ei.outmanager.model.TOutUserFpinfo;
-import com.talkweb.ei.outmanager.model.TOutUserFpinfoExample;
-import com.talkweb.ei.outmanager.model.TOutUserHt;
-import com.talkweb.ei.outmanager.model.TOutUserHtExample;
-import com.talkweb.ei.outmanager.model.TOutUserJc;
-import com.talkweb.ei.outmanager.model.TOutUserJcExample;
-import com.talkweb.ei.outmanager.model.TOutUserJninfo;
-import com.talkweb.ei.outmanager.model.TOutUserJninfoExample;
-import com.talkweb.ei.outmanager.model.TOutUserJyinfo;
-import com.talkweb.ei.outmanager.model.TOutUserJyinfoExample;
-import com.talkweb.ei.outmanager.model.TOutUserZyinfo;
-import com.talkweb.ei.outmanager.model.TOutUserZyinfoExample;
-import com.talkweb.ei.outmanager.model.VOutUseraction;
-import com.talkweb.ei.outmanager.model.VOutUseractionExample;
-import com.talkweb.ei.outmanager.model.VOutUsergz;
-import com.talkweb.ei.outmanager.model.VOutUsergzExample;
-import com.talkweb.ei.outmanager.service.IActionService;
-import com.talkweb.ei.outmanager.service.IDictory;
 import com.talkweb.ei.outmanager.service.IReportService;
-import com.talkweb.ei.outmanager.service.IUserGz;
-import com.talkweb.ei.outmanager.service.IUserService;
 import com.talkweb.ei.outmanager.service.impl.ReportServiceImpl;
 
 /**
@@ -101,7 +47,9 @@ public class ReportController {
 	private TOutReportMapper tOutReportMapper;	
 	
 	@Autowired
-	private IReportService reportService;		
+	private IReportService reportService;	
+	
+
 
 	/**********************************业务接口***************************start***********/
 	

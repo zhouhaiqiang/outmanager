@@ -15,11 +15,14 @@
 <!-- 数据导出 -->
 <script src="../static/bootstraptable/bootstrap-table-export.js"></script>
 
-<script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
+<!--导出插件 -->
+<script src="../static/bootstraptable/rawgitexport.js"></script>
 
+ 
 <script type="text/javascript" src="../static/bootstraptable/bootstrap-table-zh-CN.js"></script>
-
+<!--
 <link rel="stylesheet" href="//rawgit.com/vitalets/x-editable/master/dist/bootstrap3-editable/css/bootstrap-editable.css">
+-->
 <script src="../static/bootstraptable/ga.js"></script>
 
 <!--

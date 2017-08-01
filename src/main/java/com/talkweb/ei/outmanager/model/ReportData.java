@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class ReportData implements Serializable {
 
 
-	private static final long serialVersionUID = -4164513050879272338L;
+	//private static final long serialVersionUID = -4164513050879272338L;
 
 	private String a = "0";
 	private String b = "0";
