@@ -111,9 +111,9 @@ var TableInit = function () {
                 field: 'id',
                 title: '职责',
                 formatter : function (value, row, index) {                 	   
-                    	return "<a href='#' onclick='openml(\""+value+"\");'>职责详细</a>";    	              
+                    	return "<a href='javascript:openml(\""+value+"\")' >详细查看</a>";    	              
                 }
-            },
+            }
             
             ]
         });
@@ -176,7 +176,7 @@ var TableInit = function () {
            offset: params.offset,  //页码
 
            unit:$("#query_unit").val(),
-           code:$("#query_code").val(),
+           code:$("#query_code").val()
 
         };
         
@@ -192,7 +192,7 @@ var TableInit = function () {
 
            name:$("#query_name").val(),
            unit:$("#query_unit").val(),
-           type:$("#query_type").val(),
+           type:$("#query_type").val()
      
         };
         
@@ -352,7 +352,7 @@ function delrecode(uid,url,arr) {
 			  
 			  //刷新
 			  refreshduty(uid);
-		  },
+		  }
 		  
 		  
 		});
@@ -377,7 +377,7 @@ function updaterecode (url,jsonstr) {
 			  //refreshtab();
 			  
 			  refreshduty($('#uid').val());
-		  },
+		  }
 		  
 		  
 		});
@@ -391,7 +391,7 @@ function refreshtab(){
 	$('#tb_data').bootstrapTable(  
             "refresh",  
             {   
-            	url: '/outmanager/system/user_list_json',
+            	url: '/outmanager/system/user_list_json'
             }  
   );
 	
@@ -404,7 +404,7 @@ function refreshduty(uid){
 	$('#tb_data2').bootstrapTable(  
             "refresh",  
             {   
-            	url: '/outmanager/system/userduyt_list_json?uid='+uid,
+            	url: '/outmanager/system/userduyt_list_json?uid='+uid
             }  
   );
 	
@@ -413,6 +413,7 @@ function refreshduty(uid){
 
 //show modal
 function openml(uid){
+	
 	
 		
 	//选定用户	
@@ -491,7 +492,7 @@ $('#editform').bootstrapValidator({
                     message: '所属合同编号必填'
                 }
             }
-        },    
+        }    
              
         
                
@@ -585,7 +586,7 @@ function initdroplist(obj,url,defvalue,lx){
 function chggwnumber(selvalue){
 	
 	//岗位分类
-	initdroplist($("#gwtype"),"/outmanager/config/dict_json","",selvalue)
+	initdroplist($("#gwtype"),"/outmanager/config/dict_json","",selvalue);
 	
 	
 }

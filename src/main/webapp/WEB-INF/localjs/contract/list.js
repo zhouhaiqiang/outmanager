@@ -114,7 +114,7 @@ var TableInit = function () {
                     	return jsonDateFormat(value);    	
                     }
                 }
-            },
+            }
             ]
         });
     };
@@ -129,7 +129,7 @@ var TableInit = function () {
            
            name:$("#query_name").val(),
            unit:$("#query_unit").val(),
-           type:$("#query_type").val(),
+           type:$("#query_type").val()
      
         };
         
@@ -145,7 +145,7 @@ var TableInit = function () {
 
            name:$("#query_name").val(),
            unit:$("#query_unit").val(),
-           type:$("#query_type").val(),
+           type:$("#query_type").val()
      
         };
         
@@ -330,7 +330,7 @@ function updaterecode (url,jsonstr) {
 			  
 			  //刷新
 			  refreshtab();
-		  },
+		  }
 		  
 		  
 		});
@@ -438,7 +438,7 @@ $('#editform').bootstrapValidator({
             	numeric: {message: '只能输入数字！'}, 
                 
             }
-        }, 
+        } 
         
         
         

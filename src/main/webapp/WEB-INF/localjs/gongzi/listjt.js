@@ -133,7 +133,7 @@ var TableInit = function () {
             }, {
                 field: 'remark',
                 title: '备注'
-            },
+            }
             
             ]
         });
@@ -171,7 +171,7 @@ var TableInit = function () {
 
            name:$("#query_name").val(),
            unit:$("#query_unit").val(),
-           type:$("#query_type").val(),
+           type:$("#query_type").val()
      
         };
         
@@ -334,7 +334,7 @@ function delrecode(url,arr) {
 			  
 			  //刷新
 			  refreshtab();
-		  },
+		  }
 		  
 		  
 		});
@@ -357,7 +357,7 @@ function updaterecode (url,jsonstr) {
 			  
 			  //刷新
 			  refreshtab();
-		  },
+		  }
 		  
 		  
 		});
@@ -371,7 +371,7 @@ function refreshtab(){
 	$('#tb_data').bootstrapTable(  
             "refresh",  
             {   
-            	url: '/outmanager/gongzi/jtlist_json',
+            	url: '/outmanager/gongzi/jtlist_json'
             }  
   );
 	
@@ -428,7 +428,7 @@ $('#editform').bootstrapValidator({
                     message: '所属合同编号必填'
                 }
             }
-        },    
+        }    
              
         
                
@@ -522,7 +522,7 @@ function initdroplist(obj,url,defvalue,lx){
 function chggwnumber(selvalue){
 	
 	//岗位分类
-	initdroplist($("#gwtype"),"/outmanager/config/dict_json","",selvalue)
+	initdroplist($("#gwtype"),"/outmanager/config/dict_json","",selvalue);
 	
 	
 }

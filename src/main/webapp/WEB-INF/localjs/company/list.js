@@ -91,7 +91,7 @@ var TableInit = function () {
                 field: 'zijin',
                 align:"center",
                 title: '注册资本(万元)'
-            },
+            }
             ]
         });
     };
@@ -106,7 +106,7 @@ var TableInit = function () {
            
            name:$("#query_name").val(),
            unit:$("#query_unit").val(),
-           type:$("#query_type").val(),
+           type:$("#query_type").val()
      
         };
         
@@ -122,7 +122,7 @@ var TableInit = function () {
 
            name:$("#query_name").val(),
            unit:$("#query_unit").val(),
-           type:$("#query_type").val(),
+           type:$("#query_type").val()
      
         };
         
@@ -290,7 +290,7 @@ function delrecode (url,arr) {
 			  
 			  //刷新
 			  refreshtab();
-		  },
+		  }
 		  
 		  
 		});
@@ -313,7 +313,7 @@ function updaterecode (url,jsonstr) {
 			  
 			  //刷新
 			  refreshtab();
-		  },
+		  }
 		  
 		  
 		});
@@ -327,7 +327,7 @@ function refreshtab(){
 	$('#tb_data').bootstrapTable(  
             "refresh",  
             {   
-            	url: '/outmanager/data/company_list_json',
+            	url: '/outmanager/data/company_list_json'
             }  
   );
 	
@@ -437,9 +437,9 @@ $('#editform').bootstrapValidator({
                     max: 20,
                     message: '注册资本长度在1到20位之间'
                 },
-                numeric: {message: '只能输入数字,单位万元'},  
+                numeric: {message: '只能输入数字,单位万元'}  
             }
-        },        
+        }        
         
     }
 });

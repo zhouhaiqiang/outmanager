@@ -976,7 +976,7 @@ function delrecode(id,url,listurl,arr) {
 			  sleep(200); //等待数据更新OK
 			  refreshtab(id,listurl); 
 			
-		  },
+		  }
 		  
 		  
 		});
@@ -1015,7 +1015,7 @@ function refreshtab(id,url){
 	$('#tb_data'+id).bootstrapTable(  
             "refresh",  
             {   
-            	url: url,
+            	url: url
             }  
   );
 	
@@ -1093,7 +1093,7 @@ $('#editform').bootstrapValidator({
                     message: '所属合同编号必填'
                 }
             }
-        },    
+        }    
              
         
                
@@ -1193,7 +1193,7 @@ function initdroplist(obj,url,defvalue,lx){
 function chggwnumber(selvalue){
 	
 	//岗位分类
-	initdroplist($("#gwtype_2"),"/outmanager/config/dict_json","",selvalue)
+	initdroplist($("#gwtype_2"),"/outmanager/config/dict_json","",selvalue);
 	
 	
 }

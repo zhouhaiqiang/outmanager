@@ -148,7 +148,7 @@ var TableInit = function () {
            concode:$("#query_concode").val(),
            usercode:$("#query_code").val(),
            startmonth:$("#query_startmonth").val(), 
-           endmonth:$("#query_endmonth").val(),
+           endmonth:$("#query_endmonth").val()
      
         };
       
@@ -163,7 +163,7 @@ var TableInit = function () {
 
            name:$("#query_name").val(),
            unit:$("#query_unit").val(),
-           type:$("#query_type").val(),
+           type:$("#query_type").val()
      
         };
         
@@ -354,7 +354,7 @@ function delrecode(url,arr) {
 			  
 			  //刷新
 			  refreshtab();
-		  },
+		  }
 		  
 		  
 		});
@@ -377,7 +377,7 @@ function updaterecode (url,jsonstr) {
 			  
 			  //刷新
 			  refreshtab();
-		  },
+		  }
 		  
 		  
 		});
@@ -391,7 +391,7 @@ function refreshtab(){
 	$('#tb_data').bootstrapTable(  
             "refresh",  
             {   
-            	url: '/outmanager/gongzi/grlist_json',
+            	url: '/outmanager/gongzi/grlist_json'
             }  
   );
 	
@@ -469,7 +469,7 @@ $('#editform').bootstrapValidator({
                     message: '所属合同编号必填'
                 }
             }
-        },    
+        }    
              
         
                
@@ -612,7 +612,7 @@ function initdropuser(obj,url,defvalue,lx){
 //公司和人员联动
 function chgcompany(selvalue){	
 	//人员
-	initdropuser($("#username"),"/outmanager/config/getusers_json","",selvalue)	
+	initdropuser($("#username"),"/outmanager/config/getusers_json","",selvalue);	
 	
 }
 

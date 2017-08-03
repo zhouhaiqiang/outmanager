@@ -130,7 +130,7 @@ var TableInit = function () {
            offset: params.offset,  //页码
            
            username:$("#query_name").val(),
-           unit:$("#query_unit").val(),
+           unit:$("#query_unit").val()
         };
       
         return temp;
@@ -143,7 +143,7 @@ var TableInit = function () {
            offset: 0,  //页码
 
            name:$("#query_name").val(),
-           unit:$("#query_unit").val(),
+           unit:$("#query_unit").val()
      
         };
         
@@ -323,7 +323,7 @@ function updaterecode (url,jsonstr) {
 			  
 			  //刷新
 			  refreshtab();
-		  },
+		  }
 		  
 		  
 		});
@@ -337,7 +337,7 @@ function refreshtab(){
 	$('#tb_data').bootstrapTable(  
             "refresh",  
             {   
-            	url: '/outmanager/action/list_json',
+            	url: '/outmanager/action/list_json'
             }  
   );
 	
@@ -359,7 +359,7 @@ function openml(){
 function chggwnumber(selvalue){
 	
 	//岗位分类
-	initdroplist($("#ywaction"),"/outmanager/config/dict_json","",selvalue)
+	initdroplist($("#ywaction"),"/outmanager/config/dict_json","",selvalue);
 	
 	
 }
@@ -426,7 +426,7 @@ $('#editform').bootstrapValidator({
                     message: '所属合同编号必填'
                 }
             }
-        },    
+        }    
              
         
                
