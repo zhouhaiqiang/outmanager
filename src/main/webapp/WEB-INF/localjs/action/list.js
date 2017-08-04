@@ -39,7 +39,7 @@ $(function () {
     $('#myModal').modal("hide");
     
     //4. 表单验证
-    validatorForm();
+    //validatorForm();
     
     //5. 提交事件
     modalaction();
@@ -300,7 +300,7 @@ function delrecode(url,arr) {
 			  
 			  //刷新
 			  refreshtab();
-		  },
+		  }
 		  
 		  
 		});

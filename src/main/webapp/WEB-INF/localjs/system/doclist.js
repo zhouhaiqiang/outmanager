@@ -1,16 +1,11 @@
 
 //on load
 $(function () {
-	
 
-	
     //1.初始化Table
     var oTable = new TableInit();
     oTable.Init();
 
-    //2.初始化Button的点击事件
-    var oButtonInit = new ButtonInit();
-    oButtonInit.Init();
   
 });
 
@@ -60,11 +55,7 @@ var TableInit = function () {
         });
     };
     
-  
-    
-    
-    
-    
+
 
     //得到查询的参数
     oTableInit.queryParams = function (params) {
@@ -78,18 +69,6 @@ var TableInit = function () {
         return temp;
     };
     
-    
-    oTableInit.queryParamsrset = function (params) {
-        var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-           limit: 10,   //页面大小
-           offset: 0  //页码
-
-     
-        };
-        
-
-        return temp;
-    };   
     
     return oTableInit;
 };

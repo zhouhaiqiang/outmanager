@@ -57,7 +57,7 @@ $(function () {
     $('#myModal').modal("hide");
     
     //4. 表单验证
-    validatorForm();
+    //validatorForm();
     
     //5. 提交事件
     modalaction();

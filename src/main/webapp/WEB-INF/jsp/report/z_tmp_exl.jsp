@@ -14,6 +14,11 @@
 <!-- 引入bootstrap-table控件 -->
 <%@include file="../common/bootstrap-table.jsp" %>
 
+<!-- 数据导出 -->
+<script src="../static/bootstraptable/bootstrap-table-export.js"></script>
+
+<!--导出插件 -->
+<script src="../static/bootstraptable/rawgitexport.js"></script>
 
 <!--  页面私有js --> 
 <script src="../localjs/common.js"></script>

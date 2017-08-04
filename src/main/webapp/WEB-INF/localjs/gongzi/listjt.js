@@ -56,7 +56,7 @@ $(function () {
     $('#myModal').modal("hide");
     
     //4. 表单验证
-    validatorForm();
+    //validatorForm();
     
     //5. 提交事件
     modalaction();
@@ -154,7 +154,7 @@ var TableInit = function () {
            concode:$("#query_concode").val(),
            
            startmonth:$("#query_startmonth").val(),
-           endmonth:$("#query_endmonth").val(),          
+           endmonth:$("#query_endmonth").val()          
            
      
         };
@@ -162,23 +162,7 @@ var TableInit = function () {
 
         return temp;
     };
-    
-    
-    oTableInit.queryParamsrset = function (params) {
-        var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-           limit: 10,   //页面大小
-           offset: 0,  //页码
-
-           name:$("#query_name").val(),
-           unit:$("#query_unit").val(),
-           type:$("#query_type").val()
-     
-        };
-        
-
-        return temp;
-    };   
-    
+       
     return oTableInit;
 };
 
@@ -197,12 +181,10 @@ var ButtonInit = function () {
      });
      
      
-     $('#btn_reset').click(function(){
- 	   	 //清除查询条件
-	     $('#query_name').val("");
-	     $('#query_code').val("");
-
-    });
+     //初始化reset
+     $('#btn_reset').click(function(){	
+     	formReset();	
+     });
      
      
 
@@ -212,10 +194,10 @@ var ButtonInit = function () {
       $('#id').val("");
       
   	  //初始下拉框
-  	  initdroplist($("#companyid"),"/outmanager/config/companyjson","","")  	  
+  	  initdroplist($("#companyid"),"/outmanager/config/companyjson","","");  	  
   	  
       //合同编号
-      initdroplist($("#concode"),"/outmanager/config/contractcode_json","","")      	  
+      initdroplist($("#concode"),"/outmanager/config/contractcode_json","","");      	  
   	    	  
 	 
   	  //显示添加窗口
@@ -242,6 +224,8 @@ var ButtonInit = function () {
           	  initdroplist($("#concode"),"/outmanager/config/contractcode_json",selects[0].concode,"");
         	      	 
         
+          	
+          	  $('#unit').val(selects[0].unit);
           	  $('#ghhy').val(selects[0].ghhy);
           	  $('#glh').val(selects[0].glh);
           	  $('#shuijin').val(selects[0].shuijin);

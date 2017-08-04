@@ -52,7 +52,7 @@ $(function () {
     $('#myModal').modal("hide");
     
     //4. 表单验证
-    validatorForm();
+    //validatorForm();
     
     //5. 提交事件
     modalaction();
@@ -141,7 +141,7 @@ var TableInit = function () {
            companyid:$("#query_companyid").val(),
            
            
-           concode:$("#query_concode").val(),
+           //concode:$("#query_concode").val(),
            code:$("#query_code").val(),
            date:$("#query_date").val()          
            
@@ -152,22 +152,7 @@ var TableInit = function () {
         return temp;
     };
     
-    
-    oTableInit.queryParamsrset = function (params) {
-        var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-           limit: 10,   //页面大小
-           offset: 0,  //页码
-
-           name:$("#query_name").val(),
-           unit:$("#query_unit").val(),
-           type:$("#query_type").val()
-     
-        };
-        
-
-        return temp;
-    };   
-    
+ 
     return oTableInit;
 };
 
@@ -705,4 +690,3 @@ var setting1 = {
 			hideMenu();
 		}
 	}
-

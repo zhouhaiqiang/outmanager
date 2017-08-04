@@ -30,7 +30,7 @@ $(function () {
 
     
     //4. 表单验证
-    validatorForm();
+    //validatorForm();
  
 });
 
